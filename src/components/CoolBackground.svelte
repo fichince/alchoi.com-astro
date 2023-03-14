@@ -1,4 +1,5 @@
 <script lang="ts">
+  // TODO this can be an Astro template
   export let animate : boolean = false;
 </script>
 

@@ -1,0 +1,11 @@
+---
+import ShowcaseItem from './ShowcaseItem.astro';
+
+const { items } = Astro.props;
+---
+<section class="w-full sm:w-10/12 mx-auto
+  flex flex-col">
+  {items.map((item : any) => (
+    <ShowcaseItem item={item} />
+  ))}
+</section>

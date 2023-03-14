@@ -1,0 +1,45 @@
+---
+import MD from './MD.astro';
+
+const { item } = Astro.props;
+const { data: { title, description, image, url }, body } = item;
+
+// TODO "animate on scroll"
+---
+
+<article class="rounded-md
+  shadow-lg
+  shadow-accent/30
+  dark:shadow-accent-dark/10
+  m-3 p-6 w-full sm:w-3/4
+  justify-self-center self-center
+  flex flex-col sm:flex-row 
+  items-center 
+  bg-tertiary dark:bg-tertiary-dark
+  hover:animate-bump">
+  <div class="mb-3 sm:mb-0 sm:mr-5">
+    <a href={url} rel="noopener noreferrer" target="_blank">
+      <img class="object-cover h-64 w-64"
+        src={image} alt={title} />
+    </a>
+  </div>
+
+  <div class="text-center w-4/5">
+    <div class="text-xl sm:text-2xl lg:text-3xl mb-1 font-display text-accent dark:text-accent-dark">
+      <a href={url} rel="noopener noreferrer" target="_blank">
+        <MD md={title} />
+      </a>
+    </div>
+
+    <div class="font-body text-accent dark:text-accent-dark">
+      <MD md={description} />
+    </div>
+
+    { body &&
+    <br />
+    <div class="font-body text-accent dark:text-accent-dark">
+      <MD md={body} />
+    </div>
+    }
+  </div>
+</article>

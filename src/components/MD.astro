@@ -1,0 +1,19 @@
+---
+import { remark } from 'remark';
+import remarkHtml from 'remark-html';
+import remarkGfm from 'remark-gfm';
+import remarkSmartypants from 'remark-smartypants';
+
+const { md } = Astro.props;
+
+let html : string;
+
+$: html = remark()
+    .use(remarkGfm)
+    .use(remarkSmartypants)
+    .use(remarkHtml, { sanitize: false })
+    .processSync(md)
+    .toString();
+---
+
+<Fragment set:html={html} />

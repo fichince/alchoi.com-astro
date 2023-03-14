@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Showcase from '../components/Showcase.astro';
+import { getCollection } from 'astro:content';
+
+const prose = await getCollection('prose');
+
+console.log('here', prose);
+
+---
+
+<Layout title="Prose">
+  <div class="mx-auto mb-6 text-center text-accent dark:text-accent-dark font-body text-lg">
+    I spend some of my spare time writing fiction and the occasional non-fiction piece. Here are some links to my published works.
+  </div>
+
+  <Showcase items={prose} />
+
+</Layout>
