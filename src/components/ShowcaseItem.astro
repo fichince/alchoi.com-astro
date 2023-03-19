@@ -2,12 +2,10 @@
 import MD from './MD.astro';
 
 const { item } = Astro.props;
-const { data: { title, description, image, url }, body } = item;
+const { data: { title, description, image, url }, body, slug } = item;
 
-// TODO "animate on scroll"
 ---
-
-<article class="rounded-md
+<article id={slug} class="showcase-item rounded-md
   shadow-lg
   shadow-accent/30
   dark:shadow-accent-dark/10
@@ -43,3 +41,42 @@ const { data: { title, description, image, url }, body } = item;
     }
   </div>
 </article>
+
+<script>
+  function handleScroll(entries : IntersectionObserverEntry[]) {
+    entries.forEach((entry) => {
+      let classList = entry.target.classList;
+      if (entry.isIntersecting) {
+        classList.add('show');
+        classList.remove('hide');
+      } else {
+        classList.remove('show');
+        classList.add('hide');
+      }
+    });
+  }
+  const items = document.getElementsByClassName('showcase-item');
+  const observer = new IntersectionObserver(handleScroll, {
+    threshold: 0.50
+  });
+  for (let i = 0; i < items.length; i++) {
+    const elem = items.item(i);
+    if (elem) {
+      observer.observe(elem);
+    }
+  }
+</script>
+
+<style lang="scss">
+  .showcase-item {
+    &.hide {
+      opacity: 0.5;
+      transition: opacity 1s ease-in-out;
+    }
+
+    &.show {
+      opacity: 1.0;
+      transition: opacity 1s ease-in-out;
+    }
+  }
+</style>
