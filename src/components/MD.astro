@@ -8,12 +8,12 @@ const { md } = Astro.props;
 
 let html : string;
 
-$: html = remark()
-    .use(remarkGfm)
-    .use(remarkSmartypants)
-    .use(remarkHtml, { sanitize: false })
-    .processSync(md)
-    .toString();
+html = remark()
+        .use(remarkGfm)
+        .use(remarkSmartypants)
+        .use(remarkHtml, { sanitize: false })
+        .processSync(md)
+        .toString();
 ---
 
 <Fragment set:html={html} />
