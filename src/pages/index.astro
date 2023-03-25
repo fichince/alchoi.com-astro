@@ -1,57 +1,109 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CoolBackground from '../components/CoolBackground.svelte';
+import Logo from '../components/Logo.astro';
+
+const MENU = [
+  { name: 'Blog', url: '/blog' },
+  { name: 'Code', url: '/code' },
+  { name: 'Prose', url: '/prose' },
+];
 ---
 <Layout title="Albert Choi">
-	<CoolBackground animate>
-		<div class="
-			h-32 w-32
-			sm:h-52 sm:w-52 
-			rounded-full overflow-hidden mx-auto 
-			mt-8 border-accent border-2">
-			<img src="/images/headshot.jpg" alt="headshot" />
-		</div>
-		<div class="mx-auto text-center mt-4 
-			text-2xl sm:text-3xl 
-			font-display text-accent">
-			Albert Choi
-		</div>
-		<div class="mx-auto text-center mt-1 
-			text-lg sm:text-xl
-			font-display text-accent">
-			I write code and sometimes prose.
-		</div>
 
-		<div class="flex flex-col sm:flex-row 
-			items-center
-			mx-auto w-2/3 sm:justify-evenly mt-4 
-			text-xl sm:text-2xl 
-			text-pop font-display">
-			<div class="hover:scale-110">
-				<a href="/blog">Blog</a>
-			</div>
-			<div class="hover:scale-110">
-				<a href="/prose">Prose</a>
-			</div>
-			<div class="hover:scale-110">
-				<a href="/code">Code</a>
-			</div>
-		</div>
+  <div class="container">
+    <!-- menu and title -->
+    <div class="title">
+      <Logo />
+    </div>
 
-		<div class="flex mt-4 w-2/3 mx-auto justify-evenly
-			text-pop text-2xl sm:text-4xl">
-			<a href="https://github.com/fichince" target="_blank" rel="noreferrer noopener"
-				class="hover:scale-110">
-				<!--<Icon data={githubSquare} scale={3} />-->
-			</a>
-			<a href="https://www.facebook.com/albert.choi.583/" target="_blank" rel="noreferrer noopener"
-				class="hover:scale-110">
-				<!--<Icon data={facebookSquare} scale={3} />-->
-			</a>
-			<a href="https://www.linkedin.com/in/albert-choi-202b8923/" target="_blank" rel="noreferrer noopener"
-				class="hover:scale-110">
-				<!--<Icon data={linkedinSquare} scale={3} />-->
-			</a>
-		</div>
-	</CoolBackground>
+    <!-- headshot -->
+    <div class="headshot">
+      <img src="/images/headshot.jpg" alt="headshot" />
+    </div>
+
+    <div class="subtitle">
+      I write code and sometimes prose.
+    </div>
+
+    <div class="menu">
+      {MENU.map(({ name, url }) => (
+        <a class="menu-item" href={url}>{name}</a>
+      ))}
+    </div>
+
+    <div class="background-pattern"></div>
+
+  </div>
 </Layout>
+
+<style lang="scss">
+  .container {
+    margin-top: 20%;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    overflow: clip;
+
+    & > * {
+      margin: var(--size-3);
+    }
+
+    .title {
+      width: 70%;
+    }
+
+    .headshot {
+      width: 60%;
+      img {
+        border-radius: 100%;
+        border: var(--size-1) solid var(--highlight);
+      }
+    }
+
+    .subtitle {
+      color: var(--secondary);
+      font-family: var(--font-display);
+      font-size: var(--font-size-4);
+      text-align: center;
+    }
+
+    .menu {
+      color: var(--secondary);
+      font-family: var(--font-display);
+      font-size: var(--font-size-3);
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .menu-item {
+        margin: var(--size-1) var(--size-1);
+
+        &:hover {
+          color: var(--highlight);
+        }
+      }
+    }
+
+    .background-pattern {
+      background-image: radial-gradient(
+        var(--primary-mid) 9%, 
+        transparent 9%
+      );
+      background-position: 0% 0%;
+      background-size: 12vmin 12vmin;
+      height: 100vh;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      transition: opacity 800ms ease, 
+        background-size 800ms ease,
+        background-position 800ms ease;
+      width: 100vw;
+      z-index: -1;
+    }
+  }
+</style>
