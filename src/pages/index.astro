@@ -11,25 +11,35 @@ const MENU = [
 <Layout title="Albert Choi">
 
   <div class="container">
-    <!-- menu and title -->
-    <div class="title">
-      <Logo />
-    </div>
+    <section>
+      <!-- menu and title -->
+      <div class="title">
+        <Logo />
+      </div>
 
-    <!-- headshot -->
-    <div class="headshot">
-      <img src="/images/headshot.jpg" alt="headshot" />
-    </div>
+      <!-- headshot -->
+      <div class="headshot left">
+        <img src="/images/headshot.jpg" alt="headshot" />
+      </div>
 
-    <div class="subtitle">
-      I write code and sometimes prose.
-    </div>
+      <div class="subtitle">
+        I write code and sometimes prose.
+      </div>
+    </section>
 
-    <div class="menu">
-      {MENU.map(({ name, url }) => (
-        <a class="menu-item" href={url}>{name}</a>
-      ))}
-    </div>
+    <section>
+
+      <div class="headshot right">
+        <img src="/images/headshot.jpg" alt="headshot" />
+      </div>
+
+      <div class="menu">
+        {MENU.map(({ name, url }) => (
+          <a class="menu-item" href={url}>{name}</a>
+        ))}
+      </div>
+
+    </section>
 
     <div class="background-pattern"></div>
 
@@ -37,14 +47,15 @@ const MENU = [
 </Layout>
 
 <style lang="scss">
+  @import "../style/breakpoints.scss";
+
   .container {
-    margin-top: 20%;
-    display: flex;
-    flex-direction: column;
+    margin-top: 20vh;
+    display: grid;
 
-    align-items: center;
-
-    overflow: clip;
+    @include sm-up {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     & > * {
       margin: var(--size-3);
@@ -59,6 +70,19 @@ const MENU = [
       img {
         border-radius: 100%;
         border: var(--size-1) solid var(--highlight);
+      }
+
+      &.left {
+        @include sm-up {
+          display: none;
+        }
+      }
+
+      &.right {
+        display: none;
+        @include sm-up {
+          display: block;
+        }
       }
     }
 
