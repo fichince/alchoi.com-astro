@@ -11,7 +11,7 @@ const MENU = [
 <Layout title="Albert Choi">
 
   <div class="container">
-    <section>
+    <section class="main">
       <!-- menu and title -->
       <div class="title">
         <Logo />
@@ -25,18 +25,19 @@ const MENU = [
       <div class="subtitle">
         I write code and sometimes prose.
       </div>
+
+      <div class="menu">
+        {MENU.map(({ name, url }) => (
+          <a class="menu-item" href={url}>{name}</a>
+        ))}
+      </div>
+
     </section>
 
     <section>
 
       <div class="headshot right">
         <img src="/images/headshot.jpg" alt="headshot" />
-      </div>
-
-      <div class="menu">
-        {MENU.map(({ name, url }) => (
-          <a class="menu-item" href={url}>{name}</a>
-        ))}
       </div>
 
     </section>
@@ -50,23 +51,44 @@ const MENU = [
   @import "../style/breakpoints.scss";
 
   .container {
-    margin-top: 20vh;
+    min-width: 100vw;
+    min-height: 100vh;
+
     display: grid;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
 
     @include sm-up {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 50%);
     }
 
-    & > * {
-      margin: var(--size-3);
+    section {
+
+      --section-align: center;
+
+      @include sm-up {
+        &.main {
+          --section-align: flex-end;
+        }
+      }
+
+      display: flex;
+      flex-direction: column;
+      align-items: var(--section-align);
     }
 
     .title {
       width: 70%;
+      margin-bottom: var(--size-fluid-4);
     }
 
     .headshot {
       width: 60%;
+      max-width: 720px;
+      margin-bottom: var(--size-fluid-4);
+
       img {
         border-radius: 100%;
         border: var(--size-1) solid var(--highlight);
@@ -89,22 +111,32 @@ const MENU = [
     .subtitle {
       color: var(--secondary);
       font-family: var(--font-display);
-      font-size: var(--font-size-4);
+      font-size: var(--font-size-fluid-2);
       text-align: center;
+      margin-bottom: var(--size-fluid-4);
     }
 
     .menu {
+
+      width: 100%;
+
+      --menu-align: center;
+      @include sm-up {
+        --menu-align: flex-end;
+      }
+      
       color: var(--secondary);
       font-family: var(--font-display);
-      font-size: var(--font-size-3);
+      font-size: var(--font-size-fluid-2);
       text-align: center;
 
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: var(--menu-align);
 
       .menu-item {
-        margin: var(--size-1) var(--size-1);
+        margin: var(--size-fluid-1) var(--size-fluid-1);
+        text-decoration: underline;
 
         &:hover {
           color: var(--highlight);
@@ -114,11 +146,11 @@ const MENU = [
 
     .background-pattern {
       background-image: radial-gradient(
-        var(--primary-mid) 9%, 
-        transparent 9%
+        var(--primary-mid) 15%, 
+        transparent 15%
       );
       background-position: 0% 0%;
-      background-size: 12vmin 12vmin;
+      background-size: var(--size-fluid-5) var(--size-fluid-5);
       height: 100vh;
       left: 0px;
       position: absolute;
