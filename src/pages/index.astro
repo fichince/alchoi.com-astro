@@ -9,7 +9,6 @@ const MENU = [
 ];
 ---
 <Layout title="Albert Choi">
-
   <div class="container">
     <section class="main">
       <!-- menu and title -->
@@ -31,6 +30,7 @@ const MENU = [
           <a class="menu-item" href={url}>{name}</a>
         ))}
       </div>
+      <div class="background-pattern"></div>
 
     </section>
 
@@ -41,9 +41,6 @@ const MENU = [
       </div>
 
     </section>
-
-    <div class="background-pattern"></div>
-
   </div>
 </Layout>
 
@@ -91,7 +88,7 @@ const MENU = [
 
       img {
         border-radius: 100%;
-        border: var(--size-1) solid var(--highlight);
+        //border: var(--size-1) solid var(--highlight);
       }
 
       &.left {
@@ -138,27 +135,36 @@ const MENU = [
         margin: var(--size-fluid-1) var(--size-fluid-1);
         text-decoration: underline;
 
+        transition: transform 0.25s ease-in;
+
         &:hover {
           color: var(--highlight);
+          transform: scale(150%);
+          transition: transform 0.25s ease-out;
         }
       }
     }
 
     .background-pattern {
+      --background-width: 100%;
+      @include sm-up {
+        --background-width: 50%;
+      }
+
       background-image: radial-gradient(
         var(--primary-mid) 15%, 
         transparent 15%
       );
       background-position: 0% 0%;
       background-size: var(--size-fluid-5) var(--size-fluid-5);
-      height: 100vh;
+      height: 100%;
       left: 0px;
       position: absolute;
       top: 0px;
       transition: opacity 800ms ease, 
         background-size 800ms ease,
         background-position 800ms ease;
-      width: 100vw;
+      width: var(--background-width);
       z-index: -1;
     }
   }
