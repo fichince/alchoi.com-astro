@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Everything minty is good, part II
 description: Refreshing
 date: 2005-03-09

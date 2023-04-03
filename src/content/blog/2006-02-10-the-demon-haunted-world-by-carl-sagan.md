@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: _The Demon-Haunted World_ by Carl Sagan
 description: Dragon in the garage
 date: 2006-02-10

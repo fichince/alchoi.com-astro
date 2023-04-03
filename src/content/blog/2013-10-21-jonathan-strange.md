@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title:  "Review: _Jonathan Strange & Mr Norrell_ by Susanna Clarke"
 description: "Truly one of my favourite books"
 date: 2013-10-21

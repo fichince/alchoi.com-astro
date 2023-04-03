@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: "Review: _Perdido Street Station_ by China Mieville"
 description: A great mix of setting, plot and character
 date: 2012-04-09

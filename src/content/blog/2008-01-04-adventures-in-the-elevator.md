@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Adventures in the Elevator
 description: Poor Buddy
 date: 2008-01-04

@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title:  "Review: _The Truffle Hunters_"
 description: Beware of Big Truffle
 date: 2022-01-05

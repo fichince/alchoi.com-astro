@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: The Overcompensating Backslash
 description: Mean geeks
 date: 2006-04-22

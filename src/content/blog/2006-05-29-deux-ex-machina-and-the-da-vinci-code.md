@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Deus Ex Machina and _The Da Vinci Code_
 description: Crippled scholar
 date: 2006-05-29

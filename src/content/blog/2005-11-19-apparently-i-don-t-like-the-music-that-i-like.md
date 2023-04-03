@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Apparently, I don't like the music that I like
 description: Pandora
 date: 2005-11-19

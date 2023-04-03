@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'TIFF 2009: _The Warrior and the Wolf_'
 description: Communication barrier
 date: 2009-09-15

@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title:  "Revive (again)"
 description: Hello again! (again)
 date: 2022-01-04

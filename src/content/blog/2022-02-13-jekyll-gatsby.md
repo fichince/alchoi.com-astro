@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title:  From Jekyll to Gatsby
 description: R. L. Stevenson v. F. S. Fitzgerald?
 date: 2022-02-13

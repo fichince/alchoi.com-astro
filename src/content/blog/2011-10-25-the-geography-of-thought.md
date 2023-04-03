@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'Review: _The Geography of Thought_ by Richard E. Nisbett'
 description: The wisdom of Grandma
 date: 2011-10-25

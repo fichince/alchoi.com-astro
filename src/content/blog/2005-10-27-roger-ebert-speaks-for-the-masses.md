@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Roger Ebert speaks for the masses
 description: Can't argue with that
 date: 2005-10-17

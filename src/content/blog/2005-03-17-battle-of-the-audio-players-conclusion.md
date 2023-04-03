@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Battle of the audio players, conclusion
 description: Ordeal
 date: 2005-03-17

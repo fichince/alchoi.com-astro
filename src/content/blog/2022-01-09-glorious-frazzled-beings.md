@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title:  "Review: _Glorious Frazzled Beings_ by Angélique Lalonde"
 description: Positive or negative?
 date: 2022-01-09

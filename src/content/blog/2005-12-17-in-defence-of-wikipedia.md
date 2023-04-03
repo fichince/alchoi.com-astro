@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: In Defence of Wikipedia
 description: Anyone can edit
 date: 2005-12-17

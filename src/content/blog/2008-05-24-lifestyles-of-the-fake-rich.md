@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Lifestyles of the Fake Rich
 description: In case of emergency
 date: 2008-05-24

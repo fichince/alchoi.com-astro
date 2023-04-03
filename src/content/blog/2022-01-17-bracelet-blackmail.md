@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Bracelet Blackmail
 description: Tales of Commerce from the Far East
 date: 2022-01-14

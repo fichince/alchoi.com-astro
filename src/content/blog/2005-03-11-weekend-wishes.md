@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Weekend Wishes
 description: You too
 date: 2005-03-11

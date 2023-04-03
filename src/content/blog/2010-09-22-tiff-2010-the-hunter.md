@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'TIFF 2010: _The Hunter_'
 description: Stoic performance
 date: 2010-09-22

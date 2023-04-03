@@ -1,5 +1,5 @@
 ---
-layout: post
+
 draft: true
 title: "Review: _Interior Chinatown_ by Charles Yu"
 description: TBD

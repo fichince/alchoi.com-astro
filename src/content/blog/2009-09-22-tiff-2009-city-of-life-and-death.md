@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'TIFF 2009: _City of Life and Death_'
 description: Horror and style
 date: 2009-09-22

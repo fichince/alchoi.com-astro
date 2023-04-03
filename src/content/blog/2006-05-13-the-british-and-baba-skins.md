@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: The British and Baba Skins
 description: I can feel it coming in the air tonight
 date: 2006-05-13

@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'TIFF 2009: _The Sunshine Boy_'
 description: Autism and skepticism
 date: 2009-09-22

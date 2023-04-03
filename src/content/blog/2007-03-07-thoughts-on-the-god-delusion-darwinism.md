@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'Thoughts on _The God Delusion:_ "Darwinism"'
 description: Be fair to Watson
 date: 2007-03-07

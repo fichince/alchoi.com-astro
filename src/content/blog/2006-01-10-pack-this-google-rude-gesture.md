@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Pack _this_, Google! [rude gesture]
 description: Just an installer
 date: 2006-01-10

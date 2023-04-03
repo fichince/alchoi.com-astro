@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Favourite Albums of the 2000's
 description: Bandwagon jumping
 date: 2010-01-20

@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Credit card telemarketers are mindless automata
 description: Click
 date: 2005-12-12

@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Everything minty is good
 description: Wake me up
 date: 2004-12-17

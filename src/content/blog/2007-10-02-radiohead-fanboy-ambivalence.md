@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Radiohead fanboy ambivalence
 description: In Rainbows
 date: 2007-10-02

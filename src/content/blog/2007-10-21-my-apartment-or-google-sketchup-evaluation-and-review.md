@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'MY APARTMENT!!! or: Google SketchUp evaluation and review'
 description: Thinly disguised
 date: 2007-10-21

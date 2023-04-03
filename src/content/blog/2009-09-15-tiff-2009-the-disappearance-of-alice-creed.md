@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'TIFF 2009: _The Disappearance of Alice Creed_'
 description: Two men kidnap a girl
 date: 2009-09-15

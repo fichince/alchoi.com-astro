@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title:  "Review: _China in Ten Words_ by Yu Hua"
 description: Compare and contrast
 date: 2022-03-11

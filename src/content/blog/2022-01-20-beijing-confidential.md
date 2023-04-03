@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title:  "Review: _Beijing Confidential_ by Jan Wong"
 description: A Tale of Self-Discovery
 date: 2022-01-20

@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'Review: _Mistakes Were Made (But Not by Me): Why We Justify Foolish Beliefs, Bad Decisions, and Hurtful Acts_ by Carol Tavris'
 description: Cognitive dissonance
 date: 2011-10-04

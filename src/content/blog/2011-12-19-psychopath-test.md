@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: "Review: _The Psychopath Test: A Journey Through the Madness Industry_ by Jon Ronson"
 description: An abandoned thesis
 date: 2011-12-19

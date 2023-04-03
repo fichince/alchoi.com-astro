@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: "Review: _Everything and More: A Compact History of Infinity_ by David Foster Wallace"
 description: "\"Compact\"?"
 date: 2012-08-22

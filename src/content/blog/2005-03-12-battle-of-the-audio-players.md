@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Battle of the audio players
 description: No probability theory
 date: 2005-03-12

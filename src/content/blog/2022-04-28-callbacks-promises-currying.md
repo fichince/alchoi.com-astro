@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title:  From callbacks to promises via currying
 description: Saucy code
 date: 2022-04-28

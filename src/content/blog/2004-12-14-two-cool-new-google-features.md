@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Two cool new Google features
 description: Por
 date: 2004-12-14

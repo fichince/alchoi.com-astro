@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: The New York Times copied my post
 description: Self-congratulation
 date: 2009-02-12

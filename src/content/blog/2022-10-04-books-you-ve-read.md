@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Interesting Books You’ve Read Recently
 description: _Interior Chinatown_, _In the Dream House_, _The Only Good Indians_
 date: 2022-10-04

@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: I felt like I was on The Amazing Race
 description: Temporary airplane friends
 date: 2007-01-04

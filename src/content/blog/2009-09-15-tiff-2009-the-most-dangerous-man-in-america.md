@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'TIFF 2009: _The Most Dangerous Man in America_'
 description: Bad Nixon
 date: 2009-09-15

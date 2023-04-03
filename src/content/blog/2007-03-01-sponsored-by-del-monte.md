@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Sponsored by Del Monte
 description: Bananas
 date: 2007-03-01

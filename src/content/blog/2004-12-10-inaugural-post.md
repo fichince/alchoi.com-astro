@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Inaugural post
 description: It begins
 date: 2004-12-10

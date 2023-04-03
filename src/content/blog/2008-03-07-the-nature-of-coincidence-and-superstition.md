@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: The Nature of Coincidence and Superstition
 description: Dreams and predictions
 date: 2008-03-07

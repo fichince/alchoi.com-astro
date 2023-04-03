@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title:  "Kobo's Killer App, or: My History with E-reading"
 description: "From iPAQ to e-ink"
 date: 2017-04-11

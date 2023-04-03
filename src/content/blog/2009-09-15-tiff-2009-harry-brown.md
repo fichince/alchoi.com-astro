@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'TIFF 2009: _Harry Brown_'
 description: You failed to maintain our weapon, son
 date: 2009-09-15

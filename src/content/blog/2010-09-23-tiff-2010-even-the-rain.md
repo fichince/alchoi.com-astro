@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'TIFF 2010: _Even the Rain_'
 description: Dramatic self-reference
 date: 2010-09-23

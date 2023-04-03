@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'Review: _Moonwalking with Einstein: The Art and Science of Remembering Everything_ by Joshua Foer'
 description: Remember this?
 date: 2011-12-03

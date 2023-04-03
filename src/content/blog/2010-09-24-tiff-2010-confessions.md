@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: 'TIFF 2010: _Confessions_'
 description: Like poetry
 date: 2010-09-24
