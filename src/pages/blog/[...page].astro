@@ -1,49 +1,102 @@
 ---
-import type { GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType } from 'astro';
-import { getCollection } from 'astro:content';
+import type { GetStaticPaths, Page } from 'astro';
+import { CollectionEntry, getCollection } from 'astro:content';
+import { DateTime } from 'luxon';
 
 import Layout from '@src/layouts/Layout.astro';
 import Navbar from '@src/components/Navbar.astro';
 import TagList from '@src/components/TagList.astro';
+import MD from '@src/components/MD.astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const blogPosts = await getCollection('blog');
-  const pages = paginate([...blogPosts].reverse(), { pageSize: 5 });
+  const collection = await getCollection('blog');
+  const blogPosts = collection.filter((post) => !post.data.draft).reverse();
+  const pages = paginate(blogPosts, { pageSize: 5 });
   return pages;
 }) satisfies GetStaticPaths;
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
-
-const { page } = Astro.params as Params;
-
-const { 
-  page: { 
-    data: posts,
-    url
-  },
-} = Astro.props;
-
-
-const post = posts[0];
-
+const page : Page<CollectionEntry<"blog">> = Astro.props.page;
+const posts = page.data.filter((post) => !post.data.draft);
 ---
 <Layout title="Blog">
   <Navbar />
-  <header>
-    <h1>Blog</h1>
-    <div>
-      <TagList />
-    </div>
-    <hr />
+  <div class="container">
+    <header>
+      <h1>Blog</h1>
+      <div>
+        <TagList />
+      </div>
+      <div class="divider" />
+    </header>
 
-    {posts.map((post) => (
-      <article>
-        {post.data.title}
-      </article>
-    ))}
-  </header>
+    {posts.map((post) => {
+
+      const date = DateTime
+        .fromJSDate(post.data.date)
+        .toUTC()
+        .toLocaleString(DateTime.DATE_SHORT);
+
+      return (
+        <article>
+          <h3>
+            <MD md={post.data.title} />
+          </h3>
+          <time>{date}</time>
+        </article>
+      );
+    })}
+  </div>
 </Layout>
 
-<style>
+<style lang="scss">
+  .container {
+    font-family: var(--font-display);
+    padding: var(--size-fluid-2);
+
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: var(--size-fluid-3);
+
+      h1 {
+        font-size: var(--font-size-fluid-3);
+      }
+    }
+
+    .divider {
+      height: 2px;
+      width: 50%;
+      border-radius: 100%;
+      background-color: var(--secondary);
+      margin-top: var(--size-fluid-1);
+    }
+
+    article {
+      margin: var(--size-fluid-4) var(--size-fluid-1);
+
+      display: flex;
+      flex-direction: column;
+
+      &:nth-child(odd) {
+        --alignment: flex-start;
+        --text-alignment: left;
+      }
+      &:nth-child(even) {
+        --alignment: flex-end;
+        --text-alignment: right;
+      }
+      align-items: var(--alignment);
+      text-align: var(--text-alignment);
+
+      h3 {
+        font-size: var(--font-size-3);
+        text-decoration: underline;
+      }
+
+      time {
+        font-size: var(--font-size-2);
+      }
+    }
+  }
 </style>
