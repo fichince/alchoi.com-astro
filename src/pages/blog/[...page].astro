@@ -17,7 +17,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 }) satisfies GetStaticPaths;
 
 const page : Page<CollectionEntry<"blog">> = Astro.props.page;
-const posts = page.data.filter((post) => !post.data.draft);
+const posts = page.data;
 ---
 <Layout title="Blog">
   <Navbar />
@@ -39,10 +39,12 @@ const posts = page.data.filter((post) => !post.data.draft);
 
       return (
         <article>
-          <h3>
-            <MD md={post.data.title} />
-          </h3>
-          <time>{date}</time>
+          <div class="title">
+            <h3>
+              <MD md={post.data.title} />
+            </h3>
+            <time>{date}</time>
+          </div>
           {/* todo - do something responsive with image? */}
           { post.data.image &&
             <Image 
@@ -83,44 +85,43 @@ const posts = page.data.filter((post) => !post.data.draft);
     }
 
     article {
-      margin: var(--size-fluid-4) var(--size-fluid-1);
+      margin: var(--size-fluid-3) var(--size-fluid-1);
 
       display: grid;
+      grid-template-rows: 1fr;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      align-items: center;
       
       --title-row: 1 / 2;
-      --date-row: 2 / 3;
-      --image-row: 1 / span 2;
+      --image-row: 1 / 2;
 
       &:nth-child(odd) {
         --text-alignment: left;
 
         --title-column: 1 / 2;
-        --date-column: 1 / 2;
         --image-column: 2 / 3;
       }
       &:nth-child(even) {
         --text-alignment: right;
 
         --title-column: 2 / 3;
-        --date-column: 2 / 3;
         --image-column: 1 / 2;
       }
 
       text-align: var(--text-alignment);
 
-      h3 {
-        font-size: var(--font-size-3);
-        text-decoration: underline;
+      .title {
         grid-row: var(--title-row);
         grid-column: var(--title-column);
-      }
 
-      time {
-        font-size: var(--font-size-2);
-        grid-row: var(--date-row);
-        grid-column: var(--date-column);
+        h3 {
+          font-size: var(--font-size-3);
+          text-decoration: underline;
+        }
+
+        time {
+          font-size: var(--font-size-2);
+        }
       }
 
       img {
