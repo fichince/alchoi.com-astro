@@ -5,6 +5,7 @@ description: _Interior Chinatown_, _In the Dream House_, _The Only Good Indians_
 date: 2022-10-04
 tags:
   - books
+image: /images/blog/interior-chinatown.jpeg
 ---
 
 I recently read a few books which feature the relatively rare technique of second-person narration. This is when the pronoun _you_ is used as a perspective in the writing. Most books are either first-person (“_I_ went to the cobbler’s”) or third-person (“_She_ went to the haberdasher’s”). Therefore, it raises my eyebrows to see the much more uncommon _you_ usage. These three books use this technique for different reasons, and to varying degrees of success, in my opinion.

@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths, Page } from 'astro';
 import { CollectionEntry, getCollection } from 'astro:content';
+import { Image } from '@astrojs/image/components';
 import { DateTime } from 'luxon';
 
 import Layout from '@src/layouts/Layout.astro';
@@ -42,6 +43,15 @@ const posts = page.data.filter((post) => !post.data.draft);
             <MD md={post.data.title} />
           </h3>
           <time>{date}</time>
+          {/* todo - do something responsive with image? */}
+          { post.data.image &&
+            <Image 
+              src={post.data.image} 
+              alt={post.data.title}
+              width={140}
+              aspectRatio="4:3"
+            />
+          }
         </article>
       );
     })}
@@ -75,27 +85,48 @@ const posts = page.data.filter((post) => !post.data.draft);
     article {
       margin: var(--size-fluid-4) var(--size-fluid-1);
 
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      
+      --title-row: 1 / 2;
+      --date-row: 2 / 3;
+      --image-row: 1 / span 2;
 
       &:nth-child(odd) {
-        --alignment: flex-start;
         --text-alignment: left;
+
+        --title-column: 1 / 2;
+        --date-column: 1 / 2;
+        --image-column: 2 / 3;
       }
       &:nth-child(even) {
-        --alignment: flex-end;
         --text-alignment: right;
+
+        --title-column: 2 / 3;
+        --date-column: 2 / 3;
+        --image-column: 1 / 2;
       }
-      align-items: var(--alignment);
+
       text-align: var(--text-alignment);
 
       h3 {
         font-size: var(--font-size-3);
         text-decoration: underline;
+        grid-row: var(--title-row);
+        grid-column: var(--title-column);
       }
 
       time {
         font-size: var(--font-size-2);
+        grid-row: var(--date-row);
+        grid-column: var(--date-column);
+      }
+
+      img {
+        grid-row: var(--image-row);
+        grid-column: var(--image-column);
+        place-self: center;
       }
     }
   }

@@ -6,6 +6,7 @@ date: 2022-04-28
 tags:
   - tech
   - coding
+image: /images/blog/curry.jpeg
 ---
 
 Recently, I’ve been working on some social and gamification features in a web application. I decided to use a backend service called [brainCloud][1] instead of implementing all of the database stuff myself. The brainCloud service stores things like player statistics, leaderboards and social relationships (i.e. who’s friends with who?), and provides an HTTP API to read and write the data. They also provide a [Javascript client library][2] to make it easier to work with those APIs.
