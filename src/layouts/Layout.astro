@@ -28,10 +28,12 @@ const { title } = Astro.props;
 
   body {
     background: linear-gradient(to bottom, var(--primary), var(--primary-light));
+    color: var(--secondary);
+
     height: 100%;
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    overflow: clip;
+    overflow-x: clip;
   }
 </style>

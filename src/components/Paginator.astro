@@ -1,0 +1,44 @@
+---
+import type { Page } from 'astro';
+
+interface Props {
+  page: Page<any>;
+}
+
+const { page } = Astro.props;
+const { currentPage, lastPage } = page;
+const { url : { prev, next } } = page;
+
+---
+<div class="paginator">
+  <a href={prev} class="prev">
+    <span>&#8668;</span>
+  </a>
+
+  <span>{ currentPage } / { lastPage }</span>
+
+  <a href={next} class="next">
+    <span>&#8669;</span>
+  </a>
+</div>
+
+<style lang="scss">
+  .paginator {
+    font-family: var(--font-display);
+    font-size: var(--font-size-1);
+
+    display: flex;
+    align-items: center;
+
+    a {
+      font-size: var(--font-size-7);
+
+      &.prev {
+        margin-right: var(--size-3);
+      }
+      &.next {
+        margin-left: var(--size-3);
+      }
+    }
+  }
+</style>
