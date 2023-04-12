@@ -460,6 +460,16 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.16.17.tgz#c5a1a4bfe1b57f0c3e61b29883525c6da3e5c091"
   integrity sha512-y+EHuSchhL7FjHgvQL/0fnnFmO4T1bhvWANX6gcnqTjtnKWbTvUMCpGnv2+t+31d7RzyEAYAd4u2fnIhHL6N/Q==
 
+"@fontsource/inconsolata@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/inconsolata/-/inconsolata-4.5.10.tgz#0660baa34a78c3b6cc21ece3bc1907bc43275dec"
+  integrity sha512-kShpiWE3RD4LH4YlZPbyE4VMt826DA7Ugw1jNJt54mxpP7nUsI9gflQOLWSJ9AMLkqPLpjza9iZkKRmU8Q7MOQ==
+
+"@fontsource/karla@^4.5.11":
+  version "4.5.11"
+  resolved "https://registry.yarnpkg.com/@fontsource/karla/-/karla-4.5.11.tgz#5434a77cf11b467046b13ed80be4140c87c42353"
+  integrity sha512-MpH+rW8V5v/mqEwoIrUTmGimY+GIyU5P23DmzYxWcTotosRLGWrg7XOjN4DtkpZuEv2LzHHZxOuFWbjRWL9JfQ==
+
 "@fontsource/mononoki@^4.5.3":
   version "4.5.3"
   resolved "https://registry.yarnpkg.com/@fontsource/mononoki/-/mononoki-4.5.3.tgz#a2125454f135a1d1e4347d856fb245941da85569"

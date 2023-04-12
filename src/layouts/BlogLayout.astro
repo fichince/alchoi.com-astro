@@ -60,10 +60,13 @@ const posts = page.data;
         );
       })}
     </main>
+    <aside>
+      <TagList />
+    </aside>
+    <footer>
+      <Paginator page={page} />
+    </footer>
 
-  </div>
-  <div class="paginator">
-    <Paginator page={page} />
   </div>
 </NavbarLayout>
 
@@ -74,11 +77,22 @@ const posts = page.data;
     font-family: var(--font-display);
     padding: var(--size-fluid-2);
 
+    display: grid;
+    grid-template-areas:
+      "header header header"
+      "main main aside"
+      "footer footer footer";
+    grid-template-columns: auto;
+    @include sm-up {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
     header {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-bottom: var(--size-fluid-3);
+      grid-area: header;
 
       h1 {
         font-size: var(--font-size-fluid-3);
@@ -90,8 +104,14 @@ const posts = page.data;
     }
 
     main {
+      grid-area: main;
+    }
+
+    aside {
+      grid-area: aside;
+      display: none;
       @include sm-up {
-        max-width: 70%;
+        display: block;
       }
     }
 
@@ -143,7 +163,7 @@ const posts = page.data;
         grid-column: var(--title-column);
 
         h3 {
-          font-size: var(--font-size-fluid-3);
+          font-size: var(--font-size-fluid-2);
           text-decoration: underline;
         }
 
@@ -160,7 +180,8 @@ const posts = page.data;
           text-align: left;
 
           h4 {
-            font-size: var(--font-size-4);
+            font-size: var(--font-size-fluid-0);
+            font-family: var(--font-body);
           }
         }
       }
@@ -171,12 +192,14 @@ const posts = page.data;
         place-self: center;
       }
     }
+
+    footer {
+      grid-area: footer;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+    }
   }
 
-  .paginator {
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-  }
 </style>
