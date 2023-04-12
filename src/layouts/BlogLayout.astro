@@ -21,9 +21,7 @@ const posts = page.data;
   <div class="container">
     <header>
       <h1>Blog {tag ? `(${tag})` : ''}</h1>
-      <div>
-        <TagList />
-      </div>
+      <TagList selectedTag={tag} />
       <div class="divider" />
     </header>
     <main>
@@ -60,9 +58,6 @@ const posts = page.data;
         );
       })}
     </main>
-    <aside>
-      <TagList />
-    </aside>
     <footer>
       <Paginator page={page} />
     </footer>
@@ -79,11 +74,14 @@ const posts = page.data;
 
     display: grid;
     grid-template-areas:
-      "header header header"
-      "main main aside"
-      "footer footer footer";
+      "header"
+      "main"
+      "footer";
     grid-template-columns: auto;
     @include sm-up {
+      grid-template-areas:
+        "main main header"
+        "footer footer footer";
       grid-template-columns: 1fr 1fr 1fr;
     }
 
@@ -99,20 +97,17 @@ const posts = page.data;
       }
 
       @include sm-up {
-        display: none;
+        h1 {
+          display: none;
+        }
+        .divider {
+          display: none;
+        }
       }
     }
 
     main {
       grid-area: main;
-    }
-
-    aside {
-      grid-area: aside;
-      display: none;
-      @include sm-up {
-        display: block;
-      }
     }
 
     .divider {
@@ -128,7 +123,7 @@ const posts = page.data;
 
       display: grid;
       grid-template-rows: 1fr;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 2fr 1fr;
       align-items: baseline;
       
       --title-row: 1 / 2;

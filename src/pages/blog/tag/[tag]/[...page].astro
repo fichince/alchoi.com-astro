@@ -12,7 +12,9 @@ export const getStaticPaths = (async ({ paginate }) => {
 
   const pages = allTags.map((tag) => {
     const posts = collection.filter((post) => {
-      return post.data.tags ? post.data.tags.includes(tag) : false
+      const hasTag = post.data.tags ? post.data.tags.includes(tag) : false;
+      const draft = post.data.draft;
+      return hasTag && !draft;
     }).reverse();
     return paginate(posts, {
       params: { tag },
