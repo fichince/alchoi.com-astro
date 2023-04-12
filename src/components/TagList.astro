@@ -16,12 +16,12 @@ const { selectedTag } = Astro.props;
 <section>
   {tags.map((tag) => (
     <span class:list={{'selected': selectedTag === tag}}>
-      <span class="dot">&centerdot;</span>
+      <span class="symbol"></span>
       <a href={`/blog/tag/${tag}`}>{tag}</a>
     </span>
   ))}
   <span class:list={{'selected': !selectedTag }}>
-    <span class="dot">&centerdot;</span>
+    <span class="symbol"></span>
     <a href="/blog">all</a>
   </span>
 </section>
@@ -42,12 +42,18 @@ const { selectedTag } = Astro.props;
     flex-wrap: wrap;
     justify-content: center;
 
-    & > span.selected {
-      color: var(--highlight);
+    .symbol {
+      margin-left: var(--size-1);
+      &::before {
+        content: '\b7';
+      }
     }
 
-    .dot {
-      margin-left: var(--size-1);
+    & > span.selected {
+      color: var(--highlight);
+      .symbol::before {
+        content: '\2192'; // show an arrow
+      }
     }
 
     a {
