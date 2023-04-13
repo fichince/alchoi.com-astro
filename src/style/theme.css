@@ -41,3 +41,7 @@
   --tw-prose-th-borders: var(--secondary);
   --tw-prose-td-borders: var(--secondary);
 }
+
+.tw-prose pre.astro-code {
+  font-family: 'Inconsolata', var(--font-mono);
+}
