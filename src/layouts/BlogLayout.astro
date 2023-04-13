@@ -6,7 +6,7 @@ import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import type { Page } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 
-import { Image } from '@astrojs/image/components';
+import { Picture } from '@astrojs/image/components';
 import { DateTime } from 'luxon';
 
 interface Props {
@@ -45,14 +45,16 @@ const posts = page.data;
                 </h4>
               </div>
             </div>
-            {/* todo - do something responsive with image? */}
             { post.data.image &&
-              <Image
-                src={post.data.image} 
-                alt={post.data.title}
-                width={140}
-                height={140}
-              />
+              <div class="image">
+                <Picture
+                  src={post.data.image}
+                  alt={post.data.title}
+                  widths={[140, 280]}
+                  aspectRatio="1:1"
+                  sizes="(min-width: 480px) 280px, 140px"
+                />
+              </div>
             }
           </article>
         );
@@ -191,7 +193,7 @@ const posts = page.data;
         }
       }
 
-      img {
+      .image {
         grid-row: var(--image-row);
         grid-column: var(--image-column);
         place-self: center;
