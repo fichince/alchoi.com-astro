@@ -33,30 +33,32 @@ const posts = page.data;
           .toLocaleString(DateTime.DATE_SHORT);
 
         return (
-          <article>
-            <div class="title">
-              <h3>
-                <MD md={post.data.title} />
-              </h3>
-              <time>{date}</time>
-              <div class="description">
-                <h4>
-                  <MD md={post.data.description} />
-                </h4>
+          <a href={`/blog/${post.slug}`} class="post">
+            <article>
+              <div class="title">
+                <h3>
+                  <MD md={post.data.title} />
+                </h3>
+                <time>{date}</time>
+                <div class="description">
+                  <h4>
+                    <MD md={post.data.description} />
+                  </h4>
+                </div>
               </div>
-            </div>
-            { post.data.image &&
-              <div class="image">
-                <Picture
-                  src={post.data.image}
-                  alt={post.data.title}
-                  widths={[140, 280]}
-                  aspectRatio="1:1"
-                  sizes="(min-width: 480px) 280px, 140px"
-                />
-              </div>
-            }
-          </article>
+              { post.data.image &&
+                <div class="image">
+                  <Picture
+                    src={post.data.image}
+                    alt={post.data.title}
+                    widths={[140, 280]}
+                    aspectRatio="1:1"
+                    sizes="(min-width: 480px) 280px, 140px"
+                  />
+                </div>
+              }
+            </article>
+          </a>
         );
       })}
     </main>
@@ -123,21 +125,12 @@ const posts = page.data;
       grid-area: main;
     }
 
-    article {
-      background: linear-gradient(to top left, var(--primary), var(--primary-light));
-      padding: var(--size-fluid-2);
-      border-radius: var(--size-1);
+    a.post { 
+      display: block;
 
       &:not(:first-child) {
         margin-top: var(--size-fluid-3);
       }
-
-      display: grid;
-      align-items: baseline;
-      --rows: 1fr;
-      
-      --title-row: 1 / 2;
-      --image-row: 1 / 2;
 
       &:nth-child(odd) {
         --text-alignment: left;
@@ -158,45 +151,58 @@ const posts = page.data;
         --description-margin: 0 0 0 auto;
       }
 
-      gap: var(--size-fluid-1);
-      grid-template-rows: var(--rows);
-      grid-template-columns: var(--columns);
+      article {
+        background: linear-gradient(to top left, var(--primary), var(--primary-light));
+        border-radius: var(--size-1);
+        padding: var(--size-fluid-2);
 
-      text-align: var(--text-alignment);
+        display: grid;
+        align-items: baseline;
+        --rows: 1fr;
+        
+        --title-row: 1 / 2;
+        --image-row: 1 / 2;
 
-      .title {
-        grid-row: var(--title-row);
-        grid-column: var(--title-column);
+        gap: var(--size-fluid-1);
+        grid-template-rows: var(--rows);
+        grid-template-columns: var(--columns);
 
-        h3 {
-          font-size: var(--font-size-fluid-2);
-          text-decoration: underline;
-        }
+        text-align: var(--text-alignment);
 
-        time {
-          font-size: var(--font-size-fluid-1);
-        }
-        .description {
-          display: none;
-          margin: var(--description-margin);
+        .title {
+          grid-row: var(--title-row);
+          grid-column: var(--title-column);
 
-          @include sm-up {
-            display: block;
-            text-align: var(--text-alignment);
-            max-width: var(--size-15);
+          h3 {
+            font-size: var(--font-size-fluid-2);
+            text-decoration: underline;
+          }
 
-            h4 {
-              font-size: var(--font-size-fluid-0);
-              font-family: var(--font-body);
+          time {
+            font-size: var(--font-size-fluid-1);
+          }
+          .description {
+            display: none;
+            margin: var(--description-margin);
+
+            @include sm-up {
+              display: block;
+              text-align: var(--text-alignment);
+              max-width: var(--size-15);
+
+              h4 {
+                font-size: var(--font-size-fluid-0);
+                font-family: var(--font-body);
+              }
             }
           }
         }
-      }
 
-      .image {
-        grid-row: var(--image-row);
-        grid-column: var(--image-column);
-        place-self: center;
+        .image {
+          grid-row: var(--image-row);
+          grid-column: var(--image-column);
+          place-self: center;
+        }
       }
     }
 
