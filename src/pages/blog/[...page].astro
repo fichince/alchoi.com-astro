@@ -7,7 +7,7 @@ import BlogLayout from '@src/layouts/BlogLayout.astro';
 export const getStaticPaths = (async ({ paginate }) => {
   const collection = await getCollection('blog');
   const blogPosts = collection.filter((post) => !post.data.draft).reverse();
-  const pages = paginate(blogPosts, { pageSize: 5 });
+  const pages = paginate(blogPosts, { pageSize: 15 });
   return pages;
 }) satisfies GetStaticPaths;
 
