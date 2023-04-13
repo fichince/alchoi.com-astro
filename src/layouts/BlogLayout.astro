@@ -122,7 +122,9 @@ const posts = page.data;
     }
 
     article {
-      // todo background colour?
+      background: linear-gradient(to top left, var(--primary), var(--primary-light));
+      padding: var(--size-fluid-2);
+      border-radius: var(--size-1);
 
       &:not(:first-child) {
         margin-top: var(--size-fluid-3);
