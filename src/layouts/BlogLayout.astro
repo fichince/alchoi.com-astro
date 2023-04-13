@@ -1,7 +1,7 @@
 ---
 import MD from '@src/components/MD.astro';
 import Paginator from '@src/components/Paginator.astro';
-import TagList from '@src/components/TagList.astro';
+import TagChooser from '@src/components/TagChooser.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import type { Page } from 'astro';
 import type { CollectionEntry } from 'astro:content';
@@ -21,7 +21,7 @@ const posts = page.data;
   <div class="container tw-container">
     <header>
       <h1>Blog {tag ? `(${tag})` : ''}</h1>
-      <TagList selectedTag={tag} />
+      <TagChooser selectedTag={tag} />
       <div class="divider" />
     </header>
     <main>
