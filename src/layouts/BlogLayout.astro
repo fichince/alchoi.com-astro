@@ -3,6 +3,8 @@ import MD from '@src/components/MD.astro';
 import Paginator from '@src/components/Paginator.astro';
 import TagChooser from '@src/components/TagChooser.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+import TagList from '@src/components/TagList.astro';
+
 import type { Page } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 
@@ -31,11 +33,16 @@ const posts = page.data;
           .fromJSDate(post.data.date)
           .toUTC()
           .toLocaleString(DateTime.DATE_SHORT);
+        const tags = post.data.tags ?? [];
 
         return (
           <a href={`/blog/${post.slug}`} class="post">
             <article>
               <div class="title">
+                <div class="tags">
+                  {/* TODO - some weird Astro bug renders the HTML wrong here */}
+                  <!--<TagList tags={tags} />-->
+                </div>
                 <h3>
                   <MD md={post.data.title} />
                 </h3>
@@ -194,6 +201,13 @@ const posts = page.data;
                 font-size: var(--font-size-fluid-0);
                 font-family: var(--font-body);
               }
+            }
+          }
+
+          .tags {
+            display: none;
+            @include sm-up {
+              display: block;
             }
           }
         }

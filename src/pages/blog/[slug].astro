@@ -1,7 +1,7 @@
 ---
 import { Picture } from '@astrojs/image/components';
 import MD from '@src/components/MD.astro';
-import Tags from '@src/components/Tags.astro';
+import TagList from '@src/components/TagList.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import type { GetStaticPaths } from 'astro';
 import { CollectionEntry, getCollection, getEntryBySlug } from 'astro:content';
@@ -45,7 +45,7 @@ const { Content } = await post.render();
       </h2>
       <time>{date}</time>
       <div class="tags">
-        <Tags tags={tags} />
+        <TagList tags={tags} />
       </div>
       { image &&
         <div class="image">
@@ -133,6 +133,7 @@ const { Content } = await post.render();
 
     main {
       grid-area: body;
+      font-size: var(--font-size-fluid-0);
     }
   }
 </style>
