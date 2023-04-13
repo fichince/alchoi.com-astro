@@ -1,0 +1,98 @@
+---
+import { Picture } from '@astrojs/image/components';
+import MD from '@src/components/MD.astro';
+import Tags from '@src/components/Tags.astro';
+import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+import type { GetStaticPaths } from 'astro';
+import { CollectionEntry, getCollection, getEntryBySlug } from 'astro:content';
+import { DateTime } from 'luxon';
+
+export const getStaticPaths = (async () => {
+  const collection = await getCollection('blog');
+  const posts = collection.filter((post) => !post.data.draft);
+  return posts.map((post) => {
+    return {
+      params: { slug: post.slug }
+    }
+  });
+}) satisfies GetStaticPaths;
+
+const { slug = '' } = Astro.params;
+const post = await getEntryBySlug('blog', slug) ?? ({} as CollectionEntry<"blog">);
+
+const title = post.data.title ?? 'Blog Post';
+const description = post.data.description ?? '';
+const date = DateTime
+  .fromJSDate(post.data.date ?? new Date())
+  .toUTC()
+  .toLocaleString(DateTime.DATE_MED);
+
+const tags = post.data.tags ?? [];
+const image = post.data.image;
+
+const { Content } = await post.render();
+---
+<NavbarLayout title={title}>
+  <article class="container tw-container">
+    <header>
+      <h1>
+        <MD md={title} />
+      </h1>
+    </header>
+    <section>
+      <h2>
+        <MD md={description} />
+      </h2>
+      <time>{date}</time>
+      <div>
+        <Tags tags={tags} />
+      </div>
+      { image &&
+        <div class="image">
+          <Picture
+            src={image}
+            alt={title}
+            widths={[140, 280]}
+            aspectRatio="1:1"
+            sizes="(min-width: 480px) 280px, 140px"
+          />
+        </div>
+      }
+    </section>
+    <main>
+      <Content />
+    </main>
+  </article>
+</NavbarLayout>
+
+<style lang="scss">
+  @import "../../style/breakpoints.scss";
+  .container {
+    font-family: var(--font-body);
+    padding: var(--size-fluid-3);
+
+    article {
+      display: grid;
+
+      grid-template-areas:
+        "header"
+        "subheader"
+        "body";
+      grid-template-columns: auto;
+
+      @include sm-up {
+        grid-template-areas:
+          "header header"
+          "subheader body";
+        grid-template-columns: 1fr 1fr;
+      }
+
+      header {
+        grid-area: header;
+
+        h1 {
+        }
+      }
+    }
+  }
+</style>
