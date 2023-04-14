@@ -1,10 +1,20 @@
 ---
 import Logo from "./Logo.astro";
 
+const { pathname } = Astro.url;
+
+const NAV = [
+  { url: '/blog', label: 'Blog' },
+  { url: '/code', label: 'Code' },
+  { url: '/prose', label: 'Prose' },
+];
+
 ---
 <div class="navbar">
   <div class="logo">
-    <Logo />
+    <a href="/">
+      <Logo />
+    </a>
   </div>
   <input type="checkbox" id="toggle" class="toggle" />
   <label for="toggle" class="toggle-label">
@@ -13,10 +23,13 @@ import Logo from "./Logo.astro";
 
   <nav>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/blog">Blog</a></li>
-      <li><a href="/code">Code</a></li>
-      <li><a href="/prose">Prose</a></li>
+      {NAV.map(({ url, label }) => (
+        <li>
+          <a href={url} class:list={{ active: pathname.startsWith(url) }}>
+            {label}
+          </a>
+        </li>
+      ))}
     </ul>
   </nav>
 </div>
@@ -32,8 +45,6 @@ import Logo from "./Logo.astro";
     top: 0;
     z-index: 999;
     width: 100%;
-
-    display: flex;
 
     .logo {
       margin-left: var(--size-fluid-1);
@@ -133,6 +144,40 @@ import Logo from "./Logo.astro";
 
     .toggle:checked ~ nav a {
       opacity: 1;
+    }
+
+    a.active {
+      color: var(--highlight);
+    }
+
+    @include sm-up {
+      .toggle-label {
+        display: none;
+      }
+
+      display: flex;
+      justify-content: space-between;
+
+      nav {
+        position: relative;
+        transform: none;
+        top: initial;
+        left: initial;
+        transition: none;
+        width: initial;
+
+        ul {
+          display: flex;
+          flex-direction: row;
+          li {
+            margin-right: var(--size-3);
+
+            a {
+              opacity: 1;
+            }
+          }
+        }
+      }
     }
   }
 </style>
