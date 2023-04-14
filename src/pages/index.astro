@@ -1,6 +1,7 @@
 ---
 import Layout from '@src/layouts/Layout.astro';
 import Logo from '@src/components/Logo.astro';
+import CoolBackground from '@src/components/CoolBackground.astro';
 
 const MENU = [
   { name: 'Blog', url: '/blog' },
@@ -9,7 +10,10 @@ const MENU = [
 ];
 ---
 <Layout title="Albert Choi">
-  <div class="container" x-data="{ menuHover: 0 }">
+  <div class="container" 
+    x-data="{ bgShift: -1, bgHover: 0 }"
+    x-bind:data-bg-shift="bgShift"
+    x-bind:data-bg-hover="bgHover">
     <!-- menu and title -->
     <div class="title">
       <Logo />
@@ -24,14 +28,16 @@ const MENU = [
       I write code and sometimes prose.
     </div>
 
-    <div class="menu" x-bind:data-menu-hover="menuHover">
+    <div class="menu" 
+      x-on:mouseenter="bgHover = 1"
+      x-on:mouseleave="bgHover = 0">
       {MENU.map(({ name, url }, index) => (
-        <a class="menu-item" href={url} x-on:mouseover={`menuHover = ${index}`}>{name}</a>
+        <a class="menu-item" href={url} x-on:mouseover={`bgShift = ${index}`}>{name}</a>
       ))}
-
-      <div class="background-pattern"></div>
     </div>
   </div>
+
+  <CoolBackground />
 </Layout>
 
 <style lang="scss">
@@ -123,47 +129,6 @@ const MENU = [
           transition: transform 0.25s ease-out;
         }
       }
-    }
-
-    .background-pattern {
-      opacity: 50%;
-      --background-width: 100%;
-      @include sm-up {
-        --background-width: 50%;
-      }
-      --pattern-colour: var(--primary-mid);
-
-      background-image: radial-gradient(
-        var(--pattern-colour) 15%, 
-        transparent 15%
-      );
-      background-position: 0% 0%;
-      background-size: var(--size-fluid-5) var(--size-fluid-5);
-      height: 100%;
-      left: 0px;
-      position: absolute;
-      top: 0px;
-      transition: opacity 800ms ease, 
-        background-size 800ms ease,
-        background-position 800ms ease,
-        background-image 800ms ease;
-      width: var(--background-width);
-      z-index: -1;
-    }
-
-    .menu[data-menu-hover="0"] > .background-pattern {
-      background-position: 0% -25%;
-    }
-    .menu[data-menu-hover="1"] > .background-pattern {
-      background-position: 0% 0%;
-    }
-    .menu[data-menu-hover="2"] > .background-pattern {
-      background-position: 0% 25%;
-    }
-
-    .menu-item:hover ~ .background-pattern {
-      background-size: var(--size-fluid-6) var(--size-fluid-6);
-      opacity: 100%;
     }
 
   }

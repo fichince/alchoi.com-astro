@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import union from 'lodash/union';
+import CoolBackground from './CoolBackground.astro';
 
 interface Props {
   selectedTag?: string;
@@ -13,18 +14,30 @@ const tags = posts.reduce<string[]>((memo, post) => {
 
 const { selectedTag } = Astro.props;
 ---
-<section>
-  {tags.map((tag) => (
+<section x-data="{ bgShift: -1, bgHover: 0 }"
+  x-bind:data-bg-shift="bgShift"
+  x-bind:data-bg-hover="bgHover"
+  x-on:mouseenter="bgHover = 1"
+  x-on:mouseleave="bgHover = 0">
+
+  {tags.map((tag, index) => (
     <span class:list={{'selected': selectedTag === tag}}>
       <span class="symbol"></span>
-      <a href={`/blog/tag/${tag}`}>{tag}</a>
+      <a href={`/blog/tag/${tag}`}
+        x-on:mouseover={`bgShift = ${index}`}>
+        {tag}
+      </a>
     </span>
   ))}
   <span class:list={{'selected': !selectedTag }}>
     <span class="symbol"></span>
-    <a href="/blog">all</a>
+    <a href="/blog"
+      x-on:mouseover={`bgShift = ${tags.length}`}>
+      all
+    </a>
   </span>
 </section>
+<CoolBackground />
 
 <style lang="scss">
   section {

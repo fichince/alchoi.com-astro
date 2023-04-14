@@ -1,0 +1,44 @@
+---
+---
+<div class="cool-background"></div>
+
+<style lang="scss" is:global>
+  @import "../style/breakpoints.scss";
+
+  .cool-background {
+    opacity: 50%;
+    --background-width: 100%;
+    @include sm-up {
+      --background-width: 50%;
+    }
+    --pattern-colour: var(--primary-mid);
+
+    background-image: radial-gradient(
+      var(--pattern-colour) 15%, 
+      transparent 15%
+    );
+    background-position: 0% 0%;
+    background-size: var(--size-fluid-5) var(--size-fluid-5);
+    height: 100%;
+    right: 0px;
+    position: absolute;
+    top: 0px;
+    transition: opacity 800ms ease, 
+      background-size 800ms ease,
+      background-position 800ms ease,
+      background-image 800ms ease;
+    width: var(--background-width);
+    z-index: -1;
+  }
+
+  @for $i from 0 through 20 {
+    *[data-bg-shift="#{$i}"] ~ .cool-background {
+      background-position: 0% calc($i * 25%);
+    }
+  }
+
+  *[data-bg-hover="1"] ~ .cool-background {
+    background-size: var(--size-fluid-6) var(--size-fluid-6);
+    opacity: 100%;
+  }
+</style>
