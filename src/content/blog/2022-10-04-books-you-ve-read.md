@@ -57,6 +57,6 @@ Because the _you_ perspective is used sparingly, often popping up after pages an
 
 Another thing I appreciated about this book was how the nature of the monster ties into Indigenous culture. Without spoiling too much, the monster is haunting the main characters because of something that they did in the past. At first, this misdeed, to me, seemed like no big deal. But it’s much more meaningful in the Blackfoot culture that the characters are from, and the book effectively brings the reader into that space.
 
-[^1]:	I’m kind of jealous. I’ve worked with a survivor of sexual assault to write their story, and I came up with another way of capturing the dissociative experience, which in hindsight is so much more clunky that what Machado achieves here.
+[^1]:	I’m kind of jealous. I’ve worked with a survivor of sexual assault to write their story, and I came up with another way of capturing the dissociative experience, which in hindsight is so much more clunky than what Machado achieves here.
 
 [^2]:	Let this in no way be taken as a comment on the quality of the writing. I’m being lackadaisical here just to show what I mean. I’m not trying to mock Jones’s style or anything; he’s a much better writer than I am.

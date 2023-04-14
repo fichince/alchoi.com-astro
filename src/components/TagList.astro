@@ -1,5 +1,34 @@
 ---
+interface Props {
+  tags: string[],
+}
+
+const { tags } = Astro.props;
 ---
-<div>
-placeholder for tag list
-</div>
+<ul>
+  {tags.map((tag, index) => (
+    <li>
+      <a href={`/blog/tag/${tag}`}>{tag}</a>
+      {index < tags.length - 1 && <span>/</span>}
+    </li>
+  ))}
+</ul>
+
+<style lang="scss">
+  ul {
+    font-family: var(--font-display);
+    font-size: var(--font-size-fluid-0);
+    display: flex;
+
+    li {
+      text-transform: uppercase;
+      a {
+        text-decoration: underline;
+      }
+
+      &:not(:last-child) {
+        margin-right: var(--size-1);
+      }
+    }
+  }
+</style>

@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import union from 'lodash/union';
+
+interface Props {
+  selectedTag?: string;
+}
+
+const posts = await getCollection('blog');
+const tags = posts.reduce<string[]>((memo, post) => {
+  return union(memo, post.data.tags ?? []);
+}, []).sort();
+
+const { selectedTag } = Astro.props;
+---
+<section>
+  {tags.map((tag) => (
+    <span class:list={{'selected': selectedTag === tag}}>
+      <span class="symbol"></span>
+      <a href={`/blog/tag/${tag}`}>{tag}</a>
+    </span>
+  ))}
+  <span class:list={{'selected': !selectedTag }}>
+    <span class="symbol"></span>
+    <a href="/blog">all</a>
+  </span>
+</section>
+
+<style lang="scss">
+  section {
+    @import "../style/breakpoints.scss";
+
+    font-size: var(--font-size-fluid-0);
+
+    --direction: row;
+    @include sm-up {
+      --direction: column;
+    }
+
+    display: flex;
+    flex-direction: var(--direction);
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .symbol {
+      margin-left: var(--size-1);
+      &::before {
+        content: '\b7';
+      }
+    }
+
+    & > span.selected {
+      color: var(--highlight);
+      .symbol::before {
+        content: '\2192'; // show an arrow
+      }
+    }
+
+    a {
+      text-decoration: underline;
+    }
+  }
+</style>

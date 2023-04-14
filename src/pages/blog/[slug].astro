@@ -1,0 +1,139 @@
+---
+import { Picture } from '@astrojs/image/components';
+import MD from '@src/components/MD.astro';
+import TagList from '@src/components/TagList.astro';
+import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+import type { GetStaticPaths } from 'astro';
+import { CollectionEntry, getCollection, getEntryBySlug } from 'astro:content';
+import { DateTime } from 'luxon';
+
+export const getStaticPaths = (async () => {
+  const collection = await getCollection('blog');
+  const posts = collection.filter((post) => !post.data.draft);
+  return posts.map((post) => {
+    return {
+      params: { slug: post.slug }
+    }
+  });
+}) satisfies GetStaticPaths;
+
+const { slug = '' } = Astro.params;
+const post = await getEntryBySlug('blog', slug) ?? ({} as CollectionEntry<"blog">);
+
+const title = post.data.title ?? 'Blog Post';
+const description = post.data.description ?? '';
+const date = DateTime
+  .fromJSDate(post.data.date ?? new Date())
+  .toUTC()
+  .toLocaleString(DateTime.DATE_MED);
+
+const tags = post.data.tags ?? [];
+const image = post.data.image;
+
+const { Content } = await post.render();
+---
+<NavbarLayout title={title}>
+  <article class="container tw-container">
+    <header>
+      <h1>
+        <MD md={title} />
+      </h1>
+    </header>
+    <section>
+      <h2>
+        <MD md={description} />
+      </h2>
+      <time>{date}</time>
+      <div class="tags">
+        <TagList tags={tags} />
+      </div>
+      { image &&
+        <div class="image">
+          <Picture
+            src={image}
+            alt={title}
+            widths={[140, 280]}
+            aspectRatio="1:1"
+            sizes="(min-width: 480px) 280px, 140px"
+          />
+        </div>
+      }
+    </section>
+    <main class="tw-prose">
+      <Content />
+    </main>
+  </article>
+</NavbarLayout>
+
+<style lang="scss">
+  @import "../../style/breakpoints.scss";
+
+  article.container {
+    margin: 0 auto;
+
+    font-family: var(--font-body);
+    padding: var(--size-fluid-3);
+
+    display: grid;
+
+    grid-template-areas:
+      "header"
+      "subheader"
+      "body";
+    grid-template-columns: auto;
+    gap: var(--size-fluid-3);
+
+    @include sm-up {
+      grid-template-areas:
+        "header header"
+        "subheader body";
+      grid-template-columns: 1fr 1fr;
+    }
+
+    header {
+      grid-area: header;
+
+      h1 {
+        font-family: var(--font-display);
+        font-size: var(--font-size-fluid-5);
+        line-height: 3rem;
+        text-align: center;
+      }
+    }
+
+    section {
+
+      --text-alignment: center;
+      --alignment: center;
+
+      @include sm-up {
+        --text-alignment: right;
+        --alignment: flex-end;
+      }
+
+      grid-area: subheader;
+      font-size: var(--font-size-fluid-2);
+      line-height: 2rem;
+
+      display: flex;
+      flex-direction: column;
+      align-items: var(--alignment);
+
+      text-align: var(--text-alignment);
+
+      & > * {
+        margin-bottom: var(--size-fluid-1);
+      }
+
+      time {
+        font-size: var(--font-size-fluid-1);
+      }
+
+    }
+
+    main {
+      grid-area: body;
+      font-size: var(--font-size-fluid-0);
+    }
+  }
+</style>
