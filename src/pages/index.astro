@@ -1,6 +1,7 @@
 ---
 import Layout from '@src/layouts/Layout.astro';
 import Logo from '@src/components/Logo.astro';
+import CoolBackground from '@src/components/CoolBackground.astro';
 
 const MENU = [
   { name: 'Blog', url: '/blog' },
@@ -9,40 +10,34 @@ const MENU = [
 ];
 ---
 <Layout title="Albert Choi">
-  <div class="container" x-data="{ menuHover: 0 }">
-    <section class="main">
-      <!-- menu and title -->
-      <div class="title">
-        <Logo />
-      </div>
+  <div class="container" 
+    x-data="{ bgShift: -1, bgHover: 0 }"
+    x-bind:data-bg-shift="bgShift"
+    x-bind:data-bg-hover="bgHover">
+    <!-- menu and title -->
+    <div class="title">
+      <Logo />
+    </div>
 
-      <!-- headshot -->
-      <div class="headshot left">
-        <img src="/images/headshot.jpg" alt="headshot" />
-      </div>
+    <!-- headshot -->
+    <div class="headshot">
+      <img src="/images/headshot.jpg" alt="headshot" />
+    </div>
 
-      <div class="subtitle">
-        I write code and sometimes prose.
-      </div>
+    <div class="subtitle">
+      I write code and sometimes prose.
+    </div>
 
-      <div class="menu" x-bind:data-menu-hover="menuHover">
-        {MENU.map(({ name, url }, index) => (
-          <a class="menu-item" href={url} x-on:mouseover={`menuHover = ${index}`}>{name}</a>
-        ))}
-
-        <div class="background-pattern"></div>
-      </div>
-
-    </section>
-
-    <section>
-
-      <div class="headshot right">
-        <img src="/images/headshot.jpg" alt="headshot" />
-      </div>
-
-    </section>
+    <div class="menu" 
+      x-on:mouseenter="bgHover = 1"
+      x-on:mouseleave="bgHover = 0">
+      {MENU.map(({ name, url }, index) => (
+        <a class="menu-item" href={url} x-on:mouseover={`bgShift = ${index}`}>{name}</a>
+      ))}
+    </div>
   </div>
+
+  <CoolBackground />
 </Layout>
 
 <style lang="scss">
@@ -53,36 +48,36 @@ const MENU = [
     min-height: 100vh;
 
     display: grid;
-    justify-items: center;
     align-items: center;
-    justify-content: center;
     align-content: center;
+    --justification: center;
+
+    grid-template-areas:
+      "title"
+      "headshot"
+      "subtitle"
+      "menu";
 
     @include sm-up {
+      --justification: end;
+      grid-template-areas:
+        "title headshot"
+        "subtitle headshot"
+        "menu headshot";
       grid-template-columns: repeat(2, 50%);
     }
 
-    section {
-
-      --section-align: center;
-
-      @include sm-up {
-        &.main {
-          --section-align: flex-end;
-        }
-      }
-
-      display: flex;
-      flex-direction: column;
-      align-items: var(--section-align);
-    }
-
     .title {
+      justify-self: var(--justification);
+      grid-area: title;
       width: 70%;
       margin-bottom: var(--size-fluid-4);
     }
 
     .headshot {
+      grid-area: headshot;
+      place-self: center;
+
       width: 60%;
       max-width: 720px;
       margin-bottom: var(--size-fluid-4);
@@ -91,22 +86,12 @@ const MENU = [
         border-radius: 100%;
         //border: var(--size-1) solid var(--highlight);
       }
-
-      &.left {
-        @include sm-up {
-          display: none;
-        }
-      }
-
-      &.right {
-        display: none;
-        @include sm-up {
-          display: block;
-        }
-      }
     }
 
     .subtitle {
+      grid-area: subtitle;
+      justify-self: var(--justification);
+
       font-family: var(--font-display);
       font-size: var(--font-size-fluid-2);
       text-align: center;
@@ -114,6 +99,8 @@ const MENU = [
     }
 
     .menu {
+      grid-area: menu;
+      justify-self: var(--justification);
 
       width: 100%;
 
@@ -142,47 +129,6 @@ const MENU = [
           transition: transform 0.25s ease-out;
         }
       }
-    }
-
-    .background-pattern {
-      opacity: 50%;
-      --background-width: 100%;
-      @include sm-up {
-        --background-width: 50%;
-      }
-      --pattern-colour: var(--primary-mid);
-
-      background-image: radial-gradient(
-        var(--pattern-colour) 15%, 
-        transparent 15%
-      );
-      background-position: 0% 0%;
-      background-size: var(--size-fluid-5) var(--size-fluid-5);
-      height: 100%;
-      left: 0px;
-      position: absolute;
-      top: 0px;
-      transition: opacity 800ms ease, 
-        background-size 800ms ease,
-        background-position 800ms ease,
-        background-image 800ms ease;
-      width: var(--background-width);
-      z-index: -1;
-    }
-
-    .menu[data-menu-hover="0"] > .background-pattern {
-      background-position: 0% -25%;
-    }
-    .menu[data-menu-hover="1"] > .background-pattern {
-      background-position: 0% 0%;
-    }
-    .menu[data-menu-hover="2"] > .background-pattern {
-      background-position: 0% 25%;
-    }
-
-    .menu-item:hover ~ .background-pattern {
-      background-size: var(--size-fluid-6) var(--size-fluid-6);
-      opacity: 100%;
     }
 
   }
