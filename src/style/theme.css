@@ -7,8 +7,9 @@
 
   --highlight: #9cb295;
 
-  --font-display: 'Karla', var(--font-sans);
-  --font-body: 'Inconsolata', var(--font-mono);
+  --font-display: 'Nunito', var(--font-sans);
+  --font-body: 'Libre Franklin', var(--font-sans);
+  --font-code: 'Inconsolata', var(--font-mono);
 
   /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1920,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
@@ -43,5 +44,13 @@
 }
 
 .tw-prose pre.astro-code {
-  font-family: 'Inconsolata', var(--font-mono);
+  font-family: var(--font-code);
+}
+
+.tw-prose code {
+  font-family: var(--font-code);
+}
+
+.tw-prose :where(h1,h2,h3,h4,h5,h6) {
+  font-family: var(--font-display);
 }
