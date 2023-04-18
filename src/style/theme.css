@@ -33,8 +33,8 @@
   --tw-prose-counters: var(--secondary);
   --tw-prose-bullets: var(--secondary);
   --tw-prose-hr: var(--secondary);
-  --tw-prose-quotes: var(--secondary);
-  --tw-prose-quote-borders: var(--secondary);
+  --tw-prose-quotes: var(--highlight);
+  --tw-prose-quote-borders: var(--highlight);
   --tw-prose-captions: var(--secondary);
   --tw-prose-code: var(--secondary);
   --tw-prose-pre-code: var(--secondary);
