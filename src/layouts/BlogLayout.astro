@@ -80,7 +80,7 @@ const posts = page.data;
 </NavbarLayout>
 
 <style lang="scss">
-  @import "../style/breakpoints.scss";
+  @import "../style/common.scss";
 
   .container {
     margin-left: auto;
@@ -136,6 +136,8 @@ const posts = page.data;
     }
 
     article {
+      @include hover-background;
+
       &:not(:first-child) {
         margin-top: var(--size-fluid-3);
       }
@@ -159,29 +161,6 @@ const posts = page.data;
         --title-align: flex-end;
       }
 
-      position: relative;
-      z-index: 1;
-      background: linear-gradient(to top left, var(--primary), var(--primary-light));
-      &::before {
-        position: absolute;
-        content: '';
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: -1;
-        border-radius: var(--size-2);
-
-        background: linear-gradient(to bottom right, var(--primary), var(--highlight));
-
-        opacity: 0;
-        transition: opacity 1000ms var(--ease-out-5);
-      }
-      &:hover::before {
-        opacity: 1;
-      }
-
-      border-radius: var(--size-2);
       padding: var(--size-fluid-2);
 
       display: grid;
