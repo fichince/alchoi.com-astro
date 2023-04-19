@@ -231,6 +231,12 @@ const posts = page.data;
         grid-row: var(--image-row);
         grid-column: var(--image-column);
         place-self: center;
+
+        transition: transform 500ms var(--ease-squish-5);
+
+        &:hover {
+          transform: scale(105%);
+        }
       }
 
       a {
