@@ -24,8 +24,9 @@ const NAV = [
   <nav>
     <ul>
       {NAV.map(({ url, label }) => (
-        <li>
-          <a href={url} class:list={{ active: pathname.startsWith(url) }}>
+        <li class:list={{ active: pathname.startsWith(url) }}>
+          <span class="symbol"></span>
+          <a href={url}>
             {label}
           </a>
         </li>
@@ -146,8 +147,12 @@ const NAV = [
       opacity: 1;
     }
 
-    a.active {
+    li.active {
+      
       color: var(--highlight);
+      .symbol::before {
+        content: '\2192'; // show an arrow
+      }
     }
 
     a {
