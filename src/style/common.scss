@@ -30,12 +30,20 @@
   border-radius: var(--size-2);
 }
 
-@mixin hover-link {
+@mixin hover-link($subtle: false) {
 
-  &:hover {
-    font-weight: 800;
-    font-style: italic;
-    letter-spacing: 2px;
+  @if not $subtle {
+    &:hover {
+      font-weight: 800;
+      font-style: italic;
+      letter-spacing: 2px;
+    }
+  } @else {
+    &:hover {
+      font-weight: 650;
+      letter-spacing: 0.5px;
+    }
   }
+
   transition: font-weight,letter-spacing 200ms var(--ease-out-1) !important;
 }
