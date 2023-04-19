@@ -10,5 +10,15 @@ const { title } = Astro.props;
 ---
 <Layout title={title}>
   <Navbar />
-  <slot />
+  <div class="body">
+    <slot />
+  </div>
 </Layout>
+
+<style lang="scss">
+  // this is needed because the CoolBackground absolute position
+  // won't size properly unless it's here
+  .body {
+    position: relative;
+  }
+</style>

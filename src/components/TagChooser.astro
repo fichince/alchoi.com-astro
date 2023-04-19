@@ -40,8 +40,13 @@ const { selectedTag } = Astro.props;
 <CoolBackground />
 
 <style lang="scss">
+  @import "../style/common.scss";
   section {
-    @import "../style/breakpoints.scss";
+
+    width: 100%;
+    @include sm-up {
+      margin-left: var(--size-10);
+    }
 
     font-size: var(--font-size-fluid-0);
 
@@ -71,6 +76,7 @@ const { selectedTag } = Astro.props;
 
     a {
       text-decoration: underline;
+      @include hover-link;
     }
   }
 </style>

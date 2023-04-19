@@ -1,0 +1,63 @@
+@mixin sm-up {
+  @media screen and (min-width: 480px) {
+    @content
+  }
+}
+
+@mixin hover-background {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(to top left, var(--primary), var(--primary-light));
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: var(--size-2);
+
+    background: linear-gradient(to bottom right, var(--primary), var(--highlight));
+
+    opacity: 0;
+    transition: opacity 1000ms var(--ease-out-5);
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+
+  border-radius: var(--size-2);
+}
+
+@mixin hover-link($subtle: false) {
+
+  @if not $subtle {
+    &:hover {
+      font-weight: 800;
+      font-style: italic;
+      letter-spacing: 2px;
+    }
+  } @else {
+    &:hover {
+      font-weight: 650;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  transition: font-weight,letter-spacing 200ms var(--ease-out-1) !important;
+}
+
+@mixin fade-in {
+  opacity: 0;
+  animation: var(--animation-fade-in) forwards;
+  animation-duration: 0.7s;
+  animation-timing-function: var(--ease-in-out-5);
+}
+
+// apply this to blog post content
+.tw-prose {
+  a {
+    @include hover-link($subtle: true);
+  }
+}
