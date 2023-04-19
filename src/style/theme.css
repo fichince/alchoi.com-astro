@@ -7,7 +7,7 @@
 
   --highlight: #9cb295;
 
-  --font-display: 'Nunito', var(--font-sans);
+  --font-display: 'NunitoVariable', var(--font-sans);
   --font-body: 'Libre Franklin', var(--font-sans);
   --font-code: 'Inconsolata', var(--font-mono);
 

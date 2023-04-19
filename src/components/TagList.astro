@@ -15,6 +15,8 @@ const { tags } = Astro.props;
 </ul>
 
 <style lang="scss">
+  @import "../style/common.scss";
+
   ul {
     font-family: var(--font-display);
     font-size: var(--font-size-fluid-0);
@@ -24,6 +26,7 @@ const { tags } = Astro.props;
       text-transform: uppercase;
       a {
         text-decoration: underline;
+        @include hover-link;
       }
 
       &:not(:last-child) {
