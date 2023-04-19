@@ -38,7 +38,7 @@ const posts = page.data;
         const link = `/blog/${post.slug}`;
 
         return (
-          <article>
+          <article class="post">
             <div class="title">
               <div class="tags">
                 <TagList tags={tags} />
@@ -78,6 +78,17 @@ const posts = page.data;
 
   </div>
 </NavbarLayout>
+
+<script>
+  import observer from '../scripts/intersection';
+
+  const items = document.getElementsByClassName('post');
+
+  for (let i = 0; i < items.length; i++) {
+    const elem = items.item(i);
+    if (elem) observer.observe(elem);
+  }
+</script>
 
 <style lang="scss">
   @import "../style/common.scss";
@@ -222,6 +233,28 @@ const posts = page.data;
 
       a {
         @include hover-link($subtle: true);
+      }
+
+      &.show {
+        opacity: 100%;
+        transform: none;
+        transition: all 500ms var(--ease-out-1);
+      }
+
+      &.hide {
+        opacity: 0%;
+        transition: all 500ms var(--ease-out-1);
+      }
+
+      &:nth-child(odd) {
+        &.hide {
+          transform: translateX(-50px);
+        }
+      }
+      &:nth-child(even) {
+        &.hide {
+          transform: translateX(50px);
+        }
       }
     }
 
