@@ -54,3 +54,10 @@
   animation-duration: 0.7s;
   animation-timing-function: var(--ease-in-out-5);
 }
+
+// apply this to blog post content
+.tw-prose {
+  a {
+    @include hover-link($subtle: true);
+  }
+}
