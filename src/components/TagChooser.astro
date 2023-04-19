@@ -40,8 +40,13 @@ const { selectedTag } = Astro.props;
 <CoolBackground />
 
 <style lang="scss">
+  @import "../style/common.scss";
   section {
-    @import "../style/common.scss";
+
+    width: 100%;
+    @include sm-up {
+      margin-left: var(--size-10);
+    }
 
     font-size: var(--font-size-fluid-0);
 
