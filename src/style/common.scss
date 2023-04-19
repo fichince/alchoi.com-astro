@@ -47,3 +47,10 @@
 
   transition: font-weight,letter-spacing 200ms var(--ease-out-1) !important;
 }
+
+@mixin fade-in {
+  opacity: 0;
+  animation: var(--animation-fade-in) forwards;
+  animation-duration: 0.7s;
+  animation-timing-function: var(--ease-in-out-5);
+}
