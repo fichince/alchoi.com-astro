@@ -10,5 +10,13 @@ const { title } = Astro.props;
 ---
 <Layout title={title}>
   <Navbar />
-  <slot />
+  <div class="body">
+    <slot />
+  </div>
 </Layout>
+
+<style>
+  .body {
+    position: relative;
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import { Picture } from '@astrojs/image/components';
+import CoolBackground from '@src/components/CoolBackground.astro';
 import MD from '@src/components/MD.astro';
 import TagList from '@src/components/TagList.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
@@ -62,6 +63,7 @@ const { Content } = await post.render();
     <main class="tw-prose">
       <Content />
     </main>
+    <CoolBackground />
   </article>
 </NavbarLayout>
 
@@ -87,7 +89,7 @@ const { Content } = await post.render();
       grid-template-areas:
         "header header"
         "subheader body";
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 2fr;
     }
 
     header {
