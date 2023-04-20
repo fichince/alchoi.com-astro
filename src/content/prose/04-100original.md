@@ -2,7 +2,7 @@
 title: 100% Original
 url: http://bit.ly/MrMerchant
 description: _The Danforth Review_, Issue 35
-image: images/writing/100original.jpg
+image: /images/writing/100original.jpg
 ---
 > _I went into the job interview not knowing what to expect._
 >
