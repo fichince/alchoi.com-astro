@@ -1,17 +1,125 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Showcase from '../components/Showcase.astro';
+import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import { getCollection } from 'astro:content';
+import MD from '@src/components/MD.astro';
+import { Picture } from '@astrojs/image/components';
+import CoolBackground from '@src/components/CoolBackground.astro';
 
 const prose = await getCollection('prose');
 
 ---
+<NavbarLayout title="Prose">
+  <main class="tw-container container">
+    <h1>
+      I spend some of my spare time writing fiction and the occasional non-fiction piece. Here are some links to my published works.
+    </h1>
 
-<Layout title="Prose">
-  <div class="mx-auto mb-6 text-center text-accent dark:text-accent-dark font-body text-lg">
-    I spend some of my spare time writing fiction and the occasional non-fiction piece. Here are some links to my published works.
-  </div>
+    <section x-data="{ bgShift: -1, bgHover: 0}"
+      x-bind:data-bg-shift="bgShift"
+      x-bind:data-bg-hover="bgHover"
+      x-on:mouseenter="bgHover = 1"
+      x-on:mouseleave="bgHover = 0">
+      { prose.map(async (item, index) => {
 
-  <Showcase items={prose} />
+        const link = item.data.url;
+        const { Content } = await item.render();
 
-</Layout>
+        return (
+          <article x-on:mouseover={`bgShift = ${index}`}>
+            <div class="image">
+              <a href={link}>
+                <Picture
+                  src={item.data.image}
+                  alt={item.data.title}
+                  widths={[480]}
+                  aspectRatio="1:1"
+                  sizes="480px"
+                />
+              </a>
+            </div>
+            <h2>
+              <a href={link}>
+                <MD md={item.data.title} />
+              </a>
+            </h2>
+            <h3>
+              <MD md={item.data.description} />
+            </h3>
+            <div class="excerpt tw-prose">
+              <Content />
+            </div>
+          </article>
+        );
+      })}
+    </section>
+    <CoolBackground />
+  </main>
+</NavbarLayout>
+
+<style lang="scss">
+  @import "../style/common.scss";
+
+  .container {
+    @include fade-in;
+    font-family: var(--font-body);
+
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--size-fluid-4) 0;
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: var(--font-size-fluid-1);
+
+      margin: 0 var(--size-fluid-4) var(--size-fluid-4);
+      font-weight: bold;
+    }
+
+    section {
+      padding: 0 var(--size-fluid-2);
+
+      display: grid;
+      grid-template-columns: 1fr;
+      @include sm-up {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      gap: var(--size-fluid-2);
+
+      article {
+        @include hover-background($c: var(--highlight-dark));
+        padding: var(--size-fluid-2);
+        font-size: var(--font-size-fluid-0);
+
+        @include fade-in;
+        @for $i from 1 through 20 {
+          &:nth-child(#{$i}) {
+            animation-delay: calc($i * 200ms);
+          }
+        }
+
+        .image {
+          @include image-hover;
+          margin-bottom: var(--size-5);
+        }
+
+        a {
+          @include hover-link;
+          text-decoration: underline;
+        }
+
+        h2 {
+          font-family: var(--font-display);
+          font-size: var(--font-size-fluid-1);
+          margin-bottom: 0.5rem;
+        }
+
+        h3 {
+          font-size: var(--font-size-fluid-0);
+          font-weight: 500;
+          margin-bottom: 1rem;
+        }
+      }
+
+    }
+  }
+</style>

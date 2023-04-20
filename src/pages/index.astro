@@ -2,6 +2,7 @@
 import Layout from '@src/layouts/Layout.astro';
 import Logo from '@src/components/Logo.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
+import { Picture } from '@astrojs/image/components';
 
 const MENU = [
   { name: 'Blog', url: '/blog' },
@@ -21,7 +22,13 @@ const MENU = [
 
     <!-- headshot -->
     <div class="headshot">
-      <img src="/images/headshot.jpg" alt="headshot" />
+      <Picture 
+        src="/images/headshot.jpg" 
+        alt="Albert"
+        widths={[350, 450]}
+        aspectRatio="1:1"
+        sizes="(min-width: 480px) 450px, 350px"
+      />
     </div>
 
     <div class="subtitle">
@@ -44,6 +51,10 @@ const MENU = [
   @import "../style/common.scss";
 
   .container {
+    // todo do more with animation
+    @include fade-in;
+    animation-duration: 1000ms;
+
     min-width: 100vw;
     min-height: 100vh;
 

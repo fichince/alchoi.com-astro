@@ -232,11 +232,7 @@ const posts = page.data;
         grid-column: var(--image-column);
         place-self: center;
 
-        transition: transform 500ms var(--ease-squish-5);
-
-        &:hover {
-          transform: scale(105%);
-        }
+        @include image-hover;
       }
 
       a {

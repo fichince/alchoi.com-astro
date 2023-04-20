@@ -6,6 +6,8 @@
   --secondary: var(--gray-2);
 
   --highlight: #9cb295;
+  --highlight-light: #dee5dc;
+  --highlight-dark: #2F3B2B;
 
   --font-display: 'NunitoVariable', var(--font-sans);
   --font-body: 'Libre FranklinVariable', var(--font-sans);
