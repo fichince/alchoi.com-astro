@@ -59,15 +59,16 @@ const splideConfig = {
 
   section {
     .splide__slide {
-      transition: filter 500ms linear;
+      transition: filter 200ms var(--ease-out-5);
       &.is-active {
         filter: none;
       }
       &:not(.is-active) {
-        filter: sepia(100%);
+        filter: grayscale(100%) blur(2px);
       }
 
       img {
+        border-radius: var(--size-2);
         width: 100%;
         height: auto;
       }
