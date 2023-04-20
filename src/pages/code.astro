@@ -1,6 +1,6 @@
 ---
 import CoolBackground from '@src/components/CoolBackground.astro';
-import ProjectCarousel from '@src/components/ProjectCarousel.svelte';
+import ProjectCarousel from '@src/components/ProjectCarousel.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import { getCollection } from 'astro:content';
 
@@ -17,7 +17,15 @@ const code = await getCollection('code');
 
         return (
           <article>
-            <ProjectCarousel project={item} client:load />
+            <div class="carousel">
+              <ProjectCarousel project={item} />
+            </div>
+
+            <a href={item.data.url}>
+              <h2>{item.data.title}</h2>
+            </a>
+
+            <h3>{item.data.description}</h3>
           </article>
         );
       })}
@@ -43,6 +51,32 @@ const code = await getCollection('code');
 
       margin: 0 var(--size-fluid-4) var(--size-fluid-4);
       font-weight: bold;
+    }
+
+    article {
+      margin-bottom: var(--size-fluid-3);
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h2 {
+        font-family: var(--font-display);
+        font-size: var(--font-size-fluid-1);
+      }
+
+      h3 {
+        font-size: var(--font-size-fluid-0);
+        font-weight: 500;
+      }
+
+      a {
+        // TODO figure out why the hover effect spans the whole 
+        // width of the box
+        @include hover-link;
+        text-decoration: underline;
+      }
     }
   }
 </style>
