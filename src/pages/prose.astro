@@ -1,17 +1,11 @@
 ---
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
-import Showcase from '@src/components/Showcase.astro';
 import { getCollection } from 'astro:content';
 import MD from '@src/components/MD.astro';
 import { Picture } from '@astrojs/image/components';
 import CoolBackground from '@src/components/CoolBackground.astro';
 
 const prose = await getCollection('prose');
-
-const masonryConfig = {
-  itemSelector: '.item',
-  columnWidth: '.sizer',
-};
 
 ---
 <NavbarLayout title="Prose">
@@ -88,7 +82,7 @@ const masonryConfig = {
       gap: var(--size-fluid-2);
 
       article {
-        @include hover-background;
+        @include hover-background($c: var(--highlight-dark));
         padding: var(--size-fluid-2);
         font-size: var(--font-size-fluid-0);
 
