@@ -1,11 +1,20 @@
 ---
+import CoolBackground from './CoolBackground.astro';
 import ShowcaseItem from './ShowcaseItem.astro';
 
+interface Props {
+  items: any[];
+}
 const { items } = Astro.props;
 ---
-<section class="w-full sm:w-10/12 mx-auto
-  flex flex-col">
-  {items.map((item : any) => (
+<section>
+  {items.map((item) => (
     <ShowcaseItem item={item} />
   ))}
 </section>
+<CoolBackground />
+
+<style lang="scss">
+  section {
+  }
+</style>

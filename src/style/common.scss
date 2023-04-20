@@ -51,13 +51,21 @@
 @mixin fade-in {
   opacity: 0;
   animation: var(--animation-fade-in) forwards;
-  animation-duration: 0.7s;
-  animation-timing-function: var(--ease-in-out-5);
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
 }
 
 // apply this to blog post content
 .tw-prose {
   a {
     @include hover-link($subtle: true);
+  }
+}
+
+@mixin image-hover {
+  transition: transform 500ms var(--ease-squish-5);
+
+  &:hover {
+    transform: scale(105%);
   }
 }
