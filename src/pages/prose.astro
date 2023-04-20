@@ -14,14 +14,18 @@ const prose = await getCollection('prose');
       I spend some of my spare time writing fiction and the occasional non-fiction piece. Here are some links to my published works.
     </h1>
 
-    <section>
-      { prose.map(async (item) => {
+    <section x-data="{ bgShift: -1, bgHover: 0}"
+      x-bind:data-bg-shift="bgShift"
+      x-bind:data-bg-hover="bgHover"
+      x-on:mouseenter="bgHover = 1"
+      x-on:mouseleave="bgHover = 0">
+      { prose.map(async (item, index) => {
 
         const link = item.data.url;
         const { Content } = await item.render();
 
         return (
-          <article>
+          <article x-on:mouseover={`bgShift = ${index}`}>
             <div class="image">
               <a href={link}>
                 <Picture
@@ -61,13 +65,13 @@ const prose = await getCollection('prose');
 
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: var(--size-fluid-4);
+    padding: var(--size-fluid-4) 0;
 
     h1 {
       font-family: var(--font-display);
       font-size: var(--font-size-fluid-1);
 
-      margin: var(--size-fluid-4);
+      margin: 0 var(--size-fluid-4) var(--size-fluid-4);
       font-weight: bold;
     }
 
