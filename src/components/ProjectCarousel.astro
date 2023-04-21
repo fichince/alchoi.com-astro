@@ -1,0 +1,92 @@
+---
+import '@splidejs/splide/css';
+import type { CollectionEntry } from 'astro:content';
+import { getPicture } from '@astrojs/image';
+import find from 'lodash/find';
+
+interface Props {
+  project: CollectionEntry<'code'>;
+}
+
+const { project } = Astro.props;
+
+const splideConfig = {
+  type: 'loop',
+  mediaQuery: 'min',
+  perPage: 1,
+  perMove: 1,
+  start: 0,
+  gap: 0,
+  focus: 'center',
+  lazyLoad: 'nearby',
+  breakpoints: {
+    480: {
+      perPage: 2,
+      gap: '0.5rem',
+    }
+  }
+};
+---
+<script>
+  import Splide from '@splidejs/splide';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.getElementsByClassName('splide');
+    for (let i = 0; i < carousels.length; i++) {
+      new Splide(carousels.item(i) as HTMLElement).mount();
+    }
+  });
+</script>
+
+<section class="splide" aria-label={project.data.title} 
+  data-splide={JSON.stringify(splideConfig)}>
+  <div class="splide__track">
+    <ul class="splide__list">
+      { project.data.images.map(async (image) => {
+
+        const picture = await getPicture({
+          src: image,
+          alt: project.data.title,
+          widths: [400, 800],
+          aspectRatio: '16:9',
+          formats: ['webp'],
+        });
+
+        const srcset = find(picture.sources, { type: 'image/webp' })?.srcset;
+
+        return (
+          <li class="splide__slide">
+            <img  
+              data-splide-lazy-srcset={srcset}
+              data-splide-lazy={image}
+              sizes="(min-width: 480px) 800px, 400px" 
+              alt={project.data.title}
+            />
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>
+
+<style lang="scss">
+  @import "../style/common.scss";
+
+  section {
+    .splide__slide {
+      transition: filter 100ms var(--ease-out-5);
+      &.is-active {
+        filter: none;
+      }
+      &:not(.is-active) {
+        filter: grayscale(100%) blur(2px);
+      }
+
+      img {
+        border-radius: var(--size-2);
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+</style>

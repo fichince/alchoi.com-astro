@@ -576,6 +576,11 @@
     deepmerge "^4.2.2"
     escalade "^3.1.1"
 
+"@splidejs/splide@^4.1.4":
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/@splidejs/splide/-/splide-4.1.4.tgz#02d029360569e7d75d28357a9727fc48322015a3"
+  integrity sha512-5I30evTJcAJQXt6vJ26g2xEkG+l1nXcpEw4xpKh0/FWQ8ozmAeTbtniVtVmz2sH1Es3vgfC4SS8B2X4o5JMptA==
+
 "@sveltejs/vite-plugin-svelte@^2.0.2":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@sveltejs/vite-plugin-svelte/-/vite-plugin-svelte-2.0.3.tgz#3d276eab341638dd58691a3de610774e155a7578"

@@ -20,7 +20,17 @@ const blog = defineCollection({
   })
 });
 
+const code = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    url: z.string().url(),
+    description: z.string(),
+    images: z.string().array(),
+  })
+});
+
 export const collections = {
   prose,
   blog,
+  code,
 };
