@@ -41,7 +41,7 @@ const splideConfig = {
 <section class="splide" aria-label={project.data.title} 
   data-splide={JSON.stringify(splideConfig)}>
   <div class="splide__track">
-		<ul class="splide__list">
+    <ul class="splide__list">
       { project.data.images.map(async (image) => {
 
         const picture = await getPicture({
@@ -65,7 +65,7 @@ const splideConfig = {
           </li>
         );
       })}
-		</ul>
+    </ul>
   </div>
 </section>
 
