@@ -6,17 +6,23 @@ import { getCollection } from 'astro:content';
 
 const code = await getCollection('code');
 
+// TODO add a link to a contact form
+
 ---
 <NavbarLayout title="Code">
   <main class="tw-container container">
     <h1>
       Websites and applications that I've worked on.
     </h1>
-    <section>
-      { code.map((item) => {
+    <section x-data="{ bgShift: -1, bgHover: 0}"
+      x-bind:data-bg-shift="bgShift"
+      x-bind:data-bg-hover="bgHover"
+      x-on:mouseenter="bgHover = 1"
+      x-on:mouseleave="bgHover = 0">
+      { code.map((item, index) => {
 
         return (
-          <article>
+          <article x-on:mouseover={`bgShift = ${index}`}>
             <div class="carousel">
               <ProjectCarousel project={item} />
             </div>
@@ -43,7 +49,7 @@ const code = await getCollection('code');
 
     margin-left: auto;
     margin-right: auto;
-    padding: var(--size-fluid-4) 0;
+    padding: var(--size-fluid-4) var(--size-fluid-1);
 
     h1 {
       font-family: var(--font-display);
@@ -77,8 +83,6 @@ const code = await getCollection('code');
       }
 
       a {
-        // TODO figure out why the hover effect spans the whole 
-        // width of the box
         @include hover-link;
         text-decoration: underline;
       }

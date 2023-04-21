@@ -45,7 +45,7 @@ const splideConfig = {
           <Picture src={image} 
             alt={project.data.title}
             widths={[400, 800]}
-            aspectRatio="16:10"
+            aspectRatio="16:9"
             sizes="(min-width: 480px) 800px, 400px" 
           />
         </li>
@@ -59,7 +59,7 @@ const splideConfig = {
 
   section {
     .splide__slide {
-      transition: filter 200ms var(--ease-out-5);
+      transition: filter 100ms var(--ease-out-5);
       &.is-active {
         filter: none;
       }
