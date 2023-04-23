@@ -2,13 +2,13 @@
 import { Picture } from '@astrojs/image/components';
 
 interface Props {
-  src: string,
+  src: any,
   alt: string,
 }
 
 const { src, alt } = Astro.props;
 ---
-<Picture src={import(`../assets/blog/${src}`)}
+<Picture src={src}
   alt={alt}
   widths={[350, 500]}
   sizes="(min-width: 480px) 500px, 350px"
