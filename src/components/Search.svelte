@@ -29,8 +29,6 @@
     } else {
       searchResults = [];
     }
-
-    console.log('search results', searchResults);
   }
 
 </script>
@@ -70,7 +68,7 @@
       border-radius: var(--radius-2);
       padding: var(--size-fluid-1);
       color: var(--primary);
-      margin-bottom: var(--size-fluid-3);
+      margin-bottom: var(--size-fluid-2);
       font-family: var(--font-display);
     }
 

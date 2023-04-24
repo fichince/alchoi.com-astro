@@ -4,13 +4,8 @@
   import type { Index } from 'lunr';
   import { extractHighlights } from '@src/scripts/search';
 
-  export let result : Index.Result | null;
-  export let post : BlogPost | null = {
-    slug: '',
-    title: '',
-    description: '',
-    content: '',
-  };
+  export let result : Index.Result | null = null;
+  export let post : BlogPost | null = null;
   export let notFound : string | null = null;
 
   let titleHighlights : Highlight[] = [];
@@ -27,8 +22,6 @@
 
   $: title = post?.title ?? '';
   $: url = `/blog/${post?.slug ?? ''}`;
-
-        //{ searchTerm.length > 0 ? `Nothing found for ${searchTerm}` : 'Search for something ' }
 </script>
 
 <div class="result" class:not-found={notFound !== null}>
@@ -37,7 +30,7 @@
       {#if notFound.length > 0}
         Nothing found for <mark>{notFound}</mark>
       {:else}
-        Search for something
+        Enter a search term above
       {/if}
     {:else}
       <a href={url}>

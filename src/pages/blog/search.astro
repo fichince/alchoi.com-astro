@@ -1,11 +1,13 @@
 ---
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import Search from '@src/components/Search.svelte';
+import CoolBackground from '@src/components/CoolBackground.astro';
 ---
 <NavbarLayout title="Search">
   <div class="container tw-container">
     <Search client:load />
   </div>
+  <CoolBackground />
 </NavbarLayout>
 
 <style lang="scss">
