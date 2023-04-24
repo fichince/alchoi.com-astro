@@ -26,6 +26,7 @@
     "@types/lodash": "^4.14.192",
     "@types/luxon": "^3.2.1",
     "astro": "^2.1.9",
+    "iconoir": "^6.6.0",
     "lodash": "^4.17.21",
     "luxon": "^3.3.0",
     "open-props": "^1.5.6",
