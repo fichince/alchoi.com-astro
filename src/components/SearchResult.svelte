@@ -26,12 +26,8 @@
 
 <div class="result" class:not-found={notFound !== null}>
   <div class="title">
-    {#if notFound !== null}
-      {#if notFound.length > 0}
-        Nothing found for <mark>{notFound}</mark>
-      {:else}
-        Enter a search term above
-      {/if}
+    {#if notFound && notFound.length > 0}
+      Nothing found for <mark>{notFound}</mark>
     {:else}
       <a href={url}>
         {#if titleHighlights.length > 0}

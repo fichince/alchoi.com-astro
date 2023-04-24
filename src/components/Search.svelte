@@ -34,7 +34,7 @@
 </script>
 
 <div class="search">
-  <input type="text" on:input={handleChange} />
+  <input type="text" on:input={handleChange} placeholder="Search..." />
 
   <div class="results">
     {#if searchResults.length > 0}
