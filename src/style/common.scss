@@ -55,13 +55,6 @@
   animation-timing-function: linear;
 }
 
-// apply this to blog post content
-.tw-prose {
-  a {
-    @include hover-link($subtle: true);
-  }
-}
-
 @mixin image-hover {
   transition: transform 500ms var(--ease-squish-5);
 

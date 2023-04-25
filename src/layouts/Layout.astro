@@ -29,11 +29,13 @@ const { title } = Astro.props;
     <slot />
   </body>
 </html>
-<style is:global>
+<style is:global lang="scss">
   @import "open-props/style";
   @import "open-props/animations";
+  @import "open-props/buttons";
 
   @import "../style/theme.css";
+  @import "../style/common.scss";
 
   body {
     background: linear-gradient(to bottom, var(--primary), var(--primary-light));
@@ -44,5 +46,12 @@ const { title } = Astro.props;
     background-repeat: no-repeat;
     background-attachment: fixed;
     overflow-x: clip;
+  }
+
+  // apply this to blog post content
+  .tw-prose {
+    a {
+      @include hover-link($subtle: true);
+    }
   }
 </style>
