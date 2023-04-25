@@ -23,7 +23,6 @@ export const get = (async (context) => {
     }, stripMarkdown);
   });
 
-
   return {
     body: JSON.stringify(index)
   };
