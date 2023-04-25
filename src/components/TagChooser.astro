@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import union from 'lodash/union';
 import CoolBackground from './CoolBackground.astro';
-import search from 'iconoir/icons/search.svg';
+import Search from './icons/Search.astro';
 
 interface Props {
   selectedTag?: string;
@@ -37,12 +37,15 @@ const { selectedTag } = Astro.props;
       all
     </a>
   </span>
-  <span class="search">
-    <span class="symbol"></span>
-    <img src={search.src} alt="search" />
-  </span>
 </section>
 <CoolBackground />
+
+<div class="search">
+  <a href="/blog/search">
+    <span class="icon"><Search /></span>Search
+  </a>
+</div>
+
 
 <style lang="scss">
   @import "../style/common.scss";
@@ -84,8 +87,27 @@ const { selectedTag } = Astro.props;
       @include hover-link;
     }
 
-    .search {
-      color: var(--highlight);
+  }
+  .search {
+    border-radius: var(--radius-2);
+    padding: var(--size-1) var(--size-2);
+    background: var(--secondary);
+    color: var(--primary);
+
+    margin-top: var(--size-fluid-1);
+
+    @include sm-up {
+      align-self: flex-start;
+      margin-left: var(--size-8);
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      .icon {
+        margin-right: var(--size-2);
+      }
     }
   }
+
 </style>
