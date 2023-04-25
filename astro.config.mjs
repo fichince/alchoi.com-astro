@@ -9,7 +9,11 @@ export default defineConfig({
   site: 'https://alchoi.com',
   integrations: [
     svelte(), 
-    tailwind(), 
+    tailwind({
+      config: {
+        applyBaseStyles: false,
+      }
+    }), 
     image({
       serviceEntryPoint: '@astrojs/image/sharp'
     }), 
