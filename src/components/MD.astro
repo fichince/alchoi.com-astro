@@ -6,14 +6,15 @@ import remarkSmartypants from 'remark-smartypants';
 
 const { md } = Astro.props;
 
-let html : string;
-
-html = remark()
+const html = remark()
         .use(remarkGfm)
         .use(remarkSmartypants)
         .use(remarkHtml, { sanitize: false })
-        .processSync(md)
-        .toString();
+        .processSync(md.trim())
+        .toString()
+        .replace('<p>', '')
+        .replace('</p>', '');
+
 ---
 
 <Fragment set:html={html} />
