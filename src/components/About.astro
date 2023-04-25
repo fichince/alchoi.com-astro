@@ -1,0 +1,67 @@
+---
+import { Content as About } from '@src/content/about.md';
+import { Picture } from '@astrojs/image/components';
+import Social from './Social.astro';
+
+---
+<div class="about">
+
+  <div class="headshot">
+    <Picture 
+      src="/images/headshot.jpg" 
+      alt="Albert"
+      widths={[200, 300]}
+      aspectRatio="1:1"
+      sizes="(min-width: 480px) 300px, 200px"
+    />
+  </div>
+
+  <div class="words">
+    <About />
+  </div>
+
+  <div class="links">
+    <Social />
+  </div>
+</div>
+
+<style lang="scss">
+  @import "../style/common.scss";
+
+  .about {
+    padding: var(--size-fluid-3);
+
+    display: grid;
+    grid-template-areas:
+      "headshot"
+      "words"
+      "links";
+    @include sm-up {
+      grid-template-areas:
+        "headshot words"
+        "headshot links"
+    }
+    gap: var(--size-fluid-3);
+    align-items: center;
+    justify-items: center;
+
+    background: var(--primary-light);
+
+    .headshot {
+      grid-area: headshot;
+      img {
+        border-radius: 100%;
+      }
+    }
+
+    .words {
+      grid-area: words;
+    }
+
+    .links {
+      grid-area: links;
+      align-self: start;
+      width: 50%;
+    }
+  }
+</style>

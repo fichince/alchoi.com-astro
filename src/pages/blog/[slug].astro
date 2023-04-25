@@ -1,5 +1,6 @@
 ---
 import { Picture } from '@astrojs/image/components';
+import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import MD from '@src/components/MD.astro';
 import TagList from '@src/components/TagList.astro';
@@ -63,8 +64,13 @@ const { Content } = await post.render();
     <main class="tw-prose">
       <Content />
     </main>
-    <CoolBackground />
+    <!-- TODO I don't know how z-index works but this is going on top of the About section
+    <!--<CoolBackground />-->
+    <!-- TODO put some indicator here that there's something below -->
   </article>
+  <section>
+    <About />
+  </section>
 </NavbarLayout>
 
 <style lang="scss">
@@ -74,11 +80,13 @@ const { Content } = await post.render();
     @include fade-in;
 
     margin: 0 auto;
+    min-height: 100vh;
 
     font-family: var(--font-body);
     padding: var(--size-fluid-3);
 
     display: grid;
+    align-content: start;
 
     grid-template-areas:
       "header"
