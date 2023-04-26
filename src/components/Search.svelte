@@ -64,12 +64,8 @@
 
     input {
       width: var(--size-fluid-10);
-      font-size: var(--font-size-5);
-      border-radius: var(--radius-2);
-      padding: var(--size-fluid-1);
-      color: var(--primary);
       margin-bottom: var(--size-fluid-2);
-      font-family: var(--font-display);
+      @include form-input;
     }
 
     .results {

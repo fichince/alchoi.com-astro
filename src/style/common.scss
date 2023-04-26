@@ -61,3 +61,30 @@
     transform: scale(105%);
   }
 }
+
+@mixin form-input($font-size: var(--font-size-5)) {
+  font-size: $font-size;
+  border-radius: var(--radius-2);
+  padding: var(--size-fluid-1);
+  color: var(--primary);
+  font-family: var(--font-display);
+
+  &:focus {
+    border-color: var(--highlight);
+  }
+}
+
+@mixin button {
+  border-radius: var(--radius-2);
+  padding: var(--size-1) var(--size-2);
+  background: var(--secondary);
+  color: var(--primary);
+  border: 2px solid var(--primary-mid);
+
+  &:hover {
+    background: var(--primary);
+    color: var(--secondary);
+    border: 2px solid var(--highlight);
+    text-shadow: 2px 2px 5px var(--highlight);
+  }
+}
