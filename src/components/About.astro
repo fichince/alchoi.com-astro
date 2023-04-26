@@ -1,8 +1,10 @@
 ---
-import { Content as About } from '@src/content/about.md';
 import { Picture } from '@astrojs/image/components';
 import Social from './Social.astro';
+import { getEntryBySlug } from 'astro:content';
 
+const about = await getEntryBySlug('other', 'about');
+const { Content } = await about.render();
 ---
 <div class="about" id="about">
 
@@ -17,7 +19,7 @@ import Social from './Social.astro';
   </div>
 
   <div class="words tw-prose">
-    <About />
+    <Content />
   </div>
 
   <div class="links">
