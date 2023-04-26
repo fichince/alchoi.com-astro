@@ -1,15 +1,7 @@
+import { stripMarkdown } from '@src/utils';
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import mapValues from 'lodash/mapValues';
-import isString from 'lodash/isString';
-import { remark } from 'remark';
-import strip from 'strip-markdown';
-
-function stripMarkdown(s : string) : string {
-  if (!s) return '';
-  if (!isString(s)) return s;
-  return remark().use(strip).processSync(s).toString().trim();
-}
 
 export const get = (async (context) => {
   const posts = await getCollection('blog');

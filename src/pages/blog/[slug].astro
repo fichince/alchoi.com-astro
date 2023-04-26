@@ -33,8 +33,14 @@ const tags = post.data.tags ?? [];
 const image = post.data.image;
 
 const { Content } = await post.render();
+
+const meta = { 
+  description,
+  image,
+};
+
 ---
-<NavbarLayout title={title}>
+<NavbarLayout title={title} meta={meta}>
   <article class="container tw-container">
     <header>
       <h1>

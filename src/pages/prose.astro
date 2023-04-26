@@ -7,9 +7,10 @@ import CoolBackground from '@src/components/CoolBackground.astro';
 import About from '@src/components/About.astro';
 
 const prose = await getCollection('prose');
+const meta = { description: `Written by Albert Choi` };
 
 ---
-<NavbarLayout title="Prose">
+<NavbarLayout title="Prose" meta={meta}>
   <main class="tw-container container">
     <h1>
       I spend some of my spare time writing fiction and the occasional non-fiction piece. Here are some links to my published works.

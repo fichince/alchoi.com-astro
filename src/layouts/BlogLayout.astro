@@ -4,6 +4,7 @@ import Paginator from '@src/components/Paginator.astro';
 import TagChooser from '@src/components/TagChooser.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import TagList from '@src/components/TagList.astro';
+import type { Props as LayoutProps } from '@src/layouts/Layout.astro';
 
 import type { Page } from 'astro';
 import type { CollectionEntry } from 'astro:content';
@@ -11,16 +12,16 @@ import type { CollectionEntry } from 'astro:content';
 import { Picture } from '@astrojs/image/components';
 import { DateTime } from 'luxon';
 
-interface Props {
+interface Props extends LayoutProps {
   page: Page<CollectionEntry<"blog">>;
   tag?: string;
 }
 
-const { page, tag } = Astro.props;
+const { page, tag, meta } = Astro.props;
 const posts = page.data;
 
 ---
-<NavbarLayout title="Blog">
+<NavbarLayout title="Blog" meta={meta}>
   <div class="container tw-container">
     <header>
       <h1>Blog</h1>

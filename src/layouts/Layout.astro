@@ -7,11 +7,23 @@ import '@fontsource/nunito/variable-italic.css';
 import '@fontsource/libre-franklin/variable.css';
 import '@fontsource/libre-franklin/variable-italic.css';
 
+import { stripMarkdown } from '@src/utils';
+
 export interface Props {
-  title: string;
+  title?: string;
+  meta?: {
+    description?: string,
+    image?:string,
+  }
 }
 
-const { title } = Astro.props;
+const { meta } = Astro.props;
+const title = stripMarkdown(Astro.props.title ?? 'Albert Choi');
+
+const description = stripMarkdown(meta?.description ?? 'The homepage of Albert Choi');
+const imagePath = meta?.image ?? 'favicon.png';
+const imageURL = new URL(imagePath, Astro.site ?? 'https://alchoi.com');
+const image = imageURL.toString();
 ---
 
 <!DOCTYPE html>
@@ -24,6 +36,18 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js"></script>
+
+    <meta name="description" content={description} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={image} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
   </head>
   <body>
     <slot />

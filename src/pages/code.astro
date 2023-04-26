@@ -8,9 +8,10 @@ import { getCollection } from 'astro:content';
 const code = await getCollection('code');
 
 // TODO add a link to a contact form
+const meta = { description: `Websites and applications that I've worked on` };
 
 ---
-<NavbarLayout title="Code">
+<NavbarLayout title="Code" meta={meta}>
   <main class="tw-container container">
     <h1>
       Websites and applications that I've worked on.
