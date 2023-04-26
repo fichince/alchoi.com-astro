@@ -89,10 +89,7 @@ const { selectedTag } = Astro.props;
 
   }
   .search {
-    border-radius: var(--radius-2);
-    padding: var(--size-1) var(--size-2);
-    background: var(--secondary);
-    color: var(--primary);
+    @include button;
 
     margin-top: var(--size-fluid-1);
 
