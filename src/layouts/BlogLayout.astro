@@ -80,9 +80,10 @@ const posts = page.data;
 </NavbarLayout>
 
 <script>
-  import observer from '../scripts/intersection';
+  import createObserver from '../scripts/intersection';
 
   const items = document.getElementsByClassName('post');
+  const observer = createObserver();
 
   for (let i = 0; i < items.length; i++) {
     const elem = items.item(i);
