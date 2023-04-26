@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import MD from '@src/components/MD.astro';
 import { Picture } from '@astrojs/image/components';
 import CoolBackground from '@src/components/CoolBackground.astro';
+import About from '@src/components/About.astro';
 
 const prose = await getCollection('prose');
 
@@ -54,6 +55,9 @@ const prose = await getCollection('prose');
     </section>
     <CoolBackground />
   </main>
+  <section>
+    <About />
+  </section>
 </NavbarLayout>
 
 <style lang="scss">

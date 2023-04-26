@@ -29,8 +29,11 @@ const code = defineCollection({
   })
 });
 
+const other = defineCollection({});
+
 export const collections = {
   prose,
   blog,
   code,
+  other,
 };

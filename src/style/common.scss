@@ -40,8 +40,7 @@
     }
   } @else {
     &:hover {
-      font-weight: 650;
-      letter-spacing: 0.5px;
+      color: var(--highlight);
     }
   }
 

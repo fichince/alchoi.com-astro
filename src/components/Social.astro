@@ -1,0 +1,38 @@
+---
+import Github from '@src/components/icons/Github.astro';
+import Facebook from '@src/components/icons/Facebook.astro';
+import LinkedIn from '@src/components/icons/LinkedIn.astro';
+---
+<div class="social">
+  <a href="https://github.com/fichince" target="_blank" rel="noreferrer noopener">
+    <Github />
+  </a>
+  <a href="https://www.facebook.com/albert.choi.583/" target="_blank" rel="noreferrer noopener">
+    <Facebook />
+  </a>
+  <a href="https://www.linkedin.com/in/albert-choi-202b8923/" target="_blank" rel="noreferrer noopener">
+    <LinkedIn />
+  </a>
+</div>
+
+<style lang="scss">
+  .social {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+
+    a {
+      transition: transform 200ms var(--ease-elastic-5);
+      height: var(--size-fluid-5);
+
+      &:hover {
+        transform: scale(120%);
+        color: var(--highlight);
+
+        :global(svg) {
+          stroke-width: 2;
+        }
+      }
+    }
+  }
+</style>

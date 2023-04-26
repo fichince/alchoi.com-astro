@@ -1,4 +1,5 @@
 ---
+import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import ProjectCarousel from '@src/components/ProjectCarousel.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
@@ -38,6 +39,9 @@ const code = await getCollection('code');
     </section>
     <CoolBackground />
   </main>
+  <section>
+    <About />
+  </section>
 </NavbarLayout>
 
 <style lang="scss">

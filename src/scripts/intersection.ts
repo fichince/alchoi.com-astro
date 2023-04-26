@@ -1,3 +1,6 @@
+const DEFAULTS = {
+  threshold: 0.50,
+}
 function handleScroll(entries : IntersectionObserverEntry[]) {
 
   entries.forEach((entry) => {
@@ -11,8 +14,10 @@ function handleScroll(entries : IntersectionObserverEntry[]) {
     }
   });
 }
-const observer = new IntersectionObserver(handleScroll, {
-  threshold: 0.50
-});
 
-export default observer;
+function createObserver(options : IntersectionObserverInit = DEFAULTS) {
+  const observer = new IntersectionObserver(handleScroll, options);
+  return observer;
+}
+
+export default createObserver;

@@ -1,0 +1,111 @@
+---
+import { Picture } from '@astrojs/image/components';
+import Social from './Social.astro';
+import { getEntryBySlug } from 'astro:content';
+
+const about = await getEntryBySlug('other', 'about');
+const { Content } = await about.render();
+---
+<div class="about" id="about">
+
+  <div class="headshot">
+    <Picture 
+      src="/images/headshot.jpg" 
+      alt="Albert"
+      widths={[200, 300]}
+      aspectRatio="1:1"
+      sizes="(min-width: 480px) 300px, 200px"
+    />
+  </div>
+
+  <div class="words tw-prose">
+    <Content />
+  </div>
+
+  <div class="links">
+    <Social />
+  </div>
+</div>
+
+<script>
+  import createObserver from '../scripts/intersection';
+
+  const observer = createObserver({ threshold: 0.65 });
+  const element = document.getElementById('about');
+  if (element) observer.observe(element);
+
+</script>
+
+<style lang="scss">
+  @import "../style/common.scss";
+
+  .about {
+    padding: var(--size-fluid-3);
+    min-height: 75vh;
+    position: relative;
+
+    display: grid;
+    grid-template-areas:
+      "headshot"
+      "words"
+      "links";
+    @include sm-up {
+      grid-template-areas:
+        "headshot words"
+        "headshot links"
+    }
+    gap: var(--size-fluid-3);
+    align-items: center;
+    justify-items: center;
+    place-content: center;
+
+    background: linear-gradient(to bottom left, var(--primary-light), var(--primary-mid));
+
+    .headshot {
+      grid-area: headshot;
+      img {
+        border-radius: 100%;
+      }
+    }
+
+    .words {
+      grid-area: words;
+      font-family: var(--font-body);
+    }
+
+    .links {
+      grid-area: links;
+      align-self: start;
+      width: 50%;
+    }
+
+    :where(.headshot,.words,.links) {
+      transition: all 1000ms var(--ease-out-3);
+    }
+
+    &.hide {
+      .headshot {
+        transform: translateX(-800px);
+      }
+
+      .words {
+        transform: translateX(800px);
+      }
+
+      .links {
+        transform: translateY(500px);
+      }
+
+      :where(.headdshot,.words,.links) {
+        opacity: 0;
+      }
+    }
+
+    &.show {
+      :where(.headshot,.words,.links) {
+        transform: none;
+        opacity: 1;
+      }
+    }
+  }
+</style>
