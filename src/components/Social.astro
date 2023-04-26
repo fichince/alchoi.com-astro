@@ -23,6 +23,8 @@ import LinkedIn from '@src/components/icons/LinkedIn.astro';
 
     a {
       transition: transform 200ms var(--ease-elastic-5);
+      height: var(--size-fluid-5);
+
       &:hover {
         transform: scale(120%);
 
@@ -30,10 +32,6 @@ import LinkedIn from '@src/components/icons/LinkedIn.astro';
           stroke-width: 2;
         }
       }
-    }
-
-    :global(svg) {
-      height: var(--size-fluid-5);
     }
   }
 </style>

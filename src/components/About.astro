@@ -16,7 +16,7 @@ import Social from './Social.astro';
     />
   </div>
 
-  <div class="words">
+  <div class="words tw-prose">
     <About />
   </div>
 
@@ -30,6 +30,8 @@ import Social from './Social.astro';
 
   .about {
     padding: var(--size-fluid-3);
+    min-height: 75vh;
+    position: relative;
 
     display: grid;
     grid-template-areas:
@@ -44,6 +46,7 @@ import Social from './Social.astro';
     gap: var(--size-fluid-3);
     align-items: center;
     justify-items: center;
+    place-content: center;
 
     background: var(--primary-light);
 
@@ -56,6 +59,7 @@ import Social from './Social.astro';
 
     .words {
       grid-area: words;
+      font-family: var(--font-body);
     }
 
     .links {
