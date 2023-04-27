@@ -41,7 +41,7 @@ const meta = {
 
 ---
 <NavbarLayout title={title} meta={meta}>
-  <article class="container tw-container">
+  <article class="container tw-container fade-in">
     <header>
       <h1>
         <MD md={title} />
@@ -82,8 +82,6 @@ const meta = {
   @import "../../style/common.scss";
 
   article.container {
-    @include fade-in;
-
     margin: 0 auto;
     min-height: 100vh;
 

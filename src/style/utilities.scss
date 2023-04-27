@@ -23,3 +23,18 @@
     border-color: var(--highlight);
   }
 }
+
+.image-hover {
+  transition: transform 500ms var(--ease-squish-5);
+
+  &:hover {
+    transform: scale(105%);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: var(--animation-fade-in) forwards;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+}
