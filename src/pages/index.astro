@@ -11,7 +11,7 @@ const MENU = [
 ];
 ---
 <Layout title="Albert Choi">
-  <div class="container" 
+  <div class="container fade-in" 
     x-data="{ bgShift: -1, bgHover: 0 }"
     x-bind:data-bg-shift="bgShift"
     x-bind:data-bg-hover="bgHover">
@@ -48,11 +48,10 @@ const MENU = [
 </Layout>
 
 <style lang="scss">
-  @import "../style/common.scss";
+  @import "../style/mixins.scss";
 
   .container {
     // todo do more with animation
-    @include fade-in;
     animation-duration: 1000ms;
 
     min-width: 100vw;

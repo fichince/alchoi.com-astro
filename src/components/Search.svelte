@@ -34,7 +34,7 @@
 </script>
 
 <div class="search">
-  <input type="text" on:input={handleChange} placeholder="Search..." />
+  <input class="form-input" type="text" on:input={handleChange} placeholder="Search..." />
 
   <div class="results">
     {#if searchResults.length > 0}
@@ -56,7 +56,7 @@
 </div>
 
 <style lang="scss">
-  @import "../style/common.scss";
+  @import "../style/mixins.scss";
   .search {
     display: flex;
     flex-direction: column;
@@ -65,7 +65,7 @@
     input {
       width: var(--size-fluid-10);
       margin-bottom: var(--size-fluid-2);
-      @include form-input;
+      font-size: var(--font-size-fluid-2);
     }
 
     .results {

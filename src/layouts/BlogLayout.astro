@@ -22,7 +22,7 @@ const posts = page.data;
 
 ---
 <NavbarLayout title="Blog" meta={meta}>
-  <div class="container tw-container">
+  <div class="container tw-container fade-in">
     <header>
       <h1>Blog</h1>
       <TagChooser selectedTag={tag} />
@@ -57,7 +57,7 @@ const posts = page.data;
               </div>
             </div>
             { post.data.image &&
-              <div class="image">
+              <div class="image image-hover">
                 <a href={link}>
                   <Picture
                     src={post.data.image}
@@ -93,11 +93,9 @@ const posts = page.data;
 </script>
 
 <style lang="scss">
-  @import "../style/common.scss";
+  @import "../style/mixins.scss";
 
   .container {
-    @include fade-in;
-
     margin-left: auto;
     margin-right: auto;
 
@@ -233,8 +231,6 @@ const posts = page.data;
         grid-row: var(--image-row);
         grid-column: var(--image-column);
         place-self: center;
-
-        @include image-hover;
       }
 
       a {

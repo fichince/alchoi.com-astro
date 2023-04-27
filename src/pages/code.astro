@@ -12,7 +12,7 @@ const meta = { description: `Websites and applications that I've worked on` };
 
 ---
 <NavbarLayout title="Code" meta={meta}>
-  <main class="tw-container container">
+  <main class="tw-container container fade-in">
     <h1>
       Websites and applications that I've worked on.
     </h1>
@@ -46,10 +46,9 @@ const meta = { description: `Websites and applications that I've worked on` };
 </NavbarLayout>
 
 <style lang="scss">
-  @import "../style/common.scss";
+  @import "../style/mixins.scss";
 
   .container {
-    @include fade-in;
     font-family: var(--font-body);
 
     margin-left: auto;

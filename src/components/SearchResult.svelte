@@ -57,7 +57,7 @@
 </div>
 
 <style lang="scss">
-  @import "../style/common.scss";
+  @import "../style/mixins.scss";
 
   .result {
     margin: var(--size-fluid-2) 0;

@@ -40,7 +40,7 @@ const { selectedTag } = Astro.props;
 </section>
 <CoolBackground />
 
-<div class="search">
+<div class="button search">
   <a href="/blog/search">
     <span class="icon"><Search /></span>Search
   </a>
@@ -48,7 +48,7 @@ const { selectedTag } = Astro.props;
 
 
 <style lang="scss">
-  @import "../style/common.scss";
+  @import "../style/mixins.scss";
   section {
 
     width: 100%;
@@ -89,8 +89,6 @@ const { selectedTag } = Astro.props;
 
   }
   .search {
-    @include button;
-
     margin-top: var(--size-fluid-1);
 
     @include sm-up {

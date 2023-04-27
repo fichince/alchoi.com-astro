@@ -1,0 +1,40 @@
+.button {
+  border-radius: var(--radius-2);
+  padding: var(--size-1) var(--size-2);
+  background: var(--secondary);
+  color: var(--primary);
+  border: 2px solid var(--primary-mid);
+
+  &:hover {
+    background: var(--primary);
+    color: var(--secondary);
+    border: 2px solid var(--highlight);
+    text-shadow: 2px 2px 5px var(--highlight);
+  }
+}
+
+.form-input {
+  border-radius: var(--radius-2);
+  padding: var(--size-fluid-1);
+  color: var(--primary);
+  font-family: var(--font-display);
+
+  &:focus {
+    border-color: var(--highlight);
+  }
+}
+
+.image-hover {
+  transition: transform 500ms var(--ease-squish-5);
+
+  &:hover {
+    transform: scale(105%);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: var(--animation-fade-in) forwards;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+}
