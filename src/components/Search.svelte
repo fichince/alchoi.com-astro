@@ -56,7 +56,7 @@
 </div>
 
 <style lang="scss">
-  @import "../style/common.scss";
+  @import "../style/mixins.scss";
   .search {
     display: flex;
     flex-direction: column;
