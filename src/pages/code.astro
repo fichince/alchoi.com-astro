@@ -3,19 +3,25 @@ import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import ProjectCarousel from '@src/components/ProjectCarousel.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntryBySlug } from 'astro:content';
 
 const code = await getCollection('code');
 
 // TODO add a link to a contact form
 const meta = { description: `Websites and applications that I've worked on` };
+const intro = await getEntryBySlug('other', 'code-intro');
+
+const { Content: Intro } = await intro.render();
 
 ---
 <NavbarLayout title="Code" meta={meta}>
-  <main class="tw-container container fade-in">
-    <h1>
-      Websites and applications that I've worked on.
-    </h1>
+  <main class="container fade-in">
+    <section class="intro">
+      <h1>
+        Websites and applications that I've worked on.
+      </h1>
+      <Intro />
+    </section>
     <section x-data="{ bgShift: -1, bgHover: 0}"
       x-bind:data-bg-shift="bgShift"
       x-bind:data-bg-hover="bgHover"
@@ -53,20 +59,26 @@ const meta = { description: `Websites and applications that I've worked on` };
 
     margin-left: auto;
     margin-right: auto;
-    padding: var(--size-fluid-4) var(--size-fluid-1);
 
-    h1 {
-      font-family: var(--font-display);
-      font-size: var(--font-size-fluid-1);
+    section.intro {
+      min-height: 100vh;
+      padding: var(--size-fluid-4) var(--size-fluid-1);
 
-      margin: 0 var(--size-fluid-4) var(--size-fluid-4);
-      font-weight: bold;
-      text-align: center;
+      h1 {
+        font-family: var(--font-display);
+        font-size: var(--font-size-fluid-1);
+
+        margin: 0 var(--size-fluid-4) var(--size-fluid-4);
+        font-weight: bold;
+        text-align: center;
+      }
     }
 
     article {
-      margin-bottom: var(--size-fluid-5);
+      //margin-bottom: var(--size-fluid-2);
       text-align: center;
+      min-height: 100vh;
+      border-bottom: 1px solid var(--primary-light);
 
       display: flex;
       flex-direction: column;
