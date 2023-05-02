@@ -1,15 +1,16 @@
 ---
 import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
+import CodeBrackets from '@src/components/icons/CodeBrackets.astro';
 import ProjectCarousel from '@src/components/ProjectCarousel2.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import { getCollection, getEntryBySlug } from 'astro:content';
 
 const code = await getCollection('code');
 
-// TODO add a link to a contact form
-const meta = { description: `Websites and applications that I've worked on` };
 const intro = await getEntryBySlug('other', 'code-intro');
+const title = intro.data.title;
+const meta = { description: title };
 
 const { Content: Intro } = await intro.render();
 
@@ -19,9 +20,14 @@ const { Content: Intro } = await intro.render();
     <section class="intro">
       <div>
         <h1>
-          Websites and applications that I've worked on.
+          { title }
         </h1>
-        <Intro />
+        <div class="content">
+          <CodeBrackets />
+          <div class="tw-prose">
+            <Intro />
+          </div>
+        </div>
       </div>
     </section>
     <section x-data="{ bgShift: -1, bgHover: 0}"
@@ -83,6 +89,27 @@ const { Content: Intro } = await intro.render();
       display: flex;
       align-items: center;
       justify-content: center;
+
+      .content {
+
+        display: flex;
+        align-items: center;
+
+        :global(svg) {
+          margin-right: var(--size-fluid-3);
+          max-height: var(--size-13);
+          transition: transform 200ms var(--ease-elastic-5);
+        }
+
+        &:hover {
+          :global(svg) {
+            color: var(--highlight);
+            stroke-width: 2;
+            transform: scale(120%) rotate(-15deg);
+          }
+        }
+
+      }
 
       h1 {
         font-family: var(--font-display);
