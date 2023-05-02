@@ -1,39 +1,59 @@
 ---
 import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
+import CodeBrackets from '@src/components/icons/CodeBrackets.astro';
 import ProjectCarousel from '@src/components/ProjectCarousel.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntryBySlug } from 'astro:content';
 
 const code = await getCollection('code');
 
-// TODO add a link to a contact form
-const meta = { description: `Websites and applications that I've worked on` };
+const intro = await getEntryBySlug('other', 'code-intro');
+const title = intro.data.title;
+const meta = { description: title };
+
+const { Content: Intro } = await intro.render();
 
 ---
 <NavbarLayout title="Code" meta={meta}>
-  <main class="tw-container container fade-in">
-    <h1>
-      Websites and applications that I've worked on.
-    </h1>
+  <main class="container fade-in tw-container">
+    <section class="intro">
+      <div>
+        <h1>
+          { title }
+        </h1>
+        <div class="content">
+          <CodeBrackets />
+          <div class="tw-prose">
+            <Intro />
+          </div>
+        </div>
+      </div>
+    </section>
     <section x-data="{ bgShift: -1, bgHover: 0}"
       x-bind:data-bg-shift="bgShift"
       x-bind:data-bg-hover="bgHover"
       x-on:mouseenter="bgHover = 1"
       x-on:mouseleave="bgHover = 0">
-      { code.map((item, index) => {
+      { code.map(async (item, index) => {
+
+        const { Content } = await item.render();
 
         return (
-          <article x-on:mouseover={`bgShift = ${index}`}>
+          <article x-on:mouseover={`bgShift = ${index}`} class="project">
             <div class="carousel">
               <ProjectCarousel project={item} />
             </div>
 
-            <a href={item.data.url}>
-              <h2>{item.data.title}</h2>
-            </a>
+            <div class="words">
+              <a href={item.data.url}>
+                <h2>{item.data.title}</h2>
+              </a>
 
-            <h3>{item.data.description}</h3>
+              <div class="content tw-prose">
+                <Content />
+              </div>
+            </div>
           </article>
         );
       })}
@@ -45,6 +65,18 @@ const meta = { description: `Websites and applications that I've worked on` };
   </section>
 </NavbarLayout>
 
+<script>
+  import createObserver from '../scripts/intersection';
+
+  const items = document.getElementsByClassName('project');
+  const observer = createObserver();
+
+  for (let i = 0; i < items.length; i++) {
+    const elem = items.item(i);
+    if (elem) observer.observe(elem);
+  }
+</script>
+
 <style lang="scss">
   @import "../style/mixins.scss";
 
@@ -53,42 +85,134 @@ const meta = { description: `Websites and applications that I've worked on` };
 
     margin-left: auto;
     margin-right: auto;
-    padding: var(--size-fluid-4) var(--size-fluid-1);
+    padding: 0 var(--size-fluid-3);
 
-    h1 {
-      font-family: var(--font-display);
-      font-size: var(--font-size-fluid-1);
+    section.intro {
+      min-height: 90vh;
+      padding: var(--size-fluid-4) var(--size-fluid-1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      margin: 0 var(--size-fluid-4) var(--size-fluid-4);
-      font-weight: bold;
-      text-align: center;
+      .content {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include sm-up {
+          flex-direction: row;
+        }
+
+        :global(svg) {
+          margin-right: 0;
+          margin-top: var(--size-fluid-3);
+
+          @include sm-up {
+            margin-top: 0;
+            margin-right: var(--size-fluid-3);
+          }
+
+          max-height: var(--size-13);
+          transition: transform 200ms var(--ease-elastic-5);
+        }
+
+        &:hover {
+          :global(svg) {
+            color: var(--highlight);
+            stroke-width: 2;
+            transform: scale(120%) rotate(-15deg);
+          }
+        }
+
+      }
+
+      h1 {
+        font-family: var(--font-display);
+        font-size: var(--font-size-fluid-1);
+
+        margin: 0 var(--size-fluid-4) var(--size-fluid-4);
+        font-weight: bold;
+        text-align: center;
+      }
     }
 
     article {
-      margin-bottom: var(--size-fluid-5);
       text-align: center;
+      min-height: 100vh;
+      border-top: 1px solid var(--primary-light);
+      padding: var(--size-fluid-1) 0;
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: grid;
+      grid-template-areas: 
+        "carousel"
+        "words";
+      justify-items: center;
+
+      @include sm-up {
+        &:nth-child(odd) {
+          grid-template-areas:
+            "words carousel";
+        }
+        &:nth-child(even) {
+          grid-template-areas:
+            "carousel words";
+        }
+      }
 
       .carousel {
+        grid-area: carousel;
         margin-bottom: var(--size-fluid-1);
+        align-self: end;
+
+        @include sm-up {
+          align-self: center;
+        }
       }
 
-      h2 {
-        font-family: var(--font-display);
-        font-size: var(--font-size-fluid-1);
+      .words {
+        align-self: start;
+        grid-area: words;
+
+        @include sm-up {
+          align-self: center;
+        }
+
+        h2 {
+          font-family: var(--font-display);
+          font-size: var(--font-size-fluid-1);
+          margin: var(--size-fluid-2) 0;
+        }
+
+        .content {
+          text-align: left;
+        }
+
+        a {
+          @include hover-link;
+          text-decoration: underline;
+        }
       }
 
-      h3 {
-        font-size: var(--font-size-fluid-0);
-        font-weight: 500;
+      &.show {
+        opacity: 100%;
+        transform: none;
+        transition: all 500ms var(--ease-out-1);
       }
 
-      a {
-        @include hover-link;
-        text-decoration: underline;
+      &.hide {
+        opacity: 0%;
+        transition: all 500ms var(--ease-out-1);
+      }
+
+      &:nth-child(odd) {
+        &.hide {
+          transform: translateX(-50px);
+        }
+      }
+      &:nth-child(even) {
+        &.hide {
+          transform: translateX(50px);
+        }
       }
     }
   }

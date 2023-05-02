@@ -1,7 +1,6 @@
 ---
-import '@splidejs/splide/css';
-import type { CollectionEntry } from 'astro:content';
 import { getPicture } from '@astrojs/image';
+import type { CollectionEntry } from 'astro:content';
 import find from 'lodash/find';
 
 interface Props {
@@ -9,84 +8,57 @@ interface Props {
 }
 
 const { project } = Astro.props;
-
-const splideConfig = {
-  type: 'loop',
-  mediaQuery: 'min',
-  perPage: 1,
-  perMove: 1,
-  start: 0,
-  gap: 0,
-  focus: 'center',
-  lazyLoad: 'nearby',
-  breakpoints: {
-    480: {
-      perPage: 2,
-      gap: '0.5rem',
-    }
-  }
-};
 ---
-<script>
-  import Splide from '@splidejs/splide';
+<div x-data="{ showDialog: false, srcset: null }">
+  <sl-carousel pagination navigation loop>
+  { project.data.images.map(async (image) => {
+    const picture = await getPicture({
+      src: image,
+      alt: project.data.title,
+      widths: [400, 800],
+      aspectRatio: '16:9',
+      formats: ['webp'],
+    });
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const carousels = document.getElementsByClassName('splide');
-    for (let i = 0; i < carousels.length; i++) {
-      new Splide(carousels.item(i) as HTMLElement).mount();
-    }
-  });
-</script>
+    const srcset = find(picture.sources, { type: 'image/webp' })?.srcset;
 
-<section class="splide" aria-label={project.data.title} 
-  data-splide={JSON.stringify(splideConfig)}>
-  <div class="splide__track">
-    <ul class="splide__list">
-      { project.data.images.map(async (image) => {
+    return (
+      <sl-carousel-item>
+        <img srcset={srcset} 
+          sizes="(min-width: 480px) 800px, 400px" 
+          alt={project.data.title}
+          loading="lazy"
+          x-on:click={`showDialog = true; srcset = '${srcset}';`}
+        />
+      </sl-carousel-item>
+    );
+  })}
+  </sl-carousel>
 
-        const picture = await getPicture({
-          src: image,
-          alt: project.data.title,
-          widths: [400, 800],
-          aspectRatio: '16:9',
-          formats: ['webp'],
-        });
-
-        const srcset = find(picture.sources, { type: 'image/webp' })?.srcset;
-
-        return (
-          <li class="splide__slide">
-            <img  
-              data-splide-lazy-srcset={srcset}
-              data-splide-lazy={image}
-              sizes="(min-width: 480px) 800px, 400px" 
-              alt={project.data.title}
-            />
-          </li>
-        );
-      })}
-    </ul>
-  </div>
-</section>
+  <sl-dialog x-bind:open="showDialog"
+    x-on:sl-request-close="showDialog = false">
+    <div class="image-container">
+      <img x-bind:srcset="srcset"
+        sizes="(min-width: 480px) 800px, 400px" 
+        alt={project.data.title}
+      />
+    </div>
+  </sl-dialog>
+</div>
 
 <style lang="scss">
-  @import "../style/mixins.scss";
+  sl-carousel-item {
+    img {
+      cursor: pointer;
+    }
+  }
+  sl-dialog {
+    --width: 85vw;
 
-  section {
-    .splide__slide {
-      transition: filter 100ms var(--ease-out-5);
-      &.is-active {
-        filter: none;
-      }
-      &:not(.is-active) {
-        filter: grayscale(100%) blur(2px);
-      }
-
-      img {
-        border-radius: var(--size-2);
-        width: 100%;
-        height: auto;
-      }
+    .image-container {
+      display: flex;
+      justify-content: center;
+      max-height: 70vh;
     }
   }
 </style>

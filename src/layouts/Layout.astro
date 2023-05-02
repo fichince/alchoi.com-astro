@@ -27,7 +27,7 @@ const image = imageURL.toString();
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="sl-theme-dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -36,6 +36,9 @@ const image = imageURL.toString();
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/dark.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace-autoloader.js"></script>
 
     <meta name="description" content={description} />
 
@@ -78,7 +81,7 @@ const image = imageURL.toString();
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    overflow-x: clip;
+    overflow-x: hidden;
   }
 
   // apply this to blog post content

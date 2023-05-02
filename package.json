@@ -21,7 +21,6 @@
     "@fontsource/mononoki": "^4.5.3",
     "@fontsource/nunito": "^4.5.12",
     "@fontsource/special-elite": "^4.5.8",
-    "@splidejs/splide": "^4.1.4",
     "@tailwindcss/typography": "^0.5.9",
     "@types/lodash": "^4.14.192",
     "@types/lunr": "^2.3.4",
