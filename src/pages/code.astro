@@ -15,7 +15,7 @@ const { Content: Intro } = await intro.render();
 
 ---
 <NavbarLayout title="Code" meta={meta}>
-  <main class="container fade-in">
+  <main class="container fade-in tw-container">
     <section class="intro">
       <h1>
         Websites and applications that I've worked on.
@@ -35,11 +35,13 @@ const { Content: Intro } = await intro.render();
               <ProjectCarousel project={item} />
             </div>
 
-            <a href={item.data.url}>
-              <h2>{item.data.title}</h2>
-            </a>
+            <div class="words">
+              <a href={item.data.url}>
+                <h2>{item.data.title}</h2>
+              </a>
 
-            <h3>{item.data.description}</h3>
+              <h3>{item.data.description}</h3>
+            </div>
           </article>
         );
       })}
@@ -59,6 +61,7 @@ const { Content: Intro } = await intro.render();
 
     margin-left: auto;
     margin-right: auto;
+    padding: 0 var(--size-fluid-3);
 
     section.intro {
       min-height: 100vh;
@@ -75,32 +78,60 @@ const { Content: Intro } = await intro.render();
     }
 
     article {
-      //margin-bottom: var(--size-fluid-2);
       text-align: center;
       min-height: 100vh;
-      border-bottom: 1px solid var(--primary-light);
+      border-top: 1px solid var(--primary-light);
+      padding: var(--size-fluid-1) 0;
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: grid;
+      grid-template-areas: 
+        "carousel"
+        "words";
+      justify-items: center;
+
+      @include sm-up {
+        &:nth-child(odd) {
+          grid-template-areas:
+            "words carousel";
+        }
+        &:nth-child(even) {
+          grid-template-areas:
+            "carousel words";
+        }
+      }
 
       .carousel {
+        grid-area: carousel;
         margin-bottom: var(--size-fluid-1);
+        align-self: end;
+
+        @include sm-up {
+          align-self: center;
+        }
       }
 
-      h2 {
-        font-family: var(--font-display);
-        font-size: var(--font-size-fluid-1);
-      }
+      .words {
+        align-self: start;
+        grid-area: words;
 
-      h3 {
-        font-size: var(--font-size-fluid-0);
-        font-weight: 500;
-      }
+        @include sm-up {
+          align-self: center;
+        }
 
-      a {
-        @include hover-link;
-        text-decoration: underline;
+        h2 {
+          font-family: var(--font-display);
+          font-size: var(--font-size-fluid-1);
+        }
+
+        h3 {
+          font-size: var(--font-size-fluid-0);
+          font-weight: 500;
+        }
+
+        a {
+          @include hover-link;
+          text-decoration: underline;
+        }
       }
     }
   }
