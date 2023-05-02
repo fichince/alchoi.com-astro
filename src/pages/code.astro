@@ -17,10 +17,12 @@ const { Content: Intro } = await intro.render();
 <NavbarLayout title="Code" meta={meta}>
   <main class="container fade-in tw-container">
     <section class="intro">
-      <h1>
-        Websites and applications that I've worked on.
-      </h1>
-      <Intro />
+      <div>
+        <h1>
+          Websites and applications that I've worked on.
+        </h1>
+        <Intro />
+      </div>
     </section>
     <section x-data="{ bgShift: -1, bgHover: 0}"
       x-bind:data-bg-shift="bgShift"
@@ -30,7 +32,7 @@ const { Content: Intro } = await intro.render();
       { code.map((item, index) => {
 
         return (
-          <article x-on:mouseover={`bgShift = ${index}`}>
+          <article x-on:mouseover={`bgShift = ${index}`} class="project">
             <div class="carousel">
               <ProjectCarousel project={item} />
             </div>
@@ -53,6 +55,18 @@ const { Content: Intro } = await intro.render();
   </section>
 </NavbarLayout>
 
+<script>
+  import createObserver from '../scripts/intersection';
+
+  const items = document.getElementsByClassName('project');
+  const observer = createObserver();
+
+  for (let i = 0; i < items.length; i++) {
+    const elem = items.item(i);
+    if (elem) observer.observe(elem);
+  }
+</script>
+
 <style lang="scss">
   @import "../style/mixins.scss";
 
@@ -64,8 +78,11 @@ const { Content: Intro } = await intro.render();
     padding: 0 var(--size-fluid-3);
 
     section.intro {
-      min-height: 100vh;
+      min-height: 90vh;
       padding: var(--size-fluid-4) var(--size-fluid-1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       h1 {
         font-family: var(--font-display);
@@ -131,6 +148,28 @@ const { Content: Intro } = await intro.render();
         a {
           @include hover-link;
           text-decoration: underline;
+        }
+      }
+
+      &.show {
+        opacity: 100%;
+        transform: none;
+        transition: all 500ms var(--ease-out-1);
+      }
+
+      &.hide {
+        opacity: 0%;
+        transition: all 500ms var(--ease-out-1);
+      }
+
+      &:nth-child(odd) {
+        &.hide {
+          transform: translateX(-50px);
+        }
+      }
+      &:nth-child(even) {
+        &.hide {
+          transform: translateX(50px);
         }
       }
     }
