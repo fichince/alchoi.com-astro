@@ -1,0 +1,59 @@
+---
+import { getPicture } from '@astrojs/image';
+import type { CollectionEntry } from 'astro:content';
+import find from 'lodash/find';
+
+interface Props {
+  project: CollectionEntry<'code'>;
+}
+
+const { project } = Astro.props;
+---
+<div x-data="{ showDialog: false, srcset: null }">
+  <sl-carousel pagination navigation loop>
+  { project.data.images.map(async (image) => {
+    const picture = await getPicture({
+      src: image,
+      alt: project.data.title,
+      widths: [400, 800],
+      aspectRatio: '16:9',
+      formats: ['webp'],
+    });
+
+    const srcset = find(picture.sources, { type: 'image/webp' })?.srcset;
+
+    return (
+      <sl-carousel-item>
+        <img srcset={srcset} 
+          sizes="(min-width: 480px) 800px, 400px" 
+          alt={project.data.title}
+          loading="lazy"
+          x-on:click={`showDialog = true; srcset = '${srcset}';`}
+        />
+      </sl-carousel-item>
+    );
+  })}
+  </sl-carousel>
+
+  <sl-dialog x-bind:open="showDialog"
+    x-on:sl-request-close="showDialog = false">
+    <div class="image-container">
+      <img x-bind:srcset="srcset"
+        sizes="(min-width: 480px) 800px, 400px" 
+        alt={project.data.title}
+      />
+    </div>
+  </sl-dialog>
+</div>
+
+<style lang="scss">
+  sl-dialog {
+    --width: 85vw;
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      max-height: 70vh;
+    }
+  }
+</style>
