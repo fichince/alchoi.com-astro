@@ -1,22 +1,53 @@
 ---
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntryBySlug } from 'astro:content';
 import MD from '@src/components/MD.astro';
 import { Picture } from '@astrojs/image/components';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import About from '@src/components/About.astro';
+import IntroSection from '@src/components/IntroSection.astro';
+import OpenBook from '@src/components/icons/OpenBook.astro';
 
 const prose = await getCollection('prose');
-const meta = { description: `Written by Albert Choi` };
+
+const intro = await getEntryBySlug('other', 'prose-intro');
+const title = intro.data.title;
+const meta = { description: title };
+
+const book = await getEntryBySlug('other', 'jacob-rob');
+const { Content: Book } = await book.render();
 
 ---
 <NavbarLayout title="Prose" meta={meta}>
   <main class="tw-container container fade-in">
-    <h1>
-      I spend some of my spare time writing fiction and the occasional non-fiction piece. Here are some links to my published works.
-    </h1>
+    <IntroSection intro={intro}>
+      <OpenBook />
+    </IntroSection>
 
-    <section x-data="{ bgShift: -1, bgHover: 0}"
+    <section class="hero">
+      <h2>
+        <a href={book.data.url}>
+          {book.data.title}
+        </a>
+      </h2>
+      <div class="hero-body">
+        <div class="image-hover">
+          <Picture
+            src={book.data.image}
+            alt={book.data.title}
+            widths={[320]}
+            aspectRatio="1:1"
+            sizes="320px"
+          />
+        </div>
+        <div class="tw-prose">
+          <Book />
+        </div>
+      </div>
+    </section>
+
+    <section class="stories"
+      x-data="{ bgShift: -1, bgHover: 0}"
       x-bind:data-bg-shift="bgShift"
       x-bind:data-bg-hover="bgHover"
       x-on:mouseenter="bgHover = 1"
@@ -80,7 +111,51 @@ const meta = { description: `Written by Albert Choi` };
     }
 
     section {
-      padding: 0 var(--size-fluid-2);
+      border-top: 1px solid var(--primary-light);
+      padding: var(--size-fluid-1) 0;
+    }
+
+    section.hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 var(--size-fluid-3);
+
+      a {
+        @include hover-link;
+        text-decoration: underline;
+      }
+
+      h2 {
+        font-family: var(--font-display);
+        font-size: var(--font-size-fluid-2);
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .hero-body {
+        :first-child {
+          margin-right: 0;
+          margin-top: var(--size-fluid-3);
+
+          @include sm-up {
+            margin-top: 0;
+            margin-right: var(--size-fluid-3);
+          }
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include sm-up {
+          flex-direction: row;
+        }
+      }
+    }
+
+    section.stories {
+      padding: var(--size-fluid-2);
 
       display: grid;
       grid-template-columns: 1fr;

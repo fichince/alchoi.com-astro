@@ -1,0 +1,77 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  intro: CollectionEntry<'other'>
+}
+
+const { intro } = Astro.props;
+
+const title = intro.data.title;
+const { Content: Intro } = await intro.render();
+---
+<section class="intro">
+  <div>
+    <h1>
+      { title }
+    </h1>
+    <div class="content">
+      <slot />
+      <div class="tw-prose">
+        <Intro />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @import "../style/mixins.scss";
+  section.intro {
+    min-height: 90vh;
+    padding: var(--size-fluid-4) var(--size-fluid-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: var(--font-size-fluid-1);
+
+      margin: 0 var(--size-fluid-4) var(--size-fluid-4);
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .content {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      @include sm-up {
+        flex-direction: row;
+      }
+
+      :global(svg) {
+        margin-right: 0;
+        margin-top: var(--size-fluid-3);
+
+        @include sm-up {
+          margin-top: 0;
+          margin-right: var(--size-fluid-3);
+        }
+
+        max-height: var(--size-13);
+        transition: transform 200ms var(--ease-elastic-5);
+      }
+
+      &:hover {
+        :global(svg) {
+          color: var(--highlight);
+          stroke-width: 2;
+          transform: scale(120%) rotate(-15deg);
+        }
+      }
+
+    }
+  }
+</style>
