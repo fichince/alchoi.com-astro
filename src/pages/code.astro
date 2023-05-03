@@ -2,6 +2,7 @@
 import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import CodeBrackets from '@src/components/icons/CodeBrackets.astro';
+import IntroSection from '@src/components/IntroSection.astro';
 import ProjectCarousel from '@src/components/ProjectCarousel.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import { getCollection, getEntryBySlug } from 'astro:content';
@@ -17,19 +18,9 @@ const { Content: Intro } = await intro.render();
 ---
 <NavbarLayout title="Code" meta={meta}>
   <main class="container fade-in tw-container">
-    <section class="intro">
-      <div>
-        <h1>
-          { title }
-        </h1>
-        <div class="content">
-          <CodeBrackets />
-          <div class="tw-prose">
-            <Intro />
-          </div>
-        </div>
-      </div>
-    </section>
+    <IntroSection intro={intro}>
+      <CodeBrackets />
+    </IntroSection>
     <section x-data="{ bgShift: -1, bgHover: 0}"
       x-bind:data-bg-shift="bgShift"
       x-bind:data-bg-hover="bgHover"
@@ -87,55 +78,6 @@ const { Content: Intro } = await intro.render();
     margin-right: auto;
     padding: 0 var(--size-fluid-3);
 
-    section.intro {
-      min-height: 90vh;
-      padding: var(--size-fluid-4) var(--size-fluid-1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .content {
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        @include sm-up {
-          flex-direction: row;
-        }
-
-        :global(svg) {
-          margin-right: 0;
-          margin-top: var(--size-fluid-3);
-
-          @include sm-up {
-            margin-top: 0;
-            margin-right: var(--size-fluid-3);
-          }
-
-          max-height: var(--size-13);
-          transition: transform 200ms var(--ease-elastic-5);
-        }
-
-        &:hover {
-          :global(svg) {
-            color: var(--highlight);
-            stroke-width: 2;
-            transform: scale(120%) rotate(-15deg);
-          }
-        }
-
-      }
-
-      h1 {
-        font-family: var(--font-display);
-        font-size: var(--font-size-fluid-1);
-
-        margin: 0 var(--size-fluid-4) var(--size-fluid-4);
-        font-weight: bold;
-        text-align: center;
-      }
-    }
-
     article {
       text-align: center;
       min-height: 100vh;
@@ -149,14 +91,8 @@ const { Content: Intro } = await intro.render();
       justify-items: center;
 
       @include sm-up {
-        &:nth-child(odd) {
-          grid-template-areas:
-            "words carousel";
-        }
-        &:nth-child(even) {
-          grid-template-areas:
-            "carousel words";
-        }
+        grid-template-areas:
+          "words carousel";
       }
 
       .carousel {
