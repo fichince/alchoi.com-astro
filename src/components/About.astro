@@ -30,7 +30,7 @@ const { Content } = await about.render();
 <script>
   import createObserver from '../scripts/intersection';
 
-  const observer = createObserver({ threshold: 0.65 });
+  const observer = createObserver();
   const element = document.getElementById('about');
   if (element) observer.observe(element);
 
