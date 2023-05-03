@@ -91,14 +91,8 @@ const { Content: Intro } = await intro.render();
       justify-items: center;
 
       @include sm-up {
-        &:nth-child(odd) {
-          grid-template-areas:
-            "words carousel";
-        }
-        &:nth-child(even) {
-          grid-template-areas:
-            "carousel words";
-        }
+        grid-template-areas:
+          "words carousel";
       }
 
       .carousel {
