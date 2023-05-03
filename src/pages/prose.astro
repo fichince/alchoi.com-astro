@@ -16,9 +16,6 @@ const meta = { description: title };
 
 const book = await getEntryBySlug('other', 'jacob-rob');
 const { Content: Book } = await book.render();
-
-// TODO animate on scroll
-
 ---
 <NavbarLayout title="Prose" meta={meta}>
   <main class="tw-container container fade-in">
