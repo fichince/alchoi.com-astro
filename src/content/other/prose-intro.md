@@ -1,6 +1,8 @@
 ---
-title: Prose
+title: My Writing
 ---
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat semper viverra nam libero justo laoreet. Laoreet non curabitur gravida arcu ac tortor. Neque volutpat ac tincidunt vitae semper quis lectus nulla. Purus in mollis nunc sed id semper risus in hendrerit. Aenean vel elit scelerisque mauris pellentesque. Faucibus pulvinar elementum integer enim. Et tortor at risus viverra adipiscing. Volutpat est velit egestas dui. Aenean pharetra magna ac placerat vestibulum lectus mauris ultrices eros. Sed risus pretium quam vulputate. Mattis rhoncus urna neque viverra justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum.
+This is the part of the site where I try to sound humble and self-deprecating, but there's really no way around it: it's straight-up bragging.
 
-Amet justo donec enim diam vulputate ut pharetra. Ullamcorper morbi tincidunt ornare massa eget egestas. In hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Sit amet luctus venenatis lectus magna fringilla urna. Consequat semper viverra nam libero. Viverra aliquet eget sit amet tellus cras. Faucibus vitae aliquet nec ullamcorper sit amet. Dictumst quisque sagittis purus sit amet volutpat consequat mauris. Mattis aliquam faucibus purus in massa tempor. Lobortis mattis aliquam faucibus purus. Et malesuada fames ac turpis egestas sed tempus. Nunc vel risus commodo viverra maecenas accumsan lacus vel.
+I've had a life-long interest in books and reading, and when I reached adulthood, I decided to try my hand at writing. It doesn't come easy to me; most of the time, I would rather be writing code instead of prose. But there's a satisfaction in creating a piece of fiction or an essay that I don't get with software development.
+
+You'll find below links to pieces of writing that I've published. Enjoy!

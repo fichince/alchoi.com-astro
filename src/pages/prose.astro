@@ -17,6 +17,8 @@ const meta = { description: title };
 const book = await getEntryBySlug('other', 'jacob-rob');
 const { Content: Book } = await book.render();
 
+// TODO animate on scroll
+
 ---
 <NavbarLayout title="Prose" meta={meta}>
   <main class="tw-container container fade-in">
@@ -52,38 +54,43 @@ const { Content: Book } = await book.render();
       x-bind:data-bg-hover="bgHover"
       x-on:mouseenter="bgHover = 1"
       x-on:mouseleave="bgHover = 0">
-      { prose.map(async (item, index) => {
 
-        const link = item.data.url;
-        const { Content } = await item.render();
+      <h2>Short Stories and Essays</h2>
 
-        return (
-          <article x-on:mouseover={`bgShift = ${index}`} class="fade-in">
-            <div class="image image-hover">
-              <a href={link}>
-                <Picture
-                  src={item.data.image}
-                  alt={item.data.title}
-                  widths={[480]}
-                  aspectRatio="1:1"
-                  sizes="480px"
-                />
-              </a>
-            </div>
-            <h2>
-              <a href={link}>
-                <MD md={item.data.title} />
-              </a>
-            </h2>
-            <h3>
-              <MD md={item.data.description} />
-            </h3>
-            <div class="excerpt tw-prose">
-              <Content />
-            </div>
-          </article>
-        );
-      })}
+      <div class="grid">
+        { prose.map(async (item, index) => {
+
+          const link = item.data.url;
+          const { Content } = await item.render();
+
+          return (
+            <article x-on:mouseover={`bgShift = ${index}`} class="fade-in">
+              <div class="image image-hover">
+                <a href={link}>
+                  <Picture
+                    src={item.data.image}
+                    alt={item.data.title}
+                    widths={[480]}
+                    aspectRatio="1:1"
+                    sizes="480px"
+                  />
+                </a>
+              </div>
+              <h2>
+                <a href={link}>
+                  <MD md={item.data.title} />
+                </a>
+              </h2>
+              <h3>
+                <MD md={item.data.description} />
+              </h3>
+              <div class="excerpt tw-prose">
+                <Content />
+              </div>
+            </article>
+          );
+        })}
+      </div>
     </section>
     <CoolBackground />
   </main>
@@ -100,14 +107,13 @@ const { Content: Book } = await book.render();
 
     margin-left: auto;
     margin-right: auto;
-    padding: var(--size-fluid-4) 0;
+    padding: 0 var(--size-fluid-3);
 
-    h1 {
+    h2 {
       font-family: var(--font-display);
-      font-size: var(--font-size-fluid-1);
-
-      margin: 0 var(--size-fluid-4) var(--size-fluid-4);
-      font-weight: bold;
+      font-size: var(--font-size-fluid-2);
+      margin-bottom: 2rem;
+      text-align: center;
     }
 
     section {
@@ -125,13 +131,6 @@ const { Content: Book } = await book.render();
       a {
         @include hover-link;
         text-decoration: underline;
-      }
-
-      h2 {
-        font-family: var(--font-display);
-        font-size: var(--font-size-fluid-2);
-        margin-bottom: 2rem;
-        text-align: center;
       }
 
       .hero-body {
@@ -155,45 +154,53 @@ const { Content: Book } = await book.render();
     }
 
     section.stories {
-      padding: var(--size-fluid-2);
 
-      display: grid;
-      grid-template-columns: 1fr;
-      @include sm-up {
-        grid-template-columns: repeat(3, 1fr);
+      h2 {
+        margin-bottom: 1rem;
       }
-      gap: var(--size-fluid-2);
 
-      article {
-        @include hover-background($c: var(--highlight-dark));
+      .grid {
+
         padding: var(--size-fluid-2);
-        font-size: var(--font-size-fluid-0);
 
-        @for $i from 1 through 20 {
-          &:nth-child(#{$i}) {
-            animation-delay: calc($i * 200ms);
-          }
+        display: grid;
+        grid-template-columns: 1fr;
+        @include sm-up {
+          grid-template-columns: repeat(3, 1fr);
         }
+        gap: var(--size-fluid-2);
 
-        .image {
-          margin-bottom: var(--size-5);
-        }
-
-        a {
-          @include hover-link;
-          text-decoration: underline;
-        }
-
-        h2 {
-          font-family: var(--font-display);
-          font-size: var(--font-size-fluid-1);
-          margin-bottom: 0.5rem;
-        }
-
-        h3 {
+        article {
+          @include hover-background($c: var(--highlight-dark));
+          padding: var(--size-fluid-2);
           font-size: var(--font-size-fluid-0);
-          font-weight: 500;
-          margin-bottom: 1rem;
+
+          @for $i from 1 through 20 {
+            &:nth-child(#{$i}) {
+              animation-delay: calc($i * 200ms);
+            }
+          }
+
+          .image {
+            margin-bottom: var(--size-5);
+          }
+
+          a {
+            @include hover-link;
+            text-decoration: underline;
+          }
+
+          h2 {
+            font-family: var(--font-display);
+            font-size: var(--font-size-fluid-1);
+            margin-bottom: 0.5rem;
+          }
+
+          h3 {
+            font-size: var(--font-size-fluid-0);
+            font-weight: 500;
+            margin-bottom: 1rem;
+          }
         }
       }
 
