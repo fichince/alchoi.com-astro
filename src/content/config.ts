@@ -30,9 +30,23 @@ const code = defineCollection({
 
 const other = defineCollection({});
 
+const capsules = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    author: z.string().optional(),
+    url: z.string().url().optional(),
+    image: z.string().optional(),
+    start: z.date(),
+    end: z.date().optional(),
+    type: z.enum(['book', 'movie', 'tv', 'game']),
+    rating: z.number().int().min(1).max(5),
+  })
+});
+
 export const collections = {
   prose,
   blog,
   code,
   other,
+  capsules,
 };

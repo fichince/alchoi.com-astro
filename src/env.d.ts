@@ -23,3 +23,5 @@ type Highlight = {
   highlight?: string,
   after?: string,
 };
+
+//type BlogEntry = CollectionEntry<'blog'> | CollectionEntry<'capsules'>;
