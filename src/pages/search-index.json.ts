@@ -11,6 +11,7 @@ export const get = (async (context) => {
       title: post.data.title,
       description: post.data.description,
       content: post.body,
+      collection: post.collection,
     }, stripMarkdown);
   });
 

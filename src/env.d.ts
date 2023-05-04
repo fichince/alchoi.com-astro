@@ -6,6 +6,7 @@ type BlogPost = {
   title: string,
   description?: string,
   content: string,
+  collection: 'blog' | 'capsules',
 }
 
 type MatchPositions = {

@@ -4,7 +4,6 @@ import { DateTime } from 'luxon';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
 
-
 export function stripMarkdown(s : string) : string {
   if (!s) return '';
   if (!isString(s)) return s;
