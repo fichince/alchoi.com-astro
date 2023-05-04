@@ -1,5 +1,6 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import isString from 'lodash/isString';
+import { DateTime } from 'luxon';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
 
@@ -12,7 +13,7 @@ export function stripMarkdown(s : string) : string {
 
 function enrichCapsuleEntry(entry : CollectionEntry<'capsules'>) : CapsuleEntry {
   const { type } = entry.data;
-  const tags = ['quick-thoughts'];
+  const tags = ['quick reviews'];
   switch (type) {
     case 'book':
       tags.push('books');
@@ -60,3 +61,16 @@ export async function getAllBlogEntries() : Promise<BlogEntry[]> {
   return entries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 
+export function shortDate(d : Date) : string {
+  return DateTime
+    .fromJSDate(d)
+    .toUTC()
+    .toLocaleString(DateTime.DATE_SHORT);
+}
+
+export function mediumDate(d : Date) : string {
+  return DateTime
+    .fromJSDate(d)
+    .toUTC()
+    .toLocaleString(DateTime.DATE_MED);
+}

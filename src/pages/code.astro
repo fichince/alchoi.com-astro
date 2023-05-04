@@ -13,8 +13,6 @@ const intro = await getEntryBySlug('other', 'code-intro');
 const title = intro.data.title;
 const meta = { description: title };
 
-const { Content: Intro } = await intro.render();
-
 ---
 <NavbarLayout title="Code" meta={meta}>
   <main class="container fade-in tw-container">

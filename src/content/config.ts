@@ -39,7 +39,7 @@ const capsules = defineCollection({
     start: z.date(),
     end: z.date().optional(),
     type: z.enum(['book', 'movie', 'tv', 'game']),
-    rating: z.number().int().min(1).max(5),
+    rating: z.number().min(1).max(5),
   })
 });
 

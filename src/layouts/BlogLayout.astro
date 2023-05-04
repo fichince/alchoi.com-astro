@@ -9,7 +9,7 @@ import type { Props as LayoutProps } from '@src/layouts/Layout.astro';
 import type { Page } from 'astro';
 
 import { Picture } from '@astrojs/image/components';
-import { DateTime } from 'luxon';
+import { shortDate } from '@src/utils';
 
 interface Props extends LayoutProps {
   page: Page<BlogEntry>,
@@ -28,14 +28,15 @@ const posts = page.data;
       <div class="divider" />
     </header>
     <main>
-      {posts.map((post) => {
+      {posts.map(async (post) => {
 
-        const date = DateTime
-          .fromJSDate(post.data.date)
-          .toUTC()
-          .toLocaleString(DateTime.DATE_SHORT);
+        const date = shortDate(post.data.date);
+        const end = post.data.end ? shortDate(post.data.end) : null;
+        
         const tags = post.data.tags ?? [];
         const link = `/blog/${post.slug}`;
+
+        const { Content } = await post.render();
 
         return (
           <article class="post">
@@ -48,12 +49,25 @@ const posts = page.data;
                   <MD md={post.data.title} />
                 </a>
               </h3>
-              <time>{date}</time>
+              <div class="dates">
+                <time>{date}</time>
+                {end && 
+                  <span> - <time>{end}</time></span> 
+                }
+              </div>
+              { post.data.rating && 
+                <sl-rating value={post.data.rating} readonly precision="0.5" />
+              }
               { post.data.description &&
               <div class="description">
                 <h4>
                   <MD md={post.data.description} />
                 </h4>
+              </div>
+              }
+              { post.collection === 'capsules' &&
+              <div class="tw-prose">
+                <Content />
               </div>
               }
             </div>
@@ -258,6 +272,10 @@ const posts = page.data;
         &.hide {
           transform: translateX(50px);
         }
+      }
+
+      sl-rating {
+        margin: var(--size-fluid-2) 0;
       }
     }
 
