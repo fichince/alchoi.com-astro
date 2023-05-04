@@ -7,7 +7,7 @@ import TagList from '@src/components/TagList.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import { enrichCapsuleEntry, getAllBlogEntries, mediumDate } from '@src/utils';
 import type { GetStaticPaths } from 'astro';
-import { CollectionEntry, getCollection, getEntryBySlug } from 'astro:content';
+import { getEntryBySlug } from 'astro:content';
 
 export const getStaticPaths = (async () => {
   const entries = await getAllBlogEntries();

@@ -39,7 +39,7 @@ const posts = page.data;
         const { Content } = await post.render();
 
         return (
-          <article class="post">
+          <article class="post" class:list={{'quick': post.collection === 'capsules'}}>
             <div class="title">
               <div class="tags">
                 <TagList tags={tags} />
@@ -170,6 +170,9 @@ const posts = page.data;
         margin-top: var(--size-fluid-3);
       }
 
+      --title-row: 1 / 2;
+      --image-row: 1 / 2;
+
       &:nth-child(odd) {
         --text-alignment: left;
         --columns: 1fr auto;
@@ -189,15 +192,21 @@ const posts = page.data;
         --title-align: flex-end;
       }
 
+      &.quick {
+        --text-alignment: left;
+        --columns: 1fr;
+
+        --title-column: 1 / 2;
+        --image-column: 1 / 2;
+        --image-row: 2 / 3;
+      }
+
       padding: var(--size-fluid-2);
 
       display: grid;
       align-items: baseline;
       --rows: 1fr;
       
-      --title-row: 1 / 2;
-      --image-row: 1 / 2;
-
       gap: var(--size-fluid-1);
       grid-template-rows: var(--rows);
       grid-template-columns: var(--columns);
