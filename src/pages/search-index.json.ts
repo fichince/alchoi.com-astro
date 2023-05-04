@@ -1,10 +1,9 @@
-import { stripMarkdown } from '@src/utils';
+import { getAllBlogEntries, stripMarkdown } from '@src/utils';
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
 import mapValues from 'lodash/mapValues';
 
 export const get = (async (context) => {
-  const posts = await getCollection('blog');
+  const posts = await getAllBlogEntries();
 
   const index = posts.map((post) => {
     return mapValues({

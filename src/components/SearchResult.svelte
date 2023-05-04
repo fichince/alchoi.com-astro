@@ -21,6 +21,8 @@
   }
 
   $: title = post?.title ?? '';
+
+  // todo maybe the link needs to be different for capsule reviews
   $: url = `/blog/${post?.slug ?? ''}`;
 </script>
 

@@ -1,14 +1,14 @@
 ---
-import { getCollection } from 'astro:content';
 import union from 'lodash/union';
 import CoolBackground from './CoolBackground.astro';
 import Search from './icons/Search.astro';
+import { getAllBlogEntries } from '@src/utils';
 
 interface Props {
   selectedTag?: string;
 }
 
-const posts = await getCollection('blog');
+const posts = await getAllBlogEntries();
 const tags = posts.reduce<string[]>((memo, post) => {
   return union(memo, post.data.tags ?? []);
 }, []).sort();

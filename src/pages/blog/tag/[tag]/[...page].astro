@@ -1,21 +1,19 @@
 ---
 import BlogLayout from '@src/layouts/BlogLayout.astro';
+import { getAllBlogEntries } from '@src/utils';
 import type { GetStaticPaths, Page } from 'astro';
-import { CollectionEntry, getCollection } from 'astro:content';
 import union from 'lodash/union';
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const collection = await getCollection('blog');
+  const collection = await getAllBlogEntries();
   const allTags = collection.reduce<string[]>((memo, post) => {
     return union(memo, post.data.tags ?? []);
   }, []);
 
   const pages = allTags.map((tag) => {
     const posts = collection.filter((post) => {
-      const hasTag = post.data.tags ? post.data.tags.includes(tag) : false;
-      const draft = post.data.draft;
-      return hasTag && !draft;
-    }).reverse();
+      return post.data.tags ? post.data.tags.includes(tag) : false;
+    });
     return paginate(posts, {
       params: { tag },
       pageSize: 15,
@@ -26,6 +24,6 @@ export const getStaticPaths = (async ({ paginate }) => {
 }) satisfies GetStaticPaths;
 
 const { tag } = Astro.params;
-const page : Page<CollectionEntry<"blog">> = Astro.props.page;
+const page : Page<BlogEntry> = Astro.props.page;
 ---
 <BlogLayout tag={tag} page={page} />
