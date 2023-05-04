@@ -3,6 +3,7 @@
 
   import type { Index } from 'lunr';
   import { extractHighlights } from '@src/scripts/search';
+  import { getLinkToPost } from '@src/utils';
 
   export let result : Index.Result | null = null;
   export let post : BlogPost | null = null;
@@ -22,8 +23,7 @@
 
   $: title = post?.title ?? '';
 
-  // todo maybe the link needs to be different for capsule reviews
-  $: url = `/blog/${post?.slug ?? ''}`;
+  $: url = getLinkToPost(post);
 </script>
 
 <div class="result" class:not-found={notFound !== null}>

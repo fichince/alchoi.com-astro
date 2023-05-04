@@ -1,5 +1,5 @@
 import rss from '@astrojs/rss';
-import { getAllBlogEntries } from '@src/utils';
+import { getAllBlogEntries, getLinkToPost } from '@src/utils';
 import type { APIRoute } from 'astro';
 
 export const get = (async (context) => {
@@ -8,8 +8,7 @@ export const get = (async (context) => {
     title: post.data.title,
     pubDate: post.data.date,
     description: post.data.description,
-    // TODO maybe this link will be different for capsule reviews
-    link: `/blog/${post.slug}`,
+    link: getLinkToPost(post),
   }));
 
   return rss({

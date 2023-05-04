@@ -9,7 +9,7 @@ import type { Props as LayoutProps } from '@src/layouts/Layout.astro';
 import type { Page } from 'astro';
 
 import { Picture } from '@astrojs/image/components';
-import { shortDate } from '@src/utils';
+import { getLinkToPost, shortDate } from '@src/utils';
 
 interface Props extends LayoutProps {
   page: Page<BlogEntry>,
@@ -34,7 +34,7 @@ const posts = page.data;
         const end = post.data.end ? shortDate(post.data.end) : null;
         
         const tags = post.data.tags ?? [];
-        const link = `/blog/${post.slug}`;
+        const link = getLinkToPost(post);
 
         const { Content } = await post.render();
 
@@ -66,7 +66,7 @@ const posts = page.data;
               </div>
               }
               { post.collection === 'capsules' &&
-              <div class="tw-prose">
+              <div class="tw-prose quick-review">
                 <Content />
               </div>
               }
@@ -276,6 +276,10 @@ const posts = page.data;
 
       sl-rating {
         margin: var(--size-fluid-2) 0;
+      }
+
+      .quick-review {
+        font-family: var(--font-body);
       }
     }
 

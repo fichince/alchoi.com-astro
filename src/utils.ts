@@ -11,7 +11,7 @@ export function stripMarkdown(s : string) : string {
   return remark().use(strip).processSync(s).toString().trim();
 }
 
-function enrichCapsuleEntry(entry : CollectionEntry<'capsules'>) : CapsuleEntry {
+export function enrichCapsuleEntry(entry : CollectionEntry<'capsules'>) : CapsuleEntry {
   const { type } = entry.data;
   const tags = ['quick reviews'];
   switch (type) {
@@ -73,4 +73,11 @@ export function mediumDate(d : Date) : string {
     .fromJSDate(d)
     .toUTC()
     .toLocaleString(DateTime.DATE_MED);
+}
+
+export function getLinkToPost(post? : CollectionEntry<any>) : string {
+  if (!post) return '';
+  const path = post.collection === 'blog' ? '/blog' : '/quick-reviews';
+  const link = `${path}/${post.slug}`;
+  return link;
 }
