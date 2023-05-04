@@ -1,5 +1,5 @@
 ---
-title: "How to Be Perfect: The Correct Answer to Every Moral Question"
+title: "_How to Be Perfect: The Correct Answer to Every Moral Question_"
 author: Michael Schur
 start: 2023-04-28
 end: 2023-04-29

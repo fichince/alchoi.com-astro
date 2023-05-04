@@ -24,4 +24,16 @@ type Highlight = {
   after?: string,
 };
 
-//type BlogEntry = CollectionEntry<'blog'> | CollectionEntry<'capsules'>;
+type BlogCollectionEntry = import('astro:content').CollectionEntry<'blog'>;
+type CapsuleCollectionEntry = import('astro:content').CollectionEntry<'capsules'>;
+
+// "enrich" the capsule entries to align with something like a blog entry
+type CapsuleEntry = CapsuleCollectionEntry & {
+  data: {
+    tags: string[],
+    date: Date,
+  }
+};
+
+// combine the two types of blog entries to display in the BlogLayout
+type BlogEntry = CollectionEntry<'blog'> | CapsuleEntry;
