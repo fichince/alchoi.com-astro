@@ -1,14 +1,14 @@
 import rss from '@astrojs/rss';
+import { getAllBlogEntries, getLinkToPost } from '@src/utils';
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
 
 export const get = (async (context) => {
-  const blog = await getCollection('blog');
+  const blog = await getAllBlogEntries();
   const items = blog.map((post) => ({
     title: post.data.title,
     pubDate: post.data.date,
     description: post.data.description,
-    link: `/blog/${post.slug}`,
+    link: getLinkToPost(post),
   }));
 
   return rss({

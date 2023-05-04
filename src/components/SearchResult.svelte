@@ -21,7 +21,8 @@
   }
 
   $: title = post?.title ?? '';
-  $: url = `/blog/${post?.slug ?? ''}`;
+
+  $: url = `${post?.collection === 'blog' ? '/blog' : '/quick-reviews'}/${post?.slug}`;
 </script>
 
 <div class="result" class:not-found={notFound !== null}>

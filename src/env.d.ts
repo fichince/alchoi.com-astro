@@ -6,6 +6,7 @@ type BlogPost = {
   title: string,
   description?: string,
   content: string,
+  collection: 'blog' | 'capsules',
 }
 
 type MatchPositions = {
@@ -23,3 +24,17 @@ type Highlight = {
   highlight?: string,
   after?: string,
 };
+
+type BlogCollectionEntry = import('astro:content').CollectionEntry<'blog'>;
+type CapsuleCollectionEntry = import('astro:content').CollectionEntry<'capsules'>;
+
+// "enrich" the capsule entries to align with something like a blog entry
+type CapsuleEntry = CapsuleCollectionEntry & {
+  data: {
+    tags: string[],
+    date: Date,
+  }
+};
+
+// combine the two types of blog entries to display in the BlogLayout
+type BlogEntry = CollectionEntry<'blog'> | CapsuleEntry;

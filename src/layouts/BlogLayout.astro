@@ -7,13 +7,12 @@ import TagList from '@src/components/TagList.astro';
 import type { Props as LayoutProps } from '@src/layouts/Layout.astro';
 
 import type { Page } from 'astro';
-import type { CollectionEntry } from 'astro:content';
 
 import { Picture } from '@astrojs/image/components';
-import { DateTime } from 'luxon';
+import { getLinkToPost, shortDate } from '@src/utils';
 
 interface Props extends LayoutProps {
-  page: Page<CollectionEntry<"blog">>;
+  page: Page<BlogEntry>,
   tag?: string;
 }
 
@@ -29,17 +28,18 @@ const posts = page.data;
       <div class="divider" />
     </header>
     <main>
-      {posts.map((post) => {
+      {posts.map(async (post) => {
 
-        const date = DateTime
-          .fromJSDate(post.data.date)
-          .toUTC()
-          .toLocaleString(DateTime.DATE_SHORT);
+        const date = shortDate(post.data.date);
+        const end = post.data.end ? shortDate(post.data.end) : null;
+        
         const tags = post.data.tags ?? [];
-        const link = `/blog/${post.slug}`;
+        const link = getLinkToPost(post);
+
+        const { Content } = await post.render();
 
         return (
-          <article class="post">
+          <article class="post" class:list={{'quick': post.collection === 'capsules'}}>
             <div class="title">
               <div class="tags">
                 <TagList tags={tags} />
@@ -49,12 +49,27 @@ const posts = page.data;
                   <MD md={post.data.title} />
                 </a>
               </h3>
-              <time>{date}</time>
+              <div class="dates">
+                <time>{date}</time>
+                {end && 
+                  <span> - <time>{end}</time></span> 
+                }
+              </div>
+              { post.data.rating && 
+                <sl-rating value={post.data.rating} readonly precision="0.5" />
+              }
+              { post.data.description &&
               <div class="description">
                 <h4>
                   <MD md={post.data.description} />
                 </h4>
               </div>
+              }
+              { post.collection === 'capsules' &&
+              <div class="tw-prose quick-review">
+                <Content />
+              </div>
+              }
             </div>
             { post.data.image &&
               <div class="image image-hover">
@@ -155,6 +170,9 @@ const posts = page.data;
         margin-top: var(--size-fluid-3);
       }
 
+      --title-row: 1 / 2;
+      --image-row: 1 / 2;
+
       &:nth-child(odd) {
         --text-alignment: left;
         --columns: 1fr auto;
@@ -174,15 +192,23 @@ const posts = page.data;
         --title-align: flex-end;
       }
 
+      &.quick {
+        --text-alignment: left;
+        --columns: 1fr;
+
+        --title-column: 1 / 2;
+        --image-column: 1 / 2;
+        --image-row: 2 / 3;
+
+        --title-align: flex-start;
+      }
+
       padding: var(--size-fluid-2);
 
       display: grid;
       align-items: baseline;
       --rows: 1fr;
       
-      --title-row: 1 / 2;
-      --image-row: 1 / 2;
-
       gap: var(--size-fluid-1);
       grid-template-rows: var(--rows);
       grid-template-columns: var(--columns);
@@ -257,6 +283,14 @@ const posts = page.data;
         &.hide {
           transform: translateX(50px);
         }
+      }
+
+      sl-rating {
+        margin: var(--size-fluid-2) 0;
+      }
+
+      .quick-review {
+        font-family: var(--font-body);
       }
     }
 
