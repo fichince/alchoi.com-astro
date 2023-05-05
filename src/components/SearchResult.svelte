@@ -5,7 +5,7 @@
   import { extractHighlights } from '@src/scripts/search';
 
   export let result : Index.Result | null = null;
-  export let post : BlogPost | null = null;
+  export let post : SearchIndexEntry | null = null;
   export let notFound : string | null = null;
 
   let titleHighlights : Highlight[] = [];

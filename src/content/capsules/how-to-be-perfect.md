@@ -1,7 +1,7 @@
 ---
 title: "_How to Be Perfect: The Correct Answer to Every Moral Question_"
 author: Michael Schur
-start: 2023-04-28
+date: 2023-04-28
 end: 2023-04-29
 rating: 4
 type: book

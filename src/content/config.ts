@@ -1,5 +1,19 @@
 import { z, defineCollection } from 'astro:content';
 
+const blogSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  date: z.date(),
+  tags: z.string().array().optional(),
+  draft: z.boolean().optional(),
+  image: z.string().optional(),
+
+  author: z.string().optional(),
+  end: z.date().optional(),
+  type: z.enum(['book', 'movie', 'tv', 'game']).optional(),
+  rating: z.number().min(1).max(5).optional(),
+});
+
 const prose = defineCollection({
   schema: z.object({
     title: z.string(),
@@ -10,14 +24,7 @@ const prose = defineCollection({
 });
 
 const blog = defineCollection({
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    date: z.date(),
-    tags: z.string().array().optional(),
-    draft: z.boolean().optional(),
-    image: z.string().optional(),
-  })
+  schema: blogSchema,
 });
 
 const code = defineCollection({
@@ -31,16 +38,7 @@ const code = defineCollection({
 const other = defineCollection({});
 
 const capsules = defineCollection({
-  schema: z.object({
-    title: z.string(),
-    author: z.string().optional(),
-    url: z.string().url().optional(),
-    image: z.string().optional(),
-    start: z.date(),
-    end: z.date().optional(),
-    type: z.enum(['book', 'movie', 'tv', 'game']),
-    rating: z.number().min(1).max(5),
-  })
+  schema: blogSchema,
 });
 
 export const collections = {

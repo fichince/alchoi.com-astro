@@ -4,13 +4,15 @@ import { DateTime } from 'luxon';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
 
-export function stripMarkdown(s : string) : string {
+export function stripMarkdown(s? : string) : string {
   if (!s) return '';
   if (!isString(s)) return s;
   return remark().use(strip).processSync(s).toString().trim();
 }
 
-export function enrichCapsuleEntry(entry : CollectionEntry<'capsules'>) : CapsuleEntry {
+export function enrichCapsuleEntry(entry : CollectionEntry<'capsules'>) 
+  : CollectionEntry<'capsules'> {
+
   const { type } = entry.data;
   const tags = ['quick reviews'];
   switch (type) {
@@ -28,13 +30,10 @@ export function enrichCapsuleEntry(entry : CollectionEntry<'capsules'>) : Capsul
       break;
   }
 
-  const date = entry.data.start;
-
   return {
     ...entry,
     data: {
       ...entry.data,
-      date,
       tags
     }
   }
