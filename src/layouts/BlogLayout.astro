@@ -49,6 +49,11 @@ const posts = page.data;
                   <MD md={post.data.title} />
                 </a>
               </h3>
+              { post.data.author &&
+              <h4 class="author">
+                {post.data.author}
+              </h4>
+              }
               <div class="dates">
                 <time>{date}</time>
                 {end && 
@@ -227,6 +232,11 @@ const posts = page.data;
           text-decoration: underline;
         }
 
+        h4.author {
+          font-size: var(--font-size-fluid-0);
+          margin-bottom: var(--font-size-fluid-1);
+        }
+
         time {
           font-size: var(--font-size-fluid-1);
         }
@@ -291,6 +301,7 @@ const posts = page.data;
 
       .quick-review {
         font-family: var(--font-body);
+        margin-bottom: var(--size-fluid-1);
       }
     }
 

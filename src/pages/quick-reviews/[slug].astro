@@ -46,7 +46,7 @@ const meta = {
         <MD md={title} />
       </h1>
       { author &&
-      <h2>
+      <h2 class="author">
         {author}
       </h2>
       }
@@ -121,11 +121,6 @@ const meta = {
 
       h2 {
         margin-top: var(--size-fluid-1);
-        font-size: var(--font-size-fluid-3);
-        font-weight: 300;
-        &::before {
-          content: 'by';
-        }
       }
     }
 

@@ -39,3 +39,12 @@
   animation-duration: 0.2s;
   animation-timing-function: linear;
 }
+
+.author {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--font-size-fluid-3);
+  &::before {
+    content: 'by'
+  }
+}
