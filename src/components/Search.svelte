@@ -8,7 +8,7 @@
   import find from 'lodash/find';
 
   let index : Index;
-  let posts : BlogPost[] = [];
+  let posts : SearchIndexEntry[] = [];
   let searchTerm : string = '';
   let searchResults : Index.Result[] = [];
 

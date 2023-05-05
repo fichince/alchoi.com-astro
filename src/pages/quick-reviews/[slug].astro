@@ -21,11 +21,11 @@ export const getStaticPaths = (async () => {
 
 const { slug = '' } = Astro.params;
 const entry = await getEntryBySlug('capsules', slug);
-const post = entry ? enrichCapsuleEntry(entry) : ({} as CapsuleEntry);
+const post = entry ? enrichCapsuleEntry(entry) : ({} as CapsuleCollectionEntry);
 
 const title = post.data.title ?? 'Blog Post';
 const author = post.data.author;
-const date = mediumDate(post.data.start ?? new Date());
+const date = mediumDate(post.data.date ?? new Date());
 const end = post.data.end ? mediumDate(post.data.end) : null;
 
 const tags = post.data.tags ?? [];

@@ -2,7 +2,7 @@ import type { Index } from 'lunr';
 import lunr from 'lunr';
 import clamp from 'lodash/clamp';
 
-export function createSearchIndex(posts : BlogPost[]) : Index {
+export function createSearchIndex(posts : SearchIndexEntry[]) : Index {
   const idx : Index = lunr(function() {
     this.ref('slug');
     this.field('title');
