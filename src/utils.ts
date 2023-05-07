@@ -56,7 +56,11 @@ export async function getAllBlogEntries() : Promise<BlogEntry[]> {
     }
   });
 
-  return entries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return entries.sort((a, b) => {
+    const dateA = a.data.end ?? a.data.date;
+    const dateB = b.data.end ?? b.data.date;
+    return dateB.valueOf() - dateA.valueOf()
+  });
 }
 
 export function shortDate(d : Date) : string {

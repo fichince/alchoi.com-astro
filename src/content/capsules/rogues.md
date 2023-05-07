@@ -12,4 +12,6 @@ But beyond the morbid point-and-judge tone that’s typical of true crime, I do 
 
 “Loaded Gun” explores the past of a mass shooter. Twenty years before the crime, she shot and killed her brother, in what may or may not have been an accident. I especially liked this article because Keefe inserts his first-person ruminations on the ambiguity of what happened, and what the ambiguity means.
 
+[storygraph link](https://app.thestorygraph.com/books/ea14bbf8-f508-4dc4-b786-5660713f5ac5)
+
 [1]:	https://getpocket.com
