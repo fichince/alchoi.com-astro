@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alchoi.com/sitemap-index.xml
