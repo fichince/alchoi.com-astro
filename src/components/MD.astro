@@ -1,19 +1,12 @@
 ---
-import { remark } from 'remark';
-import remarkHtml from 'remark-html';
-import remarkGfm from 'remark-gfm';
-import remarkSmartypants from 'remark-smartypants';
+import { renderMarkdown } from '@src/utils';
 
 const { md } = Astro.props;
 
-const html = remark()
-        .use(remarkGfm)
-        .use(remarkSmartypants)
-        .use(remarkHtml, { sanitize: false })
-        .processSync(md.trim())
-        .toString()
-        .replace('<p>', '')
-        .replace('</p>', '');
+const html = 
+  renderMarkdown(md)
+    .replace('<p>', '')
+    .replace('</p>', '');
 
 ---
 

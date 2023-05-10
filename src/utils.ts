@@ -3,6 +3,9 @@ import isString from 'lodash/isString';
 import { DateTime } from 'luxon';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
+import remarkHtml from 'remark-html';
+import remarkGfm from 'remark-gfm';
+import remarkSmartypants from 'remark-smartypants';
 
 export function stripMarkdown(s? : string) : string {
   if (!s) return '';
@@ -82,4 +85,16 @@ export function getLinkToPost(post? : CollectionEntry<any>) : string {
   const path = post.collection === 'blog' ? '/blog' : '/quick-reviews';
   const link = `${path}/${post.slug}`;
   return link;
+}
+
+export function renderMarkdown(md : string) : string {
+  const html = 
+    remark()
+      .use(remarkGfm)
+      .use(remarkSmartypants)
+      .use(remarkHtml, { sanitize: false })
+      .processSync(md.trim())
+      .toString();
+
+  return html;
 }
