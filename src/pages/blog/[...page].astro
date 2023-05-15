@@ -2,11 +2,11 @@
 import type { GetStaticPaths, Page } from 'astro';
 
 import BlogLayout from '@src/layouts/BlogLayout.astro';
-import { getAllBlogEntries } from '@src/utils';
+import { PAGE_SIZE, getAllBlogEntries } from '@src/utils';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const entries = await getAllBlogEntries();
-  const pages = paginate(entries, { pageSize: 15 });
+  const pages = paginate(entries, { pageSize: PAGE_SIZE });
   return pages;
 }) satisfies GetStaticPaths;
 

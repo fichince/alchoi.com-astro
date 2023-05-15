@@ -1,6 +1,6 @@
 ---
 import BlogLayout from '@src/layouts/BlogLayout.astro';
-import { getAllBlogEntries } from '@src/utils';
+import { PAGE_SIZE, getAllBlogEntries } from '@src/utils';
 import type { GetStaticPaths, Page } from 'astro';
 import union from 'lodash/union';
 
@@ -16,7 +16,7 @@ export const getStaticPaths = (async ({ paginate }) => {
     });
     return paginate(posts, {
       params: { tag },
-      pageSize: 15,
+      pageSize: PAGE_SIZE,
     });
   });
 
