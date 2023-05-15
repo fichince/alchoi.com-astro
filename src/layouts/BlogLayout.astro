@@ -4,6 +4,7 @@ import Paginator from '@src/components/Paginator.astro';
 import TagChooser from '@src/components/TagChooser.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import TagList from '@src/components/TagList.astro';
+import About from '@src/components/About.astro';
 import type { Props as LayoutProps } from '@src/layouts/Layout.astro';
 
 import type { Page } from 'astro';
@@ -98,6 +99,9 @@ const posts = page.data;
     </footer>
 
   </div>
+  <section>
+    <About />
+  </section>
 </NavbarLayout>
 
 <script>

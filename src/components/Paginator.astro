@@ -11,33 +11,42 @@ const { url : { prev, next } } = page;
 
 ---
 <div class="paginator">
-  <a href={prev} class="prev">
-    <span>&#8668;</span>
+  <a href={prev} class="prev" 
+    class:list={{ disabled: currentPage === 1 }}>
+    <span>&larr;</span>
   </a>
 
   <span>{ currentPage } / { lastPage }</span>
 
-  <a href={next} class="next">
-    <span>&#8669;</span>
+  <a href={next} class="next"
+    class:list={{ disabled: currentPage === lastPage }}>
+    <span>&rarr;</span>
   </a>
 </div>
 
 <style lang="scss">
+  @import "../style/mixins.scss";
   .paginator {
     font-family: var(--font-display);
     font-size: var(--font-size-1);
 
     display: flex;
     align-items: center;
+    margin-top: var(--size-fluid-2);
 
     a {
-      font-size: var(--font-size-7);
+      @include hover-link($subtle: true);
+      font-size: var(--font-size-5);
 
       &.prev {
         margin-right: var(--size-3);
       }
       &.next {
         margin-left: var(--size-3);
+      }
+
+      &.disabled {
+        display: none;
       }
     }
   }

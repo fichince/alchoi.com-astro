@@ -7,6 +7,8 @@ import remarkHtml from 'remark-html';
 import remarkGfm from 'remark-gfm';
 import remarkSmartypants from 'remark-smartypants';
 
+export const PAGE_SIZE = 10;
+
 export function stripMarkdown(s? : string) : string {
   if (!s) return '';
   if (!isString(s)) return s;
