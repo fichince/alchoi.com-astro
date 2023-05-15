@@ -100,7 +100,7 @@ const { Content: Book } = await book.render();
   import createObserver from '../scripts/intersection';
 
   const items = document.getElementsByClassName('story');
-  const observer = createObserver();
+  const observer = createObserver({ threshold: 0.25 });
 
   const hero = document.getElementById('hero');
 
@@ -151,22 +151,18 @@ const { Content: Book } = await book.render();
       }
 
       .hero-body {
-        :first-child {
-          margin-right: 0;
-          margin-bottom: var(--size-fluid-3);
+        display: grid;
+        grid-template-areas: 
+          "image"
+          "words";
 
-          @include sm-up {
-            margin-top: 0;
-            margin-right: var(--size-fluid-3);
-          }
-        }
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: auto;
 
         @include sm-up {
-          flex-direction: row;
+          grid-template-areas: "image words";
+          grid-template-columns: 1fr 2fr;
         }
+        gap: var(--size-fluid-3);
       }
 
       &.show {

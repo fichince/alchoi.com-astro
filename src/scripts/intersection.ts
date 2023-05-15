@@ -1,5 +1,5 @@
 const DEFAULTS = {
-  threshold: 0.25,
+  threshold: 0.1,
 }
 function handleScroll(entries : IntersectionObserverEntry[]) {
 
