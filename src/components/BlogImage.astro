@@ -4,12 +4,23 @@ import { Picture } from '@astrojs/image/components';
 interface Props {
   src: any,
   alt: string,
+  sm?: number,
+  lg?: number,
 }
 
 const { src, alt } = Astro.props;
+
+const sm = Astro.props.sm ?? 350;
+const lg = Astro.props.lg ?? 500;
 ---
 <Picture src={src}
   alt={alt}
-  widths={[350, 500]}
-  sizes="(min-width: 480px) 500px, 350px"
+  widths={[sm, lg]}
+  sizes={`(min-width: 480px) ${lg}px, ${sm}px`}
 />
+
+<style>
+  img {
+    margin: 0 auto;
+  }
+</style>
