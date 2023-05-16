@@ -52,6 +52,21 @@ const meta = { description: title };
   <section>
     <About />
   </section>
+
+  {/* 
+    This dialog needs to be at the bottom of the page to ensure that its 
+    z-index ends up on top of every other element.
+  */}
+  <sl-dialog id="image-dialog">
+    <div class="image-container">
+      <img 
+        id="image-dialog-img"
+        srcset=""
+        sizes="(min-width: 480px) 800px, 400px" 
+        alt=""
+      />
+    </div>
+  </sl-dialog>
 </NavbarLayout>
 
 <script>
@@ -63,6 +78,29 @@ const meta = { description: title };
   for (let i = 0; i < items.length; i++) {
     const elem = items.item(i);
     if (elem) observer.observe(elem);
+  }
+
+  // click handler
+  // when click on an image in the carousel,
+  // open the dialog and copy the image attributes to the larger image
+  function openImageDialog(e : Event) {
+    const dialog = document.getElementById('image-dialog') as any;
+    const image = document.getElementById('image-dialog-img');
+    const target = e.target as Element;
+    image?.setAttribute('srcset', target?.getAttribute('srcset') ?? '');
+    image?.setAttribute('alt', target?.getAttribute('alt') ?? '');
+    dialog?.show();
+  }
+
+  // find all the images in the ProjectCarousel component, and attach the 
+  // click handler
+  const carouselItems = document.getElementsByClassName('project-carousel-item');
+  for (let i = 0; i < carouselItems.length; i++) {
+    const elem = carouselItems.item(i);
+    if (elem) {
+      const img = elem.children.item(0);
+      img?.addEventListener('click', openImageDialog);
+    }
   }
 </script>
 
@@ -148,6 +186,16 @@ const meta = { description: title };
           transform: translateX(50px);
         }
       }
+    }
+  }
+
+  sl-dialog#image-dialog {
+    --width: 85vw;
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      max-height: 70vh;
     }
   }
 </style>
