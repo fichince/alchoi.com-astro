@@ -2,7 +2,6 @@
 title: Pathways to Care
 url: https://pathwaystocare.ca
 images: 
-  - /images/code/ptc1.jpg
   - /images/code/ptc2.png
   - /images/code/ptc3.png
   - /images/code/ptc4.png
