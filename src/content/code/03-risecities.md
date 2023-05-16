@@ -2,7 +2,6 @@
 title: RISE Cities
 url: https://risecities.org
 images: 
-  - /images/code/rise1.jpg
   - /images/code/rise2.png
   - /images/code/rise3.png
   - /images/code/rise4.png
