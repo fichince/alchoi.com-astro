@@ -1,0 +1,113 @@
+---
+import Layout from '@src/layouts/Layout.astro';
+import CoolBackground from '@src/components/CoolBackground.astro';
+import NotFound from '@src/components/NotFound.astro';
+
+const MENU = [
+  { name: 'Blog', url: '/blog' },
+  { name: 'Code', url: '/code' },
+  { name: 'Prose', url: '/prose' },
+];
+---
+<Layout title="Albert Choi">
+  <div class="container fade-in" 
+    x-data="{ bgShift: -1, bgHover: 0 }"
+    x-bind:data-bg-shift="bgShift"
+    x-bind:data-bg-hover="bgHover">
+    <!-- menu and title -->
+    <div class="title">
+      <NotFound />
+    </div>
+
+    <div class="subtitle">
+      Try one of these links instead...
+    </div>
+
+    <div class="menu" 
+      x-on:mouseenter="bgHover = 1"
+      x-on:mouseleave="bgHover = 0">
+      {MENU.map(({ name, url }, index) => (
+        <a class="menu-item" href={url} x-on:mouseover={`bgShift = ${index}`}>{name}</a>
+      ))}
+    </div>
+  </div>
+
+  <CoolBackground />
+</Layout>
+
+<style lang="scss">
+  @import "../style/mixins.scss";
+
+  .container {
+    animation-duration: 1000ms;
+
+    min-width: 100vw;
+    min-height: 100vh;
+
+    display: grid;
+    align-items: center;
+    align-content: center;
+    --justification: center;
+
+    grid-template-areas:
+      "title"
+      "subtitle"
+      "menu";
+
+    @include sm-up {
+      grid-template-areas:
+        "title"
+        "subtitle"
+        "menu";
+      grid-template-columns: auto;
+    }
+
+    .title {
+      justify-self: var(--justification);
+      grid-area: title;
+      width: 70%;
+      margin-bottom: var(--size-fluid-4);
+    }
+
+    .subtitle {
+      grid-area: subtitle;
+      justify-self: var(--justification);
+
+      font-family: var(--font-display);
+      font-size: var(--font-size-fluid-2);
+      text-align: center;
+      margin-bottom: var(--size-fluid-4);
+    }
+
+    .menu {
+      grid-area: menu;
+      justify-self: var(--justification);
+
+      width: 100%;
+
+      --menu-align: center;
+      
+      font-family: var(--font-display);
+      font-size: var(--font-size-fluid-2);
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      align-items: var(--menu-align);
+
+      .menu-item {
+        margin: var(--size-fluid-1) var(--size-fluid-1);
+        text-decoration: underline;
+
+        transition: transform 0.25s ease-in;
+
+        &:hover {
+          color: var(--highlight);
+          transform: scale(150%);
+          transition: transform 0.25s ease-out;
+        }
+      }
+    }
+
+  }
+</style>
