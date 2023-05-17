@@ -1,7 +1,7 @@
 <script lang="ts">
   import random from 'lodash/random';
   import { fly } from 'svelte/transition';
-  import { quadOut, quintOut, expoOut } from 'svelte/easing';
+  import { quadOut } from 'svelte/easing';
 
   const NUM_ITEMS = 10;
 
@@ -10,6 +10,7 @@
   let selectedPosts : BlogEntrySummary[] = [];
   let currentIndex = -1;
   let currentPost : BlogEntrySummary | null;
+  let duration : number;
   let timer : any;
 
   function shuffle() {
@@ -22,24 +23,26 @@
     selectedPosts = Array.from(indices).map((index) => (posts[index]));
 
     currentIndex = 0;
-    timer = setTimeout(increment, getDuration(currentIndex));
   }
 
   function increment() {
     if (currentIndex < NUM_ITEMS - 1) {
       currentIndex = currentIndex + 1;
-      setTimeout(increment, getDuration(currentIndex));
     }
   }
 
-  // TODO - this gets called multiple times per cycle
   function getDuration(index : number) {
     const duration = quadOut((index + 1) / NUM_ITEMS) * 300;
-    console.log('duration', duration);
     return duration;
   }
 
   $: currentPost = currentIndex >= 0 ? selectedPosts[currentIndex] : null;
+  $: {
+    if (currentIndex >= 0) {
+      duration = getDuration(currentIndex);
+      timer = setTimeout(increment, duration);
+    }
+  }
 </script>
 
 <div>
@@ -50,8 +53,8 @@
     <div class="shuffler">
       {#if currentPost}
       <span 
-        in:fly={{ y: 20, opacity: 100, duration: getDuration(currentIndex) }}
-        out:fly={{ y: -20, opacity: 100, duration: getDuration(currentIndex) }}>
+        in:fly={{ y: 20, opacity: 100, duration }}
+        out:fly={{ y: -20, opacity: 100, duration }}>
         <a href={currentPost?.url}>
           {currentPost?.title}
         </a>
