@@ -1,30 +1,42 @@
 <script lang="ts">
   import random from 'lodash/random';
-  import { slide, fly, blur } from 'svelte/transition';
-  import { flip } from 'svelte/animate';
+  import { fly } from 'svelte/transition';
+  import { quadOut, quintOut, expoOut } from 'svelte/easing';
+
+  const NUM_ITEMS = 10;
 
   export let posts : BlogEntrySummary[] = [];
 
   let selectedPosts : BlogEntrySummary[] = [];
   let currentIndex = -1;
   let currentPost : BlogEntrySummary | null;
-  let interval : any;
+  let timer : any;
 
   function shuffle() {
+    if (timer) clearTimeout(timer);
+
     const indices = new Set<number>();
-    while (indices.size < 5) {
+    while (indices.size < NUM_ITEMS) {
       indices.add(random(0, posts.length - 1));
     }
     selectedPosts = Array.from(indices).map((index) => (posts[index]));
 
     currentIndex = 0;
-    interval = setInterval(() => {
-      if (currentIndex < 4) {
-        currentIndex = currentIndex + 1;
-      } else {
-        clearInterval(interval);
-      }
-    }, 1000);
+    timer = setTimeout(increment, getDuration(currentIndex));
+  }
+
+  function increment() {
+    if (currentIndex < NUM_ITEMS - 1) {
+      currentIndex = currentIndex + 1;
+      setTimeout(increment, getDuration(currentIndex));
+    }
+  }
+
+  // TODO - this gets called multiple times per cycle
+  function getDuration(index : number) {
+    const duration = quadOut((index + 1) / NUM_ITEMS) * 300;
+    console.log('duration', duration);
+    return duration;
   }
 
   $: currentPost = currentIndex >= 0 ? selectedPosts[currentIndex] : null;
@@ -38,8 +50,8 @@
     <div class="shuffler">
       {#if currentPost}
       <span 
-        in:fly={{ y: 20, opacity: 100, duration: 50 }}
-        out:fly={{ y: -20, opacity: 100, duration: 50 }}>
+        in:fly={{ y: 20, opacity: 100, duration: getDuration(currentIndex) }}
+        out:fly={{ y: -20, opacity: 100, duration: getDuration(currentIndex) }}>
         <a href={currentPost?.url}>
           {currentPost?.title}
         </a>
@@ -55,7 +67,7 @@
     overflow: hidden;
     border: 1px solid red;
     min-height: 200px;
-    min-width: 50vw;
+    width: 100%;
 
     & > span {
       position: absolute;
