@@ -35,14 +35,32 @@
     Shuffle!
   </button>
   {#key currentPost?.url}
-    {#if currentPost}
-    <div 
-      in:fly={{ y: 5, opacity: 100, duration: 1000 }}
-      out:fly={{ y: -5, opacity: 100, duration: 1000 }}>
-      <a href={currentPost?.url}>
-        {currentPost?.title}
-      </a>
+    <div class="shuffler">
+      {#if currentPost}
+      <span 
+        in:fly={{ y: 20, opacity: 100, duration: 50 }}
+        out:fly={{ y: -20, opacity: 100, duration: 50 }}>
+        <a href={currentPost?.url}>
+          {currentPost?.title}
+        </a>
+      </span>
+      {/if}
     </div>
-    {/if}
   {/key}
 </div>
+
+<style lang="scss">
+  .shuffler {
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid red;
+    min-height: 200px;
+    min-width: 50vw;
+
+    & > span {
+      position: absolute;
+      top: 0;
+      border: 1px solid blue;
+    }
+  }
+</style>
