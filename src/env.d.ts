@@ -34,4 +34,5 @@ type BlogEntry = BlogCollectionEntry | CapsuleCollectionEntry;
 type BlogEntrySummary = { 
   title: string,
   url: string,
+  date: date,
 };

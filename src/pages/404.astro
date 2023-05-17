@@ -15,6 +15,7 @@ const posts = await getAllBlogEntries();
 const summaries : BlogEntrySummary[] = posts.map((post) => ({
   title: stripMarkdown(post.data.title),
   url: getLinkToPost(post),
+  date: post.data.date,
 }));
 
 ---

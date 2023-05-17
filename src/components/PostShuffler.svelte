@@ -2,6 +2,7 @@
   import random from 'lodash/random';
   import { fly } from 'svelte/transition';
   import { quadOut } from 'svelte/easing';
+  import { DateTime } from 'luxon';
 
   const NUM_ITEMS = 10;
 
@@ -43,6 +44,11 @@
       timer = setTimeout(increment, duration);
     }
   }
+
+  $: dateString = 
+      DateTime.fromJSDate(currentPost?.date)
+              .toUTC()
+              .toLocaleString(DateTime.DATE_MED);
 </script>
 
 <div>
@@ -55,9 +61,14 @@
       <span 
         in:fly={{ y: 20, opacity: 100, duration }}
         out:fly={{ y: -20, opacity: 100, duration }}>
-        <a href={currentPost?.url}>
-          {currentPost?.title}
-        </a>
+        {#if (currentIndex < NUM_ITEMS - 1)}
+          <span>{currentPost.title}</span>
+        {:else}
+          <a href={currentPost.url}>
+            {currentPost.title}
+          </a>
+          <time>{dateString}</time>
+        {/if}
       </span>
       {/if}
     </div>
