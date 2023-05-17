@@ -2,12 +2,21 @@
 import Layout from '@src/layouts/Layout.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import NotFound from '@src/components/NotFound.astro';
+import { getAllBlogEntries, getLinkToPost, stripMarkdown } from '@src/utils';
+import PostShuffler from '@src/components/PostShuffler.svelte';
 
 const MENU = [
   { name: 'Blog', url: '/blog' },
   { name: 'Code', url: '/code' },
   { name: 'Prose', url: '/prose' },
 ];
+
+const posts = await getAllBlogEntries();
+const summaries : BlogEntrySummary[] = posts.map((post) => ({
+  title: stripMarkdown(post.data.title),
+  url: getLinkToPost(post),
+}));
+
 ---
 <Layout title="Albert Choi">
   <div class="container fade-in" 
@@ -30,6 +39,8 @@ const MENU = [
         <a class="menu-item" href={url} x-on:mouseover={`bgShift = ${index}`}>{name}</a>
       ))}
     </div>
+
+    <PostShuffler client:load posts={summaries} />
   </div>
 
   <CoolBackground />
