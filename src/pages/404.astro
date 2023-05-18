@@ -2,12 +2,16 @@
 import Layout from '@src/layouts/Layout.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import NotFound from '@src/components/NotFound.astro';
+import { getAllBlogEntries, getLinkToPost, stripMarkdown } from '@src/utils';
+import PostShuffler from '@src/components/PostShuffler.svelte';
 
-const MENU = [
-  { name: 'Blog', url: '/blog' },
-  { name: 'Code', url: '/code' },
-  { name: 'Prose', url: '/prose' },
-];
+const posts = await getAllBlogEntries();
+const summaries : BlogEntrySummary[] = posts.map((post) => ({
+  title: stripMarkdown(post.data.title),
+  url: getLinkToPost(post),
+  date: post.data.date,
+}));
+
 ---
 <Layout title="Albert Choi">
   <div class="container fade-in" 
@@ -20,16 +24,16 @@ const MENU = [
     </div>
 
     <div class="subtitle">
-      Try one of these links instead...
+      <div>Go back to <a href="/">Home Page</a></div>
+      <div>Or click below for a random blog post!</div>
     </div>
 
     <div class="menu" 
       x-on:mouseenter="bgHover = 1"
       x-on:mouseleave="bgHover = 0">
-      {MENU.map(({ name, url }, index) => (
-        <a class="menu-item" href={url} x-on:mouseover={`bgShift = ${index}`}>{name}</a>
-      ))}
+      <PostShuffler client:load posts={summaries} />
     </div>
+
   </div>
 
   <CoolBackground />
@@ -39,6 +43,11 @@ const MENU = [
   @import "../style/mixins.scss";
 
   .container {
+
+    a {
+      @include hover-link;
+      text-decoration: underline;
+    }
     animation-duration: 1000ms;
 
     min-width: 100vw;
@@ -76,37 +85,12 @@ const MENU = [
       font-family: var(--font-display);
       font-size: var(--font-size-fluid-2);
       text-align: center;
-      margin-bottom: var(--size-fluid-4);
+      margin-bottom: var(--size-fluid-2);
     }
 
     .menu {
       grid-area: menu;
-      justify-self: var(--justification);
-
       width: 100%;
-
-      --menu-align: center;
-      
-      font-family: var(--font-display);
-      font-size: var(--font-size-fluid-2);
-      text-align: center;
-
-      display: flex;
-      flex-direction: column;
-      align-items: var(--menu-align);
-
-      .menu-item {
-        margin: var(--size-fluid-1) var(--size-fluid-1);
-        text-decoration: underline;
-
-        transition: transform 0.25s ease-in;
-
-        &:hover {
-          color: var(--highlight);
-          transform: scale(150%);
-          transition: transform 0.25s ease-out;
-        }
-      }
     }
 
   }

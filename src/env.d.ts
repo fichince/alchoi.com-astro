@@ -30,3 +30,9 @@ type CapsuleCollectionEntry = import('astro:content').CollectionEntry<'capsules'
 
 // combine the two types of blog entries to display in the BlogLayout
 type BlogEntry = BlogCollectionEntry | CapsuleCollectionEntry;
+
+type BlogEntrySummary = { 
+  title: string,
+  url: string,
+  date: date,
+};
