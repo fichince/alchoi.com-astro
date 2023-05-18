@@ -1,0 +1,102 @@
+---
+import CoolBackground from '@src/components/CoolBackground.astro';
+import { getAllBlogEntries, getLinkToPost, stripMarkdown } from '@src/utils';
+import PostShuffler from '@src/components/PostShuffler.svelte';
+import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+
+const posts = await getAllBlogEntries();
+const summaries : BlogEntrySummary[] = posts.map((post) => ({
+  title: stripMarkdown(post.data.title),
+  url: getLinkToPost(post),
+  date: post.data.date,
+}));
+
+---
+<NavbarLayout title="Albert Choi">
+  <div class="container fade-in tw-container" 
+    x-data="{ bgShift: -1, bgHover: 0 }"
+    x-bind:data-bg-shift="bgShift"
+    x-bind:data-bg-hover="bgHover">
+    <!-- menu and title -->
+    <div class="title">
+      <h1>Shuffler!</h1>
+    </div>
+
+    <div class="subtitle tw-prose">
+      <h5>
+      I cooked this up for the <a href="/404">404 page</a> but since it's so fun,
+      I wanted to highlight it here. Click on the button to get a random blog post link:
+      </h5>
+    </div>
+
+    <div class="menu" 
+      x-on:mouseenter="bgHover = 1"
+      x-on:mouseleave="bgHover = 0">
+      <PostShuffler client:load posts={summaries} />
+    </div>
+
+  </div>
+
+  <CoolBackground />
+</NavbarLayout>
+
+<style lang="scss">
+  @import "../style/mixins.scss";
+
+  .container {
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: var(--font-size-fluid-3);
+      text-align: center;
+    }
+
+    a {
+      @include hover-link;
+      text-decoration: underline;
+    }
+    animation-duration: 1000ms;
+
+    min-width: 100vw;
+    min-height: 100vh;
+
+    display: grid;
+    align-items: center;
+    align-content: center;
+    --justification: center;
+
+    grid-template-areas:
+      "title"
+      "subtitle"
+      "menu";
+
+    @include sm-up {
+      grid-template-areas:
+        "title"
+        "subtitle"
+        "menu";
+      grid-template-columns: auto;
+    }
+
+    .title {
+      justify-self: var(--justification);
+      grid-area: title;
+      width: 70%;
+      margin-bottom: var(--size-fluid-4);
+    }
+
+    .subtitle {
+      grid-area: subtitle;
+      justify-self: var(--justification);
+
+      text-align: center;
+      margin-bottom: var(--size-fluid-2);
+    }
+
+    .menu {
+      grid-area: menu;
+      width: 100%;
+    }
+
+  }
+</style>
