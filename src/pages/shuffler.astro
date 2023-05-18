@@ -1,6 +1,7 @@
 ---
 import CoolBackground from '@src/components/CoolBackground.astro';
 import { getAllBlogEntries, getLinkToPost, stripMarkdown } from '@src/utils';
+import Shuffle from '@src/components/icons/Shuffle.astro';
 import PostShuffler from '@src/components/PostShuffler.svelte';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 
@@ -20,6 +21,10 @@ const summaries : BlogEntrySummary[] = posts.map((post) => ({
     <!-- menu and title -->
     <div class="title">
       <h1>Shuffler!</h1>
+    </div>
+
+    <div class="icon">
+      <Shuffle />
     </div>
 
     <div class="subtitle tw-prose">
@@ -67,12 +72,14 @@ const summaries : BlogEntrySummary[] = posts.map((post) => ({
 
     grid-template-areas:
       "title"
+      "icon"
       "subtitle"
       "menu";
 
     @include sm-up {
       grid-template-areas:
         "title"
+        "icon"
         "subtitle"
         "menu";
       grid-template-columns: auto;
@@ -83,6 +90,12 @@ const summaries : BlogEntrySummary[] = posts.map((post) => ({
       grid-area: title;
       width: 70%;
       margin-bottom: var(--size-fluid-4);
+    }
+
+    .icon {
+      justify-self: var(--justification);
+      grid-area: icon;
+      width: var(--size-fluid-7);
     }
 
     .subtitle {
