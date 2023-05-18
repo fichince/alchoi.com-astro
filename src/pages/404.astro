@@ -30,18 +30,16 @@ const summaries : BlogEntrySummary[] = posts.map((post) => ({
     </div>
 
     <div class="subtitle">
-      Try one of these links instead...
+      <div>Back to <a href="/">Home Page</a></div>
+      <div>Or click below to go to a random blog post!</div>
     </div>
 
     <div class="menu" 
       x-on:mouseenter="bgHover = 1"
       x-on:mouseleave="bgHover = 0">
-      {MENU.map(({ name, url }, index) => (
-        <a class="menu-item" href={url} x-on:mouseover={`bgShift = ${index}`}>{name}</a>
-      ))}
+      <PostShuffler client:load posts={summaries} />
     </div>
 
-    <PostShuffler client:load posts={summaries} />
   </div>
 
   <CoolBackground />
@@ -51,6 +49,11 @@ const summaries : BlogEntrySummary[] = posts.map((post) => ({
   @import "../style/mixins.scss";
 
   .container {
+
+    a {
+      @include hover-link;
+      text-decoration: underline;
+    }
     animation-duration: 1000ms;
 
     min-width: 100vw;
@@ -88,37 +91,39 @@ const summaries : BlogEntrySummary[] = posts.map((post) => ({
       font-family: var(--font-display);
       font-size: var(--font-size-fluid-2);
       text-align: center;
-      margin-bottom: var(--size-fluid-4);
+      margin-bottom: var(--size-fluid-2);
     }
 
     .menu {
       grid-area: menu;
-      justify-self: var(--justification);
+      //justify-self: var(--justification);
 
       width: 100%;
 
-      --menu-align: center;
+      border: 1px solid green;
+
+      //--menu-align: center;
       
-      font-family: var(--font-display);
-      font-size: var(--font-size-fluid-2);
-      text-align: center;
+      //font-family: var(--font-display);
+      //font-size: var(--font-size-fluid-2);
+      //text-align: center;
 
-      display: flex;
-      flex-direction: column;
-      align-items: var(--menu-align);
+      //display: flex;
+      //flex-direction: column;
+      //align-items: var(--menu-align);
 
-      .menu-item {
-        margin: var(--size-fluid-1) var(--size-fluid-1);
-        text-decoration: underline;
+      //.menu-item {
+        //margin: var(--size-fluid-1) var(--size-fluid-1);
+        //text-decoration: underline;
 
-        transition: transform 0.25s ease-in;
+        //transition: transform 0.25s ease-in;
 
-        &:hover {
-          color: var(--highlight);
-          transform: scale(150%);
-          transition: transform 0.25s ease-out;
-        }
-      }
+        //&:hover {
+          //color: var(--highlight);
+          //transform: scale(150%);
+          //transition: transform 0.25s ease-out;
+        //}
+      //}
     }
 
   }

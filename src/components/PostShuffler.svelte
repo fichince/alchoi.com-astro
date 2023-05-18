@@ -51,42 +51,62 @@
               .toLocaleString(DateTime.DATE_MED);
 </script>
 
-<div>
+<div class="shuffler-container">
   <button class="button" on:click={shuffle}>
     Shuffle!
   </button>
-  {#key currentPost?.url}
     <div class="shuffler">
-      {#if currentPost}
+      {#key currentPost?.url}
       <span 
-        in:fly={{ y: 20, opacity: 100, duration }}
-        out:fly={{ y: -20, opacity: 100, duration }}>
+        class="shuffle-item"
+        in:fly={{ y: '3em', opacity: 100, duration }}
+        out:fly={{ y: '-3em', opacity: 100, duration }}>
         {#if (currentIndex < NUM_ITEMS - 1)}
-          <span>{currentPost.title}</span>
+          <span>{currentPost?.title ?? ''}</span>
         {:else}
-          <a href={currentPost.url}>
-            {currentPost.title}
+          <a href={currentPost?.url}>
+            {currentPost?.title}
           </a>
           <time>{dateString}</time>
         {/if}
       </span>
-      {/if}
+      {/key}
     </div>
-  {/key}
 </div>
 
 <style lang="scss">
-  .shuffler {
-    position: absolute;
-    overflow: hidden;
-    border: 1px solid red;
-    min-height: 200px;
-    width: 100%;
+  .shuffler-container {
+    border: 1px solid yellow;
+    padding: var(--size-2);
+    position: relative;
 
-    & > span {
-      position: absolute;
-      top: 0;
-      border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-family: var(--font-display);
+
+    button {
+      font-size: var(--font-size-fluid-1);
+      margin-bottom: var(--size-fluid-2);
+    }
+
+    .shuffler {
+      font-size: var(--font-size-fluid-1);
+
+      position: relative;
+      overflow: hidden;
+      border: 1px solid red;
+      min-height: 5em;
+      width: 100%;
+
+      span.shuffle-item {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        border: 1px solid blue;
+        text-align: center;
+      }
     }
   }
 </style>
