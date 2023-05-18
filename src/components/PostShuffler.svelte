@@ -49,6 +49,8 @@
       DateTime.fromJSDate(currentPost?.date)
               .toUTC()
               .toLocaleString(DateTime.DATE_MED);
+
+  $: isFinal = currentIndex === NUM_ITEMS - 1;
 </script>
 
 <div class="shuffler-container">
@@ -61,13 +63,19 @@
         class="shuffle-item"
         in:fly={{ y: '3em', opacity: 100, duration }}
         out:fly={{ y: '-3em', opacity: 100, duration }}>
-        {#if (currentIndex < NUM_ITEMS - 1)}
-          <span>{currentPost?.title ?? ''}</span>
+        {#if (!isFinal)}
+          <span class="title">
+            {currentPost?.title ?? ''}
+          </span>
         {:else}
-          <a href={currentPost?.url}>
-            {currentPost?.title}
-          </a>
-          <time>{dateString}</time>
+          <div class="blog-link">
+            <a href={currentPost?.url}>
+              <span class="title is-final">
+                {currentPost?.title}
+              </span>
+            </a>
+            <time>{dateString}</time>
+          </div>
         {/if}
       </span>
       {/key}
@@ -75,8 +83,9 @@
 </div>
 
 <style lang="scss">
+  @import "../style/mixins.scss";
+
   .shuffler-container {
-    border: 1px solid yellow;
     padding: var(--size-2);
     position: relative;
 
@@ -96,7 +105,6 @@
 
       position: relative;
       overflow: hidden;
-      border: 1px solid red;
       min-height: 5em;
       width: 100%;
 
@@ -104,8 +112,32 @@
         width: 100%;
         position: absolute;
         top: 0;
-        border: 1px solid blue;
         text-align: center;
+
+        .title:not(.is-final) {
+          // keep it to a single line until it settles on the last item
+          display: inline-block;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: clip;
+        }
+
+        .blog-link {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          a {
+            text-decoration: underline;
+            @include hover-link($subtle: true);
+          }
+
+          time {
+            margin-top: var(--size-fluid-1);
+            font-size: var(--font-size-2);
+          }
+        }
+
       }
     }
   }
