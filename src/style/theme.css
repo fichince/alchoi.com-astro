@@ -25,6 +25,18 @@
   --font-size-fluid-5: clamp(2.80rem, calc(2.60rem + 1.02vw), 3.82rem);
 }
 
+html.light {
+  --primary: var(--gray-2);
+  --primary-mid: var(--gray-3);
+  --primary-light: var(--gray-4);
+
+  --secondary: var(--gray-10);
+
+  --highlight: #2F3B2B;
+  --highlight-light: #dee5dc;
+  --highlight-dark: #9cb295;
+}
+
 /* override the colour choices of tailwind typography plugin */
 .tw-prose {
   --tw-prose-body: var(--secondary);
