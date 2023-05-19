@@ -22,5 +22,6 @@ export default defineConfig({
       theme: 'vitesse-dark',
       wrap: true
     }
-  }
+  },
+  compressHTML: true,
 });
