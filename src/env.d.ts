@@ -2,11 +2,10 @@
 /// <reference types="@astrojs/image/client" />
 
 type SearchIndexEntry = { 
-  slug: string,
+  url: string,
   title: string,
   description?: string,
   content: string,
-  collection: 'blog' | 'capsules',
 }
 
 type MatchPositions = {

@@ -2,10 +2,25 @@
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import Search from '@src/components/Search.svelte';
 import CoolBackground from '@src/components/CoolBackground.astro';
+import { getAllBlogEntries, getLinkToPost, stripMarkdown } from '@src/utils';
+
+const entries = await getAllBlogEntries();
+const posts = entries.map((post) => {
+
+  const value : SearchIndexEntry = {
+    url: getLinkToPost(post),
+    title: stripMarkdown(post.data.title),
+    content: stripMarkdown(post.body),
+    description: (post.data.author ?? '') + stripMarkdown(post.data.description),
+  };
+
+  return value;
+});
+
 ---
 <NavbarLayout title="Search">
   <div class="container tw-container">
-    <Search client:load />
+    <Search client:load posts={posts} />
   </div>
   <CoolBackground />
 </NavbarLayout>

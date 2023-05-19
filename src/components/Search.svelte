@@ -1,27 +1,22 @@
 <script lang="ts">
   import { createSearchIndex } from '@src/scripts/search';
   import SearchResult from './SearchResult.svelte';
-  import { onMount } from 'svelte';
   import { blur } from 'svelte/transition';
   import type { Index } from 'lunr';
   import debounce from 'lodash/debounce';
   import find from 'lodash/find';
 
+  export let posts : SearchIndexEntry[];
+
   let index : Index;
-  let posts : SearchIndexEntry[] = [];
   let searchTerm : string = '';
   let searchResults : Index.Result[] = [];
-
-  onMount(async () => {
-    const res = await fetch('/search-index.json');
-    posts = await res.json();
-
-    index = createSearchIndex(posts);
-  });
 
   const handleChange = debounce((e) => {
     searchTerm = e.target.value;
   }, 500);
+
+  $: index = createSearchIndex(posts);
 
   $: {
     if (searchTerm) {
@@ -39,7 +34,7 @@
   <div class="results">
     {#if searchResults.length > 0}
       {#each searchResults as result, index (result.ref)}
-        {@const post = find(posts, { slug: result.ref })}
+        {@const post = find(posts, { url: result.ref })}
         {#if post}
           <div in:blur={{ delay: index * 75 }}>
             <SearchResult {post} {result} />

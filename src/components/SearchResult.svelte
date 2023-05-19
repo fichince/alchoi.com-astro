@@ -21,8 +21,6 @@
   }
 
   $: title = post?.title ?? '';
-
-  $: url = `${post?.collection === 'blog' ? '/blog' : '/quick-reviews'}/${post?.slug}`;
 </script>
 
 <div class="result" class:not-found={notFound !== null}>
@@ -30,7 +28,7 @@
     {#if notFound && notFound.length > 0}
       Nothing found for <mark>{notFound}</mark>
     {:else}
-      <a href={url}>
+      <a href={post?.url}>
         {#if titleHighlights.length > 0}
           { @const { before, highlight, after } = titleHighlights[0] }
           {before}

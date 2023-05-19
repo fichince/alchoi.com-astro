@@ -4,7 +4,7 @@ import clamp from 'lodash/clamp';
 
 export function createSearchIndex(posts : SearchIndexEntry[]) : Index {
   const idx : Index = lunr(function() {
-    this.ref('slug');
+    this.ref('url');
     this.field('title');
     this.field('description');
     this.field('content');
