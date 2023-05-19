@@ -1,5 +1,6 @@
 ---
 import Logo from "./Logo.astro";
+import ThemeToggler from '@src/components/ThemeToggler.svelte';
 
 const { pathname } = Astro.url;
 
@@ -39,6 +40,7 @@ const NAV = [
       })}
     </ul>
   </nav>
+  <ThemeToggler client:only="svelte" />
 </div>
 <style lang="scss">
   @import "../style/mixins.scss";
