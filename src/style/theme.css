@@ -1,13 +1,4 @@
 :root {
-  --primary: var(--gray-10);
-  --primary-mid: var(--gray-9);
-  --primary-light: var(--gray-7);
-
-  --secondary: var(--gray-2);
-
-  --highlight: #9cb295;
-  --highlight-light: #dee5dc;
-  --highlight-dark: #2F3B2B;
 
   --font-display: 'NunitoVariable', var(--font-sans);
   --font-body: 'Libre FranklinVariable', var(--font-sans);
@@ -25,16 +16,39 @@
   --font-size-fluid-5: clamp(2.80rem, calc(2.60rem + 1.02vw), 3.82rem);
 }
 
-html.light {
-  --primary: var(--gray-2);
-  --primary-mid: var(--gray-3);
-  --primary-light: var(--gray-4);
+html:not(.light) {
+  --primary: var(--gray-10);
+  --primary-mid: var(--gray-9);
+  --primary-light: var(--gray-7);
 
-  --secondary: var(--gray-10);
+  --secondary: var(--gray-2);
 
-  --highlight: #2F3B2B;
+  --highlight: #9cb295;
   --highlight-light: #dee5dc;
-  --highlight-dark: #9cb295;
+  --highlight-dark: #2F3B2B;
+
+  /* 
+    in the below line, there's a hard-coded colour of --pattern-colour
+    can't use the variable inside the data URL
+    #e9ecef
+  */
+  --cool-background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='105' viewBox='0 0 80 105'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='death-star' fill='%23e9ecef' fill-opacity='0.4'%3E%3Cpath d='M20 10a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V10zm15 35a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V45zM20 75a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V75zm30-65a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V10zm0 65a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V75zM35 10a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V10zM5 45a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V45zm0-35a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V10zm60 35a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V45zm0-35a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V10z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+html.light {
+  --primary: var(--stone-1);
+  --primary-mid: var(--stone-2);
+  --primary-light: var(--stone-3);
+
+  --secondary: var(--green-12);
+
+  --highlight: #9cb295;
+  --highlight-light: #dee5dc;
+  --highlight-dark: #dee5dc;
+  /*--highlight-dark: #2F3B2B;*/
+
+  /* #37b24d */
+  --cool-background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='105' viewBox='0 0 80 105'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='death-star' fill='%2337b24d' fill-opacity='0.4'%3E%3Cpath d='M20 10a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V10zm15 35a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V45zM20 75a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V75zm30-65a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V10zm0 65a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V75zM35 10a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V10zM5 45a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V45zm0-35a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V10zm60 35a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V45zm0-35a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V10z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* override the colour choices of tailwind typography plugin */
