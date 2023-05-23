@@ -1,6 +1,6 @@
 const DEFAULTS = {
   threshold: 0.1,
-}
+};
 function handleScroll(entries : IntersectionObserverEntry[]) {
 
   entries.forEach((entry) => {
