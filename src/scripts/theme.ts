@@ -1,4 +1,4 @@
-function applyTheme(theme : string) {
+export function applyTheme(theme : string) {
   // we're dark by default, but shoelace is light by default...
   // hence a little bit of awkwardness here
   if (theme === 'light') {
@@ -30,7 +30,3 @@ export function toggleTheme() {
   applyTheme(newTheme);
   return newTheme;
 }
-
-// initializing
-const currentTheme = getTheme();
-applyTheme(currentTheme);

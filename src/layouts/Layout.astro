@@ -44,7 +44,10 @@ const image = imageURL.toString();
     <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace-autoloader.js"></script>
 
     <script>
-      import "../scripts/theme";
+      import { getTheme, applyTheme } from "../scripts/theme";
+      // light/dark mode - we're dark by default, light mode if that's the user preference
+      const currentTheme = getTheme();
+      applyTheme(currentTheme);
     </script>
 
     <meta name="description" content={description} />
