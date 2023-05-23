@@ -36,9 +36,9 @@ html:not(.light) {
 }
 
 html.light {
-  --primary: var(--stone-1);
-  --primary-mid: var(--stone-2);
-  --primary-light: var(--stone-3);
+  --primary: var(--stone-3);
+  --primary-mid: var(--stone-4);
+  --primary-light: var(--stone-5);
 
   --secondary: var(--green-12);
 
