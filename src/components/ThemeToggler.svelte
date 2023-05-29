@@ -7,6 +7,8 @@
   onMount(() => {
     theme = getTheme();
   });
+
+  // original codepen: https://codepen.io/alvarotrigo/pen/zYPydpB
 </script>
 
 <div class="toggle-switch">
