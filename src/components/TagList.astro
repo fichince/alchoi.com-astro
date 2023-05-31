@@ -9,7 +9,9 @@ const { tags } = Astro.props;
   {tags.map((tag, index) => (
     <li>
       <a href={`/blog/tag/${tag}`}>{tag}</a>
-      {index < tags.length - 1 && <span>/</span>}
+      {index < tags.length - 1 && (
+        <span>&nbsp;/&nbsp;</span>
+      )}
     </li>
   ))}
 </ul>
@@ -29,9 +31,6 @@ const { tags } = Astro.props;
         @include hover-link;
       }
 
-      &:not(:last-child) {
-        margin-right: var(--size-1);
-      }
     }
   }
 </style>
