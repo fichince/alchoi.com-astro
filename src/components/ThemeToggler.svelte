@@ -23,13 +23,15 @@
 <style lang="scss">
   .toggle-switch {
 
+    --_height: 30px;
+
     position: relative;
-    width: 200px;
+    width: calc(2 * var(--_height));
 
     label {
       position: absolute;
       width: 100%;
-      height: 100px;
+      height: var(--_height);
       background-color: var(--primary);
       border-radius: 50px;
       cursor: pointer;
@@ -44,7 +46,8 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      border-radius: 50px;
+      border-radius: calc(0.5 * var(--_height)); 
+      border: 1px solid var(--secondary);
       transition: 0.3s;
     }
 
@@ -55,18 +58,22 @@
     .slider::before {
       content: "";
       position: absolute;
-      top: 13px;
-      left: 16px;
-      width: 75px;
-      height: 75px;
+      top: calc(0.13 * var(--_height));
+      left: calc(0.16 * var(--_height));
+      width: calc(0.75 * var(--_height));
+      height: calc(0.75 * var(--_height));
       border-radius: 50%;
-      box-shadow: inset 28px -4px 0px 0px var(--secondary);
+
+      --_shadow-h: calc(0.28 * var(--_height));
+      --_shadow-v: calc(-0.04 * var(--_height));
+      box-shadow: inset var(--_shadow-h) var(--_shadow-v) 0px 0px var(--secondary);
+
       background-color: var(--primary);
       transition: 0.3s;
     }
 
     input:checked ~ .slider::before {
-      transform: translateX(95px);
+      transform: translateX(calc(0.95 * var(--_height)));
       background-color: var(--primary);
       box-shadow: none;
     }
