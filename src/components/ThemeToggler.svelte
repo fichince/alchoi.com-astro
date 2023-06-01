@@ -27,6 +27,7 @@
 
     position: relative;
     width: calc(2 * var(--_height));
+    height: var(--_height);
 
     label {
       position: absolute;
