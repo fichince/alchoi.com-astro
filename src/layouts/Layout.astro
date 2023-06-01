@@ -24,6 +24,9 @@ const description = stripMarkdown(meta?.description ?? 'The homepage of Albert C
 const imagePath = meta?.image ?? 'favicon.png';
 const imageURL = new URL(imagePath, Astro.site ?? 'https://alchoi.com');
 const image = imageURL.toString();
+
+const isProd = import.meta.env.PROD;
+
 ---
 
 <!DOCTYPE html>
@@ -61,16 +64,20 @@ const image = imageURL.toString();
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
-  </head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TB0SNLRPM"></script>
-  <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
-    gtag('config', 'G-5TB0SNLRPM');
-  </script>
+    { isProd &&
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TB0SNLRPM"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5TB0SNLRPM');
+    </script>
+    }
+
+  </head>
+
   <body>
     <slot />
   </body>
