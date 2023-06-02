@@ -1,13 +1,14 @@
 .button {
   border-radius: var(--radius-2);
   padding: var(--size-1) var(--size-2);
-  background: var(--secondary);
-  color: var(--primary);
-  border: 2px solid var(--primary-mid);
+  background: var(--colour-foreground);
+  color: var(--colour-background);
+  // TODO
+  border: 2px solid var(--colour-background);
 
   &:hover {
-    background: var(--primary);
-    color: var(--secondary);
+    background: var(--colour-background);
+    color: var(--colour-foreground);
     border: 2px solid var(--highlight);
     text-shadow: 2px 2px 5px var(--highlight);
   }
@@ -16,8 +17,8 @@
 .form-input {
   border-radius: var(--radius-2);
   padding: var(--size-fluid-1);
-  color: var(--primary);
-  background-color: var(--secondary);
+  color: var(--colour-background);
+  background-color: var(--colour-foreground);
   font-family: var(--font-display);
 
   &:focus {
@@ -31,6 +32,11 @@
   &:hover {
     transform: scale(105%);
   }
+}
+
+.card {
+  box-shadow: 0 0 var(--size-2) 0 var(--colour-accent);
+  border-radius: var(--radius-3);
 }
 
 .fade-in {

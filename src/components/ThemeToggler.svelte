@@ -33,7 +33,7 @@
       position: absolute;
       width: 100%;
       height: var(--_height);
-      background-color: var(--primary);
+      background-color: var(--colour-background);
       border-radius: 50px;
       cursor: pointer;
     }
@@ -48,12 +48,12 @@
       width: 100%;
       height: 100%;
       border-radius: calc(0.5 * var(--_height)); 
-      border: 1px solid var(--secondary);
+      border: 1px solid var(--colour-foreground);
       transition: 0.3s;
     }
 
     input:checked ~ .slider {
-      background-color: var(--secondary);
+      background-color: var(--colour-foreground);
     }
 
     .slider::before {
@@ -67,15 +67,15 @@
 
       --_shadow-h: calc(0.28 * var(--_height));
       --_shadow-v: calc(-0.04 * var(--_height));
-      box-shadow: inset var(--_shadow-h) var(--_shadow-v) 0px 0px var(--secondary);
+      box-shadow: inset var(--_shadow-h) var(--_shadow-v) 0px 0px var(--colour-foreground);
 
-      background-color: var(--primary);
+      background-color: var(--colour-background);
       transition: 0.3s;
     }
 
     input:checked ~ .slider::before {
       transform: translateX(calc(0.95 * var(--_height)));
-      background-color: var(--primary);
+      background-color: var(--colour-background);
       box-shadow: none;
     }
 

@@ -13,7 +13,7 @@ export interface Props {
   title?: string;
   meta?: {
     description?: string,
-    image?:string,
+    image?: string,
   }
 }
 
@@ -93,8 +93,9 @@ const isProd = import.meta.env.PROD;
   @import "../style/utilities.scss";
 
   body {
-    background: linear-gradient(to bottom, var(--primary), var(--primary-light));
-    color: var(--secondary);
+    // TODO - gradient?
+    background: var(--colour-background);
+    color: var(--colour-foreground);
 
     height: 100%;
     margin: 0;

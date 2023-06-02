@@ -4,7 +4,7 @@
   }
 }
 
-@mixin hover-background($a: var(--primary), $b: var(--primary-light), $c: var(--highlight)) {
+@mixin hover-background($a: var(--colour-background), $b: var(--primary-light), $c: var(--highlight)) {
   position: relative;
   z-index: 1;
   background: linear-gradient(to top left, $a, $b);
