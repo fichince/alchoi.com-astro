@@ -268,12 +268,12 @@ const posts = page.data;
       &.show {
         opacity: 100%;
         transform: none;
-        transition: all 500ms var(--ease-out-1);
+        transition: opacity, transform 500ms var(--ease-out-1);
       }
 
       &.hide {
         opacity: 0%;
-        transition: all 500ms var(--ease-out-1);
+        transition: opacity, transform 500ms var(--ease-out-1);
       }
 
       &:nth-child(odd) {

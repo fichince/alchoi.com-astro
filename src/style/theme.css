@@ -18,8 +18,13 @@
 
 html:not(.light) {
   /* preview at: https://realtimecolors.com/?colors=e9ecef-16191d-a2aeae-e0dcdc-6d7d7e */
+
+  --colour-bg-h: 214deg;
+  --colour-bg-s: 14%;
+  --colour-bg-l: 10%;
+
   --colour-foreground: #e9ecef;
-  --colour-background: #16191d;
+  --colour-background: hsl(var(--colour-bg-h) var(--colour-bg-s) var(--colour-bg-l));
   --colour-primary: #a2aeae;
   --colour-secondary: #e0dcdc;
   --colour-accent: #6d7d7e;
@@ -33,9 +38,14 @@ html:not(.light) {
 }
 
 html.light {
+
+  --colour-bg-h: 210deg;
+  --colour-bg-s: 16%;
+  --colour-bg-l: 93%;
+
   /* preview here: https://realtimecolors.com/?colors=191615-e9ecef-a2aeae-e0dcdc-6d7d7e */
   --colour-foreground: #191615;
-  --colour-background: #e9ecef;
+  --colour-background: hsl(var(--colour-bg-h) var(--colour-bg-s) var(--colour-bg-l));
   --colour-primary: #a2aeae;
   --colour-secondary: #e0dcdc;
   --colour-accent: #6d7d7e;
@@ -46,22 +56,22 @@ html.light {
 
 /* override the colour choices of tailwind typography plugin */
 .tw-prose {
-  --tw-prose-body: var(--colour-foreground);
-  --tw-prose-headings: var(--colour-foreground);
-  --tw-prose-lead: var(--colour-foreground);
-  --tw-prose-links: var(--colour-foreground);
-  --tw-prose-bold: var(--colour-foreground);
-  --tw-prose-counters: var(--colour-foreground);
-  --tw-prose-bullets: var(--colour-foreground);
-  --tw-prose-hr: var(--colour-foreground);
+  --tw-prose-body: var(--secondary);
+  --tw-prose-headings: var(--secondary);
+  --tw-prose-lead: var(--secondary);
+  --tw-prose-links: var(--secondary);
+  --tw-prose-bold: var(--secondary);
+  --tw-prose-counters: var(--secondary);
+  --tw-prose-bullets: var(--secondary);
+  --tw-prose-hr: var(--secondary);
   --tw-prose-quotes: var(--highlight);
   --tw-prose-quote-borders: var(--highlight);
-  --tw-prose-captions: var(--colour-foreground);
-  --tw-prose-code: var(--colour-foreground);
-  --tw-prose-pre-code: var(--colour-foreground);
-  --tw-prose-pre-bg: var(--colour-foreground);
-  --tw-prose-th-borders: var(--colour-foreground);
-  --tw-prose-td-borders: var(--colour-foreground);
+  --tw-prose-captions: var(--secondary);
+  --tw-prose-code: var(--secondary);
+  --tw-prose-pre-code: var(--secondary);
+  --tw-prose-pre-bg: var(--secondary);
+  --tw-prose-th-borders: var(--secondary);
+  --tw-prose-td-borders: var(--secondary);
 }
 
 .tw-prose pre.astro-code {
@@ -78,6 +88,6 @@ html.light {
 
 sl-rating {
   --symbol-color-active: var(--highlight);
-  --symbol-color: var(--colour-background);
+  --symbol-color: var(--primary);
   --symbol-size: var(--size-3);
 }

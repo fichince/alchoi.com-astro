@@ -60,8 +60,7 @@ const { Content } = await about.render();
     justify-items: center;
     place-content: center;
 
-    // TODO
-    background: var(--colour-background);
+    background: hsl(calc(var(--colour-bg-h) + 0.75turn) 50% var(--colour-bg-l));
 
     .headshot {
       grid-area: headshot;
