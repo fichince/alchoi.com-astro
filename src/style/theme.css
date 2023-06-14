@@ -47,22 +47,22 @@ html.light {
 
 /* override the colour choices of tailwind typography plugin */
 .tw-prose {
-  --tw-prose-body: var(--secondary);
-  --tw-prose-headings: var(--secondary);
-  --tw-prose-lead: var(--secondary);
-  --tw-prose-links: var(--secondary);
-  --tw-prose-bold: var(--secondary);
-  --tw-prose-counters: var(--secondary);
-  --tw-prose-bullets: var(--secondary);
-  --tw-prose-hr: var(--secondary);
-  --tw-prose-quotes: var(--highlight);
-  --tw-prose-quote-borders: var(--highlight);
-  --tw-prose-captions: var(--secondary);
-  --tw-prose-code: var(--secondary);
-  --tw-prose-pre-code: var(--secondary);
-  --tw-prose-pre-bg: var(--secondary);
-  --tw-prose-th-borders: var(--secondary);
-  --tw-prose-td-borders: var(--secondary);
+  --tw-prose-body: var(--colour-foreground);
+  --tw-prose-headings: var(--colour-foreground);
+  --tw-prose-lead: var(--colour-foreground);
+  --tw-prose-links: var(--colour-foreground);
+  --tw-prose-bold: var(--colour-foreground);
+  --tw-prose-counters: var(--colour-foreground);
+  --tw-prose-bullets: var(--colour-foreground);
+  --tw-prose-hr: var(--colour-foreground);
+  --tw-prose-quotes: var(--colour-accent);
+  --tw-prose-quote-borders: var(--colour-accent);
+  --tw-prose-captions: var(--colour-foreground);
+  --tw-prose-code: var(--colour-foreground);
+  --tw-prose-pre-code: var(--colour-foreground);
+  --tw-prose-pre-bg: var(--colour-foreground);
+  --tw-prose-th-borders: var(--colour-foreground);
+  --tw-prose-td-borders: var(--colour-foreground);
 }
 
 .tw-prose pre.astro-code {
@@ -78,7 +78,7 @@ html.light {
 }
 
 sl-rating {
-  --symbol-color-active: var(--highlight);
-  --symbol-color: var(--primary);
+  --symbol-color-active: var(--colour-accent);
+  --symbol-color: var(--colour-foreground);
   --symbol-size: var(--size-3);
 }

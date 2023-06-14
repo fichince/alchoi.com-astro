@@ -44,13 +44,15 @@ const NAV = [
     </ul>
   </nav>
 </div>
+
 <style lang="scss">
   @import "../style/mixins.scss";
 
   .navbar {
     padding: var(--size-fluid-1);
 
-    background: var(--colour-accent);
+    background: var(--colour-primary);
+    color: var(--gray-10);
 
     display: flex;
     align-items: center;
@@ -160,7 +162,7 @@ const NAV = [
 
     li.active {
       
-      color: var(--highlight);
+      color: var(--colour-accent);
       .symbol::before {
         content: '\2192'; // show an arrow
       }

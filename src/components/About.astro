@@ -61,7 +61,8 @@ const { Content } = await about.render();
     place-content: center;
 
     //background: hsl(calc(var(--colour-bg-h) + 0.75turn) 50% var(--colour-bg-l));
-    background: var(--colour-secondary);
+    background: var(--colour-foreground);
+    color: var(--colour-background) !important;
 
     .headshot {
       grid-area: headshot;
@@ -73,6 +74,8 @@ const { Content } = await about.render();
     .words {
       grid-area: words;
       font-family: var(--font-body);
+      --tw-prose-body: var(--colour-background);
+      --tw-prose-headings: var(--colour-background);
     }
 
     .links {
