@@ -88,7 +88,7 @@ const NAV = [
       // hamburger 
       & span, & span::before, & span::after {
         display: block;
-        background: var(--colour-foreground);
+        background: var(--gray-10);
         height: 2px;
         width: 2em;
         border-radius: 2px;
@@ -112,7 +112,7 @@ const NAV = [
       & span, & span::before, & span::after {
         // TODO would be best to change the shape of the 
         // hamburger, instead of relying on colour only
-        background: var(--highlight);
+        background: var(--colour-accent);
       }
     }
 
@@ -130,6 +130,9 @@ const NAV = [
       transform: scale(1, 0);
       transform-origin: top;
       transition: transform var(--transition-duration) var(--transition-fn);
+
+      background: var(--colour-primary);
+      color: var(--gray-10);
 
       ul {
         display: flex;
