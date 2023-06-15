@@ -3,12 +3,10 @@
   padding: var(--size-1) var(--size-2);
   background: var(--colour-primary);
   color: var(--gray-10);
-  // TODO
   border: 2px solid var(--colour-background);
 
   &:hover {
     background: var(--colour-secondary);
-    //color: var(--colour-foreground);
     border: 2px solid var(--colour-accent);
     text-shadow: 2px 2px 5px var(--colour-accent);
   }
