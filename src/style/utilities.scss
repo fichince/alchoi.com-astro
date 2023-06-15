@@ -38,13 +38,31 @@
   border-radius: var(--radius-3);
   background-color: hsl(var(--colour-bg-h) var(--colour-bg-s) calc(var(--colour-bg-l) * 1.7));
 
-  background-image: url('/images/wave.svg');
-  background-repeat: no-repeat;
-  transition: background-size 1s linear;
+  box-shadow: none;
 
   &:hover {
     box-shadow: 0 0 var(--size-2) 0 var(--colour-accent);
-    background-size: 200%;
+  }
+
+  &.wave {
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    &:hover {
+      background-size: 200%;
+
+      &.right {
+        background-position-x: -800px;
+      }
+    }
+
+    &.left {
+      background-image: url('/images/wave.svg');
+    }
+
+    &.right {
+      background-image: url('/images/wave-right.svg');
+    }
   }
 }
 

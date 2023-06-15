@@ -11,7 +11,7 @@ import type { Page } from 'astro';
 
 import { Picture } from '@astrojs/image/components';
 import { getLinkToPost, shortDate } from '@src/utils';
-import Wave from '@src/components/icons/Wave.astro';
+//import Wave from '@src/components/icons/Wave.astro';
 
 interface Props extends LayoutProps {
   page: Page<BlogEntry>,
@@ -30,7 +30,7 @@ const posts = page.data;
       <div class="divider" />
     </header>
     <main>
-      {posts.map(async (post) => {
+      {posts.map(async (post, index) => {
 
         const date = shortDate(post.data.date);
         const end = post.data.end ? shortDate(post.data.end) : null;
@@ -40,8 +40,11 @@ const posts = page.data;
 
         const { Content } = await post.render();
 
+        const even = index % 2 === 0;
+
         return (
-          <article class="post card">
+          <article class="post card wave" 
+            class:list={{ left: !even, right: even }}>
             <div class="title">
               <div class="tags">
                 <TagList tags={tags} />
@@ -264,15 +267,19 @@ const posts = page.data;
         @include hover-link($subtle: true);
       }
 
+      transition: 
+        opacity 500ms var(--ease-out-1), 
+        transform 500ms var(--ease-out-1),
+        background-size 200ms var(--ease-out-1),
+        box-shadow 500ms var(--ease-out-1);
+
       &.show {
         opacity: 100%;
         transform: none;
-        transition: opacity, transform 500ms var(--ease-out-1);
       }
 
       &.hide {
         opacity: 0%;
-        transition: opacity, transform 500ms var(--ease-out-1);
       }
 
       &:nth-child(odd) {
