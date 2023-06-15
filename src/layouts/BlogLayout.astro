@@ -11,6 +11,7 @@ import type { Page } from 'astro';
 
 import { Picture } from '@astrojs/image/components';
 import { getLinkToPost, shortDate } from '@src/utils';
+import Wave from '@src/components/icons/Wave.astro';
 
 interface Props extends LayoutProps {
   page: Page<BlogEntry>,
@@ -40,7 +41,7 @@ const posts = page.data;
         const { Content } = await post.render();
 
         return (
-          <article class="post card" class:list={{'quick': post.collection === 'capsules'}}>
+          <article class="post card">
             <div class="title">
               <div class="tags">
                 <TagList tags={tags} />
