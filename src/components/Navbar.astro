@@ -26,7 +26,8 @@ const NAV = [
       {NAV.map(({ url, label }) => {
 
         const active = pathname.startsWith(url) || 
-          (pathname === '/' && url === '/blog');
+          (pathname === '/' && url === '/blog') ||
+          (pathname.startsWith('/quick-reviews') && url === '/blog');
 
         return (
           <li class:list={{ active }}>
