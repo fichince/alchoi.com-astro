@@ -40,7 +40,7 @@ const posts = page.data;
         const { Content } = await post.render();
 
         return (
-          <article class="post" class:list={{'quick': post.collection === 'capsules'}}>
+          <article class="post card" class:list={{'quick': post.collection === 'capsules'}}>
             <div class="title">
               <div class="tags">
                 <TagList tags={tags} />
@@ -154,7 +154,7 @@ const posts = page.data;
         height: 2px;
         width: 50%;
         border-radius: 100%;
-        background-color: var(--secondary);
+        background-color: var(--colour-foreground);
         margin-top: var(--size-fluid-1);
       }
 
@@ -173,8 +173,6 @@ const posts = page.data;
     }
 
     article {
-      @include hover-background;
-
       &:not(:first-child) {
         margin-top: var(--size-fluid-3);
       }
@@ -268,12 +266,12 @@ const posts = page.data;
       &.show {
         opacity: 100%;
         transform: none;
-        transition: all 500ms var(--ease-out-1);
+        transition: opacity, transform 500ms var(--ease-out-1);
       }
 
       &.hide {
         opacity: 0%;
-        transition: all 500ms var(--ease-out-1);
+        transition: opacity, transform 500ms var(--ease-out-1);
       }
 
       &:nth-child(odd) {

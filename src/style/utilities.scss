@@ -1,27 +1,30 @@
 .button {
   border-radius: var(--radius-2);
   padding: var(--size-1) var(--size-2);
-  background: var(--secondary);
-  color: var(--primary);
-  border: 2px solid var(--primary-mid);
+  background: var(--colour-primary);
+  color: var(--gray-10);
+  // TODO
+  border: 2px solid var(--colour-background);
 
   &:hover {
-    background: var(--primary);
-    color: var(--secondary);
-    border: 2px solid var(--highlight);
-    text-shadow: 2px 2px 5px var(--highlight);
+    background: var(--colour-secondary);
+    //color: var(--colour-foreground);
+    border: 2px solid var(--colour-accent);
+    text-shadow: 2px 2px 5px var(--colour-accent);
   }
 }
 
 .form-input {
   border-radius: var(--radius-2);
   padding: var(--size-fluid-1);
-  color: var(--primary);
-  background-color: var(--secondary);
+  color: var(--colour-foreground);
+  background-color: var(--colour-background);
   font-family: var(--font-display);
+  border: 1px solid var(--colour-foreground);
+  box-shadow: 0 0 var(--size-2) 0 var(--colour-accent);
 
   &:focus {
-    border-color: var(--highlight);
+    border-color: var(--colour-accent);
   }
 }
 
@@ -30,6 +33,15 @@
 
   &:hover {
     transform: scale(105%);
+  }
+}
+
+.card {
+  border-radius: var(--radius-3);
+  background-color: hsl(var(--colour-bg-h) var(--colour-bg-s) calc(var(--colour-bg-l) * 1.7));
+
+  &:hover {
+    box-shadow: 0 0 var(--size-2) 0 var(--colour-accent);
   }
 }
 

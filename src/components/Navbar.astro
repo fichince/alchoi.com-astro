@@ -1,5 +1,6 @@
 ---
 import Logo from "./Logo.astro";
+import ThemeToggler from '@src/components/ThemeToggler.svelte';
 
 const { pathname } = Astro.url;
 
@@ -37,16 +38,23 @@ const NAV = [
           </li>
         );
       })}
+      {/*
+      <li>
+        <ThemeToggler client:load />
+      </li>
+      */}
     </ul>
   </nav>
 </div>
+
 <style lang="scss">
   @import "../style/mixins.scss";
 
   .navbar {
     padding: var(--size-fluid-1);
 
-    background: var(--primary);
+    background: var(--colour-primary);
+    color: var(--gray-10);
 
     display: flex;
     align-items: center;
@@ -82,7 +90,7 @@ const NAV = [
       // hamburger 
       & span, & span::before, & span::after {
         display: block;
-        background: var(--secondary);
+        background: var(--gray-10);
         height: 2px;
         width: 2em;
         border-radius: 2px;
@@ -106,7 +114,7 @@ const NAV = [
       & span, & span::before, & span::after {
         // TODO would be best to change the shape of the 
         // hamburger, instead of relying on colour only
-        background: var(--highlight);
+        background: var(--colour-accent);
       }
     }
 
@@ -120,11 +128,13 @@ const NAV = [
       text-align: left;
       top: 100%;
       left: 0;
-      background: var(--primary);
       width: 100%;
       transform: scale(1, 0);
       transform-origin: top;
       transition: transform var(--transition-duration) var(--transition-fn);
+
+      background: var(--colour-primary);
+      color: var(--gray-10);
 
       ul {
         display: flex;
@@ -157,7 +167,7 @@ const NAV = [
 
     li.active {
       
-      color: var(--highlight);
+      color: var(--colour-accent);
       .symbol::before {
         content: '\2192'; // show an arrow
       }
@@ -186,6 +196,8 @@ const NAV = [
         ul {
           display: flex;
           flex-direction: row;
+          align-items: center;
+
           li {
             margin-right: var(--size-3);
 

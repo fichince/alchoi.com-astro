@@ -61,7 +61,7 @@ const { Content: Book } = await book.render();
           const { Content } = await item.render();
 
           return (
-            <article x-on:mouseover={`bgShift = ${index}`} class="story">
+            <article x-on:mouseover={`bgShift = ${index}`} class="story card">
               <div class="image image-hover">
                 <a href={link}>
                   <Picture
@@ -130,7 +130,7 @@ const { Content: Book } = await book.render();
     }
 
     section {
-      border-top: 1px solid var(--primary-light);
+      border-top: 1px solid var(--colour-foreground);
       padding: var(--size-fluid-1) 0;
     }
 
@@ -198,17 +198,16 @@ const { Content: Book } = await book.render();
         gap: var(--size-fluid-2);
 
         article {
-          @include hover-background($c: var(--highlight-dark));
           padding: var(--size-fluid-2);
           font-size: var(--font-size-fluid-0);
 
           &.show {
             opacity: 1;
-            transition: all 500ms var(--ease-out-1);
+            transition: opacity 500ms var(--ease-out-1);
           }
           &.hide {
             opacity: 0;
-            transition: all 500ms var(--ease-out-1);
+            transition: opacity 500ms var(--ease-out-1);
           }
 
           @include sm-up {
