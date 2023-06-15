@@ -79,6 +79,6 @@ html.light {
 
 sl-rating {
   --symbol-color-active: var(--colour-accent);
-  --symbol-color: var(--colour-foreground);
+  --symbol-color: var(--colour-background);
   --symbol-size: var(--size-3);
 }
