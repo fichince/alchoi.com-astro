@@ -63,7 +63,7 @@
     padding-bottom: var(--size-fluid-2);
 
     &:not(.not-found) {
-      border-bottom: 1px solid var(--highlight);
+      border-bottom: 1px solid var(--colour-accent);
     }
 
     a {
@@ -87,7 +87,7 @@
       background: inherit;
       font-weight: 700;
       font-style: italic;
-      color: var(--highlight);
+      color: var(--colour-accent);
     }
   }
 

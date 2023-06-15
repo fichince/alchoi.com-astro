@@ -4,32 +4,6 @@
   }
 }
 
-@mixin hover-background($a: var(--primary), $b: var(--primary-light), $c: var(--highlight)) {
-  position: relative;
-  z-index: 1;
-  background: linear-gradient(to top left, $a, $b);
-  &::before {
-    position: absolute;
-    content: '';
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    border-radius: var(--size-2);
-
-    background: linear-gradient(to bottom right, $a, $c);
-
-    opacity: 0;
-    transition: opacity 1000ms var(--ease-out-5);
-  }
-  &:hover::before {
-    opacity: 1;
-  }
-
-  border-radius: var(--size-2);
-}
-
 @mixin hover-link($subtle: false) {
 
   @if not $subtle {
@@ -40,7 +14,7 @@
     }
   } @else {
     &:hover {
-      color: var(--highlight);
+      color: var(--colour-accent);
     }
   }
 

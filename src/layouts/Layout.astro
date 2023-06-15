@@ -13,7 +13,7 @@ export interface Props {
   title?: string;
   meta?: {
     description?: string,
-    image?:string,
+    image?: string,
   }
 }
 
@@ -43,7 +43,17 @@ const isProd = import.meta.env.PROD;
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/dark.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/light.css" />
     <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace-autoloader.js"></script>
+
+    {/*
+    <script>
+      import { getTheme, applyTheme } from "../scripts/theme";
+      // light/dark mode - we're dark by default, light mode if that's the user preference
+      const currentTheme = getTheme();
+      applyTheme(currentTheme);
+    </script>
+  */}
 
     <meta name="description" content={description} />
 
@@ -85,8 +95,8 @@ const isProd = import.meta.env.PROD;
   @import "../style/utilities.scss";
 
   body {
-    background: linear-gradient(to bottom, var(--primary), var(--primary-light));
-    color: var(--secondary);
+    background: var(--colour-background);
+    color: var(--colour-foreground);
 
     height: 100%;
     margin: 0;

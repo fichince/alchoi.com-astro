@@ -60,7 +60,8 @@ const { Content } = await about.render();
     justify-items: center;
     place-content: center;
 
-    background: linear-gradient(to bottom left, var(--primary-light), var(--primary-mid));
+    background: var(--colour-foreground);
+    color: var(--colour-background) !important;
 
     .headshot {
       grid-area: headshot;
@@ -72,6 +73,9 @@ const { Content } = await about.render();
     .words {
       grid-area: words;
       font-family: var(--font-body);
+      --tw-prose-body: var(--colour-background);
+      --tw-prose-headings: var(--colour-background);
+      --tw-prose-links: var(--colour-background);
     }
 
     .links {
