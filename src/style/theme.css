@@ -87,3 +87,7 @@ sl-rating {
   --symbol-color: hsl(var(--colour-accent-h) var(--colour-accent-s) calc(var(--colour-accent-l) * 0.5));
   --symbol-size: var(--size-3);
 }
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
