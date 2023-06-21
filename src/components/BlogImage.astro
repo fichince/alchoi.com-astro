@@ -6,21 +6,33 @@ interface Props {
   alt: string,
   sm?: number,
   lg?: number,
+  caption?: string,
 }
 
-const { src, alt } = Astro.props;
+const { src, alt, caption } = Astro.props;
 
 const sm = Astro.props.sm ?? 350;
 const lg = Astro.props.lg ?? 500;
 ---
-<Picture src={src}
-  alt={alt}
-  widths={[sm, lg]}
-  sizes={`(min-width: 480px) ${lg}px, ${sm}px`}
-/>
+<figure>
+  <Picture src={src}
+    alt={alt}
+    widths={[sm, lg]}
+    sizes={`(min-width: 480px) ${lg}px, ${sm}px`}
+  />
+  { caption &&
+    <figcaption>{caption}</figcaption>
+  }
+</figure>
 
 <style>
   img {
     margin: 0 auto;
+  }
+
+  figcaption {
+    margin-top: var(--size-fluid-1) !important;
+    text-align: center;
+    font-size: var(--font-size-fluid--1) !important;
   }
 </style>
