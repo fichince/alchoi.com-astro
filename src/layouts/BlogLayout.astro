@@ -29,7 +29,7 @@ const posts = page.data;
       <div class="divider" />
     </header>
     <main>
-      {posts.map(async (post) => {
+      {posts.map(async (post, index) => {
 
         const date = shortDate(post.data.date);
         const end = post.data.end ? shortDate(post.data.end) : null;
@@ -39,8 +39,11 @@ const posts = page.data;
 
         const { Content } = await post.render();
 
+        const even = index % 2 === 0;
+
         return (
-          <article class="post card" class:list={{'quick': post.collection === 'capsules'}}>
+          <article class="post card" 
+            class:list={{ left: !even, right: even }}>
             <div class="title">
               <div class="tags">
                 <TagList tags={tags} />
@@ -263,15 +266,19 @@ const posts = page.data;
         @include hover-link($subtle: true);
       }
 
+      transition: 
+        opacity 500ms var(--ease-out-1), 
+        transform 500ms var(--ease-out-1),
+        box-shadow 500ms var(--ease-out-1),
+        background-color 500ms var(--ease-out-1);
+
       &.show {
         opacity: 100%;
         transform: none;
-        transition: opacity, transform 500ms var(--ease-out-1);
       }
 
       &.hide {
         opacity: 0%;
-        transition: opacity, transform 500ms var(--ease-out-1);
       }
 
       &:nth-child(odd) {

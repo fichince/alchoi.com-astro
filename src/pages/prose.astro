@@ -201,13 +201,14 @@ const { Content: Book } = await book.render();
           padding: var(--size-fluid-2);
           font-size: var(--font-size-fluid-0);
 
+          transition: opacity 500ms var(--ease-out-1),
+            box-shadow 500ms var(--ease-out-1);
+
           &.show {
             opacity: 1;
-            transition: opacity 500ms var(--ease-out-1);
           }
           &.hide {
             opacity: 0;
-            transition: opacity 500ms var(--ease-out-1);
           }
 
           @include sm-up {
