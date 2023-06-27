@@ -42,7 +42,7 @@ const posts = page.data;
         const even = index % 2 === 0;
 
         return (
-          <article class="post card wave" 
+          <article class="post card" 
             class:list={{ left: !even, right: even }}>
             <div class="title">
               <div class="tags">
@@ -269,7 +269,8 @@ const posts = page.data;
       transition: 
         opacity 500ms var(--ease-out-1), 
         transform 500ms var(--ease-out-1),
-        box-shadow 500ms var(--ease-out-1);
+        box-shadow 500ms var(--ease-out-1),
+        background-color 500ms var(--ease-out-1);
 
       &.show {
         opacity: 100%;
