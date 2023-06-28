@@ -1,20 +1,7 @@
 <svg id="visual" viewBox="0 0 900 900" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
-  <filter id="grainy">
-    <feTurbulence type="fractalNoise" baseFrequency="2.0" 
-      numOctaves="3" seed="15" stitchTiles="stitch" 
-      x="0%" y="0%" width="100%" height="100%" result="turbulence">
-    </feTurbulence>
-    <feSpecularLighting surfaceScale="9" specularConstant="0.75" specularExponent="20" 
-      lighting-color="white" x="0%" y="0%" width="100%" height="100%" in="turbulence" 
-      result="specularLighting">
-        <feDistantLight azimuth="3" elevation="100"></feDistantLight>
-    </feSpecularLighting>
-    <feComposite operator="in" in2="SourceGraphic" result="monoNoise" />
-  </filter>
   <path
     d="M623 900L649 878.5C675 857 727 814 735.2 771.2C743.3 728.3 707.7 685.7 689.3 642.8C671 600 670 557 656.3 514.2C642.7 471.3 616.3 428.7 635.7 385.8C655 343 720 300 748.5 257.2C777 214.3 769 171.7 757.7 128.8C746.3 86 731.7 43 724.3 21.5L717 0L900 0L900 21.5C900 43 900 86 900 128.8C900 171.7 900 214.3 900 257.2C900 300 900 343 900 385.8C900 428.7 900 471.3 900 514.2C900 557 900 600 900 642.8C900 685.7 900 728.3 900 771.2C900 814 900 857 900 878.5L900 900Z"
-    fill="white" stroke-linecap="round" stroke-linejoin="miter"
-    filter="url(#grainy)">
+    fill="#373f49" stroke-linecap="round" stroke-linejoin="miter">
   </path>
 </svg>

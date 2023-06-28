@@ -42,7 +42,7 @@ const posts = page.data;
         const even = index % 2 === 0;
 
         return (
-          <article class="post card" 
+          <article class="post card wave" 
             class:list={{ left: !even, right: even }}>
             <div class="title">
               <div class="tags">
@@ -231,7 +231,7 @@ const posts = page.data;
           margin-bottom: var(--font-size-fluid-1);
         }
 
-        time {
+        .dates {
           font-size: var(--font-size-fluid-1);
         }
         .description {
