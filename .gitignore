@@ -21,3 +21,5 @@ pnpm-debug.log*
 .DS_Store
 
 .Ulysses*
+
+remark42/var/*
