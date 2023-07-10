@@ -8,8 +8,6 @@
       theme: 'dark',
     };
 
-    console.log('remark_config', remark_config);
-
     !(function (e, n) {
       for (var o = 0; o < e.length; o++) {
         var r = n.createElement("script"),
