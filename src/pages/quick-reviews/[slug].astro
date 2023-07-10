@@ -4,7 +4,9 @@ import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import MD from '@src/components/MD.astro';
 import TagList from '@src/components/TagList.astro';
+import Comments from '@src/components/Comments.svelte';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+
 import { enrichCapsuleEntry, getAllBlogEntries, mediumDate } from '@src/utils';
 import type { GetStaticPaths } from 'astro';
 import { getEntryBySlug } from 'astro:content';
@@ -79,7 +81,10 @@ const meta = {
     </section>
     <main class="tw-prose">
       <Content />
+      <Comments client:load />
     </main>
+
+
     <CoolBackground />
     { /* TODO put some indicator here that there's something below */ }
   </article>
