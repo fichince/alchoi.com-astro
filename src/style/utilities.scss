@@ -80,6 +80,7 @@
 
     &:hover::before {
       transform: scale(200%);
+      filter: blur(10px);
     }
   }
 }
