@@ -1,5 +1,5 @@
 ---
-title: "_Leviathan Wakes (The Expanse #1)_"
+title: "_Leviathan Wakes_ (_The Expanse_ #1)"
 author: James S.A. Corey
 date: 2023-06-02
 end: 2023-06-29

@@ -1,5 +1,5 @@
 ---
-title: "_The Big Door Prize (Season 1)_"
+title: "_The Big Door Prize_ - Season 1"
 date: 2023-07-10
 rating: 3.0
 type: tv
