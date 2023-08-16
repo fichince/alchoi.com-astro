@@ -14,10 +14,11 @@ export interface Props {
   meta?: {
     description?: string,
     image?: string,
-  }
+  },
+  loadMaps?: boolean,
 }
 
-const { meta } = Astro.props;
+const { meta, loadMaps } = Astro.props;
 const title = stripMarkdown(Astro.props.title ?? 'Albert Choi');
 
 const description = stripMarkdown(meta?.description ?? 'The homepage of Albert Choi');
@@ -46,6 +47,8 @@ const isProd = import.meta.env.PROD;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/light.css" />
     <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace-autoloader.js"></script>
 
+    <>
+    { loadMaps &&
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
       crossorigin=""/>
@@ -55,6 +58,8 @@ const isProd = import.meta.env.PROD;
       crossorigin="" is:inline></script>
 
     <script src="/js/leaflet-providers.js" is:inline></script>
+    }
+    </>
 
 
     {/*
