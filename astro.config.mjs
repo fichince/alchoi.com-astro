@@ -24,4 +24,7 @@ export default defineConfig({
     }
   },
   compressHTML: true,
+  experimental: {
+    viewTransitions: true,
+  }
 });

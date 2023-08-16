@@ -67,7 +67,10 @@ const meta = {
     </section>
     <main class="tw-prose">
       <Content />
-      <Comments client:load />
+      <hr />
+      <div class="comments">
+        <Comments client:load />
+      </div>
     </main>
 
     <CoolBackground />
@@ -149,6 +152,10 @@ const meta = {
     main {
       grid-area: body;
       font-size: var(--font-size-fluid-0);
+
+      .comments {
+        margin-top: var(--size-fluid-4);
+      }
     }
   }
 </style>
