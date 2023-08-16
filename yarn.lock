@@ -757,30 +757,15 @@
   resolved "https://registry.yarnpkg.com/@fontsource/inconsolata/-/inconsolata-4.5.10.tgz#0660baa34a78c3b6cc21ece3bc1907bc43275dec"
   integrity sha512-kShpiWE3RD4LH4YlZPbyE4VMt826DA7Ugw1jNJt54mxpP7nUsI9gflQOLWSJ9AMLkqPLpjza9iZkKRmU8Q7MOQ==
 
-"@fontsource/karla@^4.5.11":
-  version "4.5.11"
-  resolved "https://registry.yarnpkg.com/@fontsource/karla/-/karla-4.5.11.tgz#5434a77cf11b467046b13ed80be4140c87c42353"
-  integrity sha512-MpH+rW8V5v/mqEwoIrUTmGimY+GIyU5P23DmzYxWcTotosRLGWrg7XOjN4DtkpZuEv2LzHHZxOuFWbjRWL9JfQ==
-
 "@fontsource/libre-franklin@^4.5.11":
   version "4.5.11"
   resolved "https://registry.yarnpkg.com/@fontsource/libre-franklin/-/libre-franklin-4.5.11.tgz#fef319bde3e2d10dc610f0c3f6bd98b01e5dccfe"
   integrity sha512-aKdMQYJ7tJsrNAkix6Lf5SRv58cIZi1xIlFBJw1XPgGAlqcVM0DOHQk3Z94aZXJrmrqGvf7JtkTTaTm53xvMSw==
 
-"@fontsource/mononoki@^4.5.3":
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/@fontsource/mononoki/-/mononoki-4.5.3.tgz#a2125454f135a1d1e4347d856fb245941da85569"
-  integrity sha512-dKzSkFxNZO2lYX8lNyyY/+KHShHjp1ddSckWB34qWJNTuNiWfHb/nzhWsIGaGwGoOHEFTRIMNUaZ7zEKyW5OoA==
-
 "@fontsource/nunito@^4.5.12":
   version "4.5.12"
   resolved "https://registry.yarnpkg.com/@fontsource/nunito/-/nunito-4.5.12.tgz#3d34ede8677a57e1d25e9b30d9e57d620592ca3d"
   integrity sha512-Li90TCJha1E+nBgP51GjcIGV6LxyQi7QisW8KZ4kpz5mpnQc1HmsJWVr9fyTMItUF/OuZUOfEazenXjaY6qRpQ==
-
-"@fontsource/special-elite@^4.5.8":
-  version "4.5.8"
-  resolved "https://registry.yarnpkg.com/@fontsource/special-elite/-/special-elite-4.5.8.tgz#fe0dad0b916816415ece1de5c3e23eb54cd1494d"
-  integrity sha512-RGikYgNZUotjuuY1s++F7HMJBq8x9YUhhtmYAYxcJy22+UkHlq8sf3RpRrnXOAIDiYwg26mBmBPADZ58PjR+jw==
 
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
