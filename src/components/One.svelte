@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
 
   onMount(() => {
-    $mapStore.flyTo([35.65710765530139, 139.7036689679329], 17);
+    console.log('what is this?', $mapStore);
+    $mapStore.panTo([139.7036689679329, 35.65710765530139]);
   });
 </script>

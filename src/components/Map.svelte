@@ -3,24 +3,17 @@
   import Router, { location, push } from 'svelte-spa-router';
   import One from './One.svelte';
   import Two from './Two.svelte';
-  import { map, tileLayer } from 'leaflet';
   import { mapStore } from '@src/stores/map';
 
-  /*
   onMount(() => {
-
-    $mapStore = map('map').setView([51.505, -0.09], 17);
-
-    tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png', {
-      maxZoom: 20,
-      attribution:
-					'Map tiles by <a href="http://stamen.com">Stamen Design</a>, ' +
-					'<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; ' +
-					'Map data {attribution.OpenStreetMap}',
-    }).addTo($mapStore);
+    $mapStore = new maplibregl.Map({
+      container: 'map',
+      style: 'https://tiles-beta.stadiamaps.com/styles/stamen_toner.json',  // Style URL; see our documentation for more options
+      center: [12, 55],  // Initial focus coordinate
+      zoom: 15
+    });
 
   });
-  */
 
   function next() {
     const current = parseInt($location.substring(1));
@@ -29,7 +22,6 @@
 
   function prev() {
     const current = parseInt($location.substring(1));
-    console.log('prev', current, $location);
     push(`/${current - 1}`);
   }
 
