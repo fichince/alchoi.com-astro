@@ -6,6 +6,7 @@
   import { map, tileLayer } from 'leaflet';
   import { mapStore } from '@src/stores/map';
 
+  /*
   onMount(() => {
 
     $mapStore = map('map').setView([51.505, -0.09], 17);
@@ -19,6 +20,7 @@
     }).addTo($mapStore);
 
   });
+  */
 
   function next() {
     const current = parseInt($location.substring(1));
@@ -50,6 +52,19 @@
   #map {
     z-index: 0;
     height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &.blurred {
+      filter: blur(3px);
+    }
+
+    &.left {
+      top: 0;
+      left: 0;
+    }
   }
 
   #next {
