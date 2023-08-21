@@ -1,11 +1,17 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import Router, { location, push } from 'svelte-spa-router';
-  import One from './One.svelte';
-  import Two from './Two.svelte';
-  import { mapStore } from '@src/stores/map';
+  import Router, { push } from 'svelte-spa-router';
+  import { wrap } from 'svelte-spa-router/wrap';
 
-  export let content : any[];
+  import { mapStore } from '@src/stores/map';
+  import maplibregl from 'maplibre-gl';
+  import fromPairs from 'lodash/fromPairs';
+  import clamp from 'lodash/clamp';
+
+  export let photoPages : PhotoPage[];
+
+  const slugs = photoPages.map((p) => p.slug);
+  let currentPage = 0;
 
   onMount(() => {
     $mapStore = new maplibregl.Map({
@@ -15,22 +21,27 @@
       zoom: 5
     });
 
+    push(`/${slugs[0]}`);
   });
 
   function next() {
-    const current = parseInt($location.substring(1));
-    push(`/${current + 1}`);
+    currentPage = clamp(currentPage + 1, 0, slugs.length - 1);
   }
 
   function prev() {
-    const current = parseInt($location.substring(1));
-    push(`/${current - 1}`);
+    currentPage = clamp(currentPage - 1, 0, slugs.length - 1);
   }
 
-  const routes = {
-    '/1': One,
-    '/2': Two,
-  };
+  $: currentPage, push(`/${slugs[currentPage]}`);
+
+  const routes = fromPairs(photoPages.map((page) => {
+    return [
+      `/${page.slug}`,
+      wrap({
+        asyncComponent: () => import(`./hkjapan/${page.component}.svelte`)
+      })
+    ];
+  }));
 
 </script>
 

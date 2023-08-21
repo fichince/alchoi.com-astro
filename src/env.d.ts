@@ -35,3 +35,9 @@ type BlogEntrySummary = {
   url: string,
   date: date,
 };
+
+type PhotoPage = {
+  slug: string,
+  component: string,
+  body: string,
+};

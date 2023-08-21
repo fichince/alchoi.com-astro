@@ -10,7 +10,15 @@ const content = await getCollection('hkjapan');
 
 console.log('content', content);
 
+const photoPages = content.map((item) => {
+  return {
+    slug: item.slug,
+    body: item.body,
+    component: item.data.component,
+  }
+});
+
 ---
 <Layout title="Hong Kong and Japan 2023" loadMaps>
-  <Map client:only content={content} />
+  <Map client:only photoPages={photoPages} />
 </Layout>

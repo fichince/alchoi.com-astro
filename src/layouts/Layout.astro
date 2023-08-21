@@ -7,6 +7,8 @@ import '@fontsource/nunito/variable-italic.css';
 import '@fontsource/libre-franklin/variable.css';
 import '@fontsource/libre-franklin/variable-italic.css';
 
+import 'maplibre-gl/dist/maplibre-gl.css';
+
 import { stripMarkdown } from '@src/utils';
 
 export interface Props {
@@ -47,12 +49,14 @@ const isProd = import.meta.env.PROD;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/light.css" />
     <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace-autoloader.js"></script>
 
+    {/*
     <>
     { loadMaps &&
       <script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
       <link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
     }
     </>
+    */}
 
 
     {/*
