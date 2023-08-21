@@ -4,5 +4,6 @@
 
   onMount(() => {
     $mapStore.panTo([ 139.70085515273462, 35.675541428602614 ]);
+    $mapStore.zoomTo(15);
   });
 </script>

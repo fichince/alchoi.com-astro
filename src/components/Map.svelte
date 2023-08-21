@@ -5,12 +5,14 @@
   import Two from './Two.svelte';
   import { mapStore } from '@src/stores/map';
 
+  export let content : any[];
+
   onMount(() => {
     $mapStore = new maplibregl.Map({
       container: 'map',
       style: 'https://tiles-beta.stadiamaps.com/styles/stamen_toner.json',  // Style URL; see our documentation for more options
-      center: [12, 55],  // Initial focus coordinate
-      zoom: 15
+      center: [ 126.08244133499566, 26.808099925670312 ],
+      zoom: 5
     });
 
   });
