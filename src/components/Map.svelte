@@ -3,8 +3,7 @@
   import Router, { push } from 'svelte-spa-router';
   import { wrap } from 'svelte-spa-router/wrap';
 
-  import { mapStore } from '@src/stores/map';
-  import maplibregl from 'maplibre-gl';
+  import { mapStore, mapPage } from '@src/stores/map';
   import fromPairs from 'lodash/fromPairs';
   import clamp from 'lodash/clamp';
 
@@ -14,25 +13,28 @@
   let currentPage = 0;
 
   onMount(() => {
-    $mapStore = new maplibregl.Map({
-      container: 'map',
-      style: 'https://tiles-beta.stadiamaps.com/styles/stamen_toner.json',  // Style URL; see our documentation for more options
-      center: [ 126.08244133499566, 26.808099925670312 ],
-      zoom: 5
-    });
+    // subscribe to initialize the map object, no action needed when it changes
+    const unsubscribe = mapStore.subscribe(() => {});
 
     push(`/${slugs[0]}`);
+
+    return unsubscribe;
   });
 
+  function safePage(n : number) {
+    return clamp(n, 0, slugs.length - 1);
+  }
+
   function next() {
-    currentPage = clamp(currentPage + 1, 0, slugs.length - 1);
+    currentPage = safePage(currentPage + 1);
   }
 
   function prev() {
-    currentPage = clamp(currentPage - 1, 0, slugs.length - 1);
+    currentPage = safePage(currentPage - 1);
   }
 
   $: currentPage, push(`/${slugs[currentPage]}`);
+  $: currentPage, $mapPage = photoPages[currentPage];
 
   const routes = fromPairs(photoPages.map((page) => {
     return [

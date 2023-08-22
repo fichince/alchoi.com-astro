@@ -11,10 +11,22 @@ const content = await getCollection('hkjapan');
 console.log('content', content);
 
 const photoPages = content.map((item) => {
+  const { 
+    data: { 
+      component,
+      date,
+      title,
+      map,
+    }
+  } = item;
+
   return {
     slug: item.slug,
+    component,
     body: item.body,
-    component: item.data.component,
+    date,
+    title,
+    map,
   }
 });
 

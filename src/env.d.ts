@@ -39,5 +39,12 @@ type BlogEntrySummary = {
 type PhotoPage = {
   slug: string,
   component: string,
-  body: string,
+  body?: string,
+  date?: date,
+  title?: string,
+  map?: {
+    lat: number,
+    lon: number,
+    zoom: number,
+  }
 };
