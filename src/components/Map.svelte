@@ -58,8 +58,8 @@
 </div>
 <button id="next" class="button" on:click={next}>Next</button>
 <button id="prev" class="button" on:click={prev}>Prev</button>
-<div>
-<Router {routes} />
+<div id="contents">
+  <Router {routes} />
 </div>
 
 <style lang="scss">
@@ -79,6 +79,10 @@
       top: 0;
       left: 0;
     }
+  }
+
+  #contents {
+    font-family: var(--font-body);
   }
 
   #next {

@@ -1,11 +1,12 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { mapStore, mapPage } from '@src/stores/map';
+  import { mapStore, mapPage, mapMoving } from '@src/stores/map';
   import { renderMarkdown } from '@src/markdown';
+
+  let show : boolean = false;
 
   onMount(() => {
     const { map } = $mapPage;
-    console.log('intro map', map);
 
     if (map) {
       const { lat, lon, zoom } = map;
@@ -13,24 +14,39 @@
         center: { lat, lon },
         zoom
       });
-      //$mapStore.zoomTo(zoom);
     }
-  });
 
-  console.log('here', $mapPage);
+  });
 
   const { body } = $mapPage;
   const html = renderMarkdown(body ?? '');
 
+  $: show = !$mapMoving;
+
 </script>
 
-<div id="intro">
+<div id="intro" class:show>
   {@html html}
 </div>
 
 <style lang="scss">
   #intro {
     position: absolute;
-    z-index: 10;
+    top: 60vh;
+
+    width: 30vw;
+    left: 60vw;
+
+    background-color: var(--colour-background);
+    padding: var(--size-fluid-1);
+    border-radius: var(--radius-2);
+
+    &.show {
+      visibility: visible;
+    }
+    &:not(.show) {
+      visibility: hidden;
+    }
   }
+
 </style>
