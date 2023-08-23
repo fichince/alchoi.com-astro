@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { mapStore, mapPage } from '@src/stores/map';
   import { onMount } from 'svelte';
+  import { mapStore, mapPage } from '@src/stores/map';
+  import { renderMarkdown } from '@src/markdown';
 
   onMount(() => {
     const { map } = $mapPage;
@@ -14,9 +15,22 @@
       });
       //$mapStore.zoomTo(zoom);
     }
-
-    console.log('mounting intro');
   });
 
   console.log('here', $mapPage);
+
+  const { body } = $mapPage;
+  const html = renderMarkdown(body ?? '');
+
 </script>
+
+<div id="intro">
+  {@html html}
+</div>
+
+<style lang="scss">
+  #intro {
+    position: absolute;
+    z-index: 10;
+  }
+</style>

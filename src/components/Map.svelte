@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import Router, { push } from 'svelte-spa-router';
+  import Router, { push, location } from 'svelte-spa-router';
   import { wrap } from 'svelte-spa-router/wrap';
 
   import { mapStore, mapPage } from '@src/stores/map';
@@ -13,10 +13,17 @@
   let currentPage = 0;
 
   onMount(() => {
+
     // subscribe to initialize the map object, no action needed when it changes
     const unsubscribe = mapStore.subscribe(() => {});
 
-    push(`/${slugs[0]}`);
+    // initialize the current page depending on the URL
+    if ($location === '/') {
+      push(`/${slugs[0]}`);
+    } else {
+      const i = slugs.findIndex((value) => value === $location.substring(1));
+      if (i > -1) currentPage = i;
+    }
 
     return unsubscribe;
   });
