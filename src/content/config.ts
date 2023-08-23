@@ -54,6 +54,10 @@ const hkjapan = defineCollection({
     images: z.object({
       image: z.string(),
       caption: z.string().optional(),
+      location: z.object({
+        lat: z.number(),
+        lon: z.number(),
+      }).optional(),
     }).array().optional(),
   })
 });

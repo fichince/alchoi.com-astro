@@ -46,5 +46,13 @@ type PhotoPage = {
     lat: number,
     lon: number,
     zoom: number,
-  }
+  },
+  images?: Array<{
+    image: string,
+    caption?: string,
+    location?: {
+      lat: number,
+      lon: number,
+    }
+  }>
 };
