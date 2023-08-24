@@ -3,19 +3,21 @@
   import Router, { push, location } from 'svelte-spa-router';
   import { wrap } from 'svelte-spa-router/wrap';
 
-  import { mapStore, mapPage } from '@src/stores/map';
+  import { mapStore, mapPage, allMapPages } from '@src/stores/map';
   import fromPairs from 'lodash/fromPairs';
   import clamp from 'lodash/clamp';
 
-  export let photoPages : PhotoPage[];
+  export let mapPages : MapPage[];
 
-  const slugs = photoPages.map((p) => p.slug);
+  const slugs = mapPages.map((p) => p.slug);
   let currentPage = 0;
 
   onMount(() => {
 
+    $allMapPages = mapPages;
+
     // subscribe to initialize the map object, no action needed when it changes
-    const unsubscribe = mapStore.subscribe(() => {});
+    //const unsubscribe = mapStore.subscribe(() => {});
 
     // initialize the current page depending on the URL
     if ($location === '/') {
@@ -25,7 +27,7 @@
       if (i > -1) currentPage = i;
     }
 
-    return unsubscribe;
+    //return unsubscribe;
   });
 
   function safePage(n : number) {
@@ -41,9 +43,9 @@
   }
 
   $: currentPage, push(`/${slugs[currentPage]}`);
-  $: currentPage, $mapPage = photoPages[currentPage];
+  $: currentPage, $mapPage = mapPages[currentPage];
 
-  const routes = fromPairs(photoPages.map((page) => {
+  const routes = fromPairs(mapPages.map((page) => {
     return [
       `/${page.slug}`,
       wrap({

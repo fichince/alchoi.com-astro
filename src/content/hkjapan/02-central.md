@@ -4,8 +4,14 @@ component: Central
 images:
   - image: https://picsum.photos/seed/foo/300/200
     caption: Incididunt aliquip voluptate consectetur proident est Lorem duis velit. 
+    location:
+      lat: 22.283106282680873
+      lon: 114.17309846881481
   - image: https://picsum.photos/seed/foo2/300/200
     caption: Id dolore deserunt proident occaecat. 
+    location:
+      lat: 22.27702357473951
+      lon: 114.16786870904473
 map:
   lat: 22.28962431950738
   lon: 114.17309577555726

@@ -36,7 +36,16 @@ type BlogEntrySummary = {
   date: date,
 };
 
-type PhotoPage = {
+type MapImage = {
+  image: string,
+  caption?: string,
+  location?: {
+    lat: number,
+    lon: number,
+  }
+};
+
+type MapPage = {
   slug: string,
   component: string,
   body?: string,
@@ -47,12 +56,5 @@ type PhotoPage = {
     lon: number,
     zoom: number,
   },
-  images?: Array<{
-    image: string,
-    caption?: string,
-    location?: {
-      lat: number,
-      lon: number,
-    }
-  }>
+  images?: Array<MapImage>,
 };
