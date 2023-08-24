@@ -8,8 +8,6 @@ import { getCollection } from 'astro:content';
 // e.g. do the image compression stuff on the server
 const content = await getCollection('hkjapan');
 
-console.log('content', content);
-
 const photoPages = content.map((item) => {
   const { 
     data: { 

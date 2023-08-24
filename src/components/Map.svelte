@@ -17,7 +17,7 @@
     $allMapPages = mapPages;
 
     // subscribe to initialize the map object, no action needed when it changes
-    //const unsubscribe = mapStore.subscribe(() => {});
+    const unsubscribe = mapStore.subscribe(() => {});
 
     // initialize the current page depending on the URL
     if ($location === '/') {
@@ -27,7 +27,7 @@
       if (i > -1) currentPage = i;
     }
 
-    //return unsubscribe;
+    return unsubscribe;
   });
 
   function safePage(n : number) {

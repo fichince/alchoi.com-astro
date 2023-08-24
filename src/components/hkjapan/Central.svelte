@@ -1,15 +1,16 @@
 <script lang="ts">
   import { renderMarkdown } from '@src/markdown';
-  import { mapStore, mapPage, mapMoving } from '@src/stores/map';
+  import { mapStore, mapPage, mapMoving, mapIdle } from '@src/stores/map';
   import { onMount } from 'svelte';
-  import maplibregl, { MapMouseEvent } from 'maplibre-gl';
 
   let show : boolean = false;
   let images : MapImage[] = [];
+  let slug : string;
 
   onMount(() => {
     const { map } = $mapPage;
     console.log('central map', map);
+    slug = $mapPage.slug;
 
     if (map) {
       const { lat, lon, zoom } = map;
@@ -24,79 +25,22 @@
 
     images = $mapPage.images ?? [];
 
-    /*
-    const features = images.map((i) => {
-      if (i.location) {
-
-        const { lat, lon } = i.location;
-        return {
-          type: 'Feature',
-          properties: {
-            // TODO
-          },
-          geometry: {
-            type: 'Point',
-            coordinates: [ lat, lon ]
-          }
-        }
-
-      } else {
-        return null;
-      }
-    }).filter((x) => x !== null);
-
-    const geojson = {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features
-      }
-    };
-
-    $mapStore.addSource('central', geojson);
-
-    $mapStore.addLayer({
-      id: 'central',
-      type: 'symbol',
-      source: 'central',
-      layout: {
-        'icon-image': 'marker'
-      }
-    });
-    */
-
-    /*
-    const markers : maplibregl.Marker[] = [];
-
-    images.forEach((i) => {
-      if (i.location) {
-        const { lat, lon } = i.location;
-        const marker = new maplibregl.Marker();
-
-        marker
-          .setLngLat({ lat, lon })
-          .addTo($mapStore);
-        
-        markers.push(marker);
-      }
-    });
-
-    $mapStore.on('mouseenter', (e : MapMouseEvent) => {
-      console.log('mouse enter', e);
-    });
-    */
-
     return () => {
-      //markers.forEach((m) => m.remove());
-    };
+      console.log('unmount', slug);
+      $mapStore.setLayoutProperty(slug, 'visibility', 'none');
+    }
   });
 
   const { body } = $mapPage;
   const html = renderMarkdown(body ?? '');
 
-  console.log('here', $mapPage);
-
   $: show = !$mapMoving;
+
+  $: {
+    if ($mapIdle && !$mapMoving) {
+      $mapStore.setLayoutProperty(slug, 'visibility', 'visible');
+    }
+  }
 
 </script>
 

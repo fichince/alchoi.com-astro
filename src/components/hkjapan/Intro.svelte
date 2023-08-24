@@ -15,7 +15,6 @@
         zoom
       });
     }
-
   });
 
   const { body } = $mapPage;

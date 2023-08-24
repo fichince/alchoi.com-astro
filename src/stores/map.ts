@@ -1,5 +1,5 @@
-import { readable, writable, derived, Writable } from 'svelte/store';
-import maplibregl from 'maplibre-gl';
+import { writable, derived, Writable } from 'svelte/store';
+import maplibregl, { GeoJSONSourceSpecification } from 'maplibre-gl';
 
 export const allMapPages = writable<MapPage[]>();
 
@@ -63,15 +63,13 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
           }
         }).filter((x) => x !== null);
 
-        const geojson = {
+        const geojson : GeoJSONSourceSpecification = {
           type: 'geojson',
           data: {
             type: 'FeatureCollection',
             features
           }
         };
-
-        console.log('geojson', geojson);
 
         m.addSource(page.slug, geojson);
 
@@ -83,6 +81,9 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
             'icon-image': 'marker'
           }
         });
+
+        // hide the markers by default, until the page is activated
+        m.setLayoutProperty(page.slug, 'visibility', 'none');
       });
     });
   });
@@ -95,4 +96,10 @@ export const mapPage = writable<MapPage>();
 export const mapMoving = derived(mapStore, ($mapStore, set) => {
   $mapStore.on('movestart', () => set(true));
   $mapStore.on('moveend', () => set(false));
+}, false);
+
+export const mapIdle = derived(mapStore, ($mapStore, set) => {
+  $mapStore.on('load', () => set(false));
+  $mapStore.on('render', () => set(false));
+  $mapStore.on('idle', () => set(true));
 }, false);
