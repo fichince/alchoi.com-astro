@@ -50,7 +50,7 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
             return {
               type: 'Feature',
               properties: {
-                // TODO
+                id: i.id,
               },
               geometry: {
                 type: 'Point',
@@ -71,6 +71,8 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
           }
         };
 
+        console.log('geojson', geojson);
+
         m.addSource(page.slug, geojson);
 
         m.addLayer({
@@ -84,14 +86,28 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
 
         // hide the markers by default, until the page is activated
         m.setLayoutProperty(page.slug, 'visibility', 'none');
+
+        m.on('mousemove', page.slug, (e) => {
+          if (e.features) {
+            mapHovered.set(e.features[0].properties.id);
+          }
+        });
+
+        m.on('mouseleave', page.slug, (e) => {
+          mapHovered.set(null);
+        });
+
       });
     });
   });
+
 
   set(m);
 });
 
 export const mapPage = writable<MapPage>();
+
+export const mapHovered = writable<string | null>();
 
 export const mapMoving = derived(mapStore, ($mapStore, set) => {
   $mapStore.on('movestart', () => set(true));

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { renderMarkdown } from '@src/markdown';
-  import { mapStore, mapPage, mapMoving, mapIdle } from '@src/stores/map';
+  import { mapStore, mapPage, mapMoving, mapIdle, mapHovered } from '@src/stores/map';
   import { onMount } from 'svelte';
 
   let show : boolean = false;
@@ -37,9 +37,12 @@
   $: show = !$mapMoving;
 
   $: {
-    if ($mapIdle && !$mapMoving) {
+    if (slug && $mapIdle && !$mapMoving) {
       $mapStore.setLayoutProperty(slug, 'visibility', 'visible');
     }
+  }
+
+  $: {
   }
 
 </script>
@@ -50,7 +53,7 @@
   </div>
   <div id="images">
     {#each images as i}
-      <img src={i.image} alt={i.caption} />
+      <img src={i.image} alt={i.caption} class:hovered={$mapHovered === i.id} />
     {/each}
   </div>
 </article>
@@ -89,6 +92,11 @@
     flex-direction: column;
 
     justify-content: space-around;
+
+    img.hovered {
+      border: 2px solid red;
+
+    }
   }
 
 </style>

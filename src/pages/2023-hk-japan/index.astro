@@ -1,6 +1,7 @@
 ---
 import Layout from '@src/layouts/Layout.astro';
 import Map from '@src/components/Map.svelte';
+import { nanoid } from 'nanoid';
 
 import { getCollection } from 'astro:content';
 
@@ -8,7 +9,7 @@ import { getCollection } from 'astro:content';
 // e.g. do the image compression stuff on the server
 const content = await getCollection('hkjapan');
 
-const photoPages = content.map((item) => {
+const mapPages = content.map((item) => {
   const { 
     data: { 
       component,
@@ -26,11 +27,14 @@ const photoPages = content.map((item) => {
     date,
     title,
     map,
-    images,
+    images: (images ?? []).map((i) => ({
+      ...i,
+      id: nanoid(),
+    }))
   }
 });
 
 ---
 <Layout title="Hong Kong and Japan 2023" loadMaps>
-  <Map client:only mapPages={photoPages} />
+  <Map client:only mapPages={mapPages} />
 </Layout>
