@@ -37,7 +37,7 @@ type BlogEntrySummary = {
 };
 
 type MapImage = {
-  id: string,
+  id: number,
   image: string,
   caption?: string,
   location?: {

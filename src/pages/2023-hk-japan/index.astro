@@ -9,6 +9,8 @@ import { getCollection } from 'astro:content';
 // e.g. do the image compression stuff on the server
 const content = await getCollection('hkjapan');
 
+let id = 1;
+
 const mapPages = content.map((item) => {
   const { 
     data: { 
@@ -29,7 +31,7 @@ const mapPages = content.map((item) => {
     map,
     images: (images ?? []).map((i) => ({
       ...i,
-      id: nanoid(),
+      id: id++,
     }))
   }
 });

@@ -1,4 +1,4 @@
-import { writable, derived, Writable } from 'svelte/store';
+import { writable, derived, get, Writable } from 'svelte/store';
 import maplibregl, { GeoJSONSourceSpecification } from 'maplibre-gl';
 
 export const allMapPages = writable<MapPage[]>();
@@ -48,6 +48,7 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
 
             const { lat, lon } = i.location;
             return {
+              id: i.id,
               type: 'Feature',
               properties: {
                 id: i.id,
@@ -81,6 +82,14 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
           source: page.slug,
           layout: {
             'icon-image': 'marker'
+          },
+          paint: {
+            'icon-opacity': [
+              'case',
+              ['boolean', ['feature-state', 'hovered'], false],
+              1,
+              0.5
+            ]
           }
         });
 
@@ -89,11 +98,24 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
 
         m.on('mousemove', page.slug, (e) => {
           if (e.features) {
-            mapHovered.set(e.features[0].properties.id);
+            const id = e.features[0].properties.id;
+            mapHovered.set(id);
+
+            m.setFeatureState(
+              { source: page.slug, id }, 
+              { hovered: true }
+            );
           }
         });
 
-        m.on('mouseleave', page.slug, (e) => {
+        m.on('mouseleave', page.slug, () => {
+          const id = get(mapHovered);
+          if (id !== null) {
+            m.setFeatureState(
+              { source: page.slug, id },
+              { hovered: false }
+            );
+          }
           mapHovered.set(null);
         });
 
@@ -107,7 +129,7 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
 
 export const mapPage = writable<MapPage>();
 
-export const mapHovered = writable<string | null>();
+export const mapHovered = writable<number | null>();
 
 export const mapMoving = derived(mapStore, ($mapStore, set) => {
   $mapStore.on('movestart', () => set(true));
