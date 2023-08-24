@@ -1,6 +1,6 @@
 <script lang="ts">
   import { renderMarkdown } from '@src/markdown';
-  import { mapStore, mapPage, mapMoving, mapIdle, mapHovered } from '@src/stores/map';
+  import { mapStore, mapPage, mapMoving, mapIdle, mapHovered, updateHover } from '@src/stores/map';
   import { onMount } from 'svelte';
 
   let show : boolean = false;
@@ -53,7 +53,10 @@
   </div>
   <div id="images">
     {#each images as i}
-      <img src={i.image} alt={i.caption} class:hovered={$mapHovered === i.id} />
+      <img src={i.image} alt={i.caption} 
+        class:hovered={$mapHovered === i.id}
+        on:mouseenter={() => updateHover(i.id)}
+        on:mouseleave={() => updateHover(null)} />
     {/each}
   </div>
 </article>

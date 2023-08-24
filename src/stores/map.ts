@@ -118,11 +118,9 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
           }
           mapHovered.set(null);
         });
-
       });
     });
   });
-
 
   set(m);
 });
@@ -141,3 +139,29 @@ export const mapIdle = derived(mapStore, ($mapStore, set) => {
   $mapStore.on('render', () => set(false));
   $mapStore.on('idle', () => set(true));
 }, false);
+
+export function updateHover(id : number | null) {
+  const hovered = get(mapHovered);
+  const map = get(mapStore);
+  const page = get(mapPage);
+
+  if (id === null) {
+
+    if (hovered !== null) {
+      map.setFeatureState(
+        { source: page.slug, id: hovered },
+        { hovered: false }
+      );
+    }
+    mapHovered.set(null);
+
+  } else {
+
+    map.setFeatureState(
+      { source: page.slug, id },
+      { hovered: true }
+    );
+    mapHovered.set(id);
+
+  }
+}
