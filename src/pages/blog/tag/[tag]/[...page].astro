@@ -10,7 +10,7 @@ export const getStaticPaths = (async ({ paginate }) => {
     return union(memo, post.data.tags ?? []);
   }, []);
 
-  const pages = allTags.map((tag) => {
+  const pages = allTags.flatMap((tag) => {
     const posts = collection.filter((post) => {
       return post.data.tags ? post.data.tags.includes(tag) : false;
     });
@@ -19,6 +19,8 @@ export const getStaticPaths = (async ({ paginate }) => {
       pageSize: PAGE_SIZE,
     });
   });
+
+  console.log('what am I returning', JSON.stringify(pages, null, 2));
 
   return pages;
 }) satisfies GetStaticPaths;

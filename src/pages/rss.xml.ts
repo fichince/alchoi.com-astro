@@ -2,7 +2,7 @@ import rss from '@astrojs/rss';
 import { getAllBlogEntries, getLinkToPost, stripMarkdown, renderMarkdown } from '@src/utils';
 import type { APIRoute } from 'astro';
 
-export const get = (async (context) => {
+export const GET = (async (context) => {
   const blog = await getAllBlogEntries();
   const items = blog.map((post) => {
     return {
