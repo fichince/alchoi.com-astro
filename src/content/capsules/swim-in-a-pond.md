@@ -5,7 +5,7 @@ date: 2023-07-03
 end: 2023-07-21
 rating: 5
 type: book
-image: /images/blog/swim.png
+image: ../../images/blog/swim.png
 ---
 
 In this book, you read short stories from legendary Russian writers, followed by an analysis of the story by George Saunders. What’s cool is that you get great writing from the stories, and then you get great writing about why it’s great, from Saunders.

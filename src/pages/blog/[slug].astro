@@ -1,5 +1,4 @@
 ---
-import { Picture } from '@astrojs/image/components';
 import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import MD from '@src/components/MD.astro';
@@ -8,7 +7,8 @@ import Comments from '@src/components/Comments.svelte';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import { mediumDate } from '@src/utils';
 import type { GetStaticPaths } from 'astro';
-import { CollectionEntry, getCollection, getEntryBySlug } from 'astro:content';
+import { type CollectionEntry, getCollection, getEntryBySlug } from 'astro:content';
+import { Image } from 'astro:assets';
 
 export const getStaticPaths = (async () => {
   const collection = await getCollection('blog');
@@ -55,11 +55,9 @@ const meta = {
       </div>
       { image &&
         <div class="image">
-          <Picture
+          <Image
             src={image}
             alt={title}
-            widths={[140, 280]}
-            aspectRatio="1:1"
             sizes="(min-width: 480px) 280px, 140px"
           />
         </div>

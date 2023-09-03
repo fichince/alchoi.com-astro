@@ -5,7 +5,7 @@ date: 2023-05-08
 end: 2023-05-14
 rating: 4
 type: book
-image: /images/blog/convenience-store.jpg
+image: ../../images/blog/convenience-store.jpg
 ---
 
 The me of today would like to believe that the me of 10 years ago, i.e. the perpetually single me, would have felt kinship with Keiko Furukara, the protagonist of this book. She’s happily unattached, and bristles against all of the people around her who disapprove of her menial job and lack of relationship status.

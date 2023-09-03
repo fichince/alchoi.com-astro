@@ -5,11 +5,11 @@ import TagChooser from '@src/components/TagChooser.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import TagList from '@src/components/TagList.astro';
 import About from '@src/components/About.astro';
+import { Image } from 'astro:assets';
 import type { Props as LayoutProps } from '@src/layouts/Layout.astro';
 
 import type { Page } from 'astro';
 
-import { Picture } from '@astrojs/image/components';
 import { getLinkToPost, shortDate } from '@src/utils';
 
 interface Props extends LayoutProps {
@@ -78,12 +78,10 @@ const posts = page.data;
             { post.data.image &&
               <div class="image image-hover">
                 <a href={link}>
-                  <Picture
+                  <Image
                     src={post.data.image}
                     alt={post.data.title}
-                    widths={[140, 280]}
-                    aspectRatio="1:1"
-                    sizes="(min-width: 480px) 280px, 140px"
+                    width={280}
                   />
                 </a>
               </div>
@@ -182,13 +180,20 @@ const posts = page.data;
 
       display: grid;
 
+      grid-template-areas:
+        "title"
+        "image"
+        "words";
+
       &:nth-child(odd) {
         --text-alignment: left;
         --columns: 1fr auto;
 
-        grid-template-areas:
-          "title image"
-          "words words";
+        @include sm-up {
+          grid-template-areas:
+            "title image"
+            "words words";
+        }
 
         --title-align: flex-start;
       }
@@ -196,9 +201,11 @@ const posts = page.data;
         --text-alignment: right;
         --columns: auto 1fr;
 
-        grid-template-areas:
-          "image title"
-          "words words";
+        @include sm-up {
+          grid-template-areas:
+            "image title"
+            "words words";
+        }
 
         --title-align: flex-end;
       }

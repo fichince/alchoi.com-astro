@@ -1,5 +1,4 @@
 ---
-import { Picture } from '@astrojs/image/components';
 import Social from './Social.astro';
 import { getEntryBySlug } from 'astro:content';
 
@@ -9,13 +8,13 @@ const { Content } = await about.render();
 <div class="about" id="about">
 
   <div class="headshot">
-    <Picture 
+    <!--<Picture 
       src="/images/headshot.jpg" 
       alt="Albert"
       widths={[200, 300]}
       aspectRatio="1:1"
       sizes="(min-width: 480px) 300px, 200px"
-    />
+    />-->
   </div>
 
   <div class="words tw-prose">

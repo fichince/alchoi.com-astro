@@ -3,7 +3,7 @@ title: _Indiana Jones_ original trilogy
 date: 2023-07-16
 rating: 3.0
 type: movie
-image: /images/blog/indy.png
+image: ../../images/blog/indy.png
 ---
 
 I rewatched these for the first time in a while because _Dial of Destiny_ is in the cultural conversation, and my wife had not seen the originals before. You know what? I know this is a beloved character and series, but I have to say… not really my thing. Of the three[^1], I like _The Last Crusade_ the most. The Connery-Ford comedic chemistry goes a long way, and the final series of “puzzles” is genuinely cool.
