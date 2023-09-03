@@ -3,7 +3,7 @@
   import { mapMoving } from '@src/stores/map';
 
   export let title : string = '';
-  export let body : string;
+  export let body : string = '';
 
   export let top : string = 'auto';
   export let bottom : string = 'auto';
@@ -15,7 +15,7 @@
   let show : boolean = false;
   $: show = !$mapMoving;
 
-  const html = renderMarkdown(body ?? '');
+  $: html = renderMarkdown(body);
 </script>
 
 <article id="text" class:show class="tw-prose" 
@@ -35,6 +35,7 @@
       {@html html}
     </p>
   {/if}
+
 </article>
 
 <style lang="scss">

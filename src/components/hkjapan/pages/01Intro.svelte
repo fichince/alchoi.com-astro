@@ -19,7 +19,7 @@
 
 </script>
 
-<PageText {title} body={body ?? ''} 
+<PageText {title} {body}
   top="60vh" 
   width="var(--size-15)"
   right="var(--size-11)"

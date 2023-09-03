@@ -1,9 +1,8 @@
 <script lang="ts">
-  import { renderMarkdown } from '@src/markdown';
   import { mapStore, mapPage, mapMoving, mapIdle, mapHovered, updateHover } from '@src/stores/map';
   import { onMount } from 'svelte';
+  import PageText from '../PageText.svelte';
 
-  let show : boolean = false;
   let images : MapImage[] = [];
   let slug : string;
 
@@ -31,10 +30,7 @@
     }
   });
 
-  const { body } = $mapPage;
-  const html = renderMarkdown(body ?? '');
-
-  $: show = !$mapMoving;
+  const { body, title } = $mapPage;
 
   $: {
     if (slug && $mapIdle && !$mapMoving) {
@@ -42,64 +38,33 @@
     }
   }
 
-  $: {
-  }
-
 </script>
 
-<article class:show>
-  <div id="central">
-    {@html html}
-  </div>
-  <div id="images">
-    {#each images as i}
-      <img src={i.image} alt={i.caption} 
-        class:hovered={$mapHovered === i.id}
-        on:mouseenter={() => updateHover(i.id)}
-        on:mouseleave={() => updateHover(null)} />
-    {/each}
-  </div>
-</article>
+<PageText {title} {body}
+  top="var(--size-8)"
+  width="var(--size-15)"
+  left="var(--size-8)"
+/>
+<div id="images">
+  {#each images as i}
+    <img src={i.image} alt={i.caption} 
+      class:hovered={$mapHovered === i.id}
+      on:mouseenter={() => updateHover(i.id)}
+      on:mouseleave={() => updateHover(null)} />
+  {/each}
+</div>
 
 <style lang="scss">
-
-  article {
-    &.show {
-      visibility: visible;
-    }
-    &:not(.show) {
-      visibility: hidden;
-    }
-  }
-
-  #central {
-    position: absolute;
-    top: 60vh;
-
-    width: 30vw;
-    left: 60vw;
-
-    background-color: var(--colour-background);
-    padding: var(--size-fluid-1);
-    border-radius: var(--radius-2);
-  }
-
   #images {
     position: absolute;
 
-    left: 15vw;
+    bottom: 0;
     top: 0;
     height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: space-around;
 
     img.hovered {
       border: 2px solid red;
 
     }
   }
-
 </style>
