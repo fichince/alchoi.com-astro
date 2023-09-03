@@ -49,7 +49,7 @@
     return [
       `/${page.slug}`,
       wrap({
-        asyncComponent: () => import(`./hkjapan/${page.component}.svelte`)
+        asyncComponent: () => import(`./pages/${page.component}.svelte`)
       })
     ];
   }));

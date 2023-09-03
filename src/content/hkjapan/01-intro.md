@@ -1,6 +1,6 @@
 ---
 title: Hong Kong and Japan 2023
-component: Intro
+component: 01Intro
 map: 
   lat: 31.524967504769826
   lon: 125.45601818699798
