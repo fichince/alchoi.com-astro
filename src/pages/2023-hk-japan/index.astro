@@ -1,7 +1,7 @@
 ---
 import Layout from '@src/layouts/Layout.astro';
 import Map from '@src/components/hkjapan/PhotoMap.svelte';
-import { nanoid } from 'nanoid';
+import { getImage } from '@astrojs/image';
 
 import { getCollection } from 'astro:content';
 
@@ -29,10 +29,20 @@ const mapPages = content.map((item) => {
     date,
     title,
     map,
-    images: (images ?? []).map((i) => ({
-      ...i,
-      id: id++,
-    }))
+    images: (images ?? []).map(async (i) => {
+
+      console.log('here', i);
+      const optimizedImage = await getImage({ 
+        src: i.image,
+        alt: i.caption ?? '',
+      });
+      console.log('optimized', optimizedImage);
+
+      return {
+        ...i,
+        id: id++,
+      };
+    })
   }
 });
 
