@@ -1,5 +1,6 @@
 ---
 import { Picture } from '@astrojs/image/components';
+import MD from '@src/components/MD.astro';
 
 interface Props {
   src: any,
@@ -21,7 +22,9 @@ const lg = Astro.props.lg ?? 500;
     sizes={`(min-width: 480px) ${lg}px, ${sm}px`}
   />
   { caption &&
-    <figcaption>{caption}</figcaption>
+    <figcaption>
+      <MD md={caption} />
+    </figcaption>
   }
 </figure>
 

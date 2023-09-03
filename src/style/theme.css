@@ -14,6 +14,9 @@
   --font-size-fluid-3: clamp(1.94rem, calc(1.84rem + 0.50vw), 2.44rem);
   --font-size-fluid-4: clamp(2.33rem, calc(2.19rem + 0.72vw), 3.05rem);
   --font-size-fluid-5: clamp(2.80rem, calc(2.60rem + 1.02vw), 3.82rem);
+
+  --navbar-height: var(--size-fluid-5);
+  scroll-behavior: smooth;
 }
 
 html:not(.light) {
@@ -80,6 +83,17 @@ html.light {
 
 .tw-prose :where(h1,h2,h3,h4,h5,h6) {
   font-family: var(--font-display);
+}
+
+/* centering YouTube embeds, e.g. */
+.tw-prose iframe {
+  margin: 0 auto;
+}
+
+/* this prevents footnotes from disappearing under the navbar when you click on the anchor links */
+:target {
+  padding-top: var(--navbar-height);
+  margin-top: calc(-1 * var(--navbar-height));
 }
 
 sl-rating {
