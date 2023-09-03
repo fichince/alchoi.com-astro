@@ -72,15 +72,6 @@
     position: absolute;
     top: 0;
     left: 0;
-
-    &.blurred {
-      filter: blur(3px);
-    }
-
-    &.left {
-      top: 0;
-      left: 0;
-    }
   }
 
   #contents {
