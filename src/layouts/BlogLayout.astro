@@ -180,20 +180,13 @@ const posts = page.data;
 
       display: grid;
 
-      grid-template-areas:
-        "title"
-        "image"
-        "words";
-
       &:nth-child(odd) {
         --text-alignment: left;
         --columns: 1fr auto;
 
-        @include sm-up {
-          grid-template-areas:
-            "title image"
-            "words words";
-        }
+        grid-template-areas:
+          "title image"
+          "words words";
 
         --title-align: flex-start;
       }
@@ -201,11 +194,9 @@ const posts = page.data;
         --text-alignment: right;
         --columns: auto 1fr;
 
-        @include sm-up {
-          grid-template-areas:
-            "image title"
-            "words words";
-        }
+        grid-template-areas:
+          "image title"
+          "words words";
 
         --title-align: flex-end;
       }
@@ -267,6 +258,13 @@ const posts = page.data;
       .image {
         grid-area: image;
         place-self: center;
+
+        img {
+          width: 140px;
+          @include sm-up {
+            width: 280px;
+          }
+        }
       }
 
       a {

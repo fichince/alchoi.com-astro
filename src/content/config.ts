@@ -15,11 +15,11 @@ const blogSchema = (image : Function) => z.object({
 });
 
 const prose = defineCollection({
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     url: z.string().url(),
     description: z.string(),
-    image: z.string(),
+    image: image(),
   })
 });
 

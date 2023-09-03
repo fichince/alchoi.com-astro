@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import { getCollection, getEntryBySlug } from 'astro:content';
 import MD from '@src/components/MD.astro';
@@ -6,6 +7,8 @@ import CoolBackground from '@src/components/CoolBackground.astro';
 import About from '@src/components/About.astro';
 import IntroSection from '@src/components/IntroSection.astro';
 import OpenBook from '@src/components/icons/OpenBook.astro';
+
+import bookImg from '@src/images/writing/jacob-rob.png';
 
 const prose = await getCollection('prose');
 
@@ -30,13 +33,11 @@ const { Content: Book } = await book.render();
       </h2>
       <div class="hero-body">
         <div class="image-hover">
-          <!--<Picture
-            src={book.data.image}
+          <Image 
+            src={bookImg}
             alt={book.data.title}
-            widths={[320]}
-            aspectRatio="1:1"
-            sizes="320px"
-          />-->
+            width={320}
+          />
         </div>
         <div class="tw-prose">
           <Book />
@@ -63,13 +64,11 @@ const { Content: Book } = await book.render();
             <article x-on:mouseover={`bgShift = ${index}`} class="story card">
               <div class="image image-hover">
                 <a href={link}>
-                  {/*<Picture
+                  <Image
                     src={item.data.image}
                     alt={item.data.title}
-                    widths={[480]}
-                    aspectRatio="1:1"
-                    sizes="480px"
-                  />*/}
+                    width={480}
+                  />
                 </a>
               </div>
               <h2>
