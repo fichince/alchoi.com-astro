@@ -10,8 +10,8 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
   const m = new maplibregl.Map({
     container: 'map',
     style: 'https://tiles-beta.stadiamaps.com/styles/stamen_toner.json',  // Style URL; see our documentation for more options
-    center: [ 126.08244133499566, 26.808099925670312 ],
-    zoom: 2,
+    center: [ 125.45601818699798, 31.524967504769826 ],
+    zoom: 1,
   });
 
   // disable interactions

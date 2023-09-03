@@ -7,4 +7,4 @@ map:
   zoom: 4
 ---
 
-Exercitation in sit non est. Proident excepteur sit enim Lorem veniam laborum. Dolor ex mollit anim ipsum elit. Non sint reprehenderit ullamco sit nisi minim. Est aliquip enim Lorem voluptate qui et sunt ipsum fugiat eiusmod ea. Fugiat excepteur ex adipisicing nisi in cillum elit deserunt aute elit ut ut ipsum nostrud.
+This year, we had the opportunity to visit Hong Kong and Japan for our summer vacation. It was our first overseas trip since before the pandemic. Veniam tempor non eiusmod eiusmod proident non cillum anim commodo.

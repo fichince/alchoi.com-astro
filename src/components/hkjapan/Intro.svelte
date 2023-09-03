@@ -17,15 +17,18 @@
     }
   });
 
-  const { body } = $mapPage;
+  const { body, title } = $mapPage;
   const html = renderMarkdown(body ?? '');
 
   $: show = !$mapMoving;
 
 </script>
 
-<div id="intro" class:show>
+<div id="intro" class:show class="tw-prose">
+  <h1>{title}</h1>
+  <p>
   {@html html}
+  </p>
 </div>
 
 <style lang="scss">
@@ -33,11 +36,11 @@
     position: absolute;
     top: 60vh;
 
-    width: 30vw;
-    left: 60vw;
+    width: var(--size-15);
+    right: var(--size-11);
 
     background-color: var(--colour-background);
-    padding: var(--size-fluid-1);
+    padding: var(--size-fluid-2);
     border-radius: var(--radius-2);
 
     &.show {
