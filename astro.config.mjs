@@ -23,8 +23,4 @@ export default defineConfig({
       wrap: true
     }
   },
-  compressHTML: true,
-  experimental: {
-    viewTransitions: true,
-  }
 });
