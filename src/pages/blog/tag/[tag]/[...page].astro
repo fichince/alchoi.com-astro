@@ -20,8 +20,6 @@ export const getStaticPaths = (async ({ paginate }) => {
     });
   });
 
-  console.log('what am I returning', JSON.stringify(pages, null, 2));
-
   return pages;
 }) satisfies GetStaticPaths;
 

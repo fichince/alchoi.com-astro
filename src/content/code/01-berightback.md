@@ -2,10 +2,10 @@
 title: Be Right Back!
 url: https://julienaismith.com/app/
 images: 
-  - /images/code/brb2.png
-  - /images/code/brb3.png
-  - /images/code/brb4.png
-  - /images/code/brb5.png
+  - ../../images/code/brb2.png
+  - ../../images/code/brb3.png
+  - ../../images/code/brb4.png
+  - ../../images/code/brb5.png
 ---
 My dog Tinkerbell suffers from separation anxiety, meaning that she can't be left alone in the house. I sought help online, and came across a trainer named [Julie Naismith][1] who specializes in this issue.
 
