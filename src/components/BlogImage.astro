@@ -1,5 +1,6 @@
 ---
 import MD from '@src/components/MD.astro';
+import { Image } from 'astro:assets';
 
 interface Props {
   src: any,
@@ -13,13 +14,19 @@ const { src, alt, caption } = Astro.props;
 
 const sm = Astro.props.sm ?? 350;
 const lg = Astro.props.lg ?? 500;
+
+const style = {
+  '--_sm': `${sm}px`, 
+  '--_lg': `${lg}px`,
+};
+
 ---
+
 <figure>
-  <!--<Picture src={src}
+  <Image src={src}
     alt={alt}
-    widths={[sm, lg]}
-    sizes={`(min-width: 480px) ${lg}px, ${sm}px`}
-  />-->
+    style={style}
+  />
   { caption &&
     <figcaption>
       <MD md={caption} />
@@ -27,8 +34,13 @@ const lg = Astro.props.lg ?? 500;
   }
 </figure>
 
-<style>
+<style lang="scss">
+  @import "../style/mixins.scss";
   img {
+    width: var(--_sm);
+    @include sm-up {
+      width: var(--_lg);
+    }
     margin: 0 auto;
   }
 
