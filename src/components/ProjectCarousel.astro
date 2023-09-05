@@ -1,7 +1,6 @@
 ---
-import { getPicture } from '@astrojs/image';
 import type { CollectionEntry } from 'astro:content';
-import find from 'lodash/find';
+import { Image } from 'astro:assets';
 
 interface Props {
   project: CollectionEntry<'code'>;
@@ -12,20 +11,11 @@ const { project } = Astro.props;
 <div>
   <sl-carousel pagination navigation loop>
   { project.data.images.map(async (image) => {
-    const picture = await getPicture({
-      src: image,
-      alt: project.data.title,
-      widths: [400, 800],
-      aspectRatio: '16:9',
-      formats: ['webp'],
-    });
-
-    const srcset = find(picture.sources, { type: 'image/webp' })?.srcset;
 
     return (
       <sl-carousel-item class="project-carousel-item">
-        <img srcset={srcset} 
-          sizes="(min-width: 480px) 800px, 400px" 
+        <Image src={image}
+          width={800}
           alt={project.data.title}
           loading="lazy"
         />

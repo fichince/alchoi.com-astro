@@ -1,5 +1,5 @@
 /// <reference path="../.astro/types.d.ts" />
-/// <reference types="@astrojs/image/client" />
+/// <reference types="astro/client" />
 
 type SearchIndexEntry = { 
   url: string,
@@ -33,5 +33,5 @@ type BlogEntry = BlogCollectionEntry | CapsuleCollectionEntry;
 type BlogEntrySummary = { 
   title: string,
   url: string,
-  date: date,
+  date: Date,
 };

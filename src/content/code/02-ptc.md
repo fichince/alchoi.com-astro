@@ -2,10 +2,10 @@
 title: Pathways to Care
 url: https://pathwaystocare.ca
 images: 
-  - /images/code/ptc2.png
-  - /images/code/ptc3.png
-  - /images/code/ptc4.png
-  - /images/code/ptc5.png
+  - ../../images/code/ptc2.png
+  - ../../images/code/ptc3.png
+  - ../../images/code/ptc4.png
+  - ../../images/code/ptc5.png
 ---
 [Pathways to Care][1] is a community-driven and youth-led systems change project committed to transforming the mental healthcare system for Black children, youth and their families.
 

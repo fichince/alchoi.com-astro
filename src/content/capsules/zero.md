@@ -5,7 +5,7 @@ date: 2023-08-26
 end: 2023-09-04
 rating: 2.5
 type: book
-image: /images/blog/null.jpg
+image: ../../images/blog/null.jpg
 ---
 
 Not to toot my own horn, but most of the mathematical concepts covered in this book are things that I already knew. It’s enjoyable to read, but it felt like a superficial tour of the most famous ideas in math and physics. When we reach the latter topics (e.g. relativity, string theory), the connection to the original focus on _zero_ becomes a bit tenuous.

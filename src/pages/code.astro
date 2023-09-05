@@ -87,7 +87,7 @@ const meta = { description: title };
     const dialog = document.getElementById('image-dialog') as any;
     const image = document.getElementById('image-dialog-img');
     const target = e.target as Element;
-    image?.setAttribute('srcset', target?.getAttribute('srcset') ?? '');
+    image?.setAttribute('src', target?.getAttribute('src') ?? '');
     image?.setAttribute('alt', target?.getAttribute('alt') ?? '');
     dialog?.show();
   }

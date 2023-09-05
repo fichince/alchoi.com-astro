@@ -3,7 +3,7 @@ title: "_The Greatest Showman_"
 date: 2023-09-03
 rating: 2.0
 type: movie
-image: /images/blog/circus.jpg
+image: ../../images/blog/circus.jpg
 ---
 
 I came to this via the [rabbit hole of vocal coaches on YouTube][1] analyzing singers’ performances. “[Never Enough][2]” from the soundtrack of _The Greatest Showman_ is apparently a good showcase for vocalists because it has a lot of big notes. I liked the song so checked out the movie.
