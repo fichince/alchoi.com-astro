@@ -145,6 +145,16 @@ const meta = {
         font-size: var(--font-size-fluid-1);
       }
 
+      .image {
+        img {
+          width: 140px;
+
+          @include sm-up {
+            width: 280px;
+          }
+        }
+      }
+
     }
 
     main {

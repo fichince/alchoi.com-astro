@@ -157,6 +157,16 @@ const meta = {
         margin: var(--size-fluid-1) 0;
         --symbol-size: var(--size-6);
       }
+
+      .image {
+        img {
+          width: 140px;
+
+          @include sm-up {
+            width: 280px;
+          }
+        }
+      }
     }
 
     main {
