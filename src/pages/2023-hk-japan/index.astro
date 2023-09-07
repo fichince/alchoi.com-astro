@@ -17,11 +17,15 @@ async function optimizeImage(i : any) : Promise<MapImage> {
 
   const { image, ...rest } = i;
 
-  // TODO - maybe reduce the pixel size if it's really large
+  // resize the image to a reasonable width (at most 4K)
+  const width = Math.min(image.width, 2160);
+  // maintaining aspect ratio
+  const height = (image.height / image.width) * width;
+
   const optimized = await getImage({
     src: image,
-    width: image.width,
-    height: image.height,
+    width,
+    height,
     format: 'webp',
   });
 
