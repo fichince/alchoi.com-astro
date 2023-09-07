@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { mapStore, mapPage, mapMoving, mapIdle, mapHovered, updateHover } from '@src/stores/map';
+  import { mapStore, mapPage, mapMoving, mapIdle } from '@src/stores/map';
   import { onMount } from 'svelte';
   import PageText from '../PageText.svelte';
   import AppearWithMap from '../AppearWithMap.svelte';
