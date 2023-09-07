@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import PageText from '../PageText.svelte';
   import AppearWithMap from '../AppearWithMap.svelte';
+  import MapImg from '../MapImg.svelte';
 
   let images : MapImage[] = [];
 
@@ -46,10 +47,8 @@
   />
   <div id="images">
     {#each images as i}
-      <img src={i.image} alt={i.caption} 
-        class:hovered={$mapHovered === i.id}
-        on:mouseenter={() => updateHover(i.id)}
-        on:mouseleave={() => updateHover(null)} />
+      <MapImg src={i.image} caption={i.caption}
+        id={i.id} />
     {/each}
   </div>
 </AppearWithMap>
@@ -63,10 +62,5 @@
     left: 15vw;
     width: 70vw;
     margin: 0 auto;
-
-    img.hovered {
-      border: 2px solid red;
-
-    }
   }
 </style>
