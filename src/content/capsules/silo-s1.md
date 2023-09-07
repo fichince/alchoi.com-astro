@@ -3,7 +3,7 @@ title: _Silo_ - Season 1
 date: 2023-08-22
 rating: 2.0
 type: tv
-image: /images/blog/silo.jpeg
+image: ../../images/blog/silo.jpeg
 ---
 
 The premise and visual design of this show intrigued me enough for me to give it a watch. It takes place in a multi-level underground bunker, where the members of the population are not allowed to go out. The look of the show reminds me of the _Fallout_ video games.

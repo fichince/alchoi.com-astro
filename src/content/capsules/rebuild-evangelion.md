@@ -3,7 +3,7 @@ title: _Rebuild of Evangelion_
 date: 2023-05-23
 rating: 2.5
 type: movie
-image: /images/blog/eva01.jpeg
+image: ../../images/blog/eva01.jpeg
 ---
 
 I got into the original _Neon Genesis Evangelion_ series sometime in the mid-2000’s. Always been a fan of the creative creature designs and gory action, but never really _got_ what was happening from a story perspective. When the _Rebuild_ series started in the early 2010’s, promising a more accessible and clearer story, I watched the first film and decided to wait for the rest before bingeing them together. A decade later, the series is complete and I finally revisited this world.

@@ -3,7 +3,7 @@ title: _Signs_
 date: 2023-07-19
 rating: 4.5
 type: movie
-image: /images/blog/signs.jpeg
+image: ../../images/blog/signs.jpeg
 ---
 
 I have a clear memory of watching this movie in theatres in 2002. At the time, I was living in my parents’ house and we had houseguests, which meant that I had to surrender my room and sleep in the then-unfinished basement. That night after watching _Signs_, I wished I had my own room, and I was glad when our dog joined me in the dark.

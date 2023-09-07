@@ -1,12 +1,12 @@
 import { z, defineCollection } from 'astro:content';
 
-const blogSchema = z.object({
+const blogSchema = (image : Function) => z.object({
   title: z.string(),
   description: z.string().optional(),
   date: z.date(),
   tags: z.string().array().optional(),
   draft: z.boolean().optional(),
-  image: z.string().optional(),
+  image: image().optional(),
 
   author: z.string().optional(),
   end: z.date().optional(),
@@ -15,30 +15,30 @@ const blogSchema = z.object({
 });
 
 const prose = defineCollection({
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     url: z.string().url(),
     description: z.string(),
-    image: z.string(),
+    image: image(),
   })
 });
 
 const blog = defineCollection({
-  schema: blogSchema,
+  schema: ({ image }) => blogSchema(image),
 });
 
 const code = defineCollection({
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     url: z.string().url(),
-    images: z.string().array(),
+    images: image().array(),
   })
 });
 
 const other = defineCollection({});
 
 const capsules = defineCollection({
-  schema: blogSchema,
+  schema: ({ image }) => blogSchema(image),
 });
 
 const hkjapan = defineCollection({
