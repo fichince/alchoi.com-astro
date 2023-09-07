@@ -1,5 +1,5 @@
-import { writable, derived, get, Writable } from 'svelte/store';
-import maplibregl, { GeoJSONSourceSpecification } from 'maplibre-gl';
+import { writable, derived, get, type Writable } from 'svelte/store';
+import maplibregl, { type GeoJSONSourceSpecification } from 'maplibre-gl';
 
 export const allMapPages = writable<MapPage[]>();
 

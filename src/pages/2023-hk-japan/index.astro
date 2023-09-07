@@ -1,17 +1,42 @@
 ---
 import Layout from '@src/layouts/Layout.astro';
 import Map from '@src/components/hkjapan/PhotoMap.svelte';
-import { getImage } from '@astrojs/image';
 
+import { getImage } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
-// TODO need to massage this before passing to Svelte
-// e.g. do the image compression stuff on the server
 const content = await getCollection('hkjapan');
 
 let id = 1;
 
-const mapPages = content.map((item) => {
+// Because these images will eventually be rendered by Svelte,
+// we can't use the Astro Image component. Instead, we have to 
+// procedurally optimize the images here and pass the final 
+// URL to the Svelte component.
+async function optimizeImage(i : any) : Promise<MapImage> {
+
+  const { image, ...rest } = i;
+
+  // TODO - maybe reduce the pixel size if it's really large
+  const optimized = await getImage({
+    src: image,
+    width: image.width,
+    height: image.height,
+    format: 'webp',
+  });
+
+  return {
+    ...rest,
+    image: optimized.src,
+    id: id++,
+  };
+}
+
+const mapPages : MapPage[] = [];
+
+for (let i = 0; i < content.length; i++) {
+  const item = content[i];
+
   const { 
     data: { 
       component,
@@ -22,29 +47,26 @@ const mapPages = content.map((item) => {
     }
   } = item;
 
-  return {
+  const optimizedImages : MapImage[] = [];
+
+  if (images) {
+    for (let j = 0; j < images.length; j++) {
+      optimizedImages.push(await optimizeImage(images[j]));
+    }
+  }
+
+  const page = {
     slug: item.slug,
     component,
     body: item.body,
     date,
     title,
     map,
-    images: (images ?? []).map(async (i) => {
+    images: optimizedImages
+  };
 
-      console.log('here', i);
-      const optimizedImage = await getImage({ 
-        src: i.image,
-        alt: i.caption ?? '',
-      });
-      console.log('optimized', optimizedImage);
-
-      return {
-        ...i,
-        id: id++,
-      };
-    })
-  }
-});
+  mapPages.push(page);
+}
 
 ---
 <Layout title="Hong Kong and Japan 2023" loadMaps>

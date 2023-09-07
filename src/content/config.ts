@@ -42,7 +42,7 @@ const capsules = defineCollection({
 });
 
 const hkjapan = defineCollection({
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string().optional(),
     date: z.date().optional(),
     component: z.string(),
@@ -52,7 +52,7 @@ const hkjapan = defineCollection({
       zoom: z.number(),
     }).optional(),
     images: z.object({
-      image: z.string(),
+      image: image(),
       caption: z.string().optional(),
       location: z.object({
         lat: z.number(),
