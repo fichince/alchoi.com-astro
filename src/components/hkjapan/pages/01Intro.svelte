@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { mapStore, mapPage } from '@src/stores/map';
   import PageText from '../PageText.svelte';
+  import AppearWithMap from '../AppearWithMap.svelte';
 
   onMount(() => {
     const { map } = $mapPage;
@@ -19,8 +20,10 @@
 
 </script>
 
-<PageText {title} {body}
-  top="60vh" 
-  width="var(--size-15)"
-  right="var(--size-11)"
-/>
+<AppearWithMap>
+  <PageText {title} {body}
+    top="60vh" 
+    width="var(--size-15)"
+    right="var(--size-11)"
+  />
+</AppearWithMap>

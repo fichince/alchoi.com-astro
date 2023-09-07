@@ -1,6 +1,5 @@
 <script lang="ts">
   import { renderMarkdown } from '@src/markdown';
-  import { mapMoving } from '@src/stores/map';
 
   export let title : string = '';
   export let body : string = '';
@@ -12,13 +11,10 @@
   export let width : string = 'max-content';
   export let height : string = 'max-content';
 
-  let show : boolean = false;
-  $: show = !$mapMoving;
-
   $: html = renderMarkdown(body);
 </script>
 
-<article id="text" class:show class="tw-prose" 
+<article id="text" class="tw-prose" 
   style:--_top={top}
   style:--_bottom={bottom}
   style:--_left={left}
@@ -55,13 +51,5 @@
     padding: var(--size-fluid-2);
     border-radius: var(--radius-2);
 
-    transition: opacity 250ms var(--ease-in-out-1);
-    &.show {
-      opacity: 1;
-    }
-
-    &:not(.show) {
-      opacity: 0;
-    }
   }
 </style>
