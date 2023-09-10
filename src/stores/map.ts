@@ -7,6 +7,8 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
 
   console.log('initialize map', $allMapPages);
 
+  if (!$allMapPages) return;
+
   const m = new maplibregl.Map({
     container: 'map',
     style: 'https://tiles-beta.stadiamaps.com/styles/stamen_toner.json',  // Style URL; see our documentation for more options
@@ -32,7 +34,6 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
       }
 
       if (image) {
-        console.log('adding image', image);
         m.addImage('marker', image);
       }
 
@@ -72,8 +73,6 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
           }
         };
 
-        console.log('geojson', geojson);
-
         m.addSource(page.slug, geojson);
 
         m.addLayer({
@@ -88,7 +87,7 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
               'case',
               ['boolean', ['feature-state', 'hovered'], false],
               1,
-              0.5
+              0.7
             ]
           }
         });
@@ -130,15 +129,39 @@ export const mapPage = writable<MapPage>();
 export const mapHovered = writable<number | null>();
 
 export const mapMoving = derived(mapStore, ($mapStore, set) => {
-  $mapStore.on('movestart', () => set(true));
-  $mapStore.on('moveend', () => set(false));
+  if ($mapStore) {
+    $mapStore.on('movestart', () => set(true));
+    $mapStore.on('moveend', () => set(false));
+  }
 }, false);
 
 export const mapIdle = derived(mapStore, ($mapStore, set) => {
-  $mapStore.on('load', () => set(false));
-  $mapStore.on('render', () => set(false));
-  $mapStore.on('idle', () => set(true));
+  if ($mapStore) {
+    $mapStore.on('load', () => set(false));
+    $mapStore.on('idle', () => set(true));
+  }
 }, false);
+
+let prevSlug = '';
+const visibleLayer = derived([ mapPage, mapMoving, mapIdle ], ([ $mapPage, $mapMoving, $mapIdle ]) => {
+  const slug = $mapPage?.slug;
+  console.log('visibleLayer', prevSlug, slug, $mapIdle, $mapMoving);
+
+  const map = get(mapStore);
+  if (!slug || !map) return;
+
+  if (prevSlug === slug && $mapIdle && !$mapMoving) {
+    console.log('set visible', slug);
+    map.setLayoutProperty(slug, 'visibility', 'visible');
+  } else {
+    if (prevSlug) {
+      map.setLayoutProperty(prevSlug, 'visibility', 'none');
+    }
+    prevSlug = slug;
+  }
+
+});
+visibleLayer.subscribe(() => {});
 
 export function updateHover(id : number | null) {
   const hovered = get(mapHovered);

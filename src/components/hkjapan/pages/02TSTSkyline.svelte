@@ -5,14 +5,8 @@
   import AppearWithMap from '../AppearWithMap.svelte';
   import MapImg from '../MapImg.svelte';
 
-  let images : MapImage[] = [];
-
-  // TODO there's something ugly about this...
-  let slug : string;
-
   onMount(() => {
     const { map } = $mapPage;
-    slug = $mapPage.slug;
 
     if (map) {
       const { lat, lon, zoom } = map;
@@ -21,21 +15,9 @@
         zoom
       });
     }
-
-    images = $mapPage.images ?? [];
-
-    return () => {
-      $mapStore.setLayoutProperty(slug, 'visibility', 'none');
-    }
   });
 
-  const { body, title } = $mapPage;
-
-  $: {
-    if (slug && $mapIdle && !$mapMoving) {
-      $mapStore.setLayoutProperty(slug, 'visibility', 'visible');
-    }
-  }
+  $: ({ body, title, images = [] } = $mapPage);
 
 </script>
 
