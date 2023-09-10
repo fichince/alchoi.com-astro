@@ -150,16 +150,17 @@ const visibleLayer = derived([ mapPage, mapMoving, mapIdle ], ([ $mapPage, $mapM
   const map = get(mapStore);
   if (!slug || !map) return;
 
-  if (prevSlug === slug && $mapIdle && !$mapMoving) {
-    console.log('set visible', slug);
-    map.setLayoutProperty(slug, 'visibility', 'visible');
-  } else {
-    if (prevSlug) {
-      map.setLayoutProperty(prevSlug, 'visibility', 'none');
+  if ($mapIdle && !$mapMoving) {
+    if (prevSlug === slug) {
+      console.log('set visible', slug);
+      map.setLayoutProperty(slug, 'visibility', 'visible');
+    } else {
+      if (prevSlug) {
+        map.setLayoutProperty(prevSlug, 'visibility', 'none');
+      }
+      prevSlug = slug;
     }
-    prevSlug = slug;
   }
-
 });
 visibleLayer.subscribe(() => {});
 
