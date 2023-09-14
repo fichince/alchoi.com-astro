@@ -139,3 +139,15 @@
     height: 100%;
   }
 }
+
+.spoiler {
+  color: transparent;
+  border: 1px dotted var(--colour-accent);
+  border-radius: var(--radius-2);
+  position: relative;
+
+  &::selection {
+    color: var(--colour-background);
+    background-color: var(--colour-foreground);
+  }
+}
