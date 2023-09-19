@@ -4,8 +4,11 @@
   import { wrap } from 'svelte-spa-router/wrap';
 
   import { mapStore, mapPage, allMapPages } from '@src/stores/map';
+
   import fromPairs from 'lodash/fromPairs';
   import clamp from 'lodash/clamp';
+
+  import AppearWithMap from './AppearWithMap.svelte';
 
   export let mapPages : MapPage[];
 
@@ -61,7 +64,9 @@
 <button id="next" class="button" on:click={next}>Next</button>
 <button id="prev" class="button" on:click={prev}>Prev</button>
 <div id="contents">
-  <Router {routes} />
+  <AppearWithMap>
+    <Router {routes} />
+  </AppearWithMap>
 </div>
 
 <style lang="scss">

@@ -2,7 +2,6 @@
   import { mapStore, mapPage } from '@src/stores/map';
   import { onMount } from 'svelte';
   import PageText from '../PageText.svelte';
-  import AppearWithMap from '../AppearWithMap.svelte';
   import MapImg from '../MapImg.svelte';
 
   onMount(() => {
@@ -21,15 +20,13 @@
 
 </script>
 
-<AppearWithMap>
-  <div id="container">
-    <MapImg src={images[0].image} caption={images[0].caption}
-      id={images[0].id} />
-    <PageText {title} {body} width="400px" relative={true} />
-    <MapImg src={images[1].image} caption={images[1].caption}
-      id={images[1].id} />
-  </div>
-</AppearWithMap>
+<div id="container">
+  <MapImg src={images[0].image} caption={images[0].caption}
+    id={images[0].id} />
+  <PageText {title} {body} width="400px" relative={true} />
+  <MapImg src={images[1].image} caption={images[1].caption}
+    id={images[1].id} />
+</div>
 
 <style lang="scss">
   #container {
