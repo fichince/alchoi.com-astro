@@ -1,18 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { mapStore, mapPage } from '@src/stores/map';
+  import { mapPage, moveMap } from '@src/stores/map';
   import PageText from '../PageText.svelte';
 
   onMount(() => {
-    const { map } = $mapPage;
-
-    if (map) {
-      const { lat, lon, zoom } = map;
-      $mapStore.flyTo({
-        center: { lat, lon },
-        zoom
-      });
-    }
+    moveMap();
   });
 
   const { body, title } = $mapPage;

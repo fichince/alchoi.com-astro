@@ -1,5 +1,8 @@
 import { writable, derived, get, type Writable } from 'svelte/store';
-import maplibregl, { type GeoJSONSourceSpecification } from 'maplibre-gl';
+import maplibregl, { 
+  type GeoJSONSourceSpecification, 
+  type AnimationOptions 
+} from 'maplibre-gl';
 
 export const allMapPages = writable<MapPage[]>();
 
@@ -187,5 +190,25 @@ export function updateHover(id : number | null) {
     );
     mapHovered.set(id);
 
+  }
+}
+
+export function moveMap(opts : AnimationOptions = {}, jump = false) {
+  const { map } = get(mapPage);
+  const m = get(mapStore);
+
+  if (map && m) {
+    const { lat, lon, zoom } = map;
+    const location = {
+      center: { lat, lon },
+      zoom,
+      ...opts,
+    };
+
+    if (!jump) {
+      m.flyTo(location);
+    } else {
+      m.jumpTo(location);
+    }
   }
 }

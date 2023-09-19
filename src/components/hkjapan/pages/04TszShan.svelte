@@ -1,19 +1,11 @@
 <script lang="ts">
-  import { mapStore, mapPage } from '@src/stores/map';
+  import { mapPage, moveMap } from '@src/stores/map';
   import { onMount } from 'svelte';
   import PageText from '../PageText.svelte';
   import MapImg from '../MapImg.svelte';
 
   onMount(() => {
-    const { map } = $mapPage;
-
-    if (map) {
-      const { lat, lon, zoom } = map;
-      $mapStore.jumpTo({
-        center: { lat, lon },
-        zoom
-      });
-    }
+    moveMap();
   });
 
   $: ({ body, title, images = [] } = $mapPage);
