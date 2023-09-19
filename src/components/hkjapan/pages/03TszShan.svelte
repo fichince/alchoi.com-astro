@@ -8,7 +8,7 @@
     moveMap();
   });
 
-  $: ({ body, title, images = [] } = $mapPage);
+  const { body, title, images = [] } = $mapPage;
 
 </script>
 
