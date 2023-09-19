@@ -3,7 +3,12 @@
   import Router, { push, location } from 'svelte-spa-router';
   import { wrap } from 'svelte-spa-router/wrap';
 
-  import { mapStore, mapPage, allMapPages } from '@src/stores/map';
+  import { 
+    mapStore, 
+    mapPage, 
+    allMapPages, 
+    toggleMapOnly
+  } from '@src/stores/map';
 
   import fromPairs from 'lodash/fromPairs';
   import clamp from 'lodash/clamp';
@@ -63,6 +68,12 @@
 </div>
 <button id="next" class="nav-button" on:click={next}>&#x2771;</button>
 <button id="prev" class="nav-button" on:click={prev}>&#x2770;</button>
+
+<div id="toggle">
+  <input type="checkbox" id="map-only" bind:checked={$toggleMapOnly} />
+  <label for="map-only">View map</label>
+</div>
+
 <div id="contents">
   <AppearWithMap>
     <Router {routes} />
@@ -88,8 +99,9 @@
     z-index: 99;
     height: 100%;
     width: var(--size-8);
+    color: var(--colour-foreground);
 
-    --_alpha: 0.8;
+    --_alpha: 0.7;
     --_font-size: var(--font-size-6);
     &:hover {
       --_alpha: 1.0;
@@ -107,6 +119,22 @@
     &#prev {
       left: 0;
     }
+  }
+
+  #toggle {
+    position: absolute;
+    top: var(--size-1);
+    right: var(--size-9);
+
+    background: var(--colour-accent);
+    padding: var(--size-2);
+    border-radius: var(--radius-1);
+
+    font-size: var(--font-size-0);
+
+    display: flex;
+    align-items: center;
+    gap: var(--size-2);
   }
 
 </style>

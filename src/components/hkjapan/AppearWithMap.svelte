@@ -3,8 +3,8 @@
   // as the map transitions from one place to another...
   // things will only appear when the map stops moving
 
-  import { mapMoving } from '@src/stores/map';
-  $: show = !$mapMoving;
+  import { mapMoving, toggleMapOnly } from '@src/stores/map';
+  $: show = !$mapMoving && !$toggleMapOnly;
 </script>
 
 <div class:show>

@@ -212,3 +212,5 @@ export function moveMap(opts : AnimationOptions = {}, jump = false) {
     }
   }
 }
+
+export const toggleMapOnly = writable(false);
