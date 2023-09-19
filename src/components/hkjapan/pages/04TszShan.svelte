@@ -25,7 +25,7 @@
   <div id="container">
     <MapImg src={images[0].image} caption={images[0].caption}
       id={images[0].id} />
-    <PageText {title} {body} />
+    <PageText {title} {body} width="400px" relative={true} />
     <MapImg src={images[1].image} caption={images[1].caption}
       id={images[1].id} />
   </div>
@@ -36,14 +36,17 @@
 
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: var(--size-3);
-
+    margin: auto 0;
+    
     position: absolute;
-    height: 90vh;
-    top: 15vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-    :global(figure) {
-      width: 2px;
+    :global(.map-img) {
+      width: 30vw;
     }
   }
 </style>

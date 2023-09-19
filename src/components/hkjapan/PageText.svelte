@@ -11,10 +11,13 @@
   export let width : string = 'max-content';
   export let height : string = 'max-content';
 
+  export let relative : boolean = false;
+
   $: html = renderMarkdown(body);
 </script>
 
-<article id="text" class="tw-prose" 
+<article id="text" class="tw-prose"
+  class:relative
   style:--_top={top}
   style:--_bottom={bottom}
   style:--_left={left}
@@ -36,7 +39,13 @@
 
 <style lang="scss">
   article#text {
-    position: absolute;
+
+    &.relative {
+      position: relative;
+    }
+    &:not(.relative) {
+      position: absolute;
+    }
 
     // these dimensions are provided by the props of the component
     top: var(--_top);

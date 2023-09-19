@@ -6,7 +6,7 @@
   export let caption : string = '';
 </script>
 
-<div class="glass">
+<div class="glass map-img">
   <figure>
     <img {src} alt={caption}
       class:hovered={$mapHovered === id}
@@ -42,7 +42,7 @@
 
       transition: margin 250ms var(--ease-in-out-1);
       &:has(img.hovered) {
-        margin: 0 calc(-1 * var(--size-10));
+        margin: 0 calc(-1 * var(--size-5));
       }
 
       img {
