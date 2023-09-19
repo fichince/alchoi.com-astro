@@ -61,8 +61,8 @@
 
 <div id="map">
 </div>
-<button id="next" class="button" on:click={next}>Next</button>
-<button id="prev" class="button" on:click={prev}>Prev</button>
+<button id="next" class="nav-button" on:click={next}>&#x2771;</button>
+<button id="prev" class="nav-button" on:click={prev}>&#x2770;</button>
 <div id="contents">
   <AppearWithMap>
     <Router {routes} />
@@ -83,17 +83,30 @@
     font-family: var(--font-body);
   }
 
-  #next {
+  .nav-button {
     position: absolute;
-    right: 15px;
-    top: 50%;
     z-index: 99;
+    height: 100%;
+    width: var(--size-8);
+
+    --_alpha: 0.8;
+    --_font-size: var(--font-size-6);
+    &:hover {
+      --_alpha: 1.0;
+      --_font-size: var(--font-size-8);
+    }
+
+    transition: all 200ms var(--ease-in-out-1);
+    background: hsl(var(--colour-bg-h) var(--colour-bg-s) var(--colour-bg-l) / var(--_alpha));
+    font-size: var(--_font-size);
+
+    &#next {
+      right: 0;
+    }
+
+    &#prev {
+      left: 0;
+    }
   }
 
-  #prev {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    z-index: 99;
-  }
 </style>
