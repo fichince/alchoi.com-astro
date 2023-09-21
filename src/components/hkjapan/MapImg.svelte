@@ -1,21 +1,18 @@
 <script lang="ts">
   import { mapHovered, updateHover } from '@src/stores/map';
-
-  export let id : number;
-  export let src : string;
-  export let caption : string = '';
+  export let image : MapImage;
 </script>
 
 <div class="glass map-img">
   <figure>
-    <img {src} alt={caption}
-      class:hovered={$mapHovered === id}
-      on:mouseenter={() => updateHover(id)}
+    <img src={image.image} alt={image.caption}
+      class:hovered={$mapHovered === image.id}
+      on:mouseenter={() => updateHover(image.id)}
       on:mouseleave={() => updateHover(null)} />
     
-    {#if caption}
+    {#if image.caption}
       <figcaption>
-        {caption}
+        {image.caption}
       </figcaption>
     {/if}
   </figure>

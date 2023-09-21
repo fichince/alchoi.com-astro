@@ -18,9 +18,8 @@
   left="var(--size-8)"
 />
 <div id="images">
-  {#each images as i}
-    <MapImg src={i.image} caption={i.caption}
-      id={i.id} />
+  {#each images as image}
+    <MapImg {image} />
   {/each}
 </div>
 

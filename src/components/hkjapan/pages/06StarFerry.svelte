@@ -13,10 +13,8 @@
 </script>
 
 <div id="container">
-  <MapImg src={images[0].image} caption={images[0].caption}
-    id={images[0].id} />
-  <MapImg src={images[1].image} caption={images[1].caption}
-    id={images[1].id} />
+  <MapImg image={images[0]} />
+  <MapImg image={images[1]} />
 </div>
 <PageText {title} {body} 
   bottom="15vh"

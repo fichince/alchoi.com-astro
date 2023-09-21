@@ -13,11 +13,9 @@
 </script>
 
 <div id="container">
-  <MapImg src={images[0].image} caption={images[0].caption}
-    id={images[0].id} />
-  <PageText {title} {body} width="400px" relative={true} />
-  <MapImg src={images[1].image} caption={images[1].caption}
-    id={images[1].id} />
+  <MapImg image={images[0]} />
+  <PageText {title} {body} width="400px" relative />
+  <MapImg image={images[1]} />
 </div>
 
 <style lang="scss">

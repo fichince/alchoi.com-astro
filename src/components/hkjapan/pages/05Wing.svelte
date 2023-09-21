@@ -14,12 +14,10 @@
 
 <div id="container">
   <div id="img1">
-    <MapImg src={images[0].image} caption={images[0].caption}
-      id={images[0].id} />
+    <MapImg image={images[0]} />
   </div>
   <div id="img2">
-    <MapImg src={images[1].image} caption={images[1].caption}
-      id={images[1].id} />
+    <MapImg image={images[1]} />
   </div>
 
   <div id="text">
@@ -27,12 +25,10 @@
   </div>
 
   <div id="img3">
-    <MapImg src={images[2].image} caption={images[2].caption}
-      id={images[2].id} />
+    <MapImg image={images[2]} />
   </div>
   <div id="img4">
-    <MapImg src={images[3].image} caption={images[3].caption}
-      id={images[3].id} />
+    <MapImg image={images[3]} />
   </div>
 </div>
 
