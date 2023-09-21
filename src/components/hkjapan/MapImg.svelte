@@ -40,6 +40,9 @@
 
     figure {
 
+      width: 100%;
+      height: 100%;
+
       transition: margin 250ms var(--ease-in-out-1);
       &:has(img.hovered) {
         margin: 0 calc(-1 * var(--size-5));
@@ -47,6 +50,9 @@
 
       img {
         border-radius: var(--radius-2);
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
       }
     }
   }

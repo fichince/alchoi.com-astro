@@ -37,7 +37,7 @@
     gap: var(--size-3);
 
     :global(.map-img) {
-      height: 25vh;
+      height: 45vh;
     }
   }
 </style>
