@@ -31,9 +31,12 @@
     gap: var(--size-3);
 
     position: absolute;
-    width: 35vw;
     left: 15vw;
-    height: 100vh;
-    top: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    :global(.map-img) {
+      height: 45vh;
+    }
   }
 </style>
