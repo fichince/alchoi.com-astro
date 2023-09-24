@@ -1,14 +1,26 @@
 <script lang="ts">
-  import { mapHovered, updateHover } from '@src/stores/map';
+  import { mapHovered, imageExpanded, updateHover } from '@src/stores/map';
   export let image : MapImage;
+
+  function updateExpanded() {
+    if ($imageExpanded === image.image) {
+      $imageExpanded = null;
+    } else {
+      $imageExpanded = image.image;
+    }
+  }
+
 </script>
 
 <div class="glass map-img">
   <figure>
     <img src={image.image} alt={image.caption}
       class:hovered={$mapHovered === image.id}
+      class:expanded={$imageExpanded === image.id}
       on:mouseenter={() => updateHover(image.id)}
-      on:mouseleave={() => updateHover(null)} />
+      on:mouseleave={() => updateHover(null)} 
+      on:click={updateExpanded}
+    />
     
     {#if image.caption}
       <figcaption>
@@ -21,6 +33,8 @@
 <style lang="scss">
 
   div.glass {
+    position: relative;
+
     /* From https://css.glass */
     background: rgba(127, 127, 127, 0.25);
     border-radius: var(--radius-2);

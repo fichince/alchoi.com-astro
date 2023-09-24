@@ -14,6 +14,7 @@
   import clamp from 'lodash/clamp';
 
   import AppearWithMap from './AppearWithMap.svelte';
+  import ImageDialog from './ImageDialog.svelte';
 
   export let mapPages : MapPage[];
 
@@ -79,6 +80,8 @@
     <Router {routes} />
   </AppearWithMap>
 </div>
+
+<ImageDialog />
 
 <style lang="scss">
   #map {
