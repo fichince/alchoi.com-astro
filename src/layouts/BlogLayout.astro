@@ -17,11 +17,11 @@ interface Props extends LayoutProps {
   tag?: string;
 }
 
-const { page, tag, meta } = Astro.props;
+const { page, tag, meta, title } = Astro.props;
 const posts = page.data;
 
 ---
-<NavbarLayout title="Blog" meta={meta}>
+<NavbarLayout title={title ?? 'Blog'} meta={meta}>
   <div class="container tw-container fade-in">
     <header>
       <h1>Blog</h1>
