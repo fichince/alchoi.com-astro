@@ -1,0 +1,192 @@
+---
+import type { Props as LayoutProps } from './Layout.astro';
+import NavbarLayout from './NavbarLayout.astro';
+import MD from '@src/components/MD.astro';
+import TagList from '@src/components/TagList.astro';
+import About from '@src/components/About.astro';
+import CoolBackground from '@src/components/CoolBackground.astro';
+import { mediumDate } from '@src/utils';
+import { Image } from 'astro:assets';
+import Disqus from '@src/components/Disqus.astro';
+
+interface Props extends LayoutProps {
+  post : BlogCollectionEntry | CapsuleCollectionEntry;
+}
+
+const { post } = Astro.props;
+
+const title = post.data.title;
+const image = post.data.image;
+const author = post.data.author;
+const date = mediumDate(post.data.date ?? new Date());
+const end = post.data.end ? mediumDate(post.data.end) : null;
+const tags = post.data.tags ?? [];
+
+const description = post.data.description;
+
+const meta = {
+  image, 
+  description: post.collection === 'blog' ?
+    description : 
+    `A quick review of ${title}`
+};
+
+const { Content } = await post.render();
+
+---
+<NavbarLayout title={title} meta={meta}>
+  <article class="container tw-container fade-in">
+    <header>
+      <h1>
+        <MD md={title} />
+      </h1>
+      { author &&
+      <h2 class="author">
+        {author}
+      </h2>
+      }
+    </header>
+    <section>
+      { description &&
+      <h2>
+        <MD md={description} />
+      </h2>
+      }
+      <div class="dates">
+        <time>{date}</time>
+        {end && 
+          <span> - <time>{end}</time></span> 
+        }
+      </div>
+
+      <div class="tags">
+        <TagList tags={tags} />
+      </div>
+      { image &&
+        <div class="image">
+          <Image
+            src={image}
+            alt={title}
+            sizes="(min-width: 480px) 280px, 140px"
+          />
+        </div>
+      }
+      { post.data.rating &&
+        <sl-rating value={post.data.rating} readonly precision="0.5" />
+      }
+    </section>
+    <main class="tw-prose">
+      <Content />
+      <hr />
+      <div class="comments">
+        <Disqus post={post} />
+      </div>
+    </main>
+
+    <CoolBackground />
+  </article>
+  <section>
+    <About />
+  </section>
+</NavbarLayout>
+
+<style lang="scss">
+  @import "../style/mixins.scss";
+
+  article.container {
+    margin: 0 auto;
+    min-height: 100vh;
+
+    font-family: var(--font-body);
+    padding: var(--size-fluid-3);
+
+    display: grid;
+    align-content: start;
+
+    grid-template-areas:
+      "header"
+      "subheader"
+      "body";
+    grid-template-columns: auto;
+    gap: var(--size-fluid-3);
+
+    @include sm-up {
+      grid-template-areas:
+        "header header"
+        "subheader body";
+      grid-template-columns: 1fr 2fr;
+    }
+
+    header {
+      grid-area: header;
+
+      font-family: var(--font-display);
+      text-align: center;
+
+      h1 {
+        font-family: var(--font-display);
+        font-size: var(--font-size-fluid-4);
+        line-height: 3rem;
+        text-align: center;
+      }
+
+      h2 {
+        margin-top: var(--size-fluid-1);
+      }
+    }
+
+    section {
+
+      --text-alignment: center;
+      --alignment: center;
+
+      @include sm-up {
+        --text-alignment: right;
+        --alignment: flex-end;
+      }
+
+      grid-area: subheader;
+      font-size: var(--font-size-fluid-2);
+      line-height: 2rem;
+
+      display: flex;
+      flex-direction: column;
+      align-items: var(--alignment);
+
+      text-align: var(--text-alignment);
+
+      & > * {
+        margin-bottom: var(--size-fluid-1);
+      }
+
+      time {
+        font-size: var(--font-size-fluid-1);
+      }
+
+      sl-rating {
+        margin: var(--size-fluid-1) 0;
+        --symbol-size: var(--size-6);
+      }
+
+      .image {
+        img {
+          width: 140px;
+
+          @include sm-up {
+            width: 280px;
+          }
+        }
+      }
+    }
+
+    main {
+      grid-area: body;
+      font-size: var(--font-size-fluid-0);
+      margin-bottom: var(--size-fluid-4);
+
+      .comments {
+        margin-top: var(--size-fluid-4);
+      }
+    }
+  }
+</style>
