@@ -3,7 +3,7 @@ import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import MD from '@src/components/MD.astro';
 import TagList from '@src/components/TagList.astro';
-import Comments from '@src/components/Comments.svelte';
+//import Comments from '@src/components/Comments.svelte';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import { mediumDate } from '@src/utils';
 import type { GetStaticPaths } from 'astro';
@@ -65,10 +65,12 @@ const meta = {
     </section>
     <main class="tw-prose">
       <Content />
+      {/*
       <hr />
       <div class="comments">
         <Comments client:load />
       </div>
+      */}
     </main>
 
     <CoolBackground />
@@ -160,10 +162,8 @@ const meta = {
     main {
       grid-area: body;
       font-size: var(--font-size-fluid-0);
+      margin-bottom: var(--size-fluid-4);
 
-      .comments {
-        margin-top: var(--size-fluid-4);
-      }
     }
   }
 </style>
