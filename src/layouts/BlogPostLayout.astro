@@ -7,7 +7,6 @@ import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import { mediumDate } from '@src/utils';
 import { Image } from 'astro:assets';
-import Disqus from '@src/components/Disqus.astro';
 
 interface Props extends LayoutProps {
   post : BlogCollectionEntry | CapsuleCollectionEntry;
@@ -77,10 +76,6 @@ const { Content } = await post.render();
     </section>
     <main class="tw-prose">
       <Content />
-      <hr />
-      <div class="comments">
-        <Disqus post={post} />
-      </div>
     </main>
 
     <CoolBackground />
@@ -183,10 +178,6 @@ const { Content } = await post.render();
       grid-area: body;
       font-size: var(--font-size-fluid-0);
       margin-bottom: var(--size-fluid-4);
-
-      .comments {
-        margin-top: var(--size-fluid-4);
-      }
     }
   }
 </style>
