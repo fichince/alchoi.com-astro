@@ -1,7 +1,7 @@
 :root {
 
-  --font-display: 'NunitoVariable', var(--font-sans);
-  --font-body: 'Libre FranklinVariable', var(--font-sans);
+  --font-display: campaign, var(--font-sans);
+  --font-body: rubik, var(--font-sans);
   --font-code: 'InconsolataVariable', var(--font-mono);
 
   /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1920,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
@@ -63,7 +63,7 @@ html.light {
   --tw-prose-counters: var(--colour-foreground);
   --tw-prose-bullets: var(--colour-foreground);
   --tw-prose-hr: var(--colour-foreground);
-  --tw-prose-quotes: var(--colour-accent);
+  --tw-prose-quotes: var(--colour-primary);
   --tw-prose-quote-borders: var(--colour-accent);
   --tw-prose-captions: var(--colour-foreground);
   --tw-prose-code: var(--colour-foreground);
