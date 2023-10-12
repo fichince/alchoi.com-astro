@@ -174,40 +174,67 @@ const posts = page.data;
 
     article {
       &:not(:first-child) {
-        margin-top: var(--size-fluid-5);
+        margin-top: var(--size-fluid-6);
       }
       &:first-child {
-        margin-top: var(--size-fluid-4);
+        margin-top: var(--size-fluid-5);
       }
 
       display: grid;
       overflow: visible;
 
+      grid-template-areas:
+        "image"
+        "title"
+        "words";
+
       &:nth-child(odd) {
         --text-alignment: left;
-        --columns: 1fr auto;
-
-        --_image-right: 0;
-        --_image-left: 0;
-
-        grid-template-areas:
-          "title image"
-          "words words";
-
         --title-align: flex-start;
       }
       &:nth-child(even) {
         --text-alignment: right;
-        --columns: auto 1fr;
-
-        --_image-left: 0;
-        --_image-right: 0;
-
-        grid-template-areas:
-          "image title"
-          "words words";
-
         --title-align: flex-end;
+      }
+
+      @include sm-up {
+
+        &:nth-child(odd) {
+          --columns: 1fr auto;
+
+          grid-template-areas:
+            "title image"
+            "words words";
+
+        }
+        &:nth-child(even) {
+          --columns: auto 1fr;
+
+          grid-template-areas:
+            "image title"
+            "words words";
+
+        }
+      }
+
+      .image {
+        grid-area: image;
+        place-self: center;
+
+        position: relative;
+        display: inline-block;
+        top: calc(-1 * var(--size-9));
+
+        img {
+
+          border-radius: 50%;
+          border: 1px solid var(--colour-foreground);
+
+          width: 200px;
+          @include sm-up {
+            width: 280px;
+          }
+        }
       }
 
       padding: var(--size-fluid-2);
@@ -215,7 +242,7 @@ const posts = page.data;
       align-items: baseline;
       --rows: 1fr;
       
-      gap: var(--size-fluid-1);
+      //gap: var(--size-fluid-1);
       grid-template-rows: var(--rows);
       grid-template-columns: var(--columns);
 
@@ -264,23 +291,6 @@ const posts = page.data;
         }
       }
 
-      .image {
-        grid-area: image;
-        place-self: center;
-
-        position: relative;
-        display: inline-block;
-        top: calc(-1 * var(--size-9));
-
-        img {
-
-          border-radius: 50%;
-          width: 140px;
-          @include sm-up {
-            width: 280px;
-          }
-        }
-      }
 
       a {
         @include hover-link($subtle: true);
