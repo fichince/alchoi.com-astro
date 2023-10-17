@@ -41,10 +41,32 @@ const capsules = defineCollection({
   schema: ({ image }) => blogSchema(image),
 });
 
+const hkjapan = defineCollection({
+  schema: ({ image }) => z.object({
+    title: z.string().optional(),
+    date: z.date().optional(),
+    component: z.string(),
+    map: z.object({
+      lat: z.number(),
+      lon: z.number(),
+      zoom: z.number(),
+    }).optional(),
+    images: z.object({
+      image: image(),
+      caption: z.string().optional(),
+      location: z.object({
+        lat: z.number(),
+        lon: z.number(),
+      }).optional(),
+    }).array().optional(),
+  })
+});
+
 export const collections = {
   prose,
   blog,
   code,
   other,
   capsules,
+  hkjapan,
 };

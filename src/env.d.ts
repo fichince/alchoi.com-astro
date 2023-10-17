@@ -35,3 +35,27 @@ type BlogEntrySummary = {
   url: string,
   date: Date,
 };
+
+type MapImage = {
+  id: number,
+  image: string,
+  caption?: string,
+  location?: {
+    lat: number,
+    lon: number,
+  }
+};
+
+type MapPage = {
+  slug: string,
+  component: string,
+  body?: string,
+  date?: Date,
+  title?: string,
+  map?: {
+    lat: number,
+    lon: number,
+    zoom: number,
+  },
+  images?: Array<MapImage>,
+};
