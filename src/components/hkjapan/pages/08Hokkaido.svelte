@@ -5,16 +5,13 @@
   import MapImg from '../MapImg.svelte';
 
   onMount(() => {
-    moveMap({}, false);
+    moveMap({}, true);
   });
 
   const { body, title, images = [] } = $mapPage;
 
 </script>
 
-<div id="container">
-  <MapImg image={images[0]} />
-</div>
 <PageText {title} {body} 
   bottom="15vh"
   left="8vw"

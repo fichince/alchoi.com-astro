@@ -14,6 +14,7 @@
 
 <div id="container">
   <MapImg image={images[0]} />
+  <MapImg image={images[1]} />
 </div>
 <PageText {title} {body} 
   bottom="15vh"
