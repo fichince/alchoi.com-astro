@@ -1,15 +1,7 @@
 ---
 import '@fontsource/inconsolata/variable.css';
 
-import '@fontsource/nunito/variable.css';
-import '@fontsource/nunito/variable-italic.css';
-
-import '@fontsource/libre-franklin/variable.css';
-import '@fontsource/libre-franklin/variable-italic.css';
-
-import 'maplibre-gl/dist/maplibre-gl.css';
-
-import { stripMarkdown } from '@src/markdown';
+import { stripMarkdown } from '@src/utils';
 
 export interface Props {
   title?: string;
@@ -37,6 +29,7 @@ const isProd = import.meta.env.PROD;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://use.typekit.net/pdz7col.css">
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="alternate" type="application/rss+xml" title="Subscribe to blog" href={`${Astro.site}rss.xml`} />
     <link rel="sitemap" href="/sitemap-index.xml">

@@ -69,7 +69,7 @@ export function mediumDate(d : Date) : string {
     .toLocaleString(DateTime.DATE_MED);
 }
 
-export function getLinkToPost(post? : CollectionEntry<'blog' | 'capsules'>) : string {
+export function getLinkToPost(post? : BlogCollectionEntry | CapsuleCollectionEntry) : string {
   if (!post) return '';
   const path = post.collection === 'blog' ? '/blog' : '/quick-reviews';
   const link = `${path}/${post.slug}`;
