@@ -29,8 +29,23 @@
 .image-hover {
   transition: transform 500ms var(--ease-squish-5);
 
+  & img {
+    transition: filter 500ms var(--ease-squish-5);
+  }
+
   &:hover {
     transform: scale(105%);
+
+    & img {
+      filter: saturate(200%);
+    }
+  }
+}
+
+.image-round {
+  img {
+    border-radius: 50%;
+    box-shadow: var(--colour-accent) 0 0 10px 2px;
   }
 }
 

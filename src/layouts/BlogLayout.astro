@@ -75,7 +75,7 @@ const posts = page.data;
               }
             </div>
             { post.data.image &&
-              <div class="image image-hover">
+              <div class="image image-hover image-round">
                 <a href={link}>
                   <Image
                     src={post.data.image}
@@ -173,11 +173,21 @@ const posts = page.data;
     }
 
     article {
-      &:not(:first-child) {
-        margin-top: var(--size-fluid-6);
+      // leave space for the protruding circular image
+      &:has(div.image) {
+        &:not(:first-child) {
+          margin-top: var(--size-fluid-6);
+        }
+        &:first-child {
+          margin-top: var(--size-fluid-5);
+        }
       }
-      &:first-child {
-        margin-top: var(--size-fluid-5);
+
+      // no need for space above if there's no image
+      &:not(:has(div.image)) {
+        &:not(:first-child) {
+          margin-top: var(--size-fluid-4);
+        }
       }
 
       display: grid;
@@ -226,10 +236,6 @@ const posts = page.data;
         top: calc(-1 * var(--size-9));
 
         img {
-
-          border-radius: 50%;
-          box-shadow: var(--colour-accent) 0 0 10px 2px;
-
           width: 200px;
           @include sm-up {
             width: 320px;
@@ -249,6 +255,10 @@ const posts = page.data;
       text-align: var(--text-alignment);
 
       .title {
+
+        &:not(:has(+ div.image)) {
+          margin-bottom: var(--size-fluid-2);
+        }
         grid-area: title;
 
         display: flex;
