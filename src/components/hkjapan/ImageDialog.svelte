@@ -19,11 +19,18 @@
 <sl-dialog bind:this={dialog}
   on:sl-hide={() => $imageExpanded = null}>
   
-  <img src={$imageExpanded} alt="foo" />
+  <img src={$imageExpanded?.image} alt={$imageExpanded?.caption ?? 'Image'} />
 </sl-dialog>
 
 <style lang="scss">
   sl-dialog {
     --width: 100vw;
+
+  }
+
+  img {
+    max-height: 80vh;
+    max-width: 85vw;
+    margin: auto auto;
   }
 </style>

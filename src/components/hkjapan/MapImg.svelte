@@ -3,10 +3,10 @@
   export let image : MapImage;
 
   function updateExpanded() {
-    if ($imageExpanded === image.image) {
+    if ($imageExpanded === image) {
       $imageExpanded = null;
     } else {
-      $imageExpanded = image.image;
+      $imageExpanded = image;
     }
   }
 
@@ -16,10 +16,10 @@
   <figure>
     <img src={image.image} alt={image.caption}
       class:hovered={$mapHovered === image.id}
-      class:expanded={$imageExpanded === image.id}
       on:mouseenter={() => updateHover(image.id)}
       on:mouseleave={() => updateHover(null)} 
       on:click={updateExpanded}
+      on:keydown={() => {}}
     />
     
     {#if image.caption}
@@ -51,12 +51,14 @@
 
     figure {
 
+      cursor: pointer;
+
       width: 100%;
       height: 100%;
 
-      transition: margin 250ms var(--ease-in-out-1);
+      transition: transform 750ms var(--ease-squish-5);
       &:has(img.hovered) {
-        margin: 0 calc(-1 * var(--size-5));
+        transform: scale(105%);
       }
 
       img {

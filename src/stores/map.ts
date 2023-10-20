@@ -130,7 +130,7 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
 export const mapPage = writable<MapPage>();
 
 export const mapHovered = writable<number | null>();
-export const imageExpanded = writable<string | null>();
+export const imageExpanded = writable<MapImage | null>();
 
 export const mapMoving = derived(mapStore, ($mapStore, set) => {
   if ($mapStore) {
