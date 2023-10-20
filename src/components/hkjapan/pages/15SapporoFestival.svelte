@@ -13,7 +13,8 @@
 </script>
 
 <div id="container">
-  <video src="/video/RainyDay.mp4" autoplay muted loop />
+  <MapImg image={images[0]} />
+  <video src="/video/SapporoFestival.mp4" autoplay muted loop />
 </div>
 <PageText {title} {body} 
   bottom="15vh"

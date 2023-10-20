@@ -13,7 +13,7 @@
 </script>
 
 <div id="container">
-  <video src="/video/RainyDay.mp4" autoplay muted loop />
+  <video src="/video/SapporoDance.mp4" autoplay muted loop />
 </div>
 <PageText {title} {body} 
   bottom="15vh"
