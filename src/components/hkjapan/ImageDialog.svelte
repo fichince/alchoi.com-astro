@@ -1,11 +1,22 @@
 <script lang="ts">
   // component that shows expanded image in a dialog
   import { imageExpanded } from '@src/stores/map';
+  import { onDestroy } from 'svelte';
 
-  $: open = !!$imageExpanded;
+  let dialog : any;
+
+  const unsubscribe = imageExpanded.subscribe((value) => {
+    if (value !== null) {
+      dialog?.show();
+    } else {
+      dialog?.hide();
+    }
+  });
+
+  onDestroy(unsubscribe);
 </script>
 
-<sl-dialog {open}
+<sl-dialog bind:this={dialog}
   on:sl-hide={() => $imageExpanded = null}>
   
   <img src={$imageExpanded} alt="foo" />
