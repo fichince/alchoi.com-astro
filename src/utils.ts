@@ -51,9 +51,11 @@ export async function getAllBlogEntries() : Promise<BlogEntry[]> {
     getCollection('capsules'),
   ]);
 
-  const published = blog.filter((post) => !post.data.draft);
+  const published = [...blog, ...capsules].filter((post) => {
+    return !post.data.draft;
+  });
 
-  const entries : BlogEntry[] = [...published, ...capsules].map((entry) => {
+  const entries : BlogEntry[] = published.map((entry) => {
     if (entry.collection === 'capsules') {
       return enrichCapsuleEntry(entry);
     } else {
