@@ -13,9 +13,13 @@
 </script>
 
 <div id="container">
-  <MapImg image={images[0]} />
+  <div class="map-img">
+    <MapImg image={images[0]} />
+  </div>
   <PageText {title} {body} width="400px" relative />
-  <MapImg image={images[1]} />
+  <div class="map-img">
+    <MapImg image={images[1]} />
+  </div>
 </div>
 
 <style lang="scss">
@@ -32,7 +36,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    :global(.map-img) {
+    .map-img {
       width: 30vw;
     }
   }

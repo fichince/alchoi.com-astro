@@ -12,7 +12,7 @@
 
 </script>
 
-<div class="glass map-img">
+<div class="glass">
   <figure>
     <img src={image.image} alt={image.caption}
       class:hovered={$mapHovered === image.id}
@@ -34,6 +34,8 @@
 
   div.glass {
     position: relative;
+    width: 100%;
+    height: 100%;
 
     /* From https://css.glass */
     background: rgba(127, 127, 127, 0.25);
@@ -66,6 +68,8 @@
         max-width: 100%;
         max-height: 100%;
         object-fit: contain;
+
+        margin: auto auto;
       }
     }
   }

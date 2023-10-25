@@ -15,11 +15,13 @@
 <PageText {title} {body}
   top="var(--size-8)"
   width="var(--size-15)"
-  right="var(--size-8)"
+  right="var(--size-10)"
 />
 <div id="images">
   {#each images as image}
-    <MapImg {image} />
+    <div class="map-img">
+      <MapImg {image} />
+    </div>
   {/each}
 </div>
 
@@ -35,8 +37,9 @@
     top: 50%;
     transform: translate(0, -50%);
 
-    :global(.map-img) {
+    .map-img {
       height: 45vh;
     }
+
   }
 </style>
