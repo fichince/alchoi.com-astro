@@ -29,6 +29,9 @@ const posts = page.data;
       <div class="divider" />
     </header>
     <main>
+      <div>
+        <blog-image name="Dude"></blog-image>
+      </div>
       {posts.map(async (post, index) => {
 
         const date = shortDate(post.data.date);
