@@ -10,7 +10,7 @@ const blogSchema = (image : Function) => z.object({
 
   author: z.string().optional(),
   end: z.date().optional(),
-  type: z.enum(['book', 'movie', 'tv', 'game']).optional(),
+  type: z.enum(['book', 'movie', 'tv', 'game', 'other']).optional(),
   rating: z.number().min(1).max(5).optional(),
 });
 
