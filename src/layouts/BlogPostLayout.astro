@@ -59,7 +59,7 @@ const { Content } = await post.render();
       </div>
 
       <div class="tags">
-        <TagList tags={tags} />
+        <TagList tags={tags} justify="right" />
       </div>
       { image &&
         <div class="image image-hover image-round">
@@ -159,11 +159,13 @@ const { Content } = await post.render();
       }
 
       sl-rating {
-        margin: var(--size-fluid-1) 0;
+        margin: var(--size-fluid-2) 0;
         --symbol-size: var(--size-6);
       }
 
       .image {
+
+        margin: var(--size-fluid-2) 0;
         img {
           width: 140px;
 

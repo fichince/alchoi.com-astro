@@ -1,11 +1,14 @@
 ---
 interface Props {
   tags: string[],
+  justify?: 'left' | 'right',
 }
 
 const { tags } = Astro.props;
+const justify = Astro.props.justify ?? 'left';
+
 ---
-<ul>
+<ul style={{ '--justification' : justify === 'left' ? 'flex-start' : 'flex-end' }}>
   {tags.map((tag, index) => (
     <li>
       <a href={`/blog/tag/${tag}`}>{tag}</a>
@@ -24,6 +27,9 @@ const { tags } = Astro.props;
     font-size: var(--font-size-fluid-0);
     display: flex;
     flex-wrap: wrap;
+
+    --justification: flex-start;
+    justify-content: var(--justification);
 
     li {
       text-transform: uppercase;
