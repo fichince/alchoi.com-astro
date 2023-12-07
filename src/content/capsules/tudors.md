@@ -6,7 +6,7 @@ type: tv
 image: ../../images/blog/henry.jpg
 ---
 
-I watched this show to prepare before seeing the musical [Six](/quick-reviews/six). The first season is quite slow, but I think the show finds its rhythm in Season 2, once Anne Boleyn becomes queen. There's also a noticeable increase in production quality in Seasons 3 and 4, as the show grows beyond interior sets and into castle courtyards and battlefields.
+I watched this show to prepare before seeing the musical [_Six_](/quick-reviews/six). The first season is quite slow, but I think the show finds its rhythm in Season 2, once Anne Boleyn becomes queen. There's also a noticeable increase in production quality in Seasons 3 and 4, as the show grows beyond interior sets and into castle courtyards and battlefields.
 
 With historical dramas, there's a tradeoff between being factually accurate and giving the audience compelling emotional stakes. I think this show skews more towards the former; I know it's not 100% accurate, but there's still a connect-the-dots feeling that the show is covering the important dates at the cost of character development.
 
