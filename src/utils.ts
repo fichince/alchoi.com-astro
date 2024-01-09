@@ -33,6 +33,9 @@ export function enrichCapsuleEntry(entry : CollectionEntry<'capsules'>)
     case 'game':
       tags.push('games');
       break;
+    case 'music':
+      tags.push('music');
+      break;
   }
 
   return {

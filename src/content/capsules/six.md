@@ -2,7 +2,7 @@
 title: _Six_
 date: 2023-11-11
 rating: 4.0
-type: other
+type: music
 image: ../../images/blog/crown.jpg
 ---
 
