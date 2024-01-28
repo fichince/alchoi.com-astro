@@ -18,3 +18,4 @@ The second half kind of explains the vagueness of the first. Forced to flee thei
 
 The book rolls to a heartbreaking end as the relationship of the couple deteriorates under the pressure that all of the refugees face as a group. Despite their diverse backgrounds, the citizens of the West just see them as a single mass of unwelcome intruders. Their city was unnamed, because their identity is irrelevant to their opponents: it doesn't matter where they came from.
 
+[storygraph link](https://app.thestorygraph.com/books/6f9a394a-4f3b-445d-a346-804937bb5ffa)

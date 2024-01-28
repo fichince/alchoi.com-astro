@@ -1,7 +1,7 @@
 ---
 
 title: 'TIFF 2009: _Harry Brown_'
-description: You failed to maintain our weapon, son
+description: You failed to maintain your weapon, son
 date: 2009-09-15
 tags:
   - tiff

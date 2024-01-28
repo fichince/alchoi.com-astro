@@ -45,7 +45,7 @@ const posts = page.data;
           <article class="post card">
             <div class="title">
               <div class="tags">
-                <TagList tags={tags} />
+                <TagList tags={tags} justify={ even ? 'left' : 'right' } />
               </div>
               <h3>
                 <a href={link}>
