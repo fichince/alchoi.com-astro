@@ -7,4 +7,4 @@ map:
   zoom: 4
 ---
 
-This year, we had the opportunity to visit Hong Kong and Japan for our summer vacation. It was our first overseas trip since before the pandemic. Veniam tempor non eiusmod eiusmod proident non cillum anim commodo.
+In 2023, we had the opportunity to visit Hong Kong and Japan for our summer vacation. It was our first overseas trip since before the pandemic. 

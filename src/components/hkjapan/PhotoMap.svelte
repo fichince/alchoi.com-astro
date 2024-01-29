@@ -101,7 +101,7 @@
     position: absolute;
     z-index: 99;
     height: 100%;
-    width: var(--size-8);
+    width: var(--size-7);
     color: var(--colour-foreground);
 
     --_alpha: 0.7;
