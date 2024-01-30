@@ -8,7 +8,7 @@
     moveMap();
   });
 
-  const { body, title, images = [] } = $mapPage;
+  const { images = [] } = $mapPage;
 
 </script>
 
@@ -16,7 +16,7 @@
   <div class="map-img">
     <MapImg image={images[0]} />
   </div>
-  <PageText {title} {body} width="400px" relative />
+  <PageText mapPage={$mapPage} width="400px" relative />
   <div class="map-img">
     <MapImg image={images[1]} />
   </div>

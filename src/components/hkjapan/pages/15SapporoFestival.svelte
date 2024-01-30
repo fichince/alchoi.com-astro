@@ -16,7 +16,7 @@
   <MapImg image={images[0]} />
   <video src="/video/SapporoFestival.mp4" autoplay muted loop />
 </div>
-<PageText {title} {body} 
+<PageText mapPage={$mapPage} 
   bottom="15vh"
   left="8vw"
   width="20vw"

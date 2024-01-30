@@ -6,6 +6,9 @@ map:
   zoom: 15
 images:
   - image: ../../images/hkjapan/07-tai-kwun/tai-kwun1.jpg
+    location:
+      lat: 22.281538879038475
+      lon: 114.15426787618202
   - image: ../../images/hkjapan/07-tai-kwun/tai-kwun2.jpg
   - image: ../../images/hkjapan/07-tai-kwun/tai-kwun3.jpg
 ---

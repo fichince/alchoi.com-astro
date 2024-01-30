@@ -7,11 +7,9 @@
     moveMap();
   });
 
-  const { body, title } = $mapPage;
-
 </script>
 
-<PageText {title} {body}
+<PageText mapPage={$mapPage}
   top="60vh" 
   width="var(--size-15)"
   right="var(--size-11)"

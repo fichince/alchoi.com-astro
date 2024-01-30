@@ -1,8 +1,10 @@
 <script lang="ts">
   import { renderMarkdown } from '@src/markdown';
+  import { DateTime } from 'luxon';
 
-  export let title : string = '';
-  export let body : string = '';
+  //export let title : string = '';
+  //export let body : string = '';
+  export let mapPage : MapPage;
 
   export let top : string = 'auto';
   export let bottom : string = 'auto';
@@ -12,6 +14,13 @@
   export let height : string = 'max-content';
 
   export let relative : boolean = false;
+
+  let formattedDate : string = '';
+  const { body = '', title = '', date = '' } = mapPage;
+
+  if (date) {
+    formattedDate = DateTime.fromJSDate(date).toUTC().toLocaleString(DateTime.DATE_FULL);
+  }
 
   $: html = renderMarkdown(body);
 </script>
@@ -27,6 +36,10 @@
 >
   {#if title}
     <h1>{title}</h1>
+  {/if}
+
+  {#if formattedDate}
+    <h2>{formattedDate}</h2>
   {/if}
 
   {#if body}
@@ -59,6 +72,11 @@
     background-color: var(--colour-background);
     padding: var(--size-fluid-2);
     border-radius: var(--radius-2);
+
+    h1,h2 {
+      margin: 0;
+      margin-bottom: var(--size-fluid-1);
+    }
 
   }
 </style>

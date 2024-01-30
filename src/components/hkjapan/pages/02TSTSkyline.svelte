@@ -8,11 +8,11 @@
     moveMap();
   });
 
-  const { body, title, images = [] } = $mapPage;
+  const { images = [] } = $mapPage;
 
 </script>
 
-<PageText {title} {body}
+<PageText mapPage={$mapPage}
   top="var(--size-8)"
   width="var(--size-15)"
   left="var(--size-10)"

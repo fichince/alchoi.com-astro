@@ -8,18 +8,22 @@
     moveMap();
   });
 
-  const { body, title, images = [] } = $mapPage;
+  const { images = [] } = $mapPage;
 
 </script>
 
 <div id="container">
-  <MapImg image={images[0]} />
-  <MapImg image={images[1]} />
+  <div class="map-img">
+    <MapImg image={images[0]} />
+  </div>
+  <div class="map-img">
+    <MapImg image={images[1]} />
+  </div>
 </div>
-<PageText {title} {body} 
+<PageText mapPage={$mapPage} 
   bottom="15vh"
   left="8vw"
-  width="20vw"
+  width="30vw"
 />
 
 <style lang="scss">
@@ -32,9 +36,9 @@
 
     display: flex;
     flex-direction: column;
-    gap: var(--size-3);
+    gap: var(--size-1);
 
-    :global(.map-img) {
+    .map-img {
       height: 45vh;
     }
   }

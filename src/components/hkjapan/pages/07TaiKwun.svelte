@@ -8,34 +8,49 @@
     moveMap({}, true);
   });
 
-  const { body, title, images = [] } = $mapPage;
+  const { images = [] } = $mapPage;
 
 </script>
 
 <div id="container">
-  <MapImg image={images[0]} />
-  <MapImg image={images[1]} />
-  <MapImg image={images[2]} />
+  <div id="img1" class="map-img">
+    <MapImg image={images[1]} />
+  </div>
+  <div id="img2" class="map-img">
+    <MapImg image={images[0]} />
+  </div>
+
+  <PageText mapPage={$mapPage} relative />
+
+  <div id="img3" class="map-img">
+    <MapImg image={images[2]} />
+  </div>
 </div>
-<PageText {title} {body} 
-  bottom="15vh"
-  left="8vw"
-  width="20vw"
-/>
 
 <style lang="scss">
   #container {
 
-    position: absolute;
-    top: 30%;
-    left: 50%;
+    position: relative;
+    max-height: 80vh;
+    width: 80%;
+    margin: 0 auto;
+    //top: 30%;
+    //left: 50%;
     //transform: translate(0, -50%);
 
-    display: flex;
-    gap: var(--size-3);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 
-    :global(.map-img) {
-      height: 45vh;
+    #img1 {
+      grid-row: 1 / 4;
+      height: 100vh;
     }
+
+    .map-img {
+      height: 30vh;
+    }
+
+    gap: var(--size-3);
   }
 </style>

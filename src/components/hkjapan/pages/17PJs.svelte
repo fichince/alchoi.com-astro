@@ -19,7 +19,7 @@
   <MapImg image={images[3]} />
   <MapImg image={images[4]} />
 </div>
-<PageText {title} {body} 
+<PageText mapPage={$mapPage} 
   bottom="15vh"
   left="8vw"
   width="20vw"

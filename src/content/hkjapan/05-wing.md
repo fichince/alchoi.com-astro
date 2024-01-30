@@ -1,8 +1,8 @@
 ---
 component: 05Wing
 map:
-  lat: 22.285006891218135
-  lon: 114.15298775923988
+  lat: 22.285111929373087
+  lon: 114.15292864183235
   zoom: 13.5
 images:
   - image: ../../images/hkjapan/05-wing/wing1.jpg
@@ -13,7 +13,7 @@ images:
   - image: ../../images/hkjapan/05-wing/wing2.jpg
     caption: Appetizers, mostly seafood
   - image: ../../images/hkjapan/05-wing/wing3.jpg
-    caption: Almond soup
+    caption: Almond soup, my favourite dish
   - image: ../../images/hkjapan/05-wing/wing4.jpg
     caption: Roasted pigeon
 ---
