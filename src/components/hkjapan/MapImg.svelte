@@ -43,7 +43,7 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    padding: var(--size-3);
+    padding: var(--size-2);
 
     transition: all 250ms var(--ease-in-out-1);
 
@@ -77,7 +77,7 @@
   figcaption {
     width: fit-content;
     text-align: center;
-    padding: var(--size-2) var(--size-4);
+    padding: var(--size-1) var(--size-2);
     border-radius: var(--radius-3);
     margin: var(--size-1) auto;
     background-color: var(--colour-background);

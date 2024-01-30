@@ -13,7 +13,7 @@
 </script>
 
 <PageText {title} {body}
-  top="var(--size-8)"
+  top="var(--size-10)"
   width="var(--size-15)"
   right="var(--size-10)"
 />
@@ -33,7 +33,7 @@
     gap: var(--size-3);
 
     position: absolute;
-    left: 15vw;
+    left: 10vw;
     top: 50%;
     transform: translate(0, -50%);
 

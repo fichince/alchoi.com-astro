@@ -3,7 +3,6 @@ title: Tsim Sha Tsui
 component: 02TSTSkyline
 images:
   - image: ../../images/hkjapan/02-tst-skyline/tst-skyline.jpg
-    caption: Tsim Sha Tsui
     location:
       lat: 22.293889
       lon: 114.171111
