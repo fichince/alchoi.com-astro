@@ -4,7 +4,7 @@
   import PageText from '../PageText.svelte';
 
   onMount(() => {
-    moveMap();
+    //moveMap();
   });
 
 </script>

@@ -7,7 +7,8 @@
     mapStore, 
     mapPage, 
     allMapPages, 
-    toggleMapOnly
+    toggleMapOnly,
+    moveMap
   } from '@src/stores/map';
 
   import fromPairs from 'lodash/fromPairs';
@@ -53,6 +54,11 @@
 
   $: currentPage, push(`/${slugs[currentPage]}`);
   $: currentPage, $mapPage = mapPages[currentPage];
+
+  mapPage.subscribe((page) => {
+    // TODO set one more store to hide the content *before* the map even starts to move
+    if (page) moveMap();
+  });
 
   const routes = fromPairs(mapPages.map((page) => {
     return [

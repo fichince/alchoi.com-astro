@@ -5,7 +5,7 @@
   import MapImg from '../MapImg.svelte';
 
   onMount(() => {
-    moveMap();
+    //moveMap();
   });
 
   const { images = [] } = $mapPage;
