@@ -194,6 +194,7 @@ export function updateHover(id : number | null) {
   }
 }
 
+export const mapAboutToMove = writable(false);
 export function moveMap(opts : AnimationOptions = {}, jump = false) {
   const { map } = get(mapPage);
   const m = get(mapStore);
@@ -212,6 +213,7 @@ export function moveMap(opts : AnimationOptions = {}, jump = false) {
       m.jumpTo(location);
     }
   }
+  mapAboutToMove.set(false);
 }
 
 export const toggleMapOnly = writable(false);
