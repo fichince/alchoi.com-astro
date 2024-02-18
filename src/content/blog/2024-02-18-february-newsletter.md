@@ -27,7 +27,7 @@ Let me know: Do you use anything for day-to-day planning or journalling? Do you 
 
 ### A “Secret” Revealed
 
-One of my first books I read this year was [_Humankind: A Hopeful History_]( https://app.thestorygraph.com/books/9a3bf034-0cec-4d40-b473-17e644f35ebf) by Rutger Bregman. Check out [my review](/quick-reviews/humankind) for a more in-depth summary, but suffice it to say, the message of the book has been on my mind ever since I read it. I’ve really tried to adjust my perception to assume that people’s intentions are generally good.
+One of the first books I read this year was [_Humankind: A Hopeful History_]( https://app.thestorygraph.com/books/9a3bf034-0cec-4d40-b473-17e644f35ebf) by Rutger Bregman. Check out [my review](/quick-reviews/humankind) for a more in-depth summary, but suffice it to say, the message of the book has been on my mind ever since I read it. I’ve really tried to adjust my perception to assume that people’s intentions are generally good.
 
 One lesson that stuck with me is the idea that we should spread the word about our good deeds. While I don’t exactly keep it a secret, I’ve tended to avoid talking about my volunteer work. Or I might tell people, “I do it because I enjoy it,” as if its purpose is to entertain myself. I have this belief, misplaced perhaps, that charity requires humility, and that if I draw attention to my altruism, then I’m somehow being a jerk.
 
