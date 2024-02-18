@@ -32,7 +32,8 @@ const justify = Astro.props.justify ?? 'left';
     justify-content: var(--justification);
 
     li {
-      text-transform: uppercase;
+      text-transform: capitalize;
+      font-variant: small-caps;
       a {
         text-decoration: underline;
         @include hover-link;
