@@ -6,12 +6,10 @@ date: 2008-05-24
 tags:
   - fun
 ---
-import BlogImage from '../../components/BlogImage.astro';
-import creditcard from '../../images/blog/creditcard.png';
 
 Got the statement from my corporate credit card. It made me feel good.  
   
-<BlogImage src={creditcard} alt="Credit card" />
+![](../../images/blog/creditcard.png)
 
 ONE BILLION DOLLARS...  
   

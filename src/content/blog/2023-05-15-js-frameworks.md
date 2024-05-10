@@ -7,11 +7,6 @@ tags:
   - coding
 image: ../../images/blog/sad-coder.png
 ---
-import BlogImage from '../../components/BlogImage.astro';
-import svelte from '../../images/blog/svelte.png';
-import astro from '../../images/blog/astro.png';
-import angry from '../../images/blog/angry-coder.png';
-
 
 I’ve written before about the tools I’ve used for building this website. To recap, I started with [Jekyll][1], and I transitioned to [Gatsby][2] because of... [reasons][3].
 
@@ -19,7 +14,7 @@ I don’t have strong opinions about Gatsby. Being a React-based framework, it f
 
 I started to hear about [Svelte][4] and [SvelteKit][5] early last year. Curiosity got the better of me, and I decided to port this site to SvelteKit. Recall that my primary motivation for switching to Gatsby was to allow me to use [Tailwind][6] as my styling solution, and I stuck with Tailwind for my SvelteKit rewrite.
 
-<BlogImage src={svelte} alt="Svelte" sm={150} lg={200} />
+![](../../images/blog/svelte.png)
 
 Svelte is absolutely lovely. I love its syntax for expressing reactive UI state changes, and its use of _[stores][7]_ for cross-component shared state. SvelteKit, though, I still have some reservations about. I won’t get into specifics here, because I acknowledge that it’s a relative newcomer (still in beta when I first picked it up), and I have faith that as it matures, it will continue to address some of the quirks that I encountered. If I were to start a web application project, I would choose SvelteKit.
 
@@ -29,7 +24,7 @@ I’ve learned that my Kryptonite is getting bogged down in coding details and m
 
 ## Jekyll → Gatsby → SvelteKit → Astro
 
-<BlogImage src={astro} alt="Astro" sm={150} lg={200} />
+![](../../images/blog/astro.png)
 
 This is the part of the story where I wag my finger at myself and say, “Don’t tell me you rewrote it _again_.” I’ve had enough corporate software experience to instinctively recoil at the idea. Refactoring or rewriting a project even _once_ is _verboten_, let alone three times.
 
@@ -49,7 +44,7 @@ More importantly,  I started to think that maybe it wasn’t such a good idea to
 
 ## Anti-JS sentiment
 
-<BlogImage src={angry} alt="Angry coder" sm={200} lg={300} />
+![](../../images/blog/angry-coder.png)
 
 Recently, I read a couple of [blog][14] [posts][15] that angrily criticize the current state of web development. While their tone is too “conspiracy theory rant” for my tastes, they have a valid point. Namely, Javascript web frameworks (especially React) may have become dominant because of marketing and hype, not technical merit. And the consequence of putting Javascript first? A lot of extra load on browsers, and a lot of extra complexity in the development workflow.
 
