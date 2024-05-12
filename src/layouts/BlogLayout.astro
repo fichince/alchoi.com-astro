@@ -10,7 +10,7 @@ import type { Props as LayoutProps } from '@src/layouts/Layout.astro';
 
 import type { Page } from 'astro';
 
-import { getLinkToPost, shortDate } from '@src/utils';
+import { getLinkToPost, shortDate, renderMarkdownTruncate } from '@src/utils';
 
 interface Props extends LayoutProps {
   page: Page<BlogEntry>,
@@ -89,6 +89,8 @@ const posts = page.data;
               { post.collection === 'capsules' ? (
                 <Content />
               ) : (
+                <div set:html={renderMarkdownTruncate(post.body, 30)}>
+                </div>
                 <a href={link}>Read...</a>
               )}
             </div>

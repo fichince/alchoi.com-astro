@@ -2,10 +2,16 @@ import { type CollectionEntry, getCollection } from 'astro:content';
 import isString from 'lodash/isString';
 import { DateTime } from 'luxon';
 import { remark } from 'remark';
+import { unified } from 'unified';
 import strip from 'strip-markdown';
+import remarkParse from 'remark-parse';
 import remarkHtml from 'remark-html';
 import remarkGfm from 'remark-gfm';
 import remarkSmartypants from 'remark-smartypants';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
+import rehypeTruncate from 'rehype-truncate';
+import rehypeParse from 'rehype-parse';
 
 export const PAGE_SIZE = 10;
 
@@ -104,4 +110,21 @@ export function renderMarkdown(md : string) : string {
       .toString();
 
   return html;
+}
+
+export async function renderMarkdownTruncate(md : string, length: number) : Promise<string> {
+  const html = 
+    remark()
+      .use(remarkGfm)
+      .use(remarkSmartypants)
+      .use(remarkHtml, { sanitize: false })
+      .processSync(md.trim())
+      .toString();
+  
+  const truncated = unified()
+  .use(rehypeParse)
+  .use(rehypeTruncate, { maxChars: 50 })
+  .use(rehypeStringify)
+  .processSync(html).contents;
+
 }
