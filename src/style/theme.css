@@ -90,6 +90,11 @@ html.light {
   margin: 0 auto;
 }
 
+.tw-prose blockquote {
+  /* don't use italics */
+  font-style: normal;
+}
+
 /* this prevents footnotes from disappearing under the navbar when you click on the anchor links */
 :target {
   padding-top: var(--navbar-height);

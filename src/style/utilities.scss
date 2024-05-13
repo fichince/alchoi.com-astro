@@ -31,13 +31,14 @@
 
   & img {
     transition: filter 500ms var(--ease-squish-5);
+    filter: saturate(40%);
   }
 
   &:hover {
     transform: scale(105%);
 
     & img {
-      filter: saturate(200%);
+      filter: none;
     }
   }
 }
