@@ -1,8 +1,10 @@
 ---
 title: How to Overanalyze Coincidences
 description: Incomplete trifecta
-date: 2024-05-13
+date: 2024-05-08
 image: ../../images/blog/how-to-read-now.jpeg
+tags:
+  - books
 ---
 
 Recently, by sheer coincidence, I read a couple of books whose titles both started with the words _how to_. What’s more, the reading of one informed and influenced my reading of the other. 
