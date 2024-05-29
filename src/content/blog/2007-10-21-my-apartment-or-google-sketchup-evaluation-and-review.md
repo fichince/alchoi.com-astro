@@ -5,13 +5,6 @@ date: 2007-10-21
 tags:
   - fun
 ---
-import BlogImage from '../../components/BlogImage.astro';
-import sketchup1 from '../../images/blog/sketchup1.jpg';
-import sketchup2 from '../../images/blog/sketchup2.jpg';
-import sketchup3 from '../../images/blog/sketchup3.jpg';
-import sketchup4 from '../../images/blog/sketchup4.jpg';
-import sketchup5 from '../../images/blog/sketchup5.jpg';
-import sketchup6 from '../../images/blog/sketchup6.jpg';
 
 _N.B.: I don't normally post personal items on this blog, so this will be thinly disguised as a technology review article._  
   
@@ -21,24 +14,21 @@ I had heard good things about [Google SketchUp](http://google.com/sketchup), so 
   
 Voila:
 
-<BlogImage src={sketchup1} alt="sketchup1" />
-
-<BlogImage src={sketchup2} alt="sketchup2" />
+![](../../images/blog/sketchup1.jpg)
+![](../../images/blog/sketchup2.jpg)
 
 This is the living room.  
 
-<BlogImage src={sketchup3} alt="sketchup3" />
+![](../../images/blog/sketchup3.jpg)
+![](../../images/blog/sketchup4.jpg)
 
-<BlogImage src={sketchup4} alt="sketchup4" />
-   
 I'm considering maybe putting another shelf next to the TV for additional storage of books, DVDs, or whatever. On the other hand, it's good to have some empty space so that it's not too cluttered. There's also a pretty large storage closet in the apartment, so anything that doesn't need to always be conveniently available, I can just put in the closet.  
   
 Here's the bedroom.  
 
-<BlogImage src={sketchup5} alt="sketchup5" />
+![](../../images/blog/sketchup5.jpg)
+![](../../images/blog/sketchup6.jpg)
 
-<BlogImage src={sketchup6} alt="sketchup6" />
- 
 The bedroom seemed small to me when I first looked at the floorplan and at the empty apartment, but now I've seen it in 3D with the furniture models, it's not so bad.  
   
 So in conclusion: Google SketchUp is pretty good. Pretty, pretty good. 9/10  

@@ -8,12 +8,6 @@ tags:
   - tech
 image: ../../images/blog/loose-cannons.jpeg
 ---
-import BlogImage from '../../components/BlogImage.astro';
-import kaypro from '../../images/blog/kaypro4.jpg';
-import microfazer from '../../images/blog/microfazer.jpg';
-import printer from '../../images/blog/silver-reed-printer.jpeg';
-import typewriter from '../../images/blog/silver-reed-typewriter.jpeg';
-import knitting from '../../images/blog/silver-reed-knitting.jpeg';
 
 Recently, I picked up a book called [_Loose Cannons, Red Herrings, and Other Lost Metaphors_][2] by Robert Claiborne, apparently containing etymologies of words and phrases. I’ll say nothing further about the book itself, because I haven’t read it yet, but while I was flipping through it, something caught my eye on the Acknowledgements page.
 
@@ -31,7 +25,7 @@ Here’s what I found out:
 
 Kaypro was one of the top personal computer manufacturers in the 80’s, but eventually went away once IBM and its clones took over. The Kaypro 4 of 1984 is not to be confused with the Kaypro IV, which came out a year earlier. [According to Wikipedia][3], “Kaypro's nomenclature was odd, with the numerical designations for their machines having more to do with the capacity of the drives than the order they were produced.”
 
-<BlogImage src={kaypro} alt="Kaypro 4" />
+![](../../images/blog/kaypro4.jpg)
 
 ### Perfect Writer
 
@@ -45,21 +39,21 @@ Apparently, this is a thing that you hook up between a computer and printer, whi
 
 > One article I wrote recently was 4178 words long. A double-spaced printed version ran 17 pages and took 11 minutes and 40 seconds to print (about 40 seconds per page) on an Epson MX-80 printer… On the three printouts of this article, the MicroFazer saved 35 minutes of computer time, a significant saving indeed.
 
-<BlogImage src={microfazer} alt="Quadram Microfazer" />
+![](../../images/blog/microfazer.jpg)
 
 ### Silver-Reed EXP 550
 
 Can’t you just hear the noise that this printer would make?
 
-<BlogImage src={printer} alt="Silver-Reed printer" />
+![](../../images/blog/silver-reed-printer.jpeg)
 
 When I Googled “Silver-Reed,” a bunch of typewriters came out, along with… knitting machines. I believe the typewriters were made by the same company as the printer, which is a sensible pivot to make. Indeed, if you look at the logos, the typography matches.
 
-<BlogImage src={typewriter} alt="Silver-Reed typewriter" />
+![](../../images/blog/silver-reed-typewriter.jpeg)
 
 I thought the knitting machines might also be made by the same manufacturer, because the punch-card knitting patterns make it seem computer-y, but it doesn’t look like the typography matches here.
 
-<BlogImage src={knitting} alt="Silver-Reed knitting" />
+![](../../images/blog/silver-reed-knitting.jpeg)
 
 In any case, enjoy this [cool video][7] of the knitting machine in action!
 

@@ -85,11 +85,13 @@ const posts = page.data;
                 </a>
               </div>
             }
-            { post.collection === 'capsules' &&
             <div class="tw-prose quick-review">
-              <Content />
+              { post.collection === 'capsules' ? (
+                <Content />
+              ) : (
+                <a href={link}>Read...</a>
+              )}
             </div>
-            }
           </article>
         );
       })}

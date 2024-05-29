@@ -6,7 +6,7 @@ export function enrichCapsuleEntry(entry : CollectionEntry<'capsules'>)
   : CollectionEntry<'capsules'> {
 
   const { type } = entry.data;
-  const tags = ['quick reviews'];
+  const tags = ['quick reviews', ...(entry.data.tags ?? [])];
   switch (type) {
     case 'book':
       tags.push('books');

@@ -6,17 +6,13 @@ tags:
   - books
 image: ../../images/blog/caribou-dream-house.png
 ---
-import BlogImage from '../../components/BlogImage.astro';
-import chinatown from '../../images/blog/interior-chinatown.jpeg';
-import dreamhouse from '../../images/blog/in-the-dream-house.jpeg';
-import indians from '../../images/blog/the-only-good-indians.jpeg';
 
 I recently read a few books which feature the relatively rare technique of second-person narration. This is when the pronoun _you_ is used as a perspective in the writing. Most books are either first-person (“_I_ went to the cobbler’s”) or third-person (“_She_ went to the haberdasher’s”). Therefore, it raises my eyebrows to see the much more uncommon _you_ usage. These three books use this technique for different reasons, and to varying degrees of success, in my opinion.
 
 # [_Interior Chinatown_](https://app.thestorygraph.com/books/9ff7b20b-07f7-4d3d-a4f7-7ca29900e7d3)
 ### by Charles Yu
 
-<BlogImage src={chinatown} alt="Interior Chinatown" />
+![](../../images/blog/interior-chinatown.jpeg)
 
 I really wanted to like this book. The protagonist is Willis, the son of immigrants living in a U.S. Chinatown, a setting which is conducive to exactly the kind of cultural-identity soul-searching that I find myself doing more and more often these days. There are passages in this book that hit me right in the heart, e.g.
 
@@ -33,7 +29,7 @@ By the second half of the book, I guess I could accept that we’re watching cha
 # [_In the Dream House_](https://app.thestorygraph.com/books/2048effe-bd2c-4766-9abe-23e80576667b)
 ### by Carmen Maria Machado
 
-<BlogImage src={dreamhouse} alt="In the Dream House" />
+![](../../images/blog/in-the-dream-house.jpeg)
 
 This memoir covers Machado’s relationship with an abusive girlfriend. The second-person _you_ technique in this case works much better than the above. She splits her recollections into two perspectives: the pronoun _I_ signifies recovery, and moving on after the end of the abusive relationship, while the pronoun _you_ stands for the lived memories of the abuse.
 
@@ -50,7 +46,7 @@ Thematically, the book opened my eyes to the realities of abuse in LGBTQ relatio
 # [_The Only Good Indians_](https://app.thestorygraph.com/books/79437676-42a1-4936-86ac-b885a7f33ac9)
 ### by Stephen Graham Jones
 
-<BlogImage src={indians} alt="The Only Good Indians" />
+![](../../images/blog/the-only-good-indians.jpeg)
 
 This is a horror novel, so I don’t think I’m spoiling too much to say that there’s a monster haunting the main characters. The cool thing is that the monster gets the _you_ pronoun. I didn’t pull any quotes, so let me try to demonstrate by paraphrasing[^2]. I’m very sorry, Mr. Jones.
 
