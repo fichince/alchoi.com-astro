@@ -1,6 +1,6 @@
 ---
 title: The Storm
-url: http://bit.ly/SpaghettiAndLightning
+url: https://bit.ly/TheStorm-Spadina
 description: _Spadina Literary Review_, April 2017
 image: ../../images/writing/storm.jpg
 ---
