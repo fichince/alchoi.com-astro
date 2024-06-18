@@ -1,6 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
+import { verifySolution } from 'altcha-lib';
 
 import sgMail from '@sendgrid/mail';
 sgMail.setApiKey(import.meta.env.SENDGRID_API_KEY);
@@ -8,7 +9,16 @@ sgMail.setApiKey(import.meta.env.SENDGRID_API_KEY);
 export const POST : APIRoute = async ({ request, redirect }) => {
   const body = await request.formData();
 
-  // TODO validate input
+  const payload = body.get('altcha') ?? '';
+  const name = body.get('name');
+  const email = body.get('email');
+  const message = body.get('message');
+  const ok = await verifySolution(payload as string, import.meta.env.HMAC_SECRET);
+
+  if (!ok || !name || !email || !message) {
+    // TODO show an error message
+    return redirect('/contact');
+  }
 
   const msg = {
     to: import.meta.env.CONTACT_EMAIL,
@@ -25,5 +35,7 @@ export const POST : APIRoute = async ({ request, redirect }) => {
   }
 
   console.log('POST contact', body);
-  return redirect('/');
+
+  // TODO how to show a "flash" message?
+  return redirect('/contact');
 }

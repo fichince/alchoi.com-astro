@@ -24,6 +24,11 @@ import NavbarLayout from "@src/layouts/NavbarLayout.astro";
         <label for="message">Message</label>
         <textarea class="form-input" id="message" name="message" required></textarea>
       </div>
+
+      <div class="field altcha">
+        <altcha-widget challengeurl="/api/challenge">
+        </altcha-widget>
+      </div>
   
       <div class="field">
         <button class="button" type="submit">Submit</button>
@@ -68,6 +73,12 @@ import NavbarLayout from "@src/layouts/NavbarLayout.astro";
       textarea {
         font-size: var(--font-size-1);
       }
+
+    }
+
+    .field.altcha {
+      margin-top: var(--size-fluid-1);
+      align-items: flex-end;
     }
 
     button {

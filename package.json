@@ -26,6 +26,8 @@
     "@types/lodash": "^4.14.192",
     "@types/lunr": "^2.3.4",
     "@types/luxon": "^3.2.1",
+    "altcha": "^0.5.1",
+    "altcha-lib": "^0.3.0",
     "astro": "^4.8.2",
     "iconoir": "^6.6.0",
     "lodash": "^4.17.21",
