@@ -16,8 +16,7 @@ export const POST : APIRoute = async ({ request, redirect }) => {
   const ok = await verifySolution(payload as string, import.meta.env.HMAC_SECRET);
 
   if (!ok || !name || !email || !message) {
-    // TODO show an error message
-    return redirect('/contact');
+    return redirect('/contact?success=false');
   }
 
   const msg = {
@@ -36,6 +35,5 @@ export const POST : APIRoute = async ({ request, redirect }) => {
 
   console.log('POST contact', body);
 
-  // TODO how to show a "flash" message?
-  return redirect('/contact');
+  return redirect('/contact?success=true');
 }
