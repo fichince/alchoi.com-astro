@@ -7,6 +7,7 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://alchoi.com',
+  output: 'hybrid',
   integrations: [
     svelte(), 
     tailwind(), 
