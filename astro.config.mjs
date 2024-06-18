@@ -4,19 +4,20 @@ import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 
+import node from "@astrojs/node";
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://alchoi.com',
-  integrations: [
-    svelte(), 
-    tailwind(), 
-    mdx(), 
-    sitemap(),
-  ],
+  output: 'hybrid',
+  integrations: [svelte(), tailwind(), mdx(), sitemap()],
   markdown: {
     shikiConfig: {
       theme: 'vitesse-dark',
       wrap: true
     }
   },
+  adapter: node({
+    mode: "standalone"
+  })
 });

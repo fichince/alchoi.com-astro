@@ -7,9 +7,26 @@ import NavbarLayout from "@src/layouts/NavbarLayout.astro";
 <NavbarLayout title="Contact">
   <div class="tw-container container">
 
+    <div x-data="alertMessage()" class="alert">
+      <sl-alert variant="success" 
+        x-bind:open="success" closable duration="5000"
+        x-on:sl-hide="clearAlert()">
+
+        <sl-icon slot="icon" name="check2-circle"></sl-icon>
+        Thank you for your message!
+      </sl-alert>
+      <sl-alert variant="danger" 
+        x-bind:open="error" closable duration="5000"
+        x-on:sl-hide="clearAlert()">
+
+        <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+        Sorry, we couldn't send your message. Please try again later.
+      </sl-alert>
+    </div>
+
     <h1>Want to get in touch? Please do!</h1>
 
-    <form method="POST" action="https://formbold.com/s/3d50E">
+    <form method="POST" action="/api/contact">
       <div class="field">
         <label for="name">Your Name</label>
         <input class="form-input" id="name" name="name" type="text" required />
@@ -23,6 +40,11 @@ import NavbarLayout from "@src/layouts/NavbarLayout.astro";
       <div class="field">
         <label for="message">Message</label>
         <textarea class="form-input" id="message" name="message" required></textarea>
+      </div>
+
+      <div class="field altcha">
+        <altcha-widget challengeurl="/api/challenge">
+        </altcha-widget>
       </div>
   
       <div class="field">
@@ -46,6 +68,10 @@ import NavbarLayout from "@src/layouts/NavbarLayout.astro";
 
     font-family: var(--font-display);
 
+    .alert {
+      margin-bottom: var(--size-fluid-2);
+    }
+
     h1 {
       font-size: var(--font-size-fluid-3);
     }
@@ -68,6 +94,12 @@ import NavbarLayout from "@src/layouts/NavbarLayout.astro";
       textarea {
         font-size: var(--font-size-1);
       }
+
+    }
+
+    .field.altcha {
+      margin-top: var(--size-fluid-1);
+      align-items: flex-end;
     }
 
     button {
