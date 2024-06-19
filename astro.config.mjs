@@ -3,8 +3,8 @@ import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-
-import node from "@astrojs/node";
+import vercel from "@astrojs/vercel/serverless";
+//import search from './src/integrations/search.ts';
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +17,5 @@ export default defineConfig({
       wrap: true
     }
   },
-  adapter: node({
-    mode: "standalone"
-  })
+  adapter: vercel()
 });
