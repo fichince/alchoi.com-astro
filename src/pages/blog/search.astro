@@ -2,7 +2,8 @@
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import SearchComponent from '@src/components/Search.svelte';
 import CoolBackground from '@src/components/CoolBackground.astro';
-import { getAllBlogEntries, getLinkToPost, stripMarkdown } from '@src/utils';
+import { getAllBlogEntries, getLinkToPost } from '@src/utils';
+import { stripMarkdown } from '@src/markdown';
 
 const entries = await getAllBlogEntries();
 const posts = entries.map((post) => {
