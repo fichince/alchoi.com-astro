@@ -13,28 +13,50 @@
 </script>
 
 <div id="container">
-  <MapImg image={images[0]} />
-  <MapImg image={images[1]} />
+  <div id="img1">
+    <MapImg image={images[0]} />
+  </div>
+
+  <div id="img2">
+    <MapImg image={images[1]} />
+  </div>
+
+  <div id="pagetext">
+    <PageText mapPage={$mapPage} relative width="35vw" />
+  </div>
 </div>
-<PageText mapPage={$mapPage} 
-  bottom="15vh"
-  left="8vw"
-  width="20vw"
-/>
 
 <style lang="scss">
   #container {
 
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    //transform: translate(0, -50%);
-
-    display: flex;
+    position: relative;
+    max-height: 90vh;
+    width: 80%;
     gap: var(--size-3);
+    margin: 0 auto;
+    top: 5vh;
 
-    :global(.map-img) {
-      height: 45vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    #img1 {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      height: 40vh;
     }
+
+    #img2 {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      height: 40vh;
+    }
+
+    #pagetext { 
+      grid-column: 2 / 3;
+      grid-row: span 2;
+      place-self: center;
+    }
+
   }
 </style>

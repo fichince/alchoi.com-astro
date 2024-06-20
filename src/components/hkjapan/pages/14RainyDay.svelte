@@ -13,7 +13,7 @@
 </script>
 
 <div id="container">
-  <video src="/video/RainyDay.mp4" autoplay muted loop />
+  <video src="/video/RainyDay.mp4" autoplay muted loop width="100%" height="100%" />
 </div>
 <PageText mapPage={$mapPage} 
   bottom="15vh"
@@ -25,15 +25,9 @@
   #container {
 
     position: absolute;
-    top: 30%;
-    left: 50%;
+    height: 100vh;
+    width: 100vw;
     //transform: translate(0, -50%);
 
-    display: flex;
-    gap: var(--size-3);
-
-    :global(.map-img) {
-      height: 45vh;
-    }
   }
 </style>

@@ -13,7 +13,6 @@
 </script>
 
 <div id="container">
-  <MapImg image={images[0]} />
   <MapImg image={images[1]} />
   <MapImg image={images[2]} />
   <MapImg image={images[3]} />
@@ -28,16 +27,15 @@
 <style lang="scss">
   #container {
 
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    //transform: translate(0, -50%);
+    position: relative;
+    width: 50vw;
+    height: 100px;
+    left: 50vw;
 
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     gap: var(--size-3);
 
-    :global(.map-img) {
-      height: 45vh;
-    }
   }
 </style>

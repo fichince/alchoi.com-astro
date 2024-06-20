@@ -12,28 +12,26 @@
 
 </script>
 
+
 <div id="container">
-  <video src="/video/SapporoDance.mp4" autoplay muted loop />
+  <video src="/video/SapporoDance.mp4" autoplay muted loop width="100%" height="100%" />
 </div>
 <PageText mapPage={$mapPage} 
-  bottom="15vh"
+  top="50%"
   left="8vw"
-  width="20vw"
+  width="30vw"
 />
 
 <style lang="scss">
   #container {
 
     position: absolute;
-    top: 30%;
-    left: 50%;
-    //transform: translate(0, -50%);
+    height: 50vh;
+
+    top: 50%;
+    right: 5%;
+    transform: translate(0, -50%);
 
     display: flex;
-    gap: var(--size-3);
-
-    :global(.map-img) {
-      height: 45vh;
-    }
   }
 </style>

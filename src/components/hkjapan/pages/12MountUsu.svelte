@@ -16,7 +16,7 @@
   <MapImg image={images[0]} />
 </div>
 <PageText mapPage={$mapPage} 
-  bottom="15vh"
+  top="15vh"
   left="8vw"
   width="20vw"
 />
@@ -25,15 +25,12 @@
   #container {
 
     position: absolute;
-    top: 30%;
+    bottom: 8%;
     left: 50%;
-    //transform: translate(0, -50%);
+    transform: translate(-50%, 0);
 
     display: flex;
     gap: var(--size-3);
-
-    :global(.map-img) {
-      height: 45vh;
-    }
+    width: 70%;
   }
 </style>
