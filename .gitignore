@@ -23,3 +23,5 @@ pnpm-debug.log*
 .Ulysses*
 
 remark42/var/*
+.vercel/
+
