@@ -30,7 +30,8 @@
     position: relative;
     width: 50vw;
     height: 90vh;
-    left: 50vw;
+    left: 45vw;
+    top: 5vh;
 
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);

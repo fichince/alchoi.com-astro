@@ -15,27 +15,33 @@
 <div id="container">
   <MapImg image={images[0]} />
   <MapImg image={images[1]} />
+
   <MapImg image={images[2]} />
+
+  <div id="pagetext">
+    <PageText mapPage={$mapPage} 
+      width="auto"
+      relative />
+  </div>
 </div>
-<PageText mapPage={$mapPage} 
-  bottom="15vh"
-  left="8vw"
-  width="20vw"
-/>
 
 <style lang="scss">
   #container {
 
     position: absolute;
-    top: 30%;
+    top: 5vh;
     left: 50%;
-    //transform: translate(0, -50%);
+    transform: translate(-50%, 0);
+    height: 90vh;
+    width: auto;
 
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+
     gap: var(--size-3);
 
-    :global(.map-img) {
-      height: 45vh;
-    }
+    place-items: center;
+
   }
 </style>
