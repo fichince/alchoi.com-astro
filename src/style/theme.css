@@ -95,6 +95,13 @@ html.light {
   font-style: normal;
 }
 
+.tw-prose.blog-post img {
+  max-height: 65vh;
+  width: auto;
+  margin: 0 auto;
+
+}
+
 /* this prevents footnotes from disappearing under the navbar when you click on the anchor links */
 :target {
   padding-top: var(--navbar-height);
