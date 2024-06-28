@@ -66,11 +66,8 @@
       img {
         border-radius: var(--radius-2);
         max-width: 100%;
-        //max-height: 100%;
+        max-height: 100%;
         object-fit: contain;
-        max-width: 100%;
-        height: auto;
-        display: block;
 
         margin: auto auto;
       }
