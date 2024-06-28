@@ -1,17 +1,11 @@
 ---
 component: 23Coffees
 map:
-  lat: 35.54979579549594
-  lon: 139.78076745810188
+  lat: 35.71925032800674
+  lon: 139.7765231961271
   zoom: 14
 images:
-  - image: ../../images/hkjapan/23-coffees/coffee1.jpg
-  - image: ../../images/hkjapan/23-coffees/coffee2.jpg
-  - image: ../../images/hkjapan/23-coffees/coffee3.jpg
-  - image: ../../images/hkjapan/23-coffees/coffee4.jpg
-  - image: ../../images/hkjapan/23-coffees/coffee5.jpg
-  - image: ../../images/hkjapan/23-coffees/coffee6.jpg
-  - image: ../../images/hkjapan/23-coffees/coffee7.jpg
+  - image: ../../images/hkjapan/23-coffees/vending-machine.jpg
 ---
 
-I had two at the airport... because of flight overbooking, we got bumped and had to go back to the airport the next day!
+Everywhere you look, there are vending machines for buying drinks. Bottled coffee drinks are popular, and I tried to sample as many brands as I could.

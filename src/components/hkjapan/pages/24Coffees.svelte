@@ -14,6 +14,12 @@
 
 <div id="container">
   <MapImg image={images[0]} />
+  <MapImg image={images[1]} />
+  <MapImg image={images[2]} />
+  <MapImg image={images[3]} />
+  <MapImg image={images[4]} />
+  <MapImg image={images[5]} />
+  <MapImg image={images[6]} />
 </div>
 <PageText mapPage={$mapPage} 
   bottom="15vh"
