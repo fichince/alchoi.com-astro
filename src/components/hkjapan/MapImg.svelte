@@ -12,7 +12,6 @@
 
 </script>
 
-<div class="glass">
   <figure>
     <img src={image.image} alt={image.caption}
       class:hovered={$mapHovered === image.id}
@@ -28,14 +27,14 @@
       </figcaption>
     {/if}
   </figure>
-</div>
 
 <style lang="scss">
 
   div.glass {
     position: relative;
-    width: 100%;
-    height: 100%;
+    height: fit-content;
+    //width: 100%;
+    //height: 100%;
 
     /* From https://css.glass */
     background: rgba(127, 127, 127, 0.25);
@@ -51,6 +50,7 @@
       background: rgba(127, 127, 127, 0.5);
     }
 
+  }
     figure {
 
       cursor: pointer;
@@ -72,7 +72,6 @@
         margin: auto auto;
       }
     }
-  }
 
   figcaption {
     width: fit-content;

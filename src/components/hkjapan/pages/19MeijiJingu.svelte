@@ -13,10 +13,17 @@
 </script>
 
 <div id="container">
-  <MapImg image={images[0]} />
-  <MapImg image={images[1]} />
+  <div>
+    <MapImg image={images[0]} />
+  </div>
 
-  <MapImg image={images[2]} />
+  <div>
+    <MapImg image={images[1]} />
+  </div>
+
+  <div>
+    <MapImg image={images[2]} />
+  </div>
 
   <div id="pagetext">
     <PageText mapPage={$mapPage} 
@@ -42,6 +49,5 @@
     gap: var(--size-3);
 
     place-items: center;
-
   }
 </style>
