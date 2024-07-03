@@ -20,5 +20,6 @@ export default defineConfig({
   adapter: vercel({
     functionPerRoute: true,
     includeFiles: [ '.vercel/output/static/search-index.json' ],
+    excludeFiles: [ '.vercel/output/static/_astro/**/*' ],
   })
 });
