@@ -1,6 +1,5 @@
 import type { APIRoute } from 'astro';
 import { readFile, readdir } from 'node:fs/promises';
-import { join } from 'node:path';
 import MiniSearch from 'minisearch';
 
 export const prerender = false;
@@ -10,7 +9,7 @@ const loadFile = async (file : string) : Promise<any> => {
     const f = await readFile(`./.search/${file}`, 'utf8');
     return f;
   } else {
-    const filename = join(process.cwd(), `vercel/path0/.vercel/output/static/${file}`);
+    const filename = [process.cwd(), `vercel/path0/.vercel/output/static/${file}`].join('/');
     console.log('file', filename);
     const f = await readFile(filename, 'utf8');
     return f;
