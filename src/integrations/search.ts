@@ -58,7 +58,11 @@ async function buildIndex(logger : AstroIntegrationLogger) {
 
   const entries = [...blog, ...capsules];
   logger.info(`Indexing ${entries.length} entries`);
-  const index = Fuse.createIndex([ 'title', 'description', 'content' ], entries);
+  const index = Fuse.createIndex([ 
+    { name: 'title', weight: 2 }, 
+    { name: 'description', weight: 2 }, 
+    { name: 'content', weight: 1 } 
+  ], entries);
 
   return { entries, index };
 }
