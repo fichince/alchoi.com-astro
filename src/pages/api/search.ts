@@ -1,14 +1,17 @@
 import type { APIRoute } from 'astro';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import Fuse from 'fuse.js';
+import MiniSearch from 'minisearch';
 
 export const prerender = false;
 
 const loadFile = async (file : string) : Promise<any> => {
   if (import.meta.env.DEV) {
     const f = await readFile(`./.search/${file}`, 'utf8');
-    return JSON.parse(f);
+    return f;
   } else {
+    const list = await readdir(process.cwd());
+    console.log('list', list);
     // TODO
   }
 }
@@ -23,18 +26,30 @@ export const GET : APIRoute = async ({ url }) => {
   console.log('got request', q);
   console.log('is prod', import.meta.env.PROD);
 
+  /*
   const searchEntries = await loadFile('search-entries.json');
-  const searchIndex = await loadFile('search-index.json');
   const index = Fuse.parseIndex(searchIndex);
-
   const opts = {
     includeScore: true,
     includeMatches: true,
     ignoreLocation: true,
     minMatchCharLength: q.length - 1,
   };
-
   const fuse = new Fuse(searchEntries, opts, index);
+  */
+
+  const searchIndex = await loadFile('search-index.json');
+  const opts = {
+    fields: ['title', 'description', 'content'],
+    boost: {
+      title: 2,
+      description: 1.5,
+      content: 1,
+    },
+  };
+  const miniSearch = MiniSearch.loadJSON(searchIndex, opts);
+
+  /*
   const results = fuse.search(q).map((result) => {
     const { item: { title, description, url } } = result as any;
     const { score } = result;
@@ -51,6 +66,10 @@ export const GET : APIRoute = async ({ url }) => {
 
     return { title, description, url, score, matches };
 
+  });
+  */
+  const results = miniSearch.search(q, {
+    fuzzy: 0.2
   });
 
   return Response.json(results);

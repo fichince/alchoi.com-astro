@@ -10,6 +10,7 @@ import { remark } from 'remark';
 import strip from 'strip-markdown';
 
 import Fuse from 'fuse.js';
+import MiniSearch from 'minisearch';
 
 function stripMarkdown(s? : string) : string {
   if (!s) return '';
@@ -56,15 +57,32 @@ async function buildIndex(logger : AstroIntegrationLogger) {
   const blog = await readDirectoryContents('blog');
   const capsules = await readDirectoryContents('capsules');
 
-  const entries = [...blog, ...capsules];
+  let id = 1;
+  const entries = [...blog, ...capsules].map((entry) => {
+    return {
+      id: id++,
+      url: entry.url,
+      title: entry.title,
+      description: entry.description,
+      content: entry.content,
+    };
+  });
   logger.info(`Indexing ${entries.length} entries`);
+  /*
   const index = Fuse.createIndex([ 
     { name: 'title', weight: 2 }, 
     { name: 'description', weight: 2 }, 
     { name: 'content', weight: 1 } 
   ], entries);
+  */
 
-  return { entries, index };
+  const miniSearch = new MiniSearch({ 
+    fields: ['title', 'description', 'content'],
+    storeFields: ['url', 'title', 'description', 'content'],
+  });
+  miniSearch.addAll(entries);
+
+  return JSON.stringify(miniSearch);
 }
 
 
@@ -74,21 +92,32 @@ export default function search(): AstroIntegration {
     hooks: {
       'astro:server:start': async ({ logger }) => {
         logger.info('Building search index - dev');
+        /*
         const { index, entries } = await buildIndex(logger);
 
         await writeFile('./.search/search-index.json', JSON.stringify(index));
         await writeFile('./.search/search-entries.json', JSON.stringify(entries));
+        */
+
+        const index = await buildIndex(logger);
+        await writeFile('./.search/search-index.json', index);
       },
       'astro:build:done': async (stuff) => {
 
         const { logger, dir } = stuff;
         logger.info('Building search index');
 
+        /*
         const { index, entries } = await buildIndex(logger);
         const indexOut = fileURLToPath(new URL('./search-index.json', dir));
         await writeFile(indexOut, JSON.stringify(index));
         const entriesOut = fileURLToPath(new URL('./search-entries.json', dir));
         await writeFile(entriesOut, JSON.stringify(entries));
+        */
+
+        const index = await buildIndex(logger);
+        const indexOut = fileURLToPath(new URL('./search-index.json', dir));
+        await writeFile(indexOut, index);
       }
     },
   };
