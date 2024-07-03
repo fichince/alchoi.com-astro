@@ -17,5 +17,8 @@ export default defineConfig({
       wrap: true
     }
   },
-  adapter: vercel()
+  adapter: vercel({
+    functionPerRoute: true,
+    includeFiles: [ '.search/**/*' ],
+  })
 });

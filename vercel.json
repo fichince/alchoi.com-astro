@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "_render": {
-      "includeFiles": "**/search-index.json"
-    }
-  }
-}
