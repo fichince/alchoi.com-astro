@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { readFile, readdir } from 'node:fs/promises';
 import Fuse from 'fuse.js';
 import MiniSearch from 'minisearch';
+import walk from 'fs-walk';
 
 export const prerender = false;
 
@@ -10,9 +11,9 @@ const loadFile = async (file : string) : Promise<any> => {
     const f = await readFile(`./.search/${file}`, 'utf8');
     return f;
   } else {
-    const list = await readdir(process.cwd());
-    console.log('list', list);
-    // TODO
+    walk.walkSync(process.cwd(), (basedir, filename, stat) => {
+      console.log('walking', basedir, filename);
+    });
   }
 }
 
