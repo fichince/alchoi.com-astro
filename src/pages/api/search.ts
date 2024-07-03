@@ -11,6 +11,7 @@ const loadFile = async (file : string) : Promise<any> => {
   } else {
     const filename = [process.cwd(), `vercel/path0/.vercel/output/static/${file}`].join('/');
     console.log('file', filename);
+    console.log('import.meta', import.meta.env, import.meta.url);
     const f = await readFile(filename, 'utf8');
     return f;
   }
