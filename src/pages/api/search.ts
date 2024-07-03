@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { readFile, readdir } from 'node:fs/promises';
+import * as path from 'node:path';
 import Fuse from 'fuse.js';
 import MiniSearch from 'minisearch';
 import walk from 'fs-walk';
@@ -11,9 +12,10 @@ const loadFile = async (file : string) : Promise<any> => {
     const f = await readFile(`./.search/${file}`, 'utf8');
     return f;
   } else {
-    walk.walkSync(process.cwd(), (basedir, filename, stat) => {
-      console.log('walking', basedir, filename);
-    });
+    const filename = path.join(process.cwd(), `vercel/path0/.vercel/output/static/${file}`);
+    console.log('file', filename);
+    const f = await readFile(filename, 'utf8');
+    return f;
   }
 }
 
