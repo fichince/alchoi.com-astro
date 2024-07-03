@@ -1,9 +1,7 @@
 import type { APIRoute } from 'astro';
 import { readFile, readdir } from 'node:fs/promises';
 import * as path from 'node:path';
-import Fuse from 'fuse.js';
 import MiniSearch from 'minisearch';
-import walk from 'fs-walk';
 
 export const prerender = false;
 

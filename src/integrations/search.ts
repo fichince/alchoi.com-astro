@@ -9,7 +9,6 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
 
-import Fuse from 'fuse.js';
 import MiniSearch from 'minisearch';
 
 function stripMarkdown(s? : string) : string {
