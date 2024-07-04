@@ -1,0 +1,46 @@
+---
+import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+import CoolBackground from '@src/components/CoolBackground.astro';
+---
+<NavbarLayout title="Search">
+  <div class="container tw-container">
+    <div class="search">
+      <input name="q" class="form-input" type="text" placeholder="Search..." 
+        hx-trigger="keyup changed delay:500ms"
+        hx-target="#results"
+        hx-post="/blog/search-results"
+      />
+
+      <div class="results" id="results">
+      </div>
+    </div>
+
+  </div>
+  <CoolBackground />
+</NavbarLayout>
+
+<style lang="scss">
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--size-fluid-2) 0;
+
+    .search {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      input {
+        width: var(--size-fluid-10);
+        margin-bottom: var(--size-fluid-2);
+        font-size: var(--font-size-fluid-2);
+      }
+
+      .results {
+        font-family: var(--font-body);
+        padding: 0 var(--size-fluid-1);
+        width: var(--size-fluid-10);
+      }
+    }
+  }
+</style>
