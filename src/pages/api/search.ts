@@ -1,19 +1,22 @@
 import type { APIRoute } from 'astro';
 import { readFile, readdir } from 'node:fs/promises';
 import MiniSearch from 'minisearch';
+import { createClient } from '@vercel/kv';
 
 export const prerender = false;
+
+const kv = createClient({
+  url: process.env.KV_REST_API_URL,
+  token: process.env.KV_REST_API_TOKEN,
+});
 
 const loadFile = async (file : string) : Promise<any> => {
   if (import.meta.env.DEV) {
     const f = await readFile(`./.search/${file}`, 'utf8');
     return f;
   } else {
-    const filename = [process.cwd(), `vercel/path0/.vercel/output/static/${file}`].join('/');
-    console.log('file', filename);
-    console.log('import.meta', import.meta.env, import.meta.url);
-    const f = await readFile(filename, 'utf8');
-    return f;
+    const index = await kv.get('search-index');
+    return JSON.stringify(index);
   }
 }
 
