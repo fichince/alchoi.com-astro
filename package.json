@@ -28,6 +28,7 @@
     "@types/lunr": "^2.3.4",
     "@types/luxon": "^3.2.1",
     "@vercel/blob": "^0.23.4",
+    "@vercel/kv": "^2.0.0",
     "alpinejs": "^3.14.1",
     "altcha": "^0.5.1",
     "altcha-lib": "^0.3.0",

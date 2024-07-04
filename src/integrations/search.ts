@@ -8,8 +8,8 @@ import { basename } from 'node:path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
-import { put } from '@vercel/blob';
 import 'dotenv/config';
+import { createClient } from '@vercel/kv';
 
 import MiniSearch from 'minisearch';
 
@@ -123,11 +123,13 @@ export default function search(): AstroIntegration {
         await writeFile(indexOut, index);
         */
 
-        const resp = await put('search-index.json', index, {
-          access: 'public',
-          token: process.env.BLOB_READ_WRITE_TOKEN,
+        const kv = createClient({
+          url: process.env.KV_REST_API_URL,
+          token: process.env.KV_REST_API_TOKEN,
         });
-        console.log('saved search-index.json to blob', resp);
+
+        await kv.set('search-index', JSON.parse(index));
+
       }
     },
   };
