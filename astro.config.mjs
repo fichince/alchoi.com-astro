@@ -18,7 +18,5 @@ export default defineConfig({
     }
   },
   adapter: vercel({
-    includeFiles: [ '.vercel/output/static/search-index.json' ],
-    excludeFiles: [ '.vercel/output/static/_astro/*' ],
   })
 });
