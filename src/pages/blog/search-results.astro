@@ -81,23 +81,25 @@ const searchOpts = {
   },
 };
 
-const kv = createClient({
-  url: process.env.KV_REST_API_URL,
-  token: process.env.KV_REST_API_TOKEN,
-});
 
 const loadSearchIndex = async () : Promise<string> => {
-  if (import.meta.env.DEV) {
-    const f = await readFile(`./.search/search-index.json`, 'utf8');
-    return f;
-  } else {
+  if (import.meta.env.PROD) {
+
+    const kv = createClient({
+      url: process.env.KV_REST_API_URL,
+      token: process.env.KV_REST_API_TOKEN,
+    });
     const index = await kv.get('search-index');
     return JSON.stringify(index);
+
+  } else {
+    const f = await readFile(`./.search/search-index.json`, 'utf8');
+    return f;
   }
 }
 
 const formData = await Astro.request.formData();
-const q = formData.get('q') as string;
+const q = formData.get('q') as string ?? '';
 
 let results : Result[] = [];
 
