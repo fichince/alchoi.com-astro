@@ -6,6 +6,7 @@ import { readFile } from 'node:fs/promises';
 import { createClient } from '@vercel/kv';
 import MiniSearch from 'minisearch';
 import clamp from 'lodash/clamp';
+import take from 'lodash/take';
 
 type Match = {
   before: string;
@@ -70,10 +71,13 @@ function extractMatches(src : string, term : string, includeFull? : boolean) : M
 
 const searchOpts = {
   fields: ['title', 'description', 'content'],
-  boost: {
-    title: 2,
-    description: 1.5,
-    content: 1,
+  searchOptions: {
+    boost: {
+      title: 2,
+      description: 1.5,
+      content: 1,
+    },
+    fuzzy: 0.2,
   },
 };
 
@@ -102,11 +106,9 @@ if (q && q.trim().length > 0) {
   const searchIndex = await loadSearchIndex();
   const miniSearch = MiniSearch.loadJSON(searchIndex, searchOpts);
 
-  const searchResults = miniSearch.search(q, {
-    fuzzy: 0.2
-  });
+  const searchResults = miniSearch.search(q);
 
-  results = searchResults.map((result) => {
+  results = take(searchResults, 15).map((result) => {
     const { match } = result;
     const title = result.title as string;
     const url = result.url as string;
@@ -125,33 +127,53 @@ if (q && q.trim().length > 0) {
           matches = matches.concat(extractMatches(src, term));
         }
       });
-
     });
 
-
-    return { title, url, titleMatch, matches };
+    return { 
+      title, 
+      url, 
+      titleMatch, 
+      matches: take(matches, 3),
+    };
   });
-
-  console.log('got results', JSON.stringify(results, null, 2));
-
 }
 ---
 
-
-{results.map((result) => (
-  <div>
-    <a href={result.url}>
-      { result.titleMatch ?
-        <>
-          {result.titleMatch.before}
-          <mark>{result.titleMatch.highlight}</mark>
-          {result.titleMatch.after}
-        </>
-      :
-        <>
-        { result.title }
-        </>
-      }
-    </a>
+{ results.length === 0 && q.length > 0 ?
+  <div class="not-found result">
+    <div class="title">
+      Nothing found for <mark>{q}</mark>
+    </div>
   </div>
-))}
+  :
+  <>
+  { results.map((result) => (
+    <div class="result">
+      <div class="title">
+        <a href={result.url}>
+          { result.titleMatch ?
+            <>
+              {result.titleMatch.before}
+              <mark>{result.titleMatch.highlight}</mark>
+              {result.titleMatch.after}
+            </>
+          :
+            <>
+            { result.title }
+            </>
+          }
+        </a>
+      </div>
+      <ul class="body">
+        { result.matches.map((match) => (
+          <li>
+            &hellip;{match.before}
+            <mark>{match.highlight}</mark>
+            {match.after}&hellip;
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+  </>
+}
