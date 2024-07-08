@@ -2,7 +2,7 @@
 title: Where Have I Been?
 date: 2024-06-26
 tags:
-  - newsletters
+  - newsletter
 ---
 
 Hi all. I haven’t done one of these in a while. As with any (good) habit, it’s easy to start, but hard to keep up. I’ve been feeling busy for the last couple of months, with the emphasis on _feeling_… I can’t say with certainty that my time has been filled any more than usual, but the experience of busyness has as much to do with how one copes with time management. It’s probably fair to say that I haven’t been coping so well lately. But I'm getting back on track.
