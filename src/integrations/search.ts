@@ -81,11 +81,16 @@ export default function search(): AstroIntegration {
   return {
     name: 'search',
     hooks: {
+      // for the development environment, store the search index
+      // on the local file system
       'astro:server:start': async ({ logger }) => {
         logger.info('Building search index - dev');
         const index = await buildIndex(logger);
         await writeFile('./.search/search-index.json', index);
       },
+
+      // when doing a production build, save the search index 
+      // in a Vercel KV store
       'astro:build:done': async (stuff) => {
 
         const { logger } = stuff;

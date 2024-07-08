@@ -1,4 +1,7 @@
 ---
+
+// this is a partial page, triggered by an HTMX request
+
 export const prerender = false;
 export const partial = true;
 
@@ -82,7 +85,7 @@ const searchOpts = {
 };
 
 
-const loadSearchIndex = async () : Promise<string> => {
+async function loadSearchIndex() : Promise<string> {
   if (import.meta.env.PROD) {
 
     const kv = createClient({
