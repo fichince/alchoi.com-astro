@@ -2,15 +2,19 @@
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 // TODO update URL string and redo search when loading
+// TODO transition in search results
 ---
 <NavbarLayout title="Search">
   <div class="container tw-container">
     <div class="search">
-      <input name="q" class="form-input" type="text" placeholder="Search..." 
+      <input id="q" name="q" class="form-input" type="text" placeholder="Search..." 
         hx-trigger="keyup changed delay:500ms"
         hx-target="#results"
         hx-post="/blog/search-results"
         hx-indicator="#spinner"
+        x-data="updateSearchQuery()"
+        x-on:keyup="updateQueryString"
+        x-bind:value="q"
       />
 
       <sl-spinner id="spinner">

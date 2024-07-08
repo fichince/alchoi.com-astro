@@ -80,10 +80,21 @@ const isProd = import.meta.env.PROD;
   </>
 
   <script>
+    // TODO need to control the order of events...
+    // HTMX must be ready before Alpine starts
     import 'altcha';
     import '../scripts/alpine';
+    import Alpine from 'alpinejs';
     import * as htmx from 'htmx.org';
+
     window.htmx = htmx;
+    document.addEventListener('htmx:load', (e : any) => {
+      if (e.detail.elt.tagName === 'BODY') {
+        Alpine.start();
+      }
+    });
+  </script>
+  <script>
   </script>
 
   <body>

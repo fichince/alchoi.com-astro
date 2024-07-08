@@ -16,5 +16,23 @@ function alertMessage() {
   };
 }
 
+function updateSearchQuery() {
+  return {
+    q: '',
+    init() {
+      console.log('init updateSearchQuery', window.htmx);
+      const url = new URL(window.location.href);
+      this.q = url.searchParams.get('q') ?? '';
+      window.htmx.trigger('#q', 'keyup');
+    },
+    updateQueryString(e : any) {
+      this.q = e.target.value;
+      const url = new URL(window.location.href);
+      url.searchParams.set('q', this.q);
+      window.history.replaceState(null, '', url.toString());
+    }
+  };
+}
+
 Alpine.data('alertMessage', alertMessage);
-Alpine.start();
+Alpine.data('updateSearchQuery', updateSearchQuery);
