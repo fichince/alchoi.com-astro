@@ -1,7 +1,6 @@
 ---
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
-// TODO update URL string and redo search when loading
 // TODO transition in search results
 ---
 <NavbarLayout title="Search">
@@ -12,9 +11,8 @@ import CoolBackground from '@src/components/CoolBackground.astro';
         hx-target="#results"
         hx-post="/blog/search-results"
         hx-indicator="#spinner"
-        x-data="updateSearchQuery()"
+        x-data="searchQuery"
         x-on:keyup="updateQueryString"
-        x-model="q"
       />
 
       <sl-spinner id="spinner">

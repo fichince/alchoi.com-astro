@@ -16,24 +16,26 @@ function alertMessage() {
   };
 }
 
-function updateSearchQuery() {
+function searchQuery() {
   return {
-    q: '',
+    // when loading the page, take the query string from the URL
+    // and trigger HTMX to request search results
     init() {
-      console.log('init updateSearchQuery', window.htmx);
       const url = new URL(window.location.href);
-      this.q = url.searchParams.get('q') ?? '';
-      document.getElementById('q')?.setAttribute('value', this.q);
+      const q = url.searchParams.get('q') ?? '';
+      document.getElementById('q')?.setAttribute('value', q);
       window.htmx.trigger('#q', 'init-query');
     },
+
+    // when user types in the serach box, update the query string
+    // of the URL
     updateQueryString(e : any) {
-      this.q = e.target.value;
       const url = new URL(window.location.href);
-      url.searchParams.set('q', this.q);
+      url.searchParams.set('q', e.target.value);
       window.history.replaceState(null, '', url.toString());
     }
   };
 }
 
 Alpine.data('alertMessage', alertMessage);
-Alpine.data('updateSearchQuery', updateSearchQuery);
+Alpine.data('searchQuery', searchQuery);

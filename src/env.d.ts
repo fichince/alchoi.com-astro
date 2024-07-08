@@ -35,3 +35,7 @@ type BlogEntrySummary = {
   url: string,
   date: Date,
 };
+
+interface Window {
+  htmx: any;
+}
