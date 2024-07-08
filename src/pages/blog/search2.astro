@@ -8,13 +8,13 @@ import CoolBackground from '@src/components/CoolBackground.astro';
   <div class="container tw-container">
     <div class="search">
       <input id="q" name="q" class="form-input" type="text" placeholder="Search..." 
-        hx-trigger="keyup changed delay:500ms"
+        hx-trigger="keyup changed delay:500ms, init-query"
         hx-target="#results"
         hx-post="/blog/search-results"
         hx-indicator="#spinner"
         x-data="updateSearchQuery()"
         x-on:keyup="updateQueryString"
-        x-bind:value="q"
+        x-model="q"
       />
 
       <sl-spinner id="spinner">

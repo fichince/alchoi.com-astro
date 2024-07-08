@@ -23,7 +23,8 @@ function updateSearchQuery() {
       console.log('init updateSearchQuery', window.htmx);
       const url = new URL(window.location.href);
       this.q = url.searchParams.get('q') ?? '';
-      window.htmx.trigger('#q', 'keyup');
+      document.getElementById('q')?.setAttribute('value', this.q);
+      window.htmx.trigger('#q', 'init-query');
     },
     updateQueryString(e : any) {
       this.q = e.target.value;
