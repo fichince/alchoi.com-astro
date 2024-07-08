@@ -1,0 +1,184 @@
+---
+
+// this is a partial page, triggered by an HTMX request
+
+export const prerender = false;
+export const partial = true;
+
+import { readFile } from 'node:fs/promises';
+import { createClient } from '@vercel/kv';
+import MiniSearch from 'minisearch';
+import clamp from 'lodash/clamp';
+import take from 'lodash/take';
+
+type Match = {
+  before: string;
+  highlight: string;
+  after: string;
+};
+type Result = {
+  title: string;
+  titleMatch?: Match | null;
+  url: string;
+  matches: Match[];
+}
+
+function findMatchIndices(src : string, term : string) : number[] {
+  const lowerSrc = src.toLowerCase();
+  const lowerTerm = term.toLowerCase();
+
+  const indices = [];
+  let index = lowerSrc.indexOf(lowerTerm);
+  while (index !== -1) {
+    indices.push(index);
+    index = lowerSrc.indexOf(lowerTerm, index + 1);
+  }
+  return indices;
+}
+
+const HL_CONTEXT = 15;
+function extractMatches(src : string, term : string, includeFull? : boolean) : Match[] {
+
+  const indices = findMatchIndices(src, term);
+
+  const result = indices.map((i) : Match => {
+
+    if (!includeFull) {
+      const start = clamp(i - HL_CONTEXT, 0, src.length);
+      const end = clamp(i + term.length + HL_CONTEXT, 0, src.length);
+
+      const str = src.substring(start, end);
+
+      const shift = i - HL_CONTEXT;
+      const hlStart = shift > 0 ? HL_CONTEXT : HL_CONTEXT + shift;
+
+      const before = str.substring(0, hlStart);
+      const highlight = str.substring(hlStart, hlStart + term.length);
+      const after = str.substring(hlStart + term.length);
+
+      return { before, highlight, after };
+
+    } else {
+
+      const before = src.substring(0, i);
+      const highlight = src.substring(i, i + term.length);
+      const after = src.substring(i + term.length);
+
+      return { before, highlight, after };
+    }
+  });
+
+  return result;
+
+}
+
+const searchOpts = {
+  fields: ['title', 'description', 'content'],
+  searchOptions: {
+    boost: {
+      title: 2,
+      description: 1.5,
+      content: 1,
+    },
+    fuzzy: 0.2,
+  },
+};
+
+
+async function loadSearchIndex() : Promise<string> {
+  if (import.meta.env.PROD) {
+
+    const kv = createClient({
+      url: process.env.KV_REST_API_URL,
+      token: process.env.KV_REST_API_TOKEN,
+    });
+    const index = await kv.get('search-index');
+    return JSON.stringify(index);
+
+  } else {
+    const f = await readFile(`./.search/search-index.json`, 'utf8');
+    return f;
+  }
+}
+
+const formData = await Astro.request.formData();
+const q = formData.get('q') as string ?? '';
+
+let results : Result[] = [];
+
+if (q && q.trim().length > 0) {
+
+  const searchIndex = await loadSearchIndex();
+  const miniSearch = MiniSearch.loadJSON(searchIndex, searchOpts);
+
+  const searchResults = miniSearch.search(q);
+
+  results = take(searchResults, 15).map((result) => {
+    const { match } = result;
+    const title = result.title as string;
+    const url = result.url as string;
+
+    let matches : Match[] = [];
+    let titleMatch : Match | null = null;
+
+    Object.keys(match).forEach((term) => {
+      const fields = match[term];
+
+      fields.forEach((field : string) => {
+        const src = result[field];
+        if (field === 'title') {
+          titleMatch = extractMatches(src, term, true)[0];
+        } else {
+          matches = matches.concat(extractMatches(src, term));
+        }
+      });
+    });
+
+    return { 
+      title, 
+      url, 
+      titleMatch, 
+      matches: take(matches, 3),
+    };
+  });
+}
+---
+
+{ results.length === 0 && q.length > 0 ?
+  <div class="not-found result">
+    <div class="title">
+      Nothing found for <mark>{q}</mark>
+    </div>
+  </div>
+  :
+  <>
+  { results.map((result) => (
+    <div class="result">
+      <div class="title">
+        <a href={result.url}>
+          { result.titleMatch ?
+            <>
+              {result.titleMatch.before}
+              <mark>{result.titleMatch.highlight}</mark>
+              {result.titleMatch.after}
+            </>
+          :
+            <>
+            { result.title }
+            </>
+          }
+        </a>
+      </div>
+      <ul class="body">
+        { result.matches.map((match) => (
+          <li>
+            &hellip;{match.before}
+            <mark>{match.highlight}</mark>
+            {match.after}&hellip;
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+  </>
+}

@@ -16,5 +16,26 @@ function alertMessage() {
   };
 }
 
+function searchQuery() {
+  return {
+    // when loading the page, take the query string from the URL
+    // and trigger HTMX to request search results
+    init() {
+      const url = new URL(window.location.href);
+      const q = url.searchParams.get('q') ?? '';
+      document.getElementById('q')?.setAttribute('value', q);
+      window.htmx.trigger('#q', 'init-query');
+    },
+
+    // when user types in the serach box, update the query string
+    // of the URL
+    updateQueryString(e : any) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('q', e.target.value);
+      window.history.replaceState(null, '', url.toString());
+    }
+  };
+}
+
 Alpine.data('alertMessage', alertMessage);
-Alpine.start();
+Alpine.data('searchQuery', searchQuery);
