@@ -1,7 +1,6 @@
 ---
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
-// TODO transition in search results
 ---
 <NavbarLayout title="Search">
   <div class="container tw-container">
@@ -10,15 +9,15 @@ import CoolBackground from '@src/components/CoolBackground.astro';
         hx-trigger="keyup changed delay:500ms, init-query"
         hx-target="#results"
         hx-post="/blog/search-results"
-        hx-indicator="#spinner"
+        hx-indicator=".indicator"
         x-data="searchQuery"
         x-on:keyup="updateQueryString"
       />
 
-      <sl-spinner id="spinner">
+      <sl-spinner id="spinner" class="indicator">
       </sl-spinner>
 
-      <div class="results" id="results">
+      <div class="results indicator" id="results">
       </div>
     </div>
 
@@ -62,6 +61,11 @@ import CoolBackground from '@src/components/CoolBackground.astro';
       }
 
       .results {
+
+        &.htmx-request {
+          opacity: 0;
+        }
+
         font-family: var(--font-body);
         padding: 0 var(--size-fluid-1);
         width: var(--size-fluid-10);
@@ -72,6 +76,15 @@ import CoolBackground from '@src/components/CoolBackground.astro';
         :global(.result) {
           margin: var(--size-fluid-2) 0;
           padding-bottom: var(--size-fluid-2);
+
+          opacity: 0;
+          animation: fade-in 400ms ease-in-out;
+          animation-fill-mode: forwards;
+          @for $i from 1 through 20 {
+            &:nth-child(#{$i}) {
+              animation-delay: calc(75ms * #{$i});
+            }
+          }
 
           &:not(.not-found) {
             border-bottom: 1px solid var(--colour-accent);
