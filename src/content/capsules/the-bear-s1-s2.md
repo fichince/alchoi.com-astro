@@ -1,5 +1,5 @@
 ---
-title: _The Bear_ (Seasons 1 and 2)
+title: _The Bear_ - Seasons 1 and 2
 date: 2024-03-04
 type: tv
 rating: 4.0
