@@ -59,3 +59,7 @@ type MapPage = {
   },
   images?: Array<MapImage>,
 };
+
+interface Window {
+  htmx: any;
+}
