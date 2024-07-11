@@ -13,30 +13,27 @@
 </script>
 
 <div id="container">
-  <MapImg image={images[1]} />
-  <MapImg image={images[2]} />
-  <MapImg image={images[3]} />
-  <MapImg image={images[4]} />
+  <masonry-layout gap="5px" cols="4">
+    <img src={images[1].image} alt={images[2].caption} />
+    <PageText mapPage={$mapPage} relative width="auto" />
+    <img src={images[2].image} alt={images[2].caption} />
+    <img src={images[3].image} alt={images[2].caption} />
+    <img src={images[4].image} alt={images[2].caption} />
+  </masonry-layout>
 </div>
-<PageText mapPage={$mapPage} 
-  bottom="15vh"
-  left="8vw"
-  width="20vw"
-/>
 
 <style lang="scss">
   #container {
 
     position: relative;
-    width: 50vw;
-    height: 90vh;
-    left: 45vw;
+    width: 90%;
+    margin: 0 auto;
     top: 5vh;
 
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
-    gap: var(--size-3);
+    //display: grid;
+    //grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    //grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+    //gap: var(--size-3);
 
   }
 </style>

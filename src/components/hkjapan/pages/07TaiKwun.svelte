@@ -13,49 +13,24 @@
 </script>
 
 <div id="container">
-  <div id="img1">
-    <MapImg image={images[1]} />
-  </div>
-  <div id="img2" class="map-img">
-    <MapImg image={images[0]} />
-  </div>
-
-  <div id="pagetext">
-    <PageText mapPage={$mapPage} relative />
-  </div>
-
-  <div id="img3" class="map-img">
-    <MapImg image={images[2]} />
-  </div>
+<masonry-layout gap="5px">
+  <img src={images[0].image} alt={images[0].caption} />
+  <img src={images[1].image} alt={images[1].caption} />
+  <img src={images[2].image} alt={images[2].caption} />
+  <PageText mapPage={$mapPage} relative width="auto" />
+</masonry-layout>
 </div>
 
 <style lang="scss">
   #container {
 
     position: relative;
-    max-height: 90vh;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     top: 5vh;
 
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    display: flex;
+    justify-content: center;
 
-    #pagetext {
-      place-self: center;
-    }
-
-    #img1 {
-      grid-row: span 3;
-      align-self: stretch;
-      height: 100%;
-    }
-
-    .map-img {
-      max-height: 30vh;
-    }
-
-    gap: var(--size-1);
   }
 </style>
