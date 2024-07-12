@@ -39,6 +39,8 @@ type BlogEntrySummary = {
 type MapImage = {
   id: number,
   image: string,
+  width: number,
+  height: number,
   caption?: string,
   location?: {
     lat: number,

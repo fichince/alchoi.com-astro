@@ -1,8 +1,27 @@
-<script lang="ts">
-  export let image : MapImage;
+<script context="module" lang="ts">
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+  import PhotoSwipe from 'photoswipe';
+  import 'photoswipe/dist/photoswipe.css';
 </script>
 
-<img src={image.image} alt={image.caption} />
+<script lang="ts">
+  import { onMount } from 'svelte';
+  export let image : MapImage;
+
+  onMount(() => {
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '#image-container a',
+      pswpModule: PhotoSwipe,
+    });
+    lightbox.init();
+  });
+</script>
+
+<div id="image-container">
+  <a href={image.image} data-pswp-width={image.width} data-pswp-height={image.height}>
+    <img src={image.image} alt={image.caption} />
+  </a>
+</div>
 
 <style lang="scss">
 

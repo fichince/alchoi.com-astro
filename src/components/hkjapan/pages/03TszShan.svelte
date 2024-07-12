@@ -25,7 +25,7 @@
   #images {
     display: flex;
     gap: var(--size-3);
-    width: 75%;
+    width: 85%;
     margin: auto;
 
     transform: translateY(30vh);
