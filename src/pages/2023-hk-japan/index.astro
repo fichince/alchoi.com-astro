@@ -29,6 +29,9 @@ async function optimizeImage(i : any) : Promise<MapImage> {
     format: 'webp',
   });
 
+  console.log('orig', width, height);
+  console.log('optimized', optimized.options.widths);
+
   return {
     ...rest,
     image: optimized.src,

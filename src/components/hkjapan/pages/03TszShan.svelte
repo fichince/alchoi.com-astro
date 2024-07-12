@@ -12,33 +12,33 @@
 
 </script>
 
-<PageText mapPage={$mapPage}
-  top="var(--size-10)"
-  width="var(--size-15)"
-  right="var(--size-10)"
-/>
 <div id="images">
   {#each images as image}
     <div class="map-img">
       <MapImg {image} />
     </div>
   {/each}
+  <PageText mapPage={$mapPage} relative />
 </div>
 
 <style lang="scss">
   #images {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     gap: var(--size-3);
+    width: 75%;
+    margin: auto;
 
-    position: absolute;
-    left: 10vw;
-    top: 50%;
-    transform: translate(0, -50%);
+    transform: translateY(30vh);
+
+    position: relative;
 
     .map-img {
-      height: 45vh;
+      flex: auto;
+      :global(img) {
+        width: 50vw;
+        object-fit: cover;
+        aspect-ratio: 8 / 5;
+      }
     }
 
   }

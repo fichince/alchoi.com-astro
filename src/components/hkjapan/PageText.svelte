@@ -78,5 +78,10 @@
       margin-bottom: var(--size-fluid-1);
     }
 
+    transition: transform 750ms var(--ease-squish-5);
+    &:hover {
+      transform: scale(105%);
+    }
+
   }
 </style>
