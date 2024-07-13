@@ -14,7 +14,7 @@
 
 
 <div id="container">
-  <video src="/video/SapporoDance.mp4" autoplay muted loop width="100%" height="100%" />
+  <video src="/video/SapporoDancing.mp4" autoplay muted loop width="100%" height="100%" />
 </div>
 <PageText mapPage={$mapPage} 
   top="50%"
