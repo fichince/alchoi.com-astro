@@ -20,14 +20,14 @@
 <PageText mapPage={$mapPage}
   bottom="var(--size-10)"
   width="var(--size-15)"
-  left="var(--size-10)"
+  left="10vw"
 />
 
 <style lang="scss">
   #images {
     position: absolute;
 
-    top: 5vh;
+    top: 8vh;
     height: auto;
     left: 10vw;
     width: 80vw;

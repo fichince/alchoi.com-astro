@@ -17,7 +17,7 @@
 </div>
 <PageText mapPage={$mapPage} 
   top="15vh"
-  left="8vw"
+  left="12vw"
   width="20vw"
 />
 

@@ -9,6 +9,4 @@ images:
   - image: ../../images/hkjapan/13-flower-fields/flowerfields2.jpg
 ---
 
-TODO add dates
-
-Shikisai Hill
+The flower fields of Shikisai Hill. Unfortunately, we visited late in the season, and the flowers were not in full bloom.

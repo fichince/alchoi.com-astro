@@ -12,25 +12,34 @@
 
 </script>
 
-<div id="container">
-<masonry-layout gap="5px">
-  <img src={images[0].image} alt={images[0].caption} />
-  <img src={images[1].image} alt={images[1].caption} />
-  <img src={images[2].image} alt={images[2].caption} />
-  <PageText mapPage={$mapPage} relative width="auto" />
-</masonry-layout>
+<div id="images">
+  {#each images as image}
+    <div class="map-img">
+      <MapImg {image} />
+    </div>
+  {/each}
+  <PageText mapPage={$mapPage} relative width="22vw" />
 </div>
 
 <style lang="scss">
-  #container {
+  #images {
+    display: flex;
+    gap: var(--size-3);
+    width: 85%;
+    margin: auto;
+
+    transform: translateY(25vh);
 
     position: relative;
-    width: 90%;
-    margin: 0 auto;
-    top: 5vh;
 
-    display: flex;
-    justify-content: center;
+    .map-img {
+      flex: auto;
+      :global(img) {
+        width: 50vw;
+        object-fit: cover;
+        aspect-ratio: 5 / 6;
+      }
+    }
 
   }
 </style>

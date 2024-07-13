@@ -53,6 +53,8 @@
 <style lang="scss">
   article#text {
 
+    text-wrap: balance;
+
     &.relative {
       position: relative;
     }
