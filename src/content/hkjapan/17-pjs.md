@@ -12,6 +12,6 @@ images:
   - image: ../../images/hkjapan/17-pjs/pjs5.jpg
 ---
 
-Hotels in Japan provide sleepwear which makes it feel like you're wearing a uniform.
+Hotels in Japan provide sleepwear, which makes it feel like you're wearing a uniform.
 
 

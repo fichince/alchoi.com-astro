@@ -13,33 +13,47 @@
 </script>
 
 <div id="container">
-  <MapImg image={images[0]} />
-  <MapImg image={images[1]} />
-  <MapImg image={images[2]} />
-  <MapImg image={images[3]} />
-  <MapImg image={images[4]} />
-  <MapImg image={images[5]} />
-  <MapImg image={images[6]} />
+  <masonry-layout gap="5px" cols="4">
+    <div class="map-img">
+      <MapImg image={images[0]} />
+    </div>
+    <div class="map-img">
+      <MapImg image={images[1]} />
+    </div>
+    <div class="map-img">
+      <MapImg image={images[2]} />
+    </div>
+    <div class="map-img">
+      <MapImg image={images[3]} />
+    </div>
+    <div class="map-img">
+      <MapImg image={images[4]} />
+    </div>
+    <div class="map-img">
+      <MapImg image={images[5]} />
+    </div>
+    <PageText mapPage={$mapPage} relative width="auto" />
+    <div class="map-img">
+      <MapImg image={images[6]} />
+    </div>
+  </masonry-layout>
 </div>
-<PageText mapPage={$mapPage} 
-  bottom="15vh"
-  left="8vw"
-  width="20vw"
-/>
 
 <style lang="scss">
   #container {
 
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    //transform: translate(0, -50%);
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    top: 3vh;
 
-    display: flex;
-    gap: var(--size-3);
-
-    :global(.map-img) {
-      height: 45vh;
+    .map-img {
+      flex: auto;
+      :global(img) {
+        object-fit: cover;
+        object-position: top;
+        aspect-ratio: 10 / 11;
+      }
     }
   }
 </style>

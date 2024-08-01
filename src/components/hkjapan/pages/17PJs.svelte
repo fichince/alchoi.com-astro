@@ -14,11 +14,22 @@
 
 <div id="container">
   <masonry-layout gap="5px" cols="4">
-    <img src={images[1].image} alt={images[2].caption} />
+    <div class="map-img">
+      <MapImg image={images[0]} />
+    </div>
     <PageText mapPage={$mapPage} relative width="auto" />
-    <img src={images[2].image} alt={images[2].caption} />
-    <img src={images[3].image} alt={images[2].caption} />
-    <img src={images[4].image} alt={images[2].caption} />
+    <div class="map-img">
+      <MapImg image={images[1]} />
+    </div>
+    <div class="map-img">
+      <MapImg image={images[2]} />
+    </div>
+    <div class="map-img">
+      <MapImg image={images[3]} />
+    </div>
+    <div class="map-img">
+      <MapImg image={images[4]} />
+    </div>
   </masonry-layout>
 </div>
 
@@ -30,10 +41,13 @@
     margin: 0 auto;
     top: 5vh;
 
-    //display: grid;
-    //grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    //grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
-    //gap: var(--size-3);
-
+    .map-img {
+      flex: auto;
+      :global(img) {
+        object-fit: cover;
+        object-position: top;
+        aspect-ratio: 1 / 1;
+      }
+    }
   }
 </style>

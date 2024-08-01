@@ -5,49 +5,54 @@
   import MapImg from '../MapImg.svelte';
 
   onMount(() => {
-    //moveMap({}, false);
+    //moveMap();
   });
 
-  const { body, title, images = [] } = $mapPage;
+  const { images = [] } = $mapPage;
 
 </script>
 
-<div id="container">
-  <div>
-    <MapImg image={images[0]} />
-  </div>
-
-  <div>
-    <MapImg image={images[1]} />
-  </div>
-
-  <div>
-    <MapImg image={images[2]} />
-  </div>
-
-  <div id="pagetext">
-    <PageText mapPage={$mapPage} 
-      width="auto"
-      relative />
-  </div>
+<div id="images">
+  <PageText mapPage={$mapPage} relative width="22vw" />
+  {#each images as image, index}
+    <div class="map-img" id="map-img-{index}">
+      <MapImg {image} />
+    </div>
+  {/each}
 </div>
 
 <style lang="scss">
-  #container {
-
-    position: absolute;
-    top: 5vh;
-    left: 50%;
-    transform: translate(-50%, 0);
-    height: 90vh;
-    width: auto;
-
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
-
+  #images {
+    display: flex;
     gap: var(--size-3);
+    width: 85%;
+    margin: auto;
 
-    place-items: center;
+    transform: translateY(25vh);
+
+    position: relative;
+
+    .map-img {
+      flex: auto;
+      :global(img) {
+        width: 50vw;
+        object-fit: cover;
+        aspect-ratio: 5 / 6;
+      }
+    }
+
+    #map-img-1 {
+      :global(img) {
+        object-position: bottom;
+      }
+    }
+
+    #map-img-2 {
+      :global(img) {
+        object-position: right;
+      }
+    }
+
+
   }
 </style>

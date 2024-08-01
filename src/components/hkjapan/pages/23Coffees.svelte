@@ -5,35 +5,41 @@
   import MapImg from '../MapImg.svelte';
 
   onMount(() => {
-    //moveMap({}, false);
+    //moveMap();
   });
 
-  const { body, title, images = [] } = $mapPage;
+  const { images = [] } = $mapPage;
 
 </script>
 
-<div id="container">
-  <MapImg image={images[0]} />
+<div id="images">
+  {#each images as image, index}
+    <div class="map-img" id="map-img-{index}">
+      <MapImg {image} />
+    </div>
+  {/each}
+  <PageText mapPage={$mapPage} relative width="25vw" />
 </div>
-<PageText mapPage={$mapPage} 
-  bottom="15vh"
-  left="8vw"
-  width="20vw"
-/>
 
 <style lang="scss">
-  #container {
-
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    //transform: translate(0, -50%);
-
+  #images {
     display: flex;
     gap: var(--size-3);
+    width: 85%;
+    margin: auto;
 
-    :global(.map-img) {
-      height: 45vh;
+    transform: translateY(10vh);
+
+    position: relative;
+
+    .map-img {
+      flex: auto;
+      :global(img) {
+        width: 60vw;
+        object-fit: cover;
+      }
     }
+
+
   }
 </style>
