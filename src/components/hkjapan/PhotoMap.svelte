@@ -9,13 +9,10 @@
     allMapPages, 
     toggleMapOnly,
     moveMap,
-
     mapAboutToMove
-
   } from '@src/stores/map';
 
   import fromPairs from 'lodash/fromPairs';
-  import clamp from 'lodash/clamp';
 
   import AppearWithMap from './AppearWithMap.svelte';
   import ImageDialog from './ImageDialog.svelte';
@@ -40,11 +37,17 @@
       if (i > -1) currentPage = i;
     }
 
+    moveMap();
+
     return unsubscribe;
   });
 
   function safePage(n : number) {
-    return clamp(n, 0, slugs.length - 1);
+    // at the end, loop back to the beginning
+    if (n === slugs.length) return 0;
+    if (n === -1) return 0;
+
+    return n;
   }
 
   function next() {
@@ -150,6 +153,7 @@
     display: flex;
     align-items: center;
     gap: var(--size-2);
+    z-index: 99;
   }
 
 </style>
