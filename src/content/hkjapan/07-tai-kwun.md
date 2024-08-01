@@ -1,5 +1,6 @@
 ---
 component: 07TaiKwun
+date: 2023-08-01
 map:
   lat: 22.281538879038475
   lon: 114.15426787618202
@@ -13,4 +14,4 @@ images:
   - image: ../../images/hkjapan/07-tai-kwun/tai-kwun3.jpg
 ---
 
-Tai Kwun used to be a prison, but has now been repurposed as a historical museum and cultural centre.
+_**Tai Kwun**_ used to be a prison, but has now been repurposed as a historical museum and cultural centre.

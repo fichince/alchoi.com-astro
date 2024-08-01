@@ -9,4 +9,4 @@ images:
   - image: ../../images/hkjapan/06-star-ferry/starferry2.jpg
 ---
 
-The Star Ferry is an icon of Hong Kong transportation, taking riders across the harbour between Kowloon and HK Island.
+The _**Star Ferry**_ is an icon of transportation in Hong Kong, taking riders across the harbour between Kowloon and HK Island.

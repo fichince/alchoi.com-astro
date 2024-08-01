@@ -11,4 +11,4 @@ images:
   - image: ../../images/hkjapan/22-national-museum/museum3.jpg
 ---
 
-Visiting the National Museum. My favourite exhibit was a historical scroll documenting various insect species with beautiful ink drawings.
+Visiting the _**Tokyo National Museum**_. My favourite exhibit was a scientific scroll documenting various insect species with beautiful ink drawings.

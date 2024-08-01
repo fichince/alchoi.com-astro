@@ -12,6 +12,7 @@
     <div class="map-img">
       <MapImg image={images[0]} />
     </div>
+    <PageText mapPage={$mapPage} relative width="auto" />
     <div class="map-img">
       <MapImg image={images[1]} />
     </div>
@@ -25,11 +26,10 @@
       <MapImg image={images[4]} />
     </div>
     <div class="map-img">
-      <MapImg image={images[5]} />
-    </div>
-    <PageText mapPage={$mapPage} relative width="auto" />
-    <div class="map-img">
       <MapImg image={images[6]} />
+    </div>
+    <div class="map-img">
+      <MapImg image={images[5]} />
     </div>
   </masonry-layout>
 </div>

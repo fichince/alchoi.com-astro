@@ -8,12 +8,16 @@
 </script>
 
 <div id="images">
-  {#each images as image, index}
-    <div class="map-img" id="map-img-{index}">
-      <MapImg {image} />
-    </div>
-  {/each}
+  <div class="map-img">
+    <MapImg image={images[0]} />
+  </div>
   <PageText mapPage={$mapPage} relative width="35vw" />
+  <div class="map-img">
+    <MapImg image={images[1]} />
+  </div>
+  <div class="map-img">
+    <MapImg image={images[2]} />
+  </div>
 </div>
 
 <style lang="scss">

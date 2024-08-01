@@ -9,4 +9,4 @@ images:
   - image: ../../images/hkjapan/20-meiji-jingu-2/meiji-jingu5.jpg
 ---
 
-People write down wishes and prayers on wooden planks and hang them for good luck.
+People write down wishes and prayers on wooden planks and hang them on a wall for good luck.

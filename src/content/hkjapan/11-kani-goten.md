@@ -10,4 +10,4 @@ images:
   - image: ../../images/hkjapan/11-kani-goten/kanigoten3.jpg
 ---
 
-_Kani Goten_, a bear-themed seafood restaurant.
+_**Kani Goten**_, a bear-themed seafood restaurant.

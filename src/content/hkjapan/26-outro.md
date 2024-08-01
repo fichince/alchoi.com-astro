@@ -1,5 +1,5 @@
 ---
-title: Hong Kong and Japan 2023
+title: The End
 component: 01Intro
 map: 
   lat: 31.524967504769826
@@ -7,6 +7,6 @@ map:
   zoom: 4
 ---
 
-For more pictures, see this link (link to smugmug).
+If you want to see more photos from this trip, the full album is available [here](https://albertchoi.smugmug.com/2023/HK-and-Japan-2023/n-MshnwF)!
 
-[Back home](/)
+[Back to my homepage](/)

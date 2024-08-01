@@ -31,7 +31,7 @@
       flex: auto;
       :global(img) {
         object-fit: cover;
-        aspect-ratio: 7 / 5;
+        aspect-ratio: 6 / 5;
       }
     }
 

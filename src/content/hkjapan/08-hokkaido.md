@@ -8,4 +8,4 @@ map:
   zoom: 5.5
 ---
 
-Our next stop was the northernmost (check) island of Japan, Hokkaido.
+Our next stop was the island of Hokkaido in Japan.

@@ -25,6 +25,12 @@
     <div class="map-img">
       <MapImg image={images[4]} />
     </div>
+    <div class="map-img">
+      <MapImg image={images[5]} />
+    </div>
+    <div class="map-img">
+      <MapImg image={images[6]} />
+    </div>
   </masonry-layout>
 </div>
 

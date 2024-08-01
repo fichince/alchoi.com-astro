@@ -14,4 +14,4 @@ images:
   - image: ../../images/hkjapan/24-coffees/coffee7.jpg
 ---
 
-I had two at the airport... because of flight overbooking, we got bumped and had to go back to the airport the next day!
+Our flight back home was overbooked, so we got bumped and had to stay at the airport hotel for an extra night. This gave me the opportunity to try one more coffee.

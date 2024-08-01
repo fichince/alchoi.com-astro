@@ -6,9 +6,6 @@ map:
   zoom: 12
 images:
   - image: ../../images/hkjapan/09-noboribetsu/noboribetsu1.jpg
-    location: 
-      lat: 42.498814136895476
-      lon: 141.1450750329236
 ---
 
-Noboribetsu is a town next to a sulphur spring called Hell Valley.
+Noboribetsu is a town next to a sulphur spring called _**Jigokudani**_, or "Hell Valley."

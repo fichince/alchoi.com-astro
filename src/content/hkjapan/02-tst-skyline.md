@@ -1,5 +1,5 @@
 ---
-title: Tsim Sha Tsui
+title: Hong Kong
 component: 02TSTSkyline
 images:
   - image: ../../images/hkjapan/02-tst-skyline/tst-skyline.jpg

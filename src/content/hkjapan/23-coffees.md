@@ -8,4 +8,4 @@ images:
   - image: ../../images/hkjapan/23-coffees/vending-machine.jpg
 ---
 
-Everywhere you look, there are vending machines for buying drinks. Bottled coffee drinks are popular, and I tried to sample as many brands as I could.
+Everywhere you look, there are colourful vending machines. Bottled coffee drinks are popular, and I tried to sample as many brands as I could.

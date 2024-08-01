@@ -4,14 +4,14 @@
 </script>
 
 
-<div id="container">
-  <video src="/video/SapporoDancing.mp4" autoplay muted loop width="100%" height="100%" />
-</div>
 <PageText mapPage={$mapPage} 
   top="50%"
-  left="8vw"
+  right="8vw"
   width="30vw"
 />
+<div id="container">
+  <video src="/video/SapporoDancing.mp4" autoplay controls muted loop width="100%" height="100%" />
+</div>
 
 <style lang="scss">
   #container {
@@ -20,7 +20,7 @@
     height: 50vh;
 
     top: 50%;
-    right: 5%;
+    left: 5%;
     transform: translate(0, -50%);
 
     display: flex;

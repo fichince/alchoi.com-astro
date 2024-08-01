@@ -14,4 +14,4 @@ images:
   - image: ../../images/hkjapan/21-jimbocho/jimbocho7.jpg
 ---
 
-There's a street in Tokyo that's all bookstores, including some neat outdoor stands. Unfortunately, most of the books are in Japanese, but it's still cool to see!
+_**Jimbocho**_ is a neighbourhood with many bookstores, including some neat outdoor stands. Unfortunately for me, most of the books are in Japanese, but it's still cool to see!

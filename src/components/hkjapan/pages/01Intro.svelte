@@ -4,7 +4,7 @@
 </script>
 
 <PageText mapPage={$mapPage}
-  top="60vh" 
+  bottom="10vh" 
   width="var(--size-15)"
   right="var(--size-11)"
 />

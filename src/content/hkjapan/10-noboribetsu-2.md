@@ -9,4 +9,4 @@ images:
   - image: ../../images/hkjapan/10-noboribetsu/noboribetsu3.jpg
 ---
 
-The whole place smells, but the water from the hot spring is used in the _onsen_ bath and does wonders for the skin.
+The whole place smells like sulphur, but bathing in the water from the hot spring has many health benefits, and we enjoyed staying at the _onsen_ resort nearby.
