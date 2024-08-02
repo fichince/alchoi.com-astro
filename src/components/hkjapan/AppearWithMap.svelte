@@ -5,7 +5,6 @@
 
   import { mapMoving, toggleMapOnly, mapAboutToMove } from '@src/stores/map';
 
-  $: console.log('AppearWithMap', $mapAboutToMove, $mapMoving);
   $: show = !$mapAboutToMove && !$mapMoving && !$toggleMapOnly;
 </script>
 

@@ -3,6 +3,10 @@
   import Router, { push, location } from 'svelte-spa-router';
   import { wrap } from 'svelte-spa-router/wrap';
 
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+  import PhotoSwipe from 'photoswipe';
+  import 'photoswipe/dist/photoswipe.css';
+
   import { 
     mapStore, 
     mapPage, 
@@ -21,6 +25,8 @@
 
   const slugs = mapPages.map((p) => p.slug);
   let currentPage = 0;
+
+  let lightbox : PhotoSwipeLightbox;
 
   onMount(() => {
 
@@ -78,6 +84,18 @@
     ];
   }));
 
+  function routeLoaded(e : any) {
+    // initialize the lightbox to contain all images on this page
+    lightbox?.destroy();
+
+    lightbox = new PhotoSwipeLightbox({
+      gallery: '#contents',
+      children: '#image-container a',
+      pswpModule: PhotoSwipe,
+    });
+    lightbox.init();
+  }
+
 </script>
 
 <div id="map">
@@ -92,7 +110,7 @@
 
 <div id="contents">
   <AppearWithMap>
-    <Router {routes} />
+    <Router {routes} on:routeLoaded={routeLoaded} />
   </AppearWithMap>
 </div>
 

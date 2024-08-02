@@ -149,14 +149,14 @@ export const mapIdle = derived(mapStore, ($mapStore, set) => {
 let prevSlug = '';
 const visibleLayer = derived([ mapPage, mapMoving, mapIdle ], ([ $mapPage, $mapMoving, $mapIdle ]) => {
   const slug = $mapPage?.slug;
-  console.log('visibleLayer', prevSlug, slug, $mapIdle, $mapMoving);
+  //console.log('visibleLayer', prevSlug, slug, $mapIdle, $mapMoving);
 
   const map = get(mapStore);
   if (!slug || !map) return;
 
   if ($mapIdle && !$mapMoving) {
     if (prevSlug === slug) {
-      console.log('set visible', slug);
+      //console.log('set visible', slug);
       map.setLayoutProperty(slug, 'visibility', 'visible');
     } else {
       if (prevSlug) {
