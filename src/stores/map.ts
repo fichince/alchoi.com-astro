@@ -8,7 +8,7 @@ export const allMapPages = writable<MapPage[]>();
 
 export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages, ($allMapPages, set) => {
 
-  console.log('initialize map', $allMapPages);
+  //console.log('initialize map', $allMapPages);
 
   if (!$allMapPages) return;
 
