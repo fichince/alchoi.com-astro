@@ -19,7 +19,7 @@
 
 <div id="image-container">
   <a href={image.image} data-pswp-width={image.width} data-pswp-height={image.height}>
-    <img src={image.image} alt={image.caption} />
+    <img src={image.image} alt={image.caption} on:load />
   </a>
 </div>
 
