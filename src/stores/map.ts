@@ -14,7 +14,8 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
 
   const m = new maplibregl.Map({
     container: 'map',
-    style: 'https://tiles-beta.stadiamaps.com/styles/stamen_toner.json',  // Style URL; see our documentation for more options
+    //style: 'https://tiles.stadiamaps.com/styles/stamen_toner.json',  // Style URL; see our documentation for more options
+    style: 'https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json',
     center: [ 125.45601818699798, 31.524967504769826 ],
     zoom: 1,
   });
