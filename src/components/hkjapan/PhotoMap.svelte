@@ -19,7 +19,6 @@
   import fromPairs from 'lodash/fromPairs';
 
   import AppearWithMap from './AppearWithMap.svelte';
-  import ImageDialog from './ImageDialog.svelte';
 
   export let mapPages : MapPage[];
 
@@ -98,25 +97,39 @@
 
 </script>
 
-<div id="map">
+<div id="map" class="main">
 </div>
-<button id="next" class="nav-button" on:click={next}>&#x2771;</button>
-<button id="prev" class="nav-button" on:click={prev}>&#x2770;</button>
+<button id="next" class="nav-button main" on:click={next}>&#x2771;</button>
+<button id="prev" class="nav-button main" on:click={prev}>&#x2770;</button>
 
-<div id="toggle">
+<div id="toggle" class="main">
   <input type="checkbox" id="map-only" bind:checked={$toggleMapOnly} />
   <label for="map-only">View map</label>
 </div>
 
-<div id="contents">
+<div id="contents" class="main">
   <AppearWithMap>
     <Router {routes} on:routeLoaded={routeLoaded} />
   </AppearWithMap>
 </div>
 
-<ImageDialog />
+<div id="small-screen">
+  <div>
+    Sorry! Please view this page on a larger screen.
+  </div>
+</div>
 
 <style lang="scss">
+
+  .main {
+    opacity: 100%;
+
+    @media screen and (max-width: 992px) {
+      opacity: 0;
+      display: none;
+    }
+  }
+
   #map {
     z-index: 0;
     height: 100vh;
@@ -128,6 +141,23 @@
 
   #contents {
     font-family: var(--font-body);
+  }
+
+  #small-screen {
+    display: none;
+
+    @media screen and (max-width: 992px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      height: 100vh;
+
+      font-family: var(--font-display);
+      font-size: var(--font-size-3);
+    }
+
   }
 
   .nav-button {
