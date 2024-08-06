@@ -102,7 +102,11 @@
 <button id="next" class="nav-button main" on:click={next}>&#x2771;</button>
 <button id="prev" class="nav-button main" on:click={prev}>&#x2770;</button>
 
-<div id="toggle" class="main">
+<div id="exit" class="control main">
+  <a href="/">Exit</a>
+</div>
+
+<div id="toggle" class="control main">
   <input type="checkbox" id="map-only" bind:checked={$toggleMapOnly} />
   <label for="map-only">View map</label>
 </div>
@@ -191,6 +195,15 @@
     position: absolute;
     top: var(--size-1);
     right: var(--size-9);
+  }
+
+  #exit {
+    position: absolute;
+    top: var(--size-1);
+    left: var(--size-9);
+  }
+
+  .control {
 
     background: var(--colour-accent);
     padding: var(--size-2);
