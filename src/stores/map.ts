@@ -135,7 +135,10 @@ export const mapHovered = writable<number | null>();
 export const mapMoving = derived(mapStore, ($mapStore, set) => {
   if ($mapStore) {
     $mapStore.on('movestart', () => set(true));
-    $mapStore.on('moveend', () => set(false));
+    $mapStore.on('moveend', () => {
+      set(false);
+      mapAboutToMove.set(false);
+    });
   }
 }, false);
 
@@ -213,7 +216,6 @@ export function moveMap(opts : AnimationOptions = {}, jump = false) {
       m.jumpTo(location);
     }
   }
-  mapAboutToMove.set(false);
 }
 
 export const toggleMapOnly = writable(false);

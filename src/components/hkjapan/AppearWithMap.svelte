@@ -4,23 +4,13 @@
   // things will only appear when the map stops moving
 
   import { mapMoving, toggleMapOnly, mapAboutToMove } from '@src/stores/map';
+  import { fade } from 'svelte/transition';
 
   $: show = !$mapAboutToMove && !$mapMoving && !$toggleMapOnly;
 </script>
 
-<div class:show>
+{#if show}
+<div in:fade={{ duration: 250 }}>
   <slot />
 </div>
-
-<style lang="scss">
-  div {
-    transition: opacity 250ms var(--ease-in-out-1);
-    &.show {
-      opacity: 1;
-    }
-
-    &:not(.show) {
-      opacity: 0;
-    }
-  }
-</style>
+{/if}
