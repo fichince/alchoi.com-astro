@@ -201,6 +201,7 @@ export const mapAboutToMove = writable(false);
 export function moveMap(opts : AnimationOptions = {}, jump = false) {
   const { map } = get(mapPage);
   const m = get(mapStore);
+  toggleMapOnly.set(false);
 
   if (map && m) {
     const { lat, lon, zoom } = map;
@@ -219,3 +220,28 @@ export function moveMap(opts : AnimationOptions = {}, jump = false) {
 }
 
 export const toggleMapOnly = writable(false);
+
+toggleMapOnly.subscribe((mapOnly) => {
+  const m = get(mapStore);
+  const page = get(mapPage);
+
+  if (!m || !page || !page.map) return;
+
+  const { map } = page;
+
+  if (mapOnly) {
+    m.scrollZoom.enable();
+    m.dragPan.enable();
+  } else {
+    m.scrollZoom.disable();
+    m.dragPan.disable();
+
+    const { lat, lon, zoom } = map;
+    const location = {
+      center: { lat, lon },
+      zoom,
+    };
+
+    m.jumpTo(location);
+  }
+});
