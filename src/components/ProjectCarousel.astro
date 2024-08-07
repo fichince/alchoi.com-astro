@@ -43,7 +43,7 @@ const id = `project-carousel-${project.slug}`;
           data-pswp-width={image.attributes.width} 
           data-pswp-height={image.attributes.height}>
           
-          <img src={image.src} alt={project.data.title} />
+          <img src={image.src} alt={project.data.title} loading="lazy" />
         </a>
       </sl-carousel-item>
     );
