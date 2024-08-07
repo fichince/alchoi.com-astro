@@ -62,6 +62,14 @@ const hkjapan = defineCollection({
   })
 });
 
+const quoteshelf = defineCollection({
+  schema: () => z.object({
+    title: z.string(),
+    author: z.string(),
+    quotes: z.string().array(),
+  })
+});
+
 export const collections = {
   prose,
   blog,
@@ -69,4 +77,5 @@ export const collections = {
   other,
   capsules,
   hkjapan,
+  quoteshelf,
 };

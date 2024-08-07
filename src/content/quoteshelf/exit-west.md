@@ -1,0 +1,73 @@
+---
+title: 'Exit West: A Novel'
+author: Mohsin Hamid
+quotes:
+- There was no physical violence in Nadia's home, and much giving to charity, but
+  when after finishing university Nadia announced, to her family's utter horror, and
+  to her own surprise for she had not planned to say it, that she was moving out on
+  her own, an unmarried woman, the break involved hard words on all sides, from her
+  father, from her mother, even more so from her sister, and perhaps most of all from
+  Nadia herself, such that Nadia and her family both considered her thereafter to
+  be without a family, something all of them, all four, for the rest of their lives,
+  regretted, but which none of them would ever act to repair, partly out of stubbornness,
+  partly out of bafflement at how to go about doing so, and partly because the impending
+  descent of their city into the abyss would come before they realized that they had
+  lost the chance.
+- 'It was the sort of view that might command a slight premium during gentler, more
+  prosperous times, but would be most undesirable in times of conflict, when it would
+  be squarely in the path of heavy machine-gun and rocket fire as fighters advanced
+  into this part of town: a view like staring down the barrel of a rifle. Location,
+  location, location, the realtors say. Geography is destiny, respond the historians.'
+- It might seem odd that in cities teetering at the edge of the abyss young people
+  still go to class—in this case an evening class on corporate identity and product
+  branding—but that is the way of things, with cities as with life, for one moment
+  we are pottering about our errands as usual and the next we are dying, and our eternally
+  impending ending does not put a stop to our transient beginnings and middles until
+  the instant when it does.
+- So he was unprepared for the feeling of awe that came over him, the wonder with
+  which he then regarded his own skin, and the lemon tree in its clay pot on Nadia's
+  terrace, as tall as he was, and rooted in its soil, which was in turn rooted in
+  the clay of the pot, which rested upon the brick of the terrace, which was like
+  the mountaintop of this building, which was growing from the earth itself, and from
+  this earthy mountain the lemon tree was reaching up, up, in a gesture so beautiful
+  that Saeed was filled with love, and reminded of his parents, for whom he suddenly
+  felt such gratitude, and a desire for peace, that peace should come for them all,
+  for everyone, for everything, for we are so fragile, and so beautiful, and surely
+  conflicts could be healed if others had experiences like this, and then he regarded
+  Nadia and saw that she was regarding him and her eyes were like worlds.
+- But Saeed's father was thinking also of the future, even though he did not say this
+  to Saeed, for he feared that if he said this to his son that his son might not go,
+  and he knew above all else that his son must go, and what he did not say was that
+  he had come to that point in a parent's life when, if a flood arrives, one knows
+  one must let go of one's child, contrary to all the instincts one had when one was
+  younger, because holding on can no longer offer the child protection, it can only
+  pull the child down, and threaten them with drowning, for the child is now stronger
+  than the parent, and the circumstances are such that the utmost of strength is required,
+  and the arc of a child's life only appears for a while to match the arc of a parent's,
+  in reality one sits atop the other, a hill atop a hill, a curve atop a curve, and
+  Saeed's father's arc now needed to curve lower, while his son's still curved higher,
+  for with an old man hampering them these two young people were simply less likely
+  to survive.
+- Saeed for his part wished he could do something for Nadia, could protect her from
+  what would come, even if he understood, at some level, that to love is to enter
+  into the inevitability of one day not being able to protect what is most valuable
+  to you.
+- Every time a couple moves they begin, if their attention is still drawn to one another,
+  to see each other differently, for personalities are not a single immutable color,
+  like white or blue, but rather illuminated screens, and the shades we reflect depend
+  much on what is around us.
+- There was also closeness, for the end of a couple is like a death, and the notion
+  of death, of temporariness, can remind us of the value of things, which it did for
+  Saeed and Nadia, and so even though they spoke less and did less together, they
+  saw each other more, although not more often.
+- But while fear was part of what kept them together for those first few months in
+  Marin, more powerful than fear was the desire that each see the other find firmer
+  footing before they let go, and thus in the end their relationship did in some senses
+  come to resemble that of siblings, in that friendship was its strongest element,
+  and unlike many passions, theirs managed to cool slowly, without curdling into its
+  reverse, anger, except intermittently. Of this, in later years, both were glad,
+  and both would also wonder if this meant that they had made a mistake, that if they
+  had but waited and watched their relationship would have flowered again, and so
+  their memories took on potential, which is of course how our greatest nostalgias
+  are born.
+---

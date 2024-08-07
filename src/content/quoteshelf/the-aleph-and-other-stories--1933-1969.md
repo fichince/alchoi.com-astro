@@ -1,0 +1,18 @@
+---
+title: The Aleph and Other Stories, 1933-1969
+author: Jorge Luis Borges
+quotes:
+- |-
+  'I view [modern man],' he said with a certain unaccountable excitement, 'in his inner sanctum, as though in his castle tower, supplied with telephones, telegraphs, phonographs, wireless sets, motion-picture screens, slide projectors, glossaries, timetables, handbooks, bulletins....'
+
+  He remarked that for a man so equipped, actual travel was superfluous. Our twentieth century had inverted the story of Mohammed and the mountain; nowadays, the mountain came to the modern Mohammed.
+- He hesitated, then with that level, impersonal voice we reserve for confiding something
+  intimate, he said that to finish the poem he could not get along without the house
+  because down in the cellar there was an Aleph. He explained that an Aleph is one
+  of the points in space that contains all other points.
+- I saw the Aleph from every point and angle, and in the Aleph I saw the earth and
+  in the earth the Aleph and in the Aleph the earth; I saw my own face and my own
+  bowels; I saw your face; and I felt dizzy and wept, for my eyes had seen that secret
+  and conjectured object whose name is common to all men but which no man has looked
+  upon—the unimaginable universe.
+---

@@ -1,0 +1,27 @@
+---
+title: Three Women
+author: Lisa Taddeo
+quotes:
+- Then I think about how much I have wanted from men. How much of that wanting was
+  what I wanted from myself, from other women, even; how much of what I thought I
+  wanted from a lover came from what I needed from my own mother. Because it's women,
+  in many of the stories I've heard, who have greater hold over other women than men
+  have. We can make each other feel dowdy, whorish, unclean, unloved, not beautiful.
+  In the end, it all comes down to fear. Men can frighten us, other women can frighten
+  us, and sometimes we worry so much about what frightens us that we wait to have
+  an orgasm until we are alone. We pretend to want things we don't want so nobody
+  can see us not getting what we need.
+- Men did not merely want. Men *needed*. The man who followed my mother to and from
+  work every day *needed* to do so. Presidents forfeit glory for blow jobs. Everything
+  a man takes a lifetime to build he may gamble for a moment. I have never entirely
+  subscribed to the theory that powerful men have such outsize egos that they cannot
+  suppose they will ever be caught; rather, I think that the desire is so strong in
+  the instant that everything else—family, home, career—melts down into a little liquid
+  cooler and thinner than semen. Into nothing.
+- It's the nuances of desire that hold the truth of who we are at our rawest moments.
+  I set out to register the heat and sting of female want so that men and other women
+  might more easily comprehend before they condemn. Because it's the quotidian minutes
+  of our lives that will go on forever, that will tell us who we were, who our neighbors
+  and our mothers were, when we were too diligent in thinking they were nothing like
+  us.
+---

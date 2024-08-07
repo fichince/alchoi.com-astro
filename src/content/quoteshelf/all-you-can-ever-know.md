@@ -1,0 +1,67 @@
+---
+title: 'All You Can Ever Know: A Memoir'
+author: Nicole Chung
+quotes:
+- But *I never wanted to give you away* were the words I'd always wanted to hear from
+  her, from my birth father. It was the closest I'd ever come to being told one of
+  them wanted me.
+- Family lore given to us as children has such hold over us, such staying power. It
+  can form the bedrock of another kind of faith, one to rival any religion, informing
+  our beliefs about ourselves, and our families, and our place in the world.
+- All members of a family have their own ways of defining the others. All parents
+  have ways of saying things about their children as if they are indisputable facts,
+  even when the children don't believe them to be true at all. It's why so many of
+  us sometimes feel alone or unseen, despite the real love we have for our families
+  and they for us.
+- The stories I wrote throughout my grade school years were sites for my fledgling
+  dreams of belonging. These invented worlds were another kind of refuge, but for
+  a long time I had trouble locating myself in my own creations. Even when I was at
+  my freest and most imaginative, peering beyond the limits of my own lived reality,
+  I couldn't picture someone like me at the center of the story. When I tried to write
+  novels, sprawled on my bed with a ballpoint pen and spiral notebook, I imagined
+  girls who outsmarted grown-ups and rescued their best friends from kidnappers, girls
+  who raced in the Iditarod and girls who traveled to worlds far beyond our galaxy—girls
+  who were always white. To be a hero, I thought, you had to be beautiful and adored.
+  To be beautiful and adored, you had to be white. That there were millions of Asian
+  girls like me out there in the world, starring in their own dramas large and small,
+  had not yet occurred to me, as I had neither lived nor seen it.
+- 'No matter how a child joins your family, their presence changes all the rules;
+  they move into your heart and build new rooms, knock down walls you never knew existed.
+  This is why new parents crave reassurance more than anything else: We tell ourselves,
+  and want others to tell us, that we''re going to be wonderful parents. That our
+  children will be happy. That their suffering will be light—or at least, never of
+  a kind we cannot help them through. We have to believe these things, promise ourselves
+  we''ll meet every challenge, or we''d never be brave enough to begin.'
+- 'My family''s devout Catholic faith had often functioned as a kind of substitute
+  for the Korean heritage I had lost, and I was very much under its sway: from Nativity
+  plays and Lenten soup suppers to the holy cards stuffed in my Bible and the tiny
+  cross my mother traced on my forehead before I went to school, there was rhythm
+  and ritual in my Catholic upbringing, a sense of purpose and interconnectedness.
+  I had long found comfort in it.'
+- 'This realization welled up, overflowing in another discovery: I had nothing to
+  prove any longer. Even if I still felt the need to assert my love for my adoptive
+  parents, or defend my family to people who had no idea how it felt or what it meant
+  to be adopted, that did not mean I had to forever deny all interest in the people
+  who''d given me life. It was time to lay down the burden of being "the good adoptee,"
+  the grateful little girl who''d been lost and then found. Who cared what anyone
+  thought of my decision? Who cared about their questions?'
+- I had told him so many times that I did not hold my adoption against him. But even
+  two years after our first correspondence, his letters to me were filled with regret.
+  He held it against himself, and I did not want him to. How strange, yet not strange
+  at all, that I felt the same urge to protect him that I'd felt toward my adoptive
+  parents. Perhaps it was a sign of how much I already cared about him. Was there
+  some magical, inspired phrase I could snatch out of the stifled air between us,
+  something I could say that would make him lay his guilt to rest, once and for all?
+- 'Though I''ve sometimes grieved for absent solidarity, now that I am raising children
+  of color in a starkly divided America I feel, even more strongly, that maintaining
+  my silence with my relatives—pretending my race does not matter—is no longer a choice
+  I can make. It feels like my duty as my white family''s de facto Asian ambassador
+  to remind them that I am *not* white, that we *do* experience this country in different
+  ways because of it, that many people still know oppression far more insidious and
+  harmful than anything I''ve ever faced. Every time I do this, I am breaching the
+  sacred pact of our family, our once-shared belief that my race is irrelevant in
+  the presence of their love. But withholding hard truths and my honest opinions would
+  also sell short the love I have for them, and they for me. The fierce wish I still
+  harbor for them to understand me for who I am, stand with me in love and full acceptance,
+  persists because they chose me and they raised me: we are one another''s responsibility.'
+---

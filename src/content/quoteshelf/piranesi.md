@@ -1,0 +1,36 @@
+---
+title: 'Piranesi: ‘Spectacular’ The Times'
+author: Susanna Clarke
+quotes:
+- But what is a few days of feeling cold compared to a new albatross in the World?
+- I write down what I observe in my notebooks. I do this for two reasons. The first
+  is that Writing inculcates habits of precision and carefulness. The second is to
+  preserve whatever knowledge I possess for you, the Sixteenth Person.
+- As I walked, I was thinking about the Great and Secret Knowledge, which the Other
+  says will grant us strange new powers. And I realised something. I realised that
+  I no longer believed in it. Or perhaps that is not quite accurate. I thought it
+  was possible that the Knowledge existed. Equally I thought that it was possible
+  it did not. Either way it no longer mattered to me. I did not intend to waste my
+  time looking for it any more.
+- |-
+  I realised that the search for the Knowledge has encouraged us to think of the House as if it were a sort of riddle to be unravelled, a text to be interpreted, and that if ever we discover the Knowledge, then it will be as if the Value has been wrested from the House and all that remains will be mere scenery.
+
+  The sight of the One-Hundred-and-Ninety-Second Western Hall in the Moonlight made me see how ridiculous that is. The House is valuable because it is the House. It is enough in and of Itself. It is not the means to an end.
+- |-
+  Dear Piranesi
+  Reading your useful and informative messages, I have come to realise that if only I were to cast off my wickedness then we could be friends.
+
+  Let us meet and talk. I promise not to make you mad. In return will you teach me how to be not-wicked?
+
+  Hopefully
+  16
+- I think of Dr Ketterley and an image rises up in my mind. It is the memory of a
+  statue that stands in the nineteenth north-western hall. It is the statue of a man
+  kneeling on his plinth; a sword lies at his side, its blade broken in five pieces.
+  Roundabout lie other broken pieces, the remains of a sphere. The man has used his
+  sword to shatter the sphere because he wanted to understand it, but now he finds
+  that he has destroyed both sphere and sword. This puzzles him, but at the same time
+  part of him refuses to accept that the sphere is broken and worthless, He has picked
+  up some of the fragments and stares at them intently in the hope that they will
+  eventually bring him new knowledge.
+---

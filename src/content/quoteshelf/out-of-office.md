@@ -1,0 +1,145 @@
+---
+title: Out of Office
+author: Charlie Warzel
+quotes:
+- We love our old work friends. We've been to their weddings; we're watching their
+  kids grow up; we continue to share our lives with them. Those actual friendships
+  aren't what we regret, and never will be. When we moved away from New York, however,
+  we came to realize how work friendships had functioned as Trojan horses for work
+  to infiltrate and then engulf our lives. These relationships didn't make work-life
+  balance more difficult. Instead, they eclipsed the idea of balance altogether, because
+  work and life had become so thoroughly intertwined that spending most of our waking
+  moments with some extension of our corporation didn't seem remotely odd or problematic.
+  It was just... life.
+- Our obsession with productivity has distracted us from systemic inequalities, swallowing
+  the sort of time and energy necessary to advocate for change.
+- 'If we shift our focus from relentless productivity, we may collectively rethink
+  our societal metrics for success. A society obsessed with shareholder value, GDP,
+  and corporate wealth creation will value and reward those who drive those metrics
+  upward: bankers, venture capitalists, day traders. A society obsessed with quality
+  of life, care, and societal health values and rewards a very different set of people.'
+- 'Because "flex,” at least as it is currently defined, doesn''t refer to the option
+  to leave a bit early to pick your kids up at day care. It''s the ability to expand
+  and contract quickly: in size, in workforce, in real estate, in output. It''s the
+  capacity to produce more work—sometimes exponentially more—with a much smaller workforce.
+  It''s a rickety cost-saving measure dressed up as a benefit.'
+- 'Productivity culture is rooted in the performance of work: making a to-do list
+  and crossing items off it, achieving in-box zero, writing and sending memos, or
+  holding meetings, or completing tasks that transmute the intangible products of
+  knowledge work into something tangible. Some of this work serves a purpose, some
+  of it stinks of desperation, but all of it offers the worker the feeling that they''re
+  productive, so visible and undeniable that others feel it too.'
+- 'Some version of [toxic culture] goes on at most companies, and it happens when
+  a company declares a value, and then doesn''t actually enact or enforce the policies
+  that would make it a reality. In this case, the job of resisting the erosion of
+  boundaries falls entirely on the employee: it is your task, and yours alone, to
+  maintain the guardrails on work''s incursion into your life. If you fail, the blame
+  isn''t on the culture, or your manager, but on you: you failed to set and abide
+  by a set of rules, even though no one else is following them.'
+- |-
+  A guardrail is conceptually and crucially different from a boundary. Boundaries are easy to conceive of as a neutral, malleable demarcation, a property line: no match for the hulking semitruck that is the pressure to fill all of our time with work. Guardrails, by contrast, are designed with the understanding that we need protection. Not because we're fragile or undisciplined, but because the forces that undergird work today—especially the obsession with growth and productivity—are indiscriminate in their destruction. They flatten even our best intentions and find power in our precarity.
+
+  Boundaries are personal. But guardrails are structural.
+- 'Many of us tell ourselves stories, in our work and nonwork lives, that if we don''t
+  do something, then it just won''t get done. But that''s often a self-fulfilling
+  narrative: when you never actually allow others to do something, there''s no room
+  to develop trust that it''ll actually happen. When you think of yourself as essential
+  to a process, you become so.'
+- 'It''s not just that managers will need to modify their existing tactics. Instead,
+  organizations will need to rethink the purpose that management has served over the
+  years and all the largely impossible roles it''s asked to fulfill today. The role
+  of the manager has become hopelessly overdetermined: in pop culture, they''re at
+  once useless and overly powerful; in practice, they''re usually overworked and under-trained.
+  But you cannot build a new work culture—for yourself, for your team, or for the
+  entire company—without them.'
+- 'A lack of training creates a learned helplessness among mid-level managers: instead
+  of functioning as a sort of bulwark to protect employees, pushing back on bad decisions,
+  they become passive vectors for what (often clueless) executives demand of them.
+  Lack of (good) management allows inequities to grow and microaggressions to become
+  macroaggressions. But how do you tell someone who''s been doing a job for five years,
+  maybe even ten, that they''ve missed the point of their job this whole time?'
+- People may be bad managers out of ignorance, but that doesn't mean they're blameless.
+  There are pernicious, long-lasting effects to bad management. "We've seen women
+  who've had pay adjusted simply because a manager woke up," Johnathan said. “The
+  reason she was underpaid on the team was not because her boss was cackling in the
+  corner. It was because nobody told the boss it was their responsibility to look
+  at the fucking spreadsheet."
+- In most modern organizations, "management" has become something to tack onto someone's
+  existing job description, like a high school teacher getting extra money to coach
+  high school volleyball. No matter that they've only played a few games in their
+  lives; somebody's gotta do it, and who doesn't want a pay bump?
+- We have to know how to spot when a flashy technology, a gorgeous office setup, or
+  a new way of communicating is actually just an invitation for *more work* in new
+  camouflage. We must begin to see productivity and efficiency as a means to an actual
+  end, not a means to *more work*.
+- Over the last two decades, [Clive Wilkinson’s] brilliant, innovative designs have
+  rippled through the architecture world, as large-scale tech companies and smaller
+  start-ups alike have cribbed elements of his team's dynamic workplaces for their
+  spaces. And Wilkinson's increasingly aware of the insidious nature of those same
+  perks. "Making the work environment more residential and domestic is, I think, dangerous,"
+  he told us in late 2020. "It's clever, seductive, *and* dangerous. It's pandering
+  to employees by saying we'll give you everything you like, as if this was your home,
+  and the danger is that it blurs the difference between home and office."
+- 'In 2014, when the *Time* journalist Harry McCracken tried to send a message to
+  [Paul Buchheit, creator of Gmail], he got an away message: Buchheit was on email
+  hiatus. When McCracken finally got hold of him, Buchheit was unsparing in his critique
+  of what Gmail had facilitated. "There''s a 24/7 culture, where people expect a response.
+  It doesn''t matter that it''s Saturday at 2 a.m.—people think you''re responding
+  to email," he said. “People have become slaves to email. It''s not a technical problem.
+  It can''t be solved with a computer algorithm. It''s more of a social problem."'
+- |-
+  Ambitious, competitive employees will sacrifice remote flexibility and work relentlessly in person, while remote employees, motivated by the anxiety of not seeming productive, will live in fear of managers and compensate with overwork. Both sides end up driving the other to misery.
+
+  This is the nightmare scenario for [Jennifer] Christie and the focus of much of Twitter's early hybrid work planning. The solution? Destroy the FOMO and level the playing field by making the office *less* appealing. “You need to eliminate the idea that you'll miss out if you're not in the office," she told us. Which is why they're attempting to figure out ways to actively disincentivize people from coming back to the office full-time. "For a long time we've rallied around office perks and keeping people around and in the building," she said. "Tech companies have celebrated and mastered it: come to the office, and you get fed, you get cared for."
+- '"We didn''t go down this path because of COVID," Christie, Twitter''s head HR officer,
+  says. “We went down it because the world was already shifting, pre-COVID, and we
+  thought, ''We have to get on the bandwagon, or we won''t attract and retain talent.''
+  Companies that think ''this too shall pass, and we''ll go back to being an office
+  company'' are sorely mistaken. If you miss this window, you won''t be a great company
+  for long."'
+- |-
+  Do you ever find yourself sending an email at an ungodly hour that could easily wait until morning? Do you reply to a group thread on your company chat client with a bland observation or question that you already know the answer to? Have you ever written the words “just checking in" while on vacation?
+
+  If you haven't, you're more disciplined than we are. But most of you will recognize the slightly desperate act of performative work. You hate that you do it, but you don't know how to stop it. It's a form of LARPing—Live Action Role Playing—your job, and it increases in direct proportion to the amount of anxiety you feel about your performance, your place in the organization, and your relationship with your manager. It's also a massive, *massive* time suck.
+- '“Transparency enhances belonging," [Darren Murph, head of remote at GitLab] told
+  us when we spoke. "And it is vital in an officeless company. Even if people don''t
+  use the documentation or follow what other colleagues are doing, just seeing it
+  creates an innate sense of belonging. There''s a trust that''s forged because you
+  can see what everyone is doing. Most companies work exactly opposite of that intentionally:
+  they want it fully siloed because they''re afraid of too much feedback. But it''s
+  not the feedback you should be afraid of; it''s alienating teams.”'
+- Good management doesn't scale easily, because good communication isn't always efficient.
+  It's often emotional and vulnerable, and it certainly isn't driven by algorithms
+  and big data. Good management is ultimately built on trust—the very kind that surveillance
+  undermines at every turn.
+- Individualism creates and deepens inequities, it mires us in endless arguments about
+  worth and "deserving," and it creates so much unnecessary suffering, alienation,
+  and resentment. It forces us to obsess over the need to prove our value; instead
+  of wondering why the perch where we find ourselves is so precarious, we obsess with
+  how to best keep ourselves steadied upon it.
+- People say that we, as a society, worship consumerism, that we have made false idols
+  out of *things*. But that pronouncement increasingly rings false, particularly for
+  office and knowledge workers. We worship work.
+- 'Surveillance technology runs through the history of work. Blue-collar workers have
+  long had their movements meticulously cataloged with time cards and overseeing floor
+  managers, and the spread of the personal work computers offered employers a direct
+  yet largely invisible conduit to access and analyze employee behavior. More recently,
+  large tech and logistics companies have introduced extensive tracking systems to
+  surveil employees: cross-country truckers, fast-food workers, data-entry specialists,
+  call-center employees—everyone gets their own, noxious brand of surveillance.'
+- 'Writing about the white-collar office worker in 1951, the sociologist C. Wright
+  Mills declared that "whatever common interests they have do not lead to unity."
+  That was true then, and it''s true now: office workers have either resisted or given
+  up on efforts to generate solidarity, especially when formalized in a union. As
+  Nikil Saval put it in *Cubed*, white-collar workers "believed ardently in the American
+  dream of relentless upward mobility. They preferred the insecurity of getting promoted
+  based on merit to the steady advance of seniority. Unions promised one thing above
+  all—dignity—which white-collar workers claimed they already had, and thanks to the
+  prestige of their professions, the bleached stiffness of their collars."'
+- Corporations have actively cultivated this attitude for decades. The entire field
+  of human resources is meant to convince workers that the company has their best
+  interests at heart. Even the “good" management that we’ve extolled in previous chapters
+  can undercut solidarity, because hope for advancement—and tiny shifts in job title
+  and salary—keep employees invested in their *individual* potential, instead of collective
+  protections.
+---

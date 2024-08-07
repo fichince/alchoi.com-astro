@@ -1,0 +1,57 @@
+---
+title: 'How to Say It® to Seniors: Closing the Communication Gap with Our Elders'
+author: David Solie
+quotes:
+- 'Think of a person''s organic legacy as an enormous quilt created not from scraps
+  of cloth material, but from moments of emotional material gathered from a lifetime
+  of memories, examined for content, quality, and values, reexamined from the perspective
+  of old age, then sewn together into an enveloping garment that reflects the values
+  the person holds most dear: his or her essential perceptions, memories, and truths
+  that must be passed along to future generations.'
+- |-
+  Control we understand on a gut level. As middle-aged adults, we don't spend much time or energy thinking about it. We have it and exercise it every day. But this other developmental task—searching for our legacy—is not something we so readily understand. A thorough life review prior to old age is what we do only when we suffer a devastating loss—of a parent, job, friendship, or relationship that meant a lot to us. At those times, we may look back and remember the event and the role it played in our lives. But that review process doesn't last very long, because our developmental drivers are propelling us forward. We take a deep breath, perhaps learn from the experience that life is too short or unfair, and then move on to the challenges that still lie ahead.
+
+  For seniors, though, this look backward is a vital part of their conscious and subconscious existence. Every day, every hour, whether they mention it or not, the seventy-plus age group is reviewing their lives.
+- What looks like diminished capacity in the majority of the aging population is nothing
+  more than an awareness by that person that he or she is on a different developmental
+  mission. Yes, body parts are breaking down and wearing out, causing the elderly
+  to move more slowly through their days. But research shows that the most important
+  mental capabilities remain intact throughout the aging process. Furthermore, brain
+  functions that do change in old age actually enhance an elderly person's ability
+  to refocus life’s priorities from the goal-oriented productivity of our middle-age
+  years to the more reflective demands of this stage of life.
+- Nowhere do we see the clash between age-based agendas more clearly than in the time
+  it can take an older adult to decide something. This lack of urgency runs smack
+  up against the deadlines our middle-aged agendas impose on us every day.
+- When we hear lots of details in repeated stories, we note that the storyteller's
+  version may not be exactly correct, the way *we* remember the incident, or the way
+  the person related an earlier version of the same story. So we may find ourselves
+  commenting that this older person's memory is slipping, or isn't exactly correct
+  as we remember it. But correct is not the deal here. They are not scripting a documentary.
+  They're using memory as a vehicle with which to intensify a part of their life that
+  means a lot to them. They're reaching for a value. They're trying to understand
+  a person. Attention to detail is one way to get there.
+- Nonlinear conversations, if given ample support, can lead to great insight. Conversations
+  that flow and evolve at their own pace emphasize values that carry special meaning
+  for the older person.
+- If personality development is a lifelong process, then at the end of life, the elderly
+  face a developmental conflict they have trouble expressing but must resolve. Seniors'
+  developmental tasks compel them to maintain control over their lives in the face
+  of almost daily losses, and simultaneously to discover their legacy, or that which
+  will live on after them. I describe this conflict as needing to hang on tight while
+  also needing to let go and discover the meaning of their lives.
+- "Ours is not a culture that values the wisdom of our elders. There is little chance
+  for us to come together and use the wisdom accumulated through their years of living
+  as a resource that enriches our lives. We seem to want to segregate them into communities
+  of other older people, so that their perspective is not available to us. We tend
+  to see older folks as diminished, high-maintenance versions of ourselves. \n\n[…]\n\nIt's
+  not just that we don't go to Grandma for advice; we send her a message that she
+  has no advice worthy of our consideration."
+- 'The stronger our relationship with the older generation, the easier it is to facilitate
+  the legacy process. The weaker the relationship, the more frustrated we tend to
+  become with our elders'' attempts to communicate. Our message in facilitating legacy:
+  I want to understand you better. I am strong enough to help you confront the losses
+  you''ve endured and mistakes you may have made, and not consider you to be weak.
+  In fact, your review of those losses makes you appear seasoned and heroic in my
+  eyes.'
+---

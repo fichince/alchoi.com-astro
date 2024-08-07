@@ -1,0 +1,30 @@
+---
+title: Worry-Free Money
+author: Shannon Lee Simmons
+quotes:
+- If you don't know what you can and cannot actually afford, every purchase feels
+  terrifying. Was the $40 takeout a bad financial decision that you should beat yourself
+  up for, or was it okay? Will an extra $100 in rent really push out your dreams of
+  home ownership for years, or will it make no difference at all? How guilty and afraid
+  should you actually be when you spend money? This constant sense of vague guilt
+  makes it feel as if there's no plan and no strategy to your finances.
+- |-
+  If I gave you $100 with instructions to give me back $40 later that day or else you'd be in serious financial trouble, you'd probably happily spend the other $60 without a second thought and hand over the remaining $40 with a smile. No guilt, no stress, no uncertainty. Now imagine I give you $100 with instructions to give *some* of it back to me at a later date or else you'll be in serious financial trouble. You don't know how much money you'll have to give back or when I'm going to ask for it. All you know is that some amount of money will have to be available at a moment's notice when I come calling for it.
+
+  If this were the case, you'd probably spend much less than $60, just to be careful. Maybe I'll ask for only $20 back and you could have spent $80, but you simply won't know. The result would be apprehension every time you spent *any* of that money, because you *might* be overspending. I might come back demanding $95, making even a $10 purchase risky. Uncertainty breeds guilt, fear and constant worry. It's exhausting.
+- |-
+  The true solution to managing your cash flow is to let go of the idea that you are in control of your daily spending. You're not. Say it with me now: I'm not in control of my daily spending. You need to accept the fact that your spending money must be fluid, flexible and able to respond to the ever-changing demands of daily life.
+
+  Obviously you shouldn't be spending *all* your money, but you're definitely allowed to spend *some*. We aren't on this earth merely to pay our phone bills.
+- When it comes to "How to Cut Expenses, Today" or "Five Best Ways to Save Money"
+  articles and blog posts, they typically tell you to pay your bills and cut, cut,
+  cut your spending where you can. I'm so tired of those pack-your-lunch and forgo-the-daily-latte
+  tips. This type of frugality implies that you need to train yourself to buy only
+  carefully budgeted and well-priced necessities such as groceries, gas and similar
+  supplies. Anything beyond that is probably something you don't need, something that
+  you simply want. If it's something you just want, as a motivated budgeter you should
+  be able to cut back on it easily enough. If you can't reduce your wants and purchase
+  only what you need, then you clearly suck at handling money. Why can't you control
+  yourself? Are you weak-willed? Geez. It is exactly this type of mindset that makes
+  you feel guilty or insecure every time you open your wallet.
+---
