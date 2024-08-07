@@ -2,7 +2,8 @@
 import Layout from '@src/layouts/Layout.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import NotFound from '@src/components/NotFound.astro';
-import { getAllBlogEntries, getLinkToPost, stripMarkdown } from '@src/utils';
+import { getAllBlogEntries, getLinkToPost } from '@src/utils';
+import { stripMarkdown } from '@src/markdown';
 import PostShuffler from '@src/components/PostShuffler.svelte';
 
 const posts = await getAllBlogEntries();

@@ -1,0 +1,80 @@
+---
+import Layout from '@src/layouts/Layout.astro';
+import Map from '@src/components/hkjapan/PhotoMap.svelte';
+
+import { getImage } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+const content = await getCollection('hkjapan');
+
+let id = 1;
+
+// Because these images will eventually be rendered by Svelte,
+// we can't use the Astro Image component. Instead, we have to 
+// procedurally optimize the images here and pass the final 
+// URL to the Svelte component.
+async function optimizeImage(i : any) : Promise<MapImage> {
+
+  const { image, ...rest } = i;
+
+  // resize the image to a reasonable width (at most 4K)
+  const width = Math.min(image.width, 2160);
+  // maintaining aspect ratio
+  const height = (image.height / image.width) * width;
+
+  const optimized = await getImage({
+    src: image,
+    width,
+    height,
+    format: 'webp',
+  });
+
+  return {
+    ...rest,
+    image: optimized.src,
+    width: optimized.options.width,
+    height: optimized.options.height,
+    id: id++,
+  };
+}
+
+const mapPages : MapPage[] = [];
+
+for (let i = 0; i < content.length; i++) {
+  const item = content[i];
+
+  const { 
+    data: { 
+      component,
+      date,
+      title,
+      map,
+      images,
+    }
+  } = item;
+
+  const optimizedImages : MapImage[] = [];
+
+  if (images) {
+    for (let j = 0; j < images.length; j++) {
+      optimizedImages.push(await optimizeImage(images[j]));
+    }
+  }
+
+  const page = {
+    slug: item.slug,
+    component,
+    body: item.body,
+    date,
+    title,
+    map,
+    images: optimizedImages
+  };
+
+  mapPages.push(page);
+}
+
+---
+<Layout title="Hong Kong and Japan 2023">
+  <Map client:only="svelte" mapPages={mapPages} />
+</Layout>

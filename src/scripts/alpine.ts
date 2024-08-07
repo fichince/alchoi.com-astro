@@ -27,7 +27,7 @@ function searchQuery() {
       window.htmx.trigger('#q', 'init-query');
     },
 
-    // when user types in the serach box, update the query string
+    // when user types in the search box, update the query string
     // of the URL
     updateQueryString(e : any) {
       const url = new URL(window.location.href);

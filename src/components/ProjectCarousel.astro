@@ -1,34 +1,52 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 
 interface Props {
   project: CollectionEntry<'code'>;
 }
 
 const { project } = Astro.props;
+
+const optimizedImages = await Promise.all(project.data.images.map(async (image) => {
+  const optimized = await getImage({
+    src: image,
+    format: 'webp',
+  });
+
+  return optimized;
+}));
+
+const id = `project-carousel-${project.slug}`;
+
 ---
-<div>
+<script>
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+  import PhotoSwipe from 'photoswipe';
+  import 'photoswipe/dist/photoswipe.css';
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '.project-carousel',
+    children: 'a',
+    pswpModule: PhotoSwipe,
+  });
+  lightbox.init();
+</script>
+
+<div id={id} class="project-carousel">
   <sl-carousel pagination navigation loop>
-  { project.data.images.map(async (image) => {
+  { optimizedImages.map((image) => {
 
     return (
       <sl-carousel-item class="project-carousel-item">
-        <Image src={image}
-          width={800}
-          alt={project.data.title}
-          loading="lazy"
-        />
+        <a href={image.src} 
+          data-pswp-width={image.attributes.width} 
+          data-pswp-height={image.attributes.height}>
+          
+          <img src={image.src} alt={project.data.title} />
+        </a>
       </sl-carousel-item>
     );
   })}
   </sl-carousel>
 </div>
-
-<style lang="scss">
-  sl-carousel-item {
-    img {
-      cursor: pointer;
-    }
-  }
-</style>

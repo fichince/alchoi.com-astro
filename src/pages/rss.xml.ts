@@ -1,5 +1,6 @@
 import rss from '@astrojs/rss';
-import { getAllBlogEntries, getLinkToPost, stripMarkdown, renderMarkdown } from '@src/utils';
+import { getAllBlogEntries, getLinkToPost } from '@src/utils';
+import { stripMarkdown, renderMarkdown } from '@src/markdown';
 import type { APIRoute } from 'astro';
 
 export const GET = (async (context) => {

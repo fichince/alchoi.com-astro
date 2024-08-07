@@ -19,6 +19,14 @@
   scroll-behavior: smooth;
 }
 
+* {
+  box-sizing: border-box;
+}
+*::before, *::after {
+  box-sizing: border-box;
+}
+
+
 html:not(.light) {
   /* preview at: https://realtimecolors.com/?colors=e9ecef-16191d-a2aeae-e0dcdc-6d7d7e */
 

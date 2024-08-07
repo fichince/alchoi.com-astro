@@ -1,0 +1,13 @@
+---
+component: 11KaniGoten
+map:
+  lat: 42.4814411840745
+  lon: 141.2480318215723
+  zoom: 13
+images:
+  - image: ../../images/hkjapan/11-kani-goten/kanigoten1.jpg
+  - image: ../../images/hkjapan/11-kani-goten/kanigoten2.jpg
+  - image: ../../images/hkjapan/11-kani-goten/kanigoten3.jpg
+---
+
+_**Kani Goten**_, a bear-themed seafood restaurant.
