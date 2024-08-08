@@ -1,0 +1,40 @@
+---
+import Layout from '@src/layouts/Layout.astro';
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import slugify from '@sindresorhus/slugify';
+
+export const getStaticPaths = (async () => {
+  const quoteshelf = await getCollection('quoteshelf');
+  const paths = quoteshelf.map((book) => {
+    return {
+      params: { 
+        author: slugify(book.data.author),
+      },
+    };
+  });
+
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { author } = Astro.params;
+
+const quoteshelf = await getCollection('quoteshelf');
+const books = quoteshelf.filter((book) => {
+  return author === slugify(book.data.author);
+});
+const fullName = books[0].data.author;
+---
+
+<Layout title={fullName}>
+  <p>this is the page for {fullName}</p>
+  <p>their books are:</p>
+  <ul>
+    {
+      books.map((book) => {
+        return <li>{book.data.title}</li>;
+      })
+    }
+  </ul>
+</Layout>
+
