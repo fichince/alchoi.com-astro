@@ -18,5 +18,8 @@ export default defineConfig({
     }
   },
   adapter: vercel({
-  })
+  }),
+  experimental: {
+    contentLayer: true,
+  },
 });
