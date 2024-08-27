@@ -3,7 +3,7 @@ import BlogPostLayout from '@src/layouts/BlogPostLayout.astro';
 
 import { enrichCapsuleEntry, getAllBlogEntries } from '@src/utils';
 import type { GetStaticPaths } from 'astro';
-import { getEntryBySlug } from 'astro:content';
+import { getEntry } from 'astro:content';
 
 export const getStaticPaths = (async () => {
   const entries = await getAllBlogEntries();
@@ -16,7 +16,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { slug = '' } = Astro.params;
-const entry = await getEntryBySlug('capsules', slug);
+const entry = await getEntry('capsules', slug);
 const post = entry ? enrichCapsuleEntry(entry) : ({} as CapsuleCollectionEntry);
 
 ---

@@ -13,4 +13,4 @@ Their website is another [Nomadic Labs][2] project, and I joined to build a new 
 
 [1]:	https://risecities.org
 [2]:	https://nomadiclabs.ca
-[3]:	https://risecities.org/fellowship
+[3]:	https://risecities.org/fellowship22
