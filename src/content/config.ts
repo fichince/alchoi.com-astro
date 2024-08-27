@@ -30,7 +30,7 @@ const blog = defineCollection({
 const code = defineCollection({
   schema: ({ image }) => z.object({
     title: z.string(),
-    url: z.string().url(),
+    url: z.string(),
     images: image().array(),
   })
 });

@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
-import { getCollection, getEntryBySlug } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import MD from '@src/components/MD.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import About from '@src/components/About.astro';
@@ -12,11 +12,11 @@ import bookImg from '@src/images/writing/jacob-rob.png';
 
 const prose = await getCollection('prose');
 
-const intro = await getEntryBySlug('other', 'prose-intro');
+const intro = await getEntry('other', 'prose-intro');
 const title = intro.data.title;
 const meta = { description: title };
 
-const book = await getEntryBySlug('other', 'jacob-rob');
+const book = await getEntry('other', 'jacob-rob');
 const { Content: Book } = await book.render();
 ---
 <NavbarLayout title="Prose" meta={meta}>
