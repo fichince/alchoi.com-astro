@@ -5,11 +5,11 @@ import CodeBrackets from '@src/components/icons/CodeBrackets.astro';
 import IntroSection from '@src/components/IntroSection.astro';
 import ProjectCarousel from '@src/components/ProjectCarousel.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
-import { getCollection, getEntryBySlug } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 
 const code = await getCollection('code');
 
-const intro = await getEntryBySlug('other', 'code-intro');
+const intro = await getEntry('other', 'code-intro');
 const title = intro.data.title;
 const meta = { description: title };
 
