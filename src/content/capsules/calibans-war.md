@@ -8,7 +8,7 @@ type: book
 image: ../../images/blog/calibans-war.jpg
 ---
 
-An improvement over the first entry, mostly because the cast of characters is more diverse. The core characters that span both books (the crew of the _Rocinante_) are growing on me, which is what you want in a spacefaring series. If you’re looking for more heady ideas, or a more thematically rich story, this isn’t it. This is more like an action thriller than an intellectual exploration.
+An improvement over the [first entry](/quick-reviews/leviathan-wakes), mostly because the cast of characters is more diverse. The core characters that span both books (the crew of the _Rocinante_) are growing on me, which is what you want in a spacefaring series. If you’re looking for more heady ideas, or a more thematically rich story, this isn’t it. This is more like an action thriller than an intellectual exploration.
 
 [storygraph link][1]
 
