@@ -1,7 +1,8 @@
 ---
 title: "_One Day: The Extraordinary Story of an Ordinary 24 Hours in America_"
 author: Gene Weingarten
-date: 2024-07-26
+date: 2024-07-10
+end: 2024-07-26
 type: book
 rating: 2
 image: ../../images/blog/calendar.jpg
