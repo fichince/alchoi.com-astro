@@ -1,5 +1,6 @@
 ---
 title: "_Prelude to Foundation_ (_Foundation_ #1)"
+author: Isaac Asimov
 date: 2024-10-16
 end: 2024-11-10
 type: book
