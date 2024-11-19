@@ -11,6 +11,7 @@ import type { Props as LayoutProps } from '@src/layouts/Layout.astro';
 import type { Page } from 'astro';
 
 import { getLinkToPost, shortDate } from '@src/utils';
+import { renderWithExcerpt } from '@src/markdown';
 
 interface Props extends LayoutProps {
   page: Page<BlogEntry>,
@@ -33,11 +34,13 @@ const posts = page.data;
 
         const date = shortDate(post.data.date);
         const end = post.data.end ? shortDate(post.data.end) : null;
-        
+
         const tags = post.data.tags ?? [];
         const link = getLinkToPost(post);
 
         const { Content } = await post.render();
+        const { html, htmlExcerpted } = renderWithExcerpt(post.body);
+        const hasExcerpt = html !== htmlExcerpted;
 
         const even = index % 2 === 0;
 
@@ -59,11 +62,11 @@ const posts = page.data;
               }
               <div class="dates">
                 <time>{date}</time>
-                {end && 
-                  <span> - <time>{end}</time></span> 
+                {end &&
+                  <span> - <time>{end}</time></span>
                 }
               </div>
-              { post.data.rating && 
+              { post.data.rating &&
                 <sl-rating value={post.data.rating} readonly precision="0.5" />
               }
               { post.data.description &&
@@ -86,10 +89,10 @@ const posts = page.data;
               </div>
             }
             <div class="tw-prose quick-review">
-              { post.collection === 'capsules' ? (
-                <Content />
+              { hasExcerpt ? (
+                <div set:html={htmlExcerpted} />
               ) : (
-                <a href={link}>Read...</a>
+                <div set:html={html} />
               )}
             </div>
           </article>
@@ -249,7 +252,7 @@ const posts = page.data;
 
       align-items: baseline;
       --rows: 1fr;
-      
+
       //gap: var(--size-fluid-1);
       grid-template-rows: var(--rows);
       grid-template-columns: var(--columns);
@@ -308,8 +311,8 @@ const posts = page.data;
         @include hover-link($subtle: true);
       }
 
-      transition: 
-        opacity 500ms var(--ease-out-1), 
+      transition:
+        opacity 500ms var(--ease-out-1),
         transform 500ms var(--ease-out-1),
         box-shadow 500ms var(--ease-out-1),
         background-color 500ms var(--ease-out-1);
