@@ -7,7 +7,6 @@ import remarkRehype from 'remark-rehype';
 import remarkGfm from 'remark-gfm';
 import remarkSmartypants from 'remark-smartypants';
 import remarkExcerpt from 'remark-excerpt';
-import remarkStringify from 'remark-stringify';
 import { unified } from 'unified';
 
 export function stripMarkdown(s?: string): string {
@@ -32,16 +31,6 @@ export function renderMarkdown(md : string) : string {
 
 export function renderWithExcerpt(md : string) : { content: string, excerpt: string | null } {
 
-  const mdExcerpted =
-    unified()
-      .use(remarkParse)
-      .use(remarkGfm)
-      .use(remarkSmartypants)
-      .use(remarkExcerpt)
-      .use(remarkStringify)
-      .processSync(md.trim())
-      .toString();
-
   const html =
     unified()
       .use(remarkParse)
@@ -57,9 +46,10 @@ export function renderWithExcerpt(md : string) : { content: string, excerpt: str
       .use(remarkParse)
       .use(remarkGfm)
       .use(remarkSmartypants)
+      .use(remarkExcerpt)
       .use(remarkRehype)
       .use(rehypeStringify)
-      .processSync(mdExcerpted.trim())
+      .processSync(md.trim())
       .toString();
 
   const hasExcerpt = html.length !== htmlExcerpted.length;

@@ -27,8 +27,10 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
   let html = "";
 
   if (excerpt) {
+    // if there's an excerpt, show it
     html = excerpt;
   } else {
+    // if there's no excerpt, only show the full post for "quick reviews"
     if (post.collection === 'capsules') {
       html = content;
     }
