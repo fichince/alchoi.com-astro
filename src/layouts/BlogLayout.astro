@@ -21,6 +21,22 @@ interface Props extends LayoutProps {
 const { page, tag, meta, title } = Astro.props;
 const posts = page.data;
 
+function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
+  const { content, excerpt } = renderWithExcerpt(post.body);
+
+  let html = "";
+
+  if (excerpt) {
+    html = excerpt;
+  } else {
+    if (post.collection === 'capsules') {
+      html = content;
+    }
+  }
+
+  return { html, hasExcerpt: Boolean(excerpt) };
+}
+
 ---
 <NavbarLayout title={title ?? 'Blog'} meta={meta}>
   <div class="container tw-container fade-in">
@@ -38,9 +54,7 @@ const posts = page.data;
         const tags = post.data.tags ?? [];
         const link = getLinkToPost(post);
 
-        const { Content } = await post.render();
-        const { html, htmlExcerpted } = renderWithExcerpt(post.body);
-        const hasExcerpt = html !== htmlExcerpted;
+        const { html, hasExcerpt } = renderPost(post);
 
         const even = index % 2 === 0;
 
@@ -89,11 +103,10 @@ const posts = page.data;
               </div>
             }
             <div class="tw-prose quick-review">
-              { hasExcerpt ? (
-                <div set:html={htmlExcerpted} />
-              ) : (
-                <div set:html={html} />
-              )}
+              <Fragment set:html={html} />
+              { hasExcerpt &&
+                <a href={link}>Read more&hellip;</a>
+              }
             </div>
           </article>
         );

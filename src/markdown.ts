@@ -1,10 +1,14 @@
 import isString from 'lodash/isString';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
-import remarkHtml from 'remark-html';
+import rehypeStringify from 'rehype-stringify';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
 import remarkGfm from 'remark-gfm';
 import remarkSmartypants from 'remark-smartypants';
 import remarkExcerpt from 'remark-excerpt';
+import remarkStringify from 'remark-stringify';
+import { unified } from 'unified';
 
 export function stripMarkdown(s?: string): string {
   if (!s) return '';
@@ -14,37 +18,55 @@ export function stripMarkdown(s?: string): string {
 
 export function renderMarkdown(md : string) : string {
   const html =
-    remark()
+    unified()
+      .use(remarkParse)
       .use(remarkGfm)
       .use(remarkSmartypants)
-      .use(remarkHtml, { sanitize: false })
+      .use(remarkRehype)
+      .use(rehypeStringify)
       .processSync(md.trim())
       .toString();
 
   return html;
 }
 
-export function renderWithExcerpt(md : string) : { html: string, htmlExcerpted: string } {
+export function renderWithExcerpt(md : string) : { content: string, excerpt: string | null } {
 
-  const mdExcerpted = remark().use(remarkExcerpt).processSync(md.trim()).toString();
-  console.log('mdExcerpted', mdExcerpted);
-
-  const html =
-    remark()
+  const mdExcerpted =
+    unified()
+      .use(remarkParse)
       .use(remarkGfm)
       .use(remarkSmartypants)
-      .use(remarkHtml, { sanitize: false })
+      .use(remarkExcerpt)
+      .use(remarkStringify)
+      .processSync(md.trim())
+      .toString();
+
+  const html =
+    unified()
+      .use(remarkParse)
+      .use(remarkGfm)
+      .use(remarkSmartypants)
+      .use(remarkRehype)
+      .use(rehypeStringify)
       .processSync(md.trim())
       .toString();
 
   const htmlExcerpted =
-    remark()
+    unified()
+      .use(remarkParse)
       .use(remarkGfm)
       .use(remarkSmartypants)
-      .use(remarkHtml, { sanitize: false })
+      .use(remarkRehype)
+      .use(rehypeStringify)
       .processSync(mdExcerpted.trim())
       .toString();
 
-  return { html, htmlExcerpted };
+  const hasExcerpt = html.length !== htmlExcerpted.length;
+
+  return {
+    content: html,
+    excerpt: hasExcerpt ? htmlExcerpted : null
+  };
 
 }
