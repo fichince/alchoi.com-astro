@@ -1,15 +1,17 @@
 ---
 title: How to Overanalyze Coincidences
-description: Incomplete trifecta
+description: _How to Read Now_, _How to Pronounce Knife_
 date: 2024-05-08
 image: ../../images/blog/how-to-read-now.jpeg
 tags:
   - books
 ---
 
-Recently, by sheer coincidence, I read a couple of books whose titles both started with the words _how to_. What’s more, the reading of one informed and influenced my reading of the other. 
+Recently, by sheer coincidence, I read a couple of books whose titles both started with the words _how to_. What’s more, the reading of one informed and influenced my reading of the other.
 
 (My only regret is that I was unable to complete the trifecta by also watching [_How To with John Wilson_](/quick-reviews/john-wilson) at the same time.)
+
+<!-- excerpt -->
 
 # [_How to Read Now_](https://app.thestorygraph.com/books/094fdc13-ad18-42df-89b0-5f198dce2725)
 ### by Elaine Castillo
@@ -18,7 +20,7 @@ Recently, by sheer coincidence, I read a couple of books whose titles both start
 
 First off, let me confess that I didn’t read the entirety of this book. Being a collection of essays, some subjects grabbed my attention more than others. Castillo’s primary project, I think, is to call out the racial injustice that Western culture is built upon. Based on the title, I thought the focus would be more on books and publishing, but she covers all the forms of media that make up the _now_ that we “read.”
 
-I often bounced off Castillo’s style, which sometimes gets a bit academic, even as she discusses pop culture like _The Watchmen_ TV show. On the other hand, there’s a fair amount of snark and passionate hostility when it’s appropriate. 
+I often bounced off Castillo’s style, which sometimes gets a bit academic, even as she discusses pop culture like _The Watchmen_ TV show. On the other hand, there’s a fair amount of snark and passionate hostility when it’s appropriate.
 
 To attempt to summarize the point that resonated most with me: we are often told that the act of reading (especially fiction) increases our empathy. In essence, by imagining ourselves in the world of a fictional character, we are training ourselves to step into other people’s shoes, a skill that can be applied in real life. I still agree with the psychological principle, but Castillo points out some of the biases that are embedded in this idea. In particular, there’s an expectation, sold by the publishing industry, that books by people of colour need to be stories about the specific trials and challenges of the author’s background. Empathy, in this sense, refers to the white majority’s ability to “understand” other cultures, by reading works that will “teach” them about those cultures. It’s inherently unjust, and I can’t put it any better than Castillo herself (emphasis mine):
 

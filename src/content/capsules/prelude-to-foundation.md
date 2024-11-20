@@ -14,6 +14,8 @@ Briefly, and without spoiling too much, psychohistory refers to a mathematical t
 
 _Prelude to Foundation_ is a prequel to the original trilogy. I’ve chosen to read the series in chronological order (as opposed to publication order), because [Asimov himself recommended it this way](https://www.reddit.com/r/asimov/wiki/seriesguide/#wiki_isaac_asimov.27s_.22kind_of_guide_to_the_series.22). As the novel starts, a young Hari Seldon has just presented his ideas at a conference—kind of like a TED Talk, I imagine—and it has caused quite a stir. But, as Seldon repeats many times throughout the book, he doesn’t know how to practically apply psychohistory yet to make actual predictions.
 
+<!-- excerpt -->
+
 The main plot driver of the story is Seldon’s escape from the Galactic Empire’s agents. They want to employ and/or control him because of the power and the danger of predicting the future. It makes for entertaining reading, as Seldon and his love interest, Dors, go on the run through the various sectors of the imperial planet, flirting the whole time. Along the way, he tries to learn the history of the diverse cultures that he meets, in an effort to further his theories.
 
 It was a bit hilarious to me that he keeps getting into trouble because of his utter lack of respect for the communities that he visits. He’s constantly breaking their cultural conventions and rules, because of his single-minded pursuit of science and truth. I think this is supposed to be an admirable character trait, but to me, he comes across like a loud tourist who antagonizes all of the locals.

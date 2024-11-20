@@ -12,6 +12,8 @@ To accompany [my recent post](../quick-reviews/one-day) reviewing the book _One 
 
 > a drawing of a calendar with the date December 28, 1986 circled
 
+<!-- excerpt -->
+
 It should not have surprised me that it would fail spectacularly. I’ve followed the [_AI Weirdness_ blog by Janelle Shane](https://www.aiweirdness.com/) for a while, and I’m always entertained by the way generative AI struggles with labelling images. There’s also [this gem](https://twitter.com/skyezera/status/1778903035432870247), a generated yearbook page with hilarious names.
 
 A calendar requires both text and numbers, and it has a structure that must make sense, which is really just too much to ask of DALL-E.
