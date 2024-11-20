@@ -9,6 +9,8 @@ image: ../../images/blog/late-night-with-the-devil.jpg
 
 For this Halloween season, I caught up with a few horror movies from the past year. Although I enjoy horror films, I admit I’m too much of a scaredy-cat to go see them in a dark theatre with the big screen and loud sound. As a compromise, I wait for them to come out on home video so I can watch them in a less intense environment.
 
+<!-- excerpt -->
+
 I’ll be spoiling these in minor ways, so please be warned.
 
 ## [_Late Night With the Devil_](https://letterboxd.com/film/late-night-with-the-devil/)

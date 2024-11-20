@@ -7,6 +7,8 @@ tags:
 
 Hi all. I haven’t done one of these in a while. As with any (good) habit, it’s easy to start, but hard to keep up. I’ve been feeling busy for the last couple of months, with the emphasis on _feeling_… I can’t say with certainty that my time has been filled any more than usual, but the experience of busyness has as much to do with how one copes with time management. It’s probably fair to say that I haven’t been coping so well lately. But I'm getting back on track.
 
+<!-- excerpt -->
+
 Before I start, let me shout out an old friend: thanks for checking in on me and asking for the next instalment of this newsletter. You know who you are.
 
 I’m not going to try to be super thoughtful or profound in this one. Instead, I’ll just mention a few things that I’ve been up to.

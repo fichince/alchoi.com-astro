@@ -10,6 +10,8 @@ image: ../../images/blog/calendar.jpg
 
 When I started reading this book, I was surprised by its breezy tone. I had expected it to be more serious, given the grandiose subtitle and premise (not to mention the hyperbolic blurbs on the back cover): the author would tell the stories of ordinary people during a single day in history (December 28, 1986), and these tales would add up to show us the universal truths of human experience. But the way Gene Weingarten tells it in the introduction, the whole project was in fact kind of a fun lark that he and his editor came up with over drinks at the bar.
 
+<!-- excerpt -->
+
 I was enjoying the writing for the first few chapters, especially the one about a heart transplant, a procedure that was still somewhat experimental at the time. I learned a lot about medical history, and the events leading up to the operation are told in a compelling, suspenseful way.
 
 After a while, though, the writing style started to get on my nerves. There’s a kind of clickbait-y rhythm that gets repetitive, in my opinion. A lot of it reads like: “This is Joe. Joe’s just a regular guy. But little did he know that his life was about to change.” Or: “Sue was just going about her regular day, but there was something dark hidden behind her routine.” It feels like there’s a mini-cliffhanger on every other page, and while it does hook the reader, I feel like the technique is overused here.
