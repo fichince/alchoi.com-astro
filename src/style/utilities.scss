@@ -161,9 +161,12 @@
   border: 1px dotted var(--colour-accent);
   border-radius: var(--radius-2);
   position: relative;
+  cursor: pointer;
 
-  &::selection {
-    color: var(--colour-background);
-    background-color: var(--colour-foreground);
+  transition: color 500ms var(--ease-in-out-1);
+
+  &.revealed {
+    color: var(--colour-foreground);
   }
+
 }

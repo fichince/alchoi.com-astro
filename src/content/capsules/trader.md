@@ -10,7 +10,7 @@ _Trader_ is a one-person, single-location thriller.[^1] As such, the discussion 
 
 Another strength of the film is the visual design and propulsive editing. It all takes place in a dingy basement apartment, so there’s not much physically for the filmmakers to work with, but using creative lighting and mixing in a generous dose of [screenlife][2] shots, they are able to create a whole world, which feels like it’s always in motion.
 
-I had trouble with the morality of the film, which I’m sure is the point. It seems to say that the only way to survive in a horrible world (i.e., the world of stock market finance, and more broadly, capitalism) is to be even more horrible.[^2] The film in its final moments makes <sup>_(highlight for spoiler)_</sup> <span class="spoiler">a mass shooting</span> seem triumphant, and I really can’t go there with it.
+I had trouble with the morality of the film, which I’m sure is the point. It seems to say that the only way to survive in a horrible world (i.e., the world of stock market finance, and more broadly, capitalism) is to be even more horrible.[^2] The film in its final moments makes <sup>_(click for spoiler)_</sup> <span class="spoiler" x-data="spoiler" x-bind="attrs">a mass shooting</span> seem triumphant, and I really can’t go there with it.
 
 [letterboxd link][4]
 

@@ -29,7 +29,7 @@ function searchQuery() {
 
     // when user types in the search box, update the query string
     // of the URL
-    updateQueryString(e : any) {
+    updateQueryString(e) {
       const url = new URL(window.location.href);
       url.searchParams.set('q', e.target.value);
       window.history.replaceState(null, '', url.toString());
@@ -37,5 +37,24 @@ function searchQuery() {
   };
 }
 
+function spoiler() {
+  return {
+    revealed: false,
+
+    attrs: {
+      ['x-on:click']() {
+        this.revealed = !this.revealed;
+      },
+
+      [':class']() {
+        return {
+          'revealed': this.revealed,
+        };
+      }
+    }
+  };
+}
+
 Alpine.data('alertMessage', alertMessage);
 Alpine.data('searchQuery', searchQuery);
+Alpine.data('spoiler', spoiler);

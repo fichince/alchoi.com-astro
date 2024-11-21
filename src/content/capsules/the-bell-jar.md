@@ -14,4 +14,4 @@ I mean this as a compliment to Plath’s vivid description of her protagonist’
 
 [storygraph link](https://app.thestorygraph.com/books/36009e3e-c23c-4516-9754-64b7e00e0187)
 
-[^1]: I can’t believe I used this word. It’s a joke from an old Rowan Atkinson [bit](https://youtu.be/gCFB9D5m7vQ?t=287). I’m sorry to make light while discussing a serious topic, but that’s what footnotes are for! 
+[^1]: I can’t believe I used this word. It’s a joke from an old Rowan Atkinson [bit](https://youtu.be/gCFB9D5m7vQ?t=287). I’m sorry to make light while discussing a serious topic, but that’s what footnotes are for!

@@ -1,13 +1,16 @@
 ---
 title: "_One Day: The Extraordinary Story of an Ordinary 24 Hours in America_"
 author: Gene Weingarten
-date: 2024-07-26
+date: 2024-07-10
+end: 2024-07-26
 type: book
 rating: 2
 image: ../../images/blog/calendar.jpg
 ---
 
 When I started reading this book, I was surprised by its breezy tone. I had expected it to be more serious, given the grandiose subtitle and premise (not to mention the hyperbolic blurbs on the back cover): the author would tell the stories of ordinary people during a single day in history (December 28, 1986), and these tales would add up to show us the universal truths of human experience. But the way Gene Weingarten tells it in the introduction, the whole project was in fact kind of a fun lark that he and his editor came up with over drinks at the bar.
+
+<!-- excerpt -->
 
 I was enjoying the writing for the first few chapters, especially the one about a heart transplant, a procedure that was still somewhat experimental at the time. I learned a lot about medical history, and the events leading up to the operation are told in a compelling, suspenseful way.
 

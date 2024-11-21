@@ -12,6 +12,8 @@ The show depicts a powerful interplanetary Empire, and a mathematician who devel
 
 It’s a complicated premise and I think the show struggles to stick to its own rules. Characters keep saying that the math is indisputable, that the fall of the Empire is inevitable, but gradually, the Foundation becomes like an organized rebellion, actively attacking the Empire. I don’t need to root for another David against another Goliath, and I would have been more interested by a story that shows how unpredictable [“black swans”](https://en.wikipedia.org/wiki/Black_swan_theory) can turn the tide of history.
 
+<!-- excerpt -->
+
 I’ll stick more to the positives, though. I enjoyed the show in bits and pieces, even if I didn’t find the overarching plot to be compelling, and therefore, I’ll express my praise in point form:
 
 - My MVP is Laura Birn as Demerzel, the robot who serves the Empire. Her performance captures this sense that she’s often on the edge of an emotional breakdown, caused by the pain accumulated over the millennia of her lifetime; but, she has to keep it contained because her programming forces her to.

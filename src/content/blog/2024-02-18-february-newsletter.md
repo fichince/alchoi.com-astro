@@ -7,6 +7,8 @@ tags:
 
 Hello, all! It’s me again. Thank you for those who replied with encouraging words last time. I hope you’ll find my latest thoughts interesting. Please read on!
 
+<!-- excerpt -->
+
 ### An Unexpected Discovery from Japan
 
 When we went to Tokyo last year, we surprised ourselves by spending a disproportionate amount of time inside stationery stores. Bev and I are both nerds when it comes to stationery: she’s into the many varieties of pens, and I like paper products.
@@ -34,9 +36,9 @@ One lesson that stuck with me is the idea that we should spread the word about o
 But according to Bregman, hiding our good deeds only reinforces the idea that people are selfish.
 
 > Modern psychologists have discovered that when people do something out of the goodness of their hearts, they often fabricate selfish motives… As one American psychologist notes, “People seem loathe to acknowledge that their behaviour may have been motivated by genuine compassion or kindness.”
-> 
+>
 > Unfortunately, this reticence works like a nocebo. When you disguise yourself as an egotist, you reinforce other people's cynical assumptions about human nature. Worse, by cloaking your good deeds, you place them in quarantine, where they can't serve as an example for others.
-> 
+>
 > - Rutger Bregman
 
 So, I’m here to tell you a little bit about my experiences in the past year. On most weeks, I participate in the [Canadian Cancer Society’s Wheels of Hope program](https://cancer.ca/en/living-with-cancer/how-we-can-help/transportation). I pick up patients from their homes and drive them to their appointments at various hospitals. During their appointment, I wait at a nearby coffee shop, or take a walk in the park, or just have a good sit in the car. When they’re done, I take them home.
