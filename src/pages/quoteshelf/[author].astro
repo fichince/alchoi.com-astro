@@ -1,0 +1,100 @@
+---
+import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import slugify from '@sindresorhus/slugify';
+import { renderMarkdown } from '@src/markdown';
+
+export const getStaticPaths = (async () => {
+  const quoteshelf = await getCollection('quoteshelf');
+  const paths = quoteshelf.map((book) => {
+    return {
+      params: {
+        author: slugify(book.data.author),
+      },
+    };
+  });
+
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { author } = Astro.params;
+
+const quoteshelf = await getCollection('quoteshelf');
+const books = quoteshelf.filter((book) => {
+  return author === slugify(book.data.author);
+});
+
+const fullName = books[0].data.author;
+
+type Quote = {
+  title: string,
+  quote: string,
+}
+
+const quotes : Quote[] = books.reduce<Quote[]>((memo, book) => {
+  return [...memo, ...book.data.quotes.map((quote) => (
+    {
+      title: book.data.title,
+      quote
+    }
+  ))];
+}, []);
+
+console.log('quotes', quotes);
+---
+
+<NavbarLayout title={fullName}>
+  <div class="container tw-container tw-mx-auto">
+    <h1>{fullName}</h1>
+    <ul>
+      {
+        quotes.map((quote) => {
+          return (
+            <li class="quote">
+              <div class="content tw-prose">
+                <Fragment set:html={renderMarkdown(quote.quote)} />
+              </div>
+              <div class="title">
+                {quote.title}
+              </div>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</NavbarLayout>
+
+<style lang="scss">
+
+.container {
+  padding: var(--size-fluid-4);
+}
+
+h1 {
+  font-size: var(--font-size-fluid-3);
+  font-family: var(--font-display);
+}
+
+li.quote {
+
+  padding: var(--size-fluid-3) 0;
+  border-bottom: 1px solid var(--colour-accent);
+
+  .content {
+
+  }
+
+  .title {
+    margin-top: var(--size-3);
+    text-align: right;
+    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 300;
+
+  }
+
+}
+
+</style>
