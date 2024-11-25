@@ -1,9 +1,11 @@
 ---
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import type { GetStaticPaths } from 'astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import slugify from '@sindresorhus/slugify';
+import { Image } from 'astro:assets';
 import { renderMarkdown } from '@src/markdown';
+import qs from 'query-string';
 
 export const getStaticPaths = (async () => {
   const quoteshelf = await getCollection('quoteshelf');
@@ -41,12 +43,51 @@ const quotes : Quote[] = books.reduce<Quote[]>((memo, book) => {
   ))];
 }, []);
 
-console.log('quotes', quotes);
+type BookWithCover = CollectionEntry<'quoteshelf'> & { coverUrl: string | null };
+
+const booksWithCovers : BookWithCover[] = await Promise.all(books.map<Promise<BookWithCover>>(async (book) => {
+
+  const url = qs.stringifyUrl({
+    url: 'https://openlibrary.org/search.json',
+    query: {
+      author: book.data.author,
+      q: book.data.title,
+    }
+  });
+
+  const response = await fetch(url);
+  const info = await response.json();
+
+  const coverId = info.docs[0]?.cover_i || null;
+
+  if (coverId) {
+    const coverUrl = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
+    return {
+      ...book,
+      coverUrl,
+    };
+  } else {
+    return book;
+  }
+
+}));
+
+
 ---
 
 <NavbarLayout title={fullName}>
   <div class="container tw-container tw-mx-auto">
     <h1>{fullName}</h1>
+    { booksWithCovers.map((book, index) => (
+      <section>
+        <h2>{book.data.title}</h2>
+        { book.coverUrl && (
+          <Image src={book.coverUrl} alt={book.data.title} inferSize />
+        )}
+
+      </section>
+    ))}
+    {/*
     <ul>
       {
         quotes.map((quote) => {
@@ -63,6 +104,7 @@ console.log('quotes', quotes);
         })
       }
     </ul>
+    */}
   </div>
 </NavbarLayout>
 
@@ -73,9 +115,20 @@ console.log('quotes', quotes);
   max-width: var(--size-content-3);
 }
 
+section {
+  margin-bottom: var(--size-3);
+}
+
 h1 {
   font-size: var(--font-size-fluid-3);
   font-family: var(--font-display);
+}
+
+h2 {
+  font-size: var(--font-size-fluid-1);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
 }
 
 li.quote {
