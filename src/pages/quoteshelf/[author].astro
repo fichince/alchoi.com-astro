@@ -3,7 +3,7 @@ import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import type { GetStaticPaths } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import slugify from '@sindresorhus/slugify';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { renderMarkdown } from '@src/markdown';
 import qs from 'query-string';
 
@@ -47,27 +47,36 @@ type BookWithCover = CollectionEntry<'quoteshelf'> & { coverUrl: string | null }
 
 const booksWithCovers : BookWithCover[] = await Promise.all(books.map<Promise<BookWithCover>>(async (book) => {
 
-  const url = qs.stringifyUrl({
-    url: 'https://openlibrary.org/search.json',
-    query: {
-      author: book.data.author,
-      q: book.data.title,
+  try {
+    const url = qs.stringifyUrl({
+      url: 'https://openlibrary.org/search.json',
+      query: {
+        author: book.data.author,
+        q: book.data.title,
+      }
+    });
+
+    const response = await fetch(url);
+    const info = await response.json();
+
+    const coverId = info.docs[0]?.cover_i || null;
+
+    if (coverId) {
+      const coverUrl = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
+
+      const image = await getImage({ src: coverUrl, formats: ['webp'], inferSize: true });
+      console.log('got cover for', book.data.title);
+
+      return {
+        ...book,
+        coverUrl: image.src,
+      } as BookWithCover;
+    } else {
+      return book as CollectionEntry<'quoteshelf'>;
     }
-  });
-
-  const response = await fetch(url);
-  const info = await response.json();
-
-  const coverId = info.docs[0]?.cover_i || null;
-
-  if (coverId) {
-    const coverUrl = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
-    return {
-      ...book,
-      coverUrl,
-    };
-  } else {
-    return book;
+  } catch (e) {
+    console.log(`Error fetching cover for ${book.data.title}`, e);
+    return book as CollectionEntry<'quoteshelf'>;
   }
 
 }));
@@ -82,7 +91,7 @@ const booksWithCovers : BookWithCover[] = await Promise.all(books.map<Promise<Bo
       <section>
         <h2>{book.data.title}</h2>
         { book.coverUrl && (
-          <Image src={book.coverUrl} alt={book.data.title} inferSize />
+          <img src={book.coverUrl} alt={book.data.title} />
         )}
 
       </section>
