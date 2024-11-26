@@ -90,24 +90,6 @@ const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntr
 
       </section>
     ))}
-    {/*
-    <ul>
-      {
-        quotes.map((quote) => {
-          return (
-            <li class="quote">
-              <div class="content tw-prose">
-                <Fragment set:html={renderMarkdown(quote.quote)} />
-              </div>
-              <div class="title">
-                {quote.title}
-              </div>
-            </li>
-          );
-        })
-      }
-    </ul>
-    */}
   </div>
 </NavbarLayout>
 
