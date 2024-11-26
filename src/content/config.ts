@@ -15,6 +15,7 @@ const blogSchema = (image : Function) => z.object({
 });
 
 const prose = defineCollection({
+  type: 'content',
   schema: ({ image }) => z.object({
     title: z.string(),
     url: z.string().url(),
@@ -24,10 +25,12 @@ const prose = defineCollection({
 });
 
 const blog = defineCollection({
+  type: 'content',
   schema: ({ image }) => blogSchema(image),
 });
 
 const code = defineCollection({
+  type: 'content',
   schema: ({ image }) => z.object({
     title: z.string(),
     url: z.string(),
@@ -38,6 +41,7 @@ const code = defineCollection({
 const other = defineCollection({});
 
 const capsules = defineCollection({
+  type: 'content',
   schema: ({ image }) => blogSchema(image),
 });
 
@@ -63,6 +67,7 @@ const hkjapan = defineCollection({
 });
 
 const quoteshelf = defineCollection({
+  type: 'content',
   schema: () => z.object({
     title: z.string(),
     author: z.string(),

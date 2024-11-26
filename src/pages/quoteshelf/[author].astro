@@ -3,10 +3,9 @@ import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import type { GetStaticPaths } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import slugify from '@sindresorhus/slugify';
-import { Image, getImage } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import { renderMarkdown } from '@src/markdown';
 import qs from 'query-string';
-import type { InferEntrySchema } from 'astro:content';
 
 export const getStaticPaths = (async () => {
   const quoteshelf = await getCollection('quoteshelf');
@@ -30,21 +29,7 @@ const books = quoteshelf.filter((book) => {
 
 const fullName = books[0].data.author;
 
-type Quote = {
-  title: string,
-  quote: string,
-}
-
-const quotes : Quote[] = books.reduce<Quote[]>((memo, book) => {
-  return [...memo, ...book.data.quotes.map((quote) => (
-    {
-      title: book.data.title,
-      quote
-    }
-  ))];
-}, []);
-
-const booksWithCovers = await Promise.all(books.map(async (book) => {
+const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntry<'quoteshelf'>) => {
 
   try {
     const url = qs.stringifyUrl({
@@ -88,12 +73,10 @@ const booksWithCovers = await Promise.all(books.map(async (book) => {
     <h1>{fullName}</h1>
     { booksWithCovers.map((book) => (
       <section id={book.slug} class="book">
-        <div class="cover">
-          <h2>{book.data.title}</h2>
-          { book.coverUrl && (
-            <img src={book.coverUrl} alt={book.data.title} />
-          )}
-        </div>
+        <h2>{book.data.title}</h2>
+        { book.coverUrl && (
+          <img src={book.coverUrl} alt={book.data.title} />
+        )}
 
         <sl-carousel pagination navigation loop>
         { book.data.quotes.map((quote : string) => (
@@ -129,31 +112,38 @@ const booksWithCovers = await Promise.all(books.map(async (book) => {
 </NavbarLayout>
 
 <style lang="scss">
+  @import "../../style/mixins.scss";
 
-.container {
-  padding: var(--size-fluid-4);
-  //max-width: var(--size-content-3);
-}
+  .container {
+    padding: var(--size-fluid-4);
+  }
 
-h1 {
-  font-size: var(--font-size-fluid-3);
-  font-family: var(--font-display);
-}
+  h1 {
+    font-size: var(--font-size-fluid-3);
+    font-family: var(--font-display);
+  }
 
 
-section.book {
-  border: 1px solid red;
-  margin: var(--size-7) 0;
-  min-height: 45vh;
+  section.book {
+    border: 1px solid red;
+    margin: var(--size-7) 0;
+    min-height: 45vh;
 
-  display: flex;
-  flex-wrap: wrap;
+    display: grid;
+    grid-template-areas:
+      "title"
+      "cover"
+      "quotes";
 
-  .cover {
-    flex: 1;
-    min-width: 200px;
+    @include sm-up {
+      grid-template-areas:
+        "title quotes"
+        "cover quotes";
+    }
 
     h2 {
+      grid-area: title;
+
       font-size: var(--font-size-fluid-1);
       font-family: var(--font-display);
       font-weight: 300;
@@ -161,18 +151,25 @@ section.book {
     }
 
     img {
+      grid-area: cover;
       max-height: 250px;
     }
-  }
 
-  sl-carousel {
-    flex: 2;
-    min-width: 400px;
-    min-height: fit-content;
-    .content {
-      max-width: var(--size-content-3);
+    sl-carousel {
+      grid-area: quotes;
+
+      flex: 2;
+      min-width: 400px;
+      min-height: max-content;
+
+      sl-carousel-item {
+        min-height: max-content;
+        .content {
+          height: 100%;
+          max-width: var(--size-content-3);
+        }
+      }
     }
   }
-}
 
 </style>
