@@ -78,15 +78,15 @@ const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntr
           <img src={book.coverUrl} alt={book.data.title} />
         )}
 
-        <sl-carousel pagination navigation loop>
-        { book.data.quotes.map((quote : string) => (
-          <sl-carousel-item>
-            <div class="content tw-prose">
-              <Fragment set:html={renderMarkdown(quote)} />
-            </div>
-          </sl-carousel-item>
-        ))}
-        </sl-carousel>
+        <div class="embla" x-data="carousel()" x-ref="carouselNode">
+          <div class="embla__container">
+            { book.data.quotes.map((quote : string) => (
+              <div class="embla__slide content tw-prose">
+                <Fragment set:html={renderMarkdown(quote)} />
+              </div>
+            ))}
+          </div>
+        </div>
 
       </section>
     ))}
@@ -137,20 +137,24 @@ const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntr
       max-height: 250px;
     }
 
-    sl-carousel {
+    .embla {
       grid-area: quotes;
+      overflow: hidden;
 
-      flex: 2;
-      min-width: 400px;
-      min-height: max-content;
+      .embla__container {
+        display: flex;
 
-      sl-carousel-item {
-        min-height: max-content;
+        .embla__slide {
+          flex: 0 0 100%;
+          min-width: 0;
+        }
+
         .content {
           height: 100%;
           max-width: var(--size-content-3);
         }
       }
+
     }
   }
 

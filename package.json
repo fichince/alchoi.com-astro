@@ -35,6 +35,7 @@
     "altcha-lib": "^0.3.0",
     "astro": "^4.16.14",
     "dotenv": "^16.4.5",
+    "embla-carousel": "^8.5.1",
     "htmx.org": "^1.9.12",
     "iconoir": "^6.6.0",
     "lodash": "^4.17.21",
