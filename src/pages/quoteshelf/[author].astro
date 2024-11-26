@@ -6,6 +6,7 @@ import slugify from '@sindresorhus/slugify';
 import { Image, getImage } from 'astro:assets';
 import { renderMarkdown } from '@src/markdown';
 import qs from 'query-string';
+import type { InferEntrySchema } from 'astro:content';
 
 export const getStaticPaths = (async () => {
   const quoteshelf = await getCollection('quoteshelf');
@@ -43,9 +44,7 @@ const quotes : Quote[] = books.reduce<Quote[]>((memo, book) => {
   ))];
 }, []);
 
-type BookWithCover = CollectionEntry<'quoteshelf'> & { coverUrl: string | null };
-
-const booksWithCovers : BookWithCover[] = await Promise.all(books.map<Promise<BookWithCover>>(async (book) => {
+const booksWithCovers = await Promise.all(books.map(async (book) => {
 
   try {
     const url = qs.stringifyUrl({
@@ -70,13 +69,13 @@ const booksWithCovers : BookWithCover[] = await Promise.all(books.map<Promise<Bo
       return {
         ...book,
         coverUrl: image.src,
-      } as BookWithCover;
+      };
     } else {
-      return book as CollectionEntry<'quoteshelf'>;
+      return book;
     }
   } catch (e) {
     console.log(`Error fetching cover for ${book.data.title}`, e);
-    return book as CollectionEntry<'quoteshelf'>;
+    return book;
   }
 
 }));
@@ -87,12 +86,24 @@ const booksWithCovers : BookWithCover[] = await Promise.all(books.map<Promise<Bo
 <NavbarLayout title={fullName}>
   <div class="container tw-container tw-mx-auto">
     <h1>{fullName}</h1>
-    { booksWithCovers.map((book, index) => (
-      <section>
-        <h2>{book.data.title}</h2>
-        { book.coverUrl && (
-          <img src={book.coverUrl} alt={book.data.title} />
-        )}
+    { booksWithCovers.map((book) => (
+      <section id={book.slug} class="book">
+        <div class="cover">
+          <h2>{book.data.title}</h2>
+          { book.coverUrl && (
+            <img src={book.coverUrl} alt={book.data.title} />
+          )}
+        </div>
+
+        <sl-carousel pagination navigation loop>
+        { book.data.quotes.map((quote : string) => (
+          <sl-carousel-item>
+            <div class="content tw-prose">
+              <Fragment set:html={renderMarkdown(quote)} />
+            </div>
+          </sl-carousel-item>
+        ))}
+        </sl-carousel>
 
       </section>
     ))}
@@ -121,11 +132,7 @@ const booksWithCovers : BookWithCover[] = await Promise.all(books.map<Promise<Bo
 
 .container {
   padding: var(--size-fluid-4);
-  max-width: var(--size-content-3);
-}
-
-section {
-  margin-bottom: var(--size-3);
+  //max-width: var(--size-content-3);
 }
 
 h1 {
@@ -133,31 +140,39 @@ h1 {
   font-family: var(--font-display);
 }
 
-h2 {
-  font-size: var(--font-size-fluid-1);
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-style: italic;
-}
 
-li.quote {
+section.book {
+  border: 1px solid red;
+  margin: var(--size-7) 0;
+  min-height: 45vh;
 
-  padding: var(--size-fluid-3) 0;
-  border-bottom: 1px solid var(--colour-accent);
+  display: flex;
+  flex-wrap: wrap;
 
-  .content {
+  .cover {
+    flex: 1;
+    min-width: 200px;
 
+    h2 {
+      font-size: var(--font-size-fluid-1);
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    img {
+      max-height: 250px;
+    }
   }
 
-  .title {
-    margin-top: var(--size-3);
-    text-align: right;
-    font-style: italic;
-    font-family: var(--font-display);
-    font-weight: 300;
-
+  sl-carousel {
+    flex: 2;
+    min-width: 400px;
+    min-height: fit-content;
+    .content {
+      max-width: var(--size-content-3);
+    }
   }
-
 }
 
 </style>
