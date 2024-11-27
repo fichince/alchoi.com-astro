@@ -81,8 +81,8 @@ const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntr
         <div class="embla" x-data="carousel()" x-ref="carouselNode">
           <div class="embla__container">
             { book.data.quotes.map((quote : string) => (
-              <div class="embla__slide content tw-prose">
-                <Fragment set:html={renderMarkdown(quote)} />
+              <div class="embla__slide content tw-prose"
+                set:html={renderMarkdown(quote)}>
               </div>
             ))}
           </div>
