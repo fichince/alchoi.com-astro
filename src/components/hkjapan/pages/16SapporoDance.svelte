@@ -10,7 +10,7 @@
   width="30vw"
 />
 <div id="container">
-  <video src="/video/SapporoDancing.mp4" autoplay controls muted loop width="100%" height="100%" />
+  <video src="/video/SapporoDancing.mp4" autoplay controls muted loop width="100%" height="100%"></video>
 </div>
 
 <style lang="scss">
