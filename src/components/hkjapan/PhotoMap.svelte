@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { run } from 'svelte/legacy';
 
   import { onMount } from 'svelte';
   import Router, { push, location } from 'svelte-spa-router';
@@ -9,10 +8,10 @@
   import PhotoSwipe from 'photoswipe';
   import 'photoswipe/dist/photoswipe.css';
 
-  import { 
-    mapStore, 
-    mapPage, 
-    allMapPages, 
+  import {
+    mapStore,
+    mapPage,
+    allMapPages,
     toggleMapOnly,
     moveMap,
     mapAboutToMove
@@ -71,11 +70,11 @@
     currentPage = safePage(currentPage - 1);
   }
 
-  run(() => {
-    currentPage, push(`/${slugs[currentPage]}`);
+  $effect(() => {
+    push(`/${slugs[currentPage]}`);
   });
-  run(() => {
-    currentPage, $mapPage = mapPages[currentPage];
+  $effect(() => {
+    $mapPage = mapPages[currentPage];
   });
 
   mapPage.subscribe((page) => {

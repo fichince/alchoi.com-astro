@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { run } from 'svelte/legacy';
 
   import random from 'lodash/random';
   import { fly } from 'svelte/transition';
@@ -17,7 +16,7 @@
   let selectedPosts : BlogEntrySummary[] = $state([]);
   let currentIndex = $state(-1);
   let currentPost : BlogEntrySummary | null = $derived(currentIndex >= 0 ? selectedPosts[currentIndex] : null);
-  let duration : number = $state();
+  let duration : number = $state(0);
   let timer : any = $state();
 
   function shuffle() {
@@ -43,18 +42,22 @@
     return duration;
   }
 
-  
-  run(() => {
+
+  $effect(() => {
     if (currentIndex >= 0) {
       duration = getDuration(currentIndex);
       timer = setTimeout(increment, duration);
     }
   });
 
-  let dateString = 
-      $derived(DateTime.fromJSDate(currentPost?.date)
-              .toUTC()
-              .toLocaleString(DateTime.DATE_MED));
+  let dateString =
+    $derived(
+      currentPost ?
+        DateTime.fromJSDate(currentPost?.date)
+          .toUTC()
+          .toLocaleString(DateTime.DATE_MED)
+        : ''
+    );
 
   let isFinal = $derived(currentIndex === NUM_ITEMS - 1);
 </script>
@@ -65,7 +68,7 @@
   </button>
     <div class="shuffler">
       {#key currentPost?.url}
-      <span 
+      <span
         class="shuffle-item"
         in:fly={{ y: '3em', opacity: 100, duration }}
         out:fly={{ y: '-3em', opacity: 100, duration }}>
