@@ -2,27 +2,36 @@
   import { renderMarkdown } from '@src/markdown';
   import { DateTime } from 'luxon';
 
-  //export let title : string = '';
-  //export let body : string = '';
-  export let mapPage : MapPage;
+  interface Props {
+    mapPage: MapPage;
+    top?: string;
+    bottom?: string;
+    left?: string;
+    right?: string;
+    width?: string;
+    height?: string;
+    relative?: boolean;
+  }
 
-  export let top : string = 'auto';
-  export let bottom : string = 'auto';
-  export let left : string = 'auto';
-  export let right : string = 'auto';
-  export let width : string = 'max-content';
-  export let height : string = 'max-content';
+  let {
+    mapPage,
+    top = 'auto',
+    bottom = 'auto',
+    left = 'auto',
+    right = 'auto',
+    width = 'max-content',
+    height = 'max-content',
+    relative = false
+  }: Props = $props();
 
-  export let relative : boolean = false;
-
-  let formattedDate : string = '';
+  let formattedDate : string = $state('');
   const { body = '', title = '', date = '' } = mapPage;
 
   if (date) {
     formattedDate = DateTime.fromJSDate(date).toUTC().toLocaleString(DateTime.DATE_FULL);
   }
 
-  $: html = renderMarkdown(body);
+  let html = $derived(renderMarkdown(body));
 </script>
 
 <article id="text" class="tw-prose"

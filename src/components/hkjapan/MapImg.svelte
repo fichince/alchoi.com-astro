@@ -1,10 +1,15 @@
 <script lang="ts">
-  export let image : MapImage;
+  interface Props {
+    image: MapImage;
+    onload?: () => void;
+  }
+
+  let { image, onload }: Props = $props();
 </script>
 
 <div id="image-container">
   <a href={image.image} data-pswp-width={image.width} data-pswp-height={image.height}>
-    <img src={image.image} alt={image.caption} on:load />
+    <img src={image.image} alt={image.caption} {onload} />
   </a>
 </div>
 

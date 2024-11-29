@@ -5,7 +5,7 @@
 </script>
 
 <div id="container">
-  <video src="/video/SapporoFestival.mp4" autoplay controls muted loop width="100%" height="100%" />
+  <video src="/video/SapporoFestival.mp4" autoplay controls muted loop width="100%" height="100%"></video>
 </div>
 <PageText mapPage={$mapPage} 
   top="50%"

@@ -6,47 +6,47 @@
 
   const { images = [] } = $mapPage;
 
-  let imageCount = images.length;
-  let masonryElement : MasonryLayout;
+  let imageCount = $state(images.length);
+  let masonryElement : MasonryLayout | undefined = $state();
 
-  function imageLoaded(e : any) {
+  function imageLoaded() {
     imageCount--;
   }
 
-  $: {
+  $effect(() => {
     if (imageCount === 0) {
-      masonryElement.layout();
+      masonryElement?.layout();
     }
-  }
+  });
 
 </script>
 
 <div id="container">
   <masonry-layout gap="5px" cols="4" bind:this={masonryElement}>
     <div class="map-img">
-      <MapImg image={images[0]} on:load={imageLoaded} />
+      <MapImg image={images[0]} onload={imageLoaded} />
     </div>
     <div class="map-img">
-      <MapImg image={images[1]} on:load={imageLoaded} />
+      <MapImg image={images[1]} onload={imageLoaded} />
     </div>
     <PageText mapPage={$mapPage} relative width="auto" />
     <div class="map-img">
-      <MapImg image={images[2]} on:load={imageLoaded} />
+      <MapImg image={images[2]} onload={imageLoaded} />
     </div>
     <div class="map-img">
-      <MapImg image={images[3]} on:load={imageLoaded} />
+      <MapImg image={images[3]} onload={imageLoaded} />
     </div>
     <div class="map-img">
-      <MapImg image={images[4]} on:load={imageLoaded} />
+      <MapImg image={images[4]} onload={imageLoaded} />
     </div>
     <div class="map-img">
-      <MapImg image={images[5]} on:load={imageLoaded} />
+      <MapImg image={images[5]} onload={imageLoaded} />
     </div>
     <div class="map-img">
-      <MapImg image={images[6]} on:load={imageLoaded} />
+      <MapImg image={images[6]} onload={imageLoaded} />
     </div>
     <div class="map-img">
-      <MapImg image={images[7]} on:load={imageLoaded} />
+      <MapImg image={images[7]} onload={imageLoaded} />
     </div>
   </masonry-layout>
 </div>

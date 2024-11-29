@@ -5,12 +5,17 @@
 
   import { mapMoving, toggleMapOnly, mapAboutToMove } from '@src/stores/map';
   import { fade } from 'svelte/transition';
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
 
-  $: show = !$mapAboutToMove && !$mapMoving && !$toggleMapOnly;
+  let { children }: Props = $props();
+
+  let show = $derived(!$mapAboutToMove && !$mapMoving && !$toggleMapOnly);
 </script>
 
 {#if show}
 <div in:fade={{ duration: 250 }}>
-  <slot />
+  {@render children?.()}
 </div>
 {/if}

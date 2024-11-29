@@ -1,4 +1,5 @@
 <script lang="ts">
+
   import { onMount } from 'svelte';
   import Router, { push, location } from 'svelte-spa-router';
   import { wrap } from 'svelte-spa-router/wrap';
@@ -7,10 +8,10 @@
   import PhotoSwipe from 'photoswipe';
   import 'photoswipe/dist/photoswipe.css';
 
-  import { 
-    mapStore, 
-    mapPage, 
-    allMapPages, 
+  import {
+    mapStore,
+    mapPage,
+    allMapPages,
     toggleMapOnly,
     moveMap,
     mapAboutToMove
@@ -20,10 +21,14 @@
 
   import AppearWithMap from './AppearWithMap.svelte';
 
-  export let mapPages : MapPage[];
+  interface Props {
+    mapPages: MapPage[];
+  }
+
+  let { mapPages }: Props = $props();
 
   const slugs = mapPages.map((p) => p.slug);
-  let currentPage = 0;
+  let currentPage = $state(0);
 
   let lightbox : PhotoSwipeLightbox;
 
@@ -37,9 +42,11 @@
     // initialize the current page depending on the URL
     if ($location === '/') {
       push(`/${slugs[0]}`);
+      $mapPage = mapPages[0];
     } else {
       const i = slugs.findIndex((value) => value === $location.substring(1));
       if (i > -1) currentPage = i;
+      $mapPage = mapPages[currentPage];
     }
 
     moveMap();
@@ -65,8 +72,12 @@
     currentPage = safePage(currentPage - 1);
   }
 
-  $: currentPage, push(`/${slugs[currentPage]}`);
-  $: currentPage, $mapPage = mapPages[currentPage];
+  $effect(() => {
+    push(`/${slugs[currentPage]}`);
+  });
+  $effect(() => {
+    $mapPage = mapPages[currentPage];
+  });
 
   mapPage.subscribe((page) => {
     if (page) {
@@ -99,8 +110,8 @@
 
 <div id="map" class="main">
 </div>
-<button id="next" class="nav-button main" on:click={next}>&#x2771;</button>
-<button id="prev" class="nav-button main" on:click={prev}>&#x2770;</button>
+<button id="next" class="nav-button main" onclick={next}>&#x2771;</button>
+<button id="prev" class="nav-button main" onclick={prev}>&#x2770;</button>
 
 <div id="exit" class="control main">
   <a href="/">Exit</a>

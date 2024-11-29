@@ -6,26 +6,26 @@
 
   const { images = [] } = $mapPage;
 
-  let imageCount = images.length;
-  let masonryElement : MasonryLayout;
+  let imageCount = $state(images.length);
+  let masonryElement : MasonryLayout | undefined = $state();
 
-  function imageLoaded(e : any) {
+  function imageLoaded() {
     imageCount--;
   }
 
-  $: {
+  $effect(() => {
     if (imageCount === 0) {
-      masonryElement.layout();
+      masonryElement?.layout();
     }
-  }
+  });
 </script>
 
 <div id="container">
   <masonry-layout gap="5px" cols="4" bind:this={masonryElement}>
     <PageText mapPage={$mapPage} relative width="auto" />
-    <MapImg image={images[1]} on:load={imageLoaded} />
-    <MapImg image={images[0]} on:load={imageLoaded} />
-    <MapImg image={images[2]} on:load={imageLoaded} />
+    <MapImg image={images[1]} onload={imageLoaded} />
+    <MapImg image={images[0]} onload={imageLoaded} />
+    <MapImg image={images[2]} onload={imageLoaded} />
   </masonry-layout>
 </div>
 

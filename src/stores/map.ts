@@ -1,14 +1,12 @@
 import { writable, derived, get, type Writable } from 'svelte/store';
-import maplibregl, { 
-  type GeoJSONSourceSpecification, 
-  type AnimationOptions 
+import maplibregl, {
+  type GeoJSONSourceSpecification,
+  type AnimationOptions
 } from 'maplibre-gl';
 
 export const allMapPages = writable<MapPage[]>();
 
 export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages, ($allMapPages, set) => {
-
-  //console.log('initialize map', $allMapPages);
 
   if (!$allMapPages) return;
 
@@ -41,7 +39,7 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
         m.addImage('marker', image);
       }
 
-      // every map page might have a set of markers, 
+      // every map page might have a set of markers,
       // each on its own layer so we can display each set at a time
 
       $allMapPages.forEach((page) => {
@@ -105,7 +103,7 @@ export const mapStore = derived<Writable<MapPage[]>, maplibregl.Map>(allMapPages
             mapHovered.set(id);
 
             m.setFeatureState(
-              { source: page.slug, id }, 
+              { source: page.slug, id },
               { hovered: true }
             );
           }
