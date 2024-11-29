@@ -1,0 +1,161 @@
+---
+import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+import type { GetStaticPaths } from 'astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import slugify from '@sindresorhus/slugify';
+import { getImage } from 'astro:assets';
+import { renderMarkdown } from '@src/markdown';
+import qs from 'query-string';
+
+export const getStaticPaths = (async () => {
+  const quoteshelf = await getCollection('quoteshelf');
+  const paths = quoteshelf.map((book) => {
+    return {
+      params: {
+        author: slugify(book.data.author),
+      },
+    };
+  });
+
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { author } = Astro.params;
+
+const quoteshelf = await getCollection('quoteshelf');
+const books = quoteshelf.filter((book) => {
+  return author === slugify(book.data.author);
+});
+
+const fullName = books[0].data.author;
+
+const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntry<'quoteshelf'>) => {
+
+  try {
+    const url = qs.stringifyUrl({
+      url: 'https://openlibrary.org/search.json',
+      query: {
+        author: book.data.author,
+        q: book.data.title,
+      }
+    });
+
+    const response = await fetch(url);
+    const info = await response.json();
+
+    const coverId = info.docs[0]?.cover_i || null;
+
+    if (coverId) {
+      const coverUrl = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
+
+      const image = await getImage({ src: coverUrl, formats: ['webp'], inferSize: true });
+      console.log('got cover for', book.data.title);
+
+      return {
+        ...book,
+        coverUrl: image.src,
+      };
+    } else {
+      return book;
+    }
+  } catch (e) {
+    console.log(`Error fetching cover for ${book.data.title}`, e);
+    return book;
+  }
+
+}));
+
+
+---
+
+<NavbarLayout title={fullName}>
+  <div class="container tw-container tw-mx-auto">
+    <h1>{fullName}</h1>
+    { booksWithCovers.map((book) => (
+      <section id={book.slug} class="book">
+        <h2>{book.data.title}</h2>
+        { book.coverUrl && (
+          <img src={book.coverUrl} alt={book.data.title} />
+        )}
+
+        <div class="embla" x-data="carousel()" x-ref="carouselNode">
+          <div class="embla__container">
+            { book.data.quotes.map((quote : string) => (
+              <div class="embla__slide content tw-prose"
+                set:html={renderMarkdown(quote)}>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </section>
+    ))}
+  </div>
+</NavbarLayout>
+
+<style lang="scss">
+  @import "../../style/mixins.scss";
+
+  .container {
+    padding: var(--size-fluid-4);
+  }
+
+  h1 {
+    font-size: var(--font-size-fluid-3);
+    font-family: var(--font-display);
+  }
+
+
+  section.book {
+    border: 1px solid red;
+    margin: var(--size-7) 0;
+    min-height: 45vh;
+
+    display: grid;
+    grid-template-areas:
+      "title"
+      "cover"
+      "quotes";
+
+    @include sm-up {
+      grid-template-areas:
+        "title quotes"
+        "cover quotes";
+    }
+
+    h2 {
+      grid-area: title;
+
+      font-size: var(--font-size-fluid-1);
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    img {
+      grid-area: cover;
+      max-height: 250px;
+    }
+
+    .embla {
+      grid-area: quotes;
+      overflow: hidden;
+
+      .embla__container {
+        display: flex;
+
+        .embla__slide {
+          flex: 0 0 100%;
+          min-width: 0;
+        }
+
+        .content {
+          height: 100%;
+          max-width: var(--size-content-3);
+        }
+      }
+
+    }
+  }
+
+</style>
