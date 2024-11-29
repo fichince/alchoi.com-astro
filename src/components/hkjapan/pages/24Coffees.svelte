@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import { mapPage } from '@src/stores/map';
   import PageText from '../PageText.svelte';
   import MapImg from '../MapImg.svelte';
@@ -6,18 +8,18 @@
 
   const { images = [] } = $mapPage;
 
-  let imageCount = images.length;
-  let masonryElement : MasonryLayout;
+  let imageCount = $state(images.length);
+  let masonryElement : MasonryLayout = $state();
 
   function imageLoaded(e : any) {
     imageCount--;
   }
 
-  $: {
+  run(() => {
     if (imageCount === 0) {
       masonryElement.layout();
     }
-  }
+  });
 
 </script>
 

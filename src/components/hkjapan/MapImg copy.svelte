@@ -1,6 +1,10 @@
 <script lang="ts">
   import { mapHovered, imageExpanded, updateHover } from '@src/stores/map';
-  export let image : MapImage;
+  interface Props {
+    image: MapImage;
+  }
+
+  let { image }: Props = $props();
 
   function updateExpanded() {
     if ($imageExpanded === image) {
@@ -17,10 +21,10 @@
   <figure>
     <img src={image.image} alt={image.caption}
       class:hovered={$mapHovered === image.id}
-      on:mouseenter={() => updateHover(image.id)}
-      on:mouseleave={() => updateHover(null)} 
-      on:click={updateExpanded}
-      on:keydown={() => {}}
+      onmouseenter={() => updateHover(image.id)}
+      onmouseleave={() => updateHover(null)} 
+      onclick={updateExpanded}
+      onkeydown={() => {}}
     />
     
     {#if image.caption}
@@ -48,7 +52,7 @@
 
     transition: all 250ms var(--ease-in-out-1);
 
-    &:has(img.hovered) {
+    &:has(:global(img.hovered)) {
       background: rgba(127, 127, 127, 0.5);
     }
 
@@ -61,7 +65,7 @@
       height: 100%;
 
       transition: transform 750ms var(--ease-squish-5);
-      &:has(img.hovered) {
+      &:has(:global(img.hovered)) {
         transform: scale(105%);
       }
 

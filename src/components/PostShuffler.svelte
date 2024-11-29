@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import random from 'lodash/random';
   import { fly } from 'svelte/transition';
   import { quadOut } from 'svelte/easing';
@@ -6,13 +8,17 @@
 
   const NUM_ITEMS = 10;
 
-  export let posts : BlogEntrySummary[] = [];
+  interface Props {
+    posts?: BlogEntrySummary[];
+  }
 
-  let selectedPosts : BlogEntrySummary[] = [];
-  let currentIndex = -1;
-  let currentPost : BlogEntrySummary | null;
-  let duration : number;
-  let timer : any;
+  let { posts = [] }: Props = $props();
+
+  let selectedPosts : BlogEntrySummary[] = $state([]);
+  let currentIndex = $state(-1);
+  let currentPost : BlogEntrySummary | null = $derived(currentIndex >= 0 ? selectedPosts[currentIndex] : null);
+  let duration : number = $state();
+  let timer : any = $state();
 
   function shuffle() {
     if (timer) clearTimeout(timer);
@@ -37,24 +43,24 @@
     return duration;
   }
 
-  $: currentPost = currentIndex >= 0 ? selectedPosts[currentIndex] : null;
-  $: {
+  
+  run(() => {
     if (currentIndex >= 0) {
       duration = getDuration(currentIndex);
       timer = setTimeout(increment, duration);
     }
-  }
+  });
 
-  $: dateString = 
-      DateTime.fromJSDate(currentPost?.date)
+  let dateString = 
+      $derived(DateTime.fromJSDate(currentPost?.date)
               .toUTC()
-              .toLocaleString(DateTime.DATE_MED);
+              .toLocaleString(DateTime.DATE_MED));
 
-  $: isFinal = currentIndex === NUM_ITEMS - 1;
+  let isFinal = $derived(currentIndex === NUM_ITEMS - 1);
 </script>
 
 <div class="shuffler-container">
-  <button class="button" on:click={shuffle}>
+  <button class="button" onclick={shuffle}>
     Shuffle!
   </button>
     <div class="shuffler">

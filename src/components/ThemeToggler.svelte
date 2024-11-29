@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { getTheme, toggleTheme } from '@src/scripts/theme';
 
-  let theme : string;
+  let theme : string = $state();
 
   onMount(() => {
     theme = getTheme();
@@ -15,7 +15,7 @@
   <label>
     <input type="checkbox" 
       checked={theme === 'light'} 
-      on:change={() => theme = toggleTheme()} />
+      onchange={() => theme = toggleTheme()} />
     <span class="slider"></span>
   </label>
 </div>

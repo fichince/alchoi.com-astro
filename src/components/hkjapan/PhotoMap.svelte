@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import { onMount } from 'svelte';
   import Router, { push, location } from 'svelte-spa-router';
   import { wrap } from 'svelte-spa-router/wrap';
@@ -20,10 +22,14 @@
 
   import AppearWithMap from './AppearWithMap.svelte';
 
-  export let mapPages : MapPage[];
+  interface Props {
+    mapPages: MapPage[];
+  }
+
+  let { mapPages }: Props = $props();
 
   const slugs = mapPages.map((p) => p.slug);
-  let currentPage = 0;
+  let currentPage = $state(0);
 
   let lightbox : PhotoSwipeLightbox;
 
@@ -65,8 +71,12 @@
     currentPage = safePage(currentPage - 1);
   }
 
-  $: currentPage, push(`/${slugs[currentPage]}`);
-  $: currentPage, $mapPage = mapPages[currentPage];
+  run(() => {
+    currentPage, push(`/${slugs[currentPage]}`);
+  });
+  run(() => {
+    currentPage, $mapPage = mapPages[currentPage];
+  });
 
   mapPage.subscribe((page) => {
     if (page) {
@@ -99,8 +109,8 @@
 
 <div id="map" class="main">
 </div>
-<button id="next" class="nav-button main" on:click={next}>&#x2771;</button>
-<button id="prev" class="nav-button main" on:click={prev}>&#x2770;</button>
+<button id="next" class="nav-button main" onclick={next}>&#x2771;</button>
+<button id="prev" class="nav-button main" onclick={prev}>&#x2770;</button>
 
 <div id="exit" class="control main">
   <a href="/">Exit</a>
