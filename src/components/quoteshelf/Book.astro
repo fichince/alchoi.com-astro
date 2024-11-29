@@ -1,0 +1,72 @@
+---
+import { renderMarkdown } from '@src/markdown'
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+  book: CollectionEntry<"quoteshelf">
+}
+
+const { book } = Astro.props;
+---
+<section id={book.slug} class="book">
+  { book.coverUrl && (
+    <img src={book.coverUrl} alt={book.data.title} />
+  )}
+
+  <div class="embla" x-data="carousel()" x-ref="carouselNode">
+    <div class="embla__container">
+      { book.data.quotes.map((quote : string) => (
+        <div class="embla__slide content tw-prose"
+          set:html={renderMarkdown(quote)}>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @import "../../style/mixins.scss";
+
+  section.book {
+    border: 1px solid red;
+    margin: var(--size-7) 0;
+    min-height: 45vh;
+
+    display: grid;
+    gap: var(--size-5);
+
+    grid-template-areas:
+      "cover"
+      "quotes";
+
+    @include sm-up {
+      grid-template-areas:
+        "cover quotes"
+    }
+
+    img {
+      grid-area: cover;
+      max-height: 250px;
+    }
+
+    .embla {
+      grid-area: quotes;
+      overflow: hidden;
+
+      .embla__container {
+        display: flex;
+
+        .embla__slide {
+          flex: 0 0 100%;
+          min-width: 0;
+        }
+
+        .content {
+          height: 100%;
+          max-width: var(--size-content-3);
+        }
+      }
+
+    }
+  }
+</style>

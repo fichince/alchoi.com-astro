@@ -1,10 +1,11 @@
 ---
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+import Book from '@src/components/quoteshelf/Book.astro';
+
 import type { GetStaticPaths } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import slugify from '@sindresorhus/slugify';
 import { getImage } from 'astro:assets';
-import { renderMarkdown } from '@src/markdown';
 import qs from 'query-string';
 
 export const getStaticPaths = (async () => {
@@ -82,22 +83,7 @@ const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntr
       <article>
       { booksWithCovers.map((book) => (
         <template x-if={`book === '${book.slug}'`}>
-          <section id={book.slug} class="book">
-            <h2>{book.data.title}</h2>
-            { book.coverUrl && (
-              <img src={book.coverUrl} alt={book.data.title} />
-            )}
-
-            <div class="embla" x-data="carousel()" x-ref="carouselNode">
-              <div class="embla__container">
-                { book.data.quotes.map((quote : string) => (
-                  <div class="embla__slide content tw-prose"
-                    set:html={renderMarkdown(quote)}>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+          <Book book={book} />
         </template>
       ))}
       </article>
@@ -106,7 +92,6 @@ const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntr
 </NavbarLayout>
 
 <style lang="scss">
-  @import "../../style/mixins.scss";
 
   .container {
     padding: var(--size-fluid-4);
@@ -115,59 +100,6 @@ const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntr
   h1 {
     font-size: var(--font-size-fluid-3);
     font-family: var(--font-display);
-  }
-
-
-  section.book {
-    border: 1px solid red;
-    margin: var(--size-7) 0;
-    min-height: 45vh;
-
-    display: grid;
-    grid-template-areas:
-      "title"
-      "cover"
-      "quotes";
-
-    @include sm-up {
-      grid-template-areas:
-        "title quotes"
-        "cover quotes";
-    }
-
-    h2 {
-      grid-area: title;
-
-      font-size: var(--font-size-fluid-1);
-      font-family: var(--font-display);
-      font-weight: 300;
-      font-style: italic;
-    }
-
-    img {
-      grid-area: cover;
-      max-height: 250px;
-    }
-
-    .embla {
-      grid-area: quotes;
-      overflow: hidden;
-
-      .embla__container {
-        display: flex;
-
-        .embla__slide {
-          flex: 0 0 100%;
-          min-width: 0;
-        }
-
-        .content {
-          height: 100%;
-          max-width: var(--size-content-3);
-        }
-      }
-
-    }
   }
 
 </style>
