@@ -29,6 +29,7 @@ const books = quoteshelf.filter((book) => {
 
 const fullName = books[0].data.author;
 
+// TODO figure out the proper typescript for adding cover to the entry
 const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntry<'quoteshelf'>) => {
 
   try {
@@ -71,25 +72,36 @@ const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntr
 <NavbarLayout title={fullName}>
   <div class="container tw-container tw-mx-auto">
     <h1>{fullName}</h1>
-    { booksWithCovers.map((book) => (
-      <section id={book.slug} class="book">
-        <h2>{book.data.title}</h2>
-        { book.coverUrl && (
-          <img src={book.coverUrl} alt={book.data.title} />
-        )}
+    <div x-data={JSON.stringify({ book: booksWithCovers[0].slug })}>
+      {/* TODO - only show this if there are multiple titles */}
+      <sl-select value={booksWithCovers[0].slug} x-on:sl-change="book = $event.target.value">
+        { booksWithCovers.map((book) => (
+          <sl-option value={book.slug}>{book.data.title}</sl-option>
+        ))}
+      </sl-select>
+      <article>
+      { booksWithCovers.map((book) => (
+        <template x-if={`book === '${book.slug}'`}>
+          <section id={book.slug} class="book">
+            <h2>{book.data.title}</h2>
+            { book.coverUrl && (
+              <img src={book.coverUrl} alt={book.data.title} />
+            )}
 
-        <div class="embla" x-data="carousel()" x-ref="carouselNode">
-          <div class="embla__container">
-            { book.data.quotes.map((quote : string) => (
-              <div class="embla__slide content tw-prose"
-                set:html={renderMarkdown(quote)}>
+            <div class="embla" x-data="carousel()" x-ref="carouselNode">
+              <div class="embla__container">
+                { book.data.quotes.map((quote : string) => (
+                  <div class="embla__slide content tw-prose"
+                    set:html={renderMarkdown(quote)}>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-
-      </section>
-    ))}
+            </div>
+          </section>
+        </template>
+      ))}
+      </article>
+    </div>
   </div>
 </NavbarLayout>
 
