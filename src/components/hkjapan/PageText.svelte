@@ -2,12 +2,7 @@
   import { renderMarkdown } from '@src/markdown';
   import { DateTime } from 'luxon';
 
-  //export let title : string = '';
-  
-
-
   interface Props {
-    //export let body : string = '';
     mapPage: MapPage;
     top?: string;
     bottom?: string;
