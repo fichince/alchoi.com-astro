@@ -42,9 +42,11 @@
     // initialize the current page depending on the URL
     if ($location === '/') {
       push(`/${slugs[0]}`);
+      $mapPage = mapPages[0];
     } else {
       const i = slugs.findIndex((value) => value === $location.substring(1));
       if (i > -1) currentPage = i;
+      $mapPage = mapPages[currentPage];
     }
 
     moveMap();
