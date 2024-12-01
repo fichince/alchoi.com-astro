@@ -33,6 +33,7 @@ const { book } = Astro.props;
     min-height: 45vh;
 
     display: grid;
+    padding: var(--size-fluid-2);
     gap: var(--size-5);
 
     grid-template-areas:
@@ -45,6 +46,7 @@ const { book } = Astro.props;
     }
 
     img {
+      place-self: center;
       grid-area: cover;
       max-height: 250px;
     }
@@ -57,7 +59,7 @@ const { book } = Astro.props;
         display: flex;
 
         .embla__slide {
-          flex: 0 0 100%;
+          flex: 0 0 var(--size-content-3);
           min-width: 0;
         }
 
