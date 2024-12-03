@@ -53,6 +53,7 @@ const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntr
     if (coverId) {
       const coverUrl = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
 
+      // TODO - use a loader to cache the image
       //const image = await getImage({ src: coverUrl, formats: ['webp'], inferSize: true });
       console.timeLog(book.data.title, 'done cover');
       console.timeEnd(book.data.title);

@@ -9,7 +9,12 @@ interface Props {
 const { book } = Astro.props;
 ---
 
-<div class="embla">
+<section class="book">
+  { book.coverUrl && (
+    <img src={book.coverUrl} alt={book.data.title} />
+  )}
+
+  <div class="embla">
     <div class="embla__viewport" x-data="carousel()" x-ref="carouselNode">
       <div class="embla__container">
         { book.data.quotes.map((quote : string) => (
@@ -19,20 +24,24 @@ const { book } = Astro.props;
         ))}
       </div>
     </div>
-</div>
+
+  </div>
+</section>
 
 <style lang="scss">
   @import "../../style/mixins.scss";
 
-  section.book {
+  .book {
     border: 1px solid red;
     margin: var(--size-7) 0;
     min-height: 45vh;
 
-    display: grid;
-    padding: var(--size-fluid-2);
+    display: flex;
     gap: var(--size-5);
 
+    flex-direction: column;
+
+    /*
     grid-template-areas:
       "cover"
       "quotes";
@@ -41,17 +50,18 @@ const { book } = Astro.props;
       grid-template-areas:
         "cover quotes"
     }
+    */
 
     img {
-      place-self: center;
-      grid-area: cover;
       max-height: 250px;
+      flex: 0 0 250px;
+      object-fit: contain;
     }
-
-
   }
+
   .embla {
-    //grid-area: quotes;
+    max-width: 100%;
+    flex: 0 0 100%;
   }
 
   .embla__viewport {
