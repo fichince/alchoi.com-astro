@@ -16,7 +16,7 @@ const { book } = Astro.props;
   <div class="embla" x-data="carousel()" x-ref="carouselNode">
     <div class="embla__container">
       { book.data.quotes.map((quote : string) => (
-        <div class="embla__slide content tw-prose"
+        <div class="embla__slide tw-prose"
           set:html={renderMarkdown(quote)}>
         </div>
       ))}
@@ -59,14 +59,11 @@ const { book } = Astro.props;
         display: flex;
 
         .embla__slide {
-          flex: 0 0 var(--size-content-3);
+          flex: 0 0 100%;
           min-width: 0;
+          height: 100%;
         }
 
-        .content {
-          height: 100%;
-          max-width: var(--size-content-3);
-        }
       }
 
     }
