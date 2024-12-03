@@ -34,6 +34,7 @@ const fullName = books[0].data.author;
 const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntry<'quoteshelf'>) => {
 
   try {
+    console.time(book.data.title);
     const url = qs.stringifyUrl({
       url: 'https://openlibrary.org/search.json',
       query: {
@@ -45,17 +46,20 @@ const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntr
     const response = await fetch(url);
     const info = await response.json();
 
+    console.timeLog(book.data.title, 'done search');
+
     const coverId = info.docs[0]?.cover_i || null;
 
     if (coverId) {
       const coverUrl = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
 
-      const image = await getImage({ src: coverUrl, formats: ['webp'], inferSize: true });
-      console.log('got cover for', book.data.title);
+      //const image = await getImage({ src: coverUrl, formats: ['webp'], inferSize: true });
+      console.timeLog(book.data.title, 'done cover');
+      console.timeEnd(book.data.title);
 
       return {
         ...book,
-        coverUrl: image.src,
+        coverUrl: null //image.src,
       };
     } else {
       return book;
