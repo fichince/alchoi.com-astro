@@ -54,18 +54,18 @@ const { book } = Astro.props;
     .embla {
       grid-area: quotes;
       overflow: hidden;
-
-      .embla__container {
-        display: flex;
-
-        .embla__slide {
-          flex: 0 0 100%;
-          min-width: 0;
-          height: 100%;
-        }
-
-      }
-
+      border: orange solid 1px;
     }
+    .embla__container {
+      border: blue solid 1px;
+      display: flex;
+    }
+    .embla__slide {
+      border: green solid 1px;
+      flex: 0 0 100%;
+      min-width: 0;
+      height: 100%;
+    }
+
   }
 </style>
