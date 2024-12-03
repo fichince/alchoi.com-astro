@@ -8,21 +8,18 @@ interface Props {
 
 const { book } = Astro.props;
 ---
-<section id={book.slug} class="book">
-  { book.coverUrl && (
-    <img src={book.coverUrl} alt={book.data.title} />
-  )}
 
-  <div class="embla" x-data="carousel()" x-ref="carouselNode">
-    <div class="embla__container">
-      { book.data.quotes.map((quote : string) => (
-        <div class="embla__slide tw-prose"
-          set:html={renderMarkdown(quote)}>
-        </div>
-      ))}
+<div class="embla">
+    <div class="embla__viewport" x-data="carousel()" x-ref="carouselNode">
+      <div class="embla__container">
+        { book.data.quotes.map((quote : string) => (
+          <div class="embla__slide tw-prose"
+            set:html={renderMarkdown(quote)}>
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
-</section>
+</div>
 
 <style lang="scss">
   @import "../../style/mixins.scss";
@@ -51,21 +48,25 @@ const { book } = Astro.props;
       max-height: 250px;
     }
 
-    .embla {
-      grid-area: quotes;
-      overflow: hidden;
-      border: orange solid 1px;
-    }
-    .embla__container {
-      border: blue solid 1px;
-      display: flex;
-    }
-    .embla__slide {
-      border: green solid 1px;
-      flex: 0 0 100%;
-      min-width: 0;
-      height: 100%;
-    }
 
+  }
+  .embla {
+    //grid-area: quotes;
+  }
+
+  .embla__viewport {
+    grid-area: quotes;
+    overflow: hidden;
+    border: orange solid 1px;
+  }
+  .embla__container {
+    border: blue solid 1px;
+    display: flex;
+  }
+  .embla__slide {
+    border: green solid 1px;
+    flex: 0 0 100%;
+    min-width: 0;
+    height: 100%;
   }
 </style>
