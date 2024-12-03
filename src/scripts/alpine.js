@@ -59,10 +59,20 @@ function spoiler() {
 function carousel() {
   return {
     embla: null,
+    currentSlide: 1,
     init() {
       this.embla = EmblaCarousel(this.$refs.carouselNode, {
-        loop: true,
+        loop: false,
       });
+
+      let self = this;
+
+      this.embla.on('select', function (embla) {
+        self.currentSlide = embla.selectedScrollSnap() + 1;
+      });
+    },
+    destroy() {
+      this.embla?.destroy();
     }
   };
 }

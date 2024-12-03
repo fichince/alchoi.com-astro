@@ -14,8 +14,20 @@ const { book } = Astro.props;
     <img src={book.coverUrl} alt={book.data.title} />
   )}
 
-  <div class="embla">
-    <div class="embla__viewport" x-data="carousel()" x-ref="carouselNode">
+  <div class="embla" x-data="carousel()">
+    <div class="embla__controls">
+      <sl-icon-button name="arrow-left"
+        x-on:click="embla.scrollPrev()"
+        x-bind:disabled="currentSlide == 1">
+      </sl-icon-button>
+      <span x-text="currentSlide + '/' + embla.slideNodes().length"></span>
+      <sl-icon-button name="arrow-right"
+        x-on:click="embla.scrollNext()"
+        x-bind:disabled="currentSlide == embla.slideNodes().length">
+      </sl-icon-button>
+    </div>
+
+    <div class="embla__viewport" x-ref="carouselNode">
       <div class="embla__container">
         { book.data.quotes.map((quote : string) => (
           <div class="embla__slide tw-prose"
@@ -32,7 +44,7 @@ const { book } = Astro.props;
   @import "../../style/mixins.scss";
 
   .book {
-    border: 1px solid red;
+    //border: 1px solid red;
     margin: var(--size-7) 0;
     min-height: 45vh;
 
@@ -61,22 +73,35 @@ const { book } = Astro.props;
 
   .embla {
     max-width: 100%;
-    flex: 0 0 100%;
+    flex: 1 1 100%;
+  }
+
+  .embla__controls {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    gap: var(--size-3);
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.7rem;
   }
 
   .embla__viewport {
     grid-area: quotes;
     overflow: hidden;
-    border: orange solid 1px;
+    //border: orange solid 1px;
   }
   .embla__container {
-    border: blue solid 1px;
+    //border: blue solid 1px;
     display: flex;
   }
   .embla__slide {
-    border: green solid 1px;
+    padding: var(--size-fluid-1);
+    //border: green solid 1px;
     flex: 0 0 100%;
     min-width: 0;
     height: 100%;
+    text-wrap: pretty;
   }
 </style>
