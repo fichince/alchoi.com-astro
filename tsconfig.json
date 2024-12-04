@@ -1,6 +1,7 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "exclude": ["node_modules/**", "dist/**", ".vercel/**" ],
+  "extends": "astro/tsconfigs/base",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["node_modules", "dist", ".vercel" ],
   "compilerOptions": {
     "esModuleInterop": true,
     "baseUrl": ".",

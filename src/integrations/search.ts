@@ -21,13 +21,14 @@ function declutter(s : string) : string {
 }
 
 async function readDirectoryContents(dir : string) : Promise<any> {
-  const srcDir = await readdir(`./src/content/${dir}`);
+
+  const srcDir = await readdir(`./src/data/${dir}`);
 
   const result = [];
 
   for (let file of srcDir) {
     if (file.endsWith('.md')) {
-      const fileContent = await readFile(`./src/content/${dir}/${file}`, 'utf8');
+      const fileContent = await readFile(`./src/data/${dir}/${file}`, 'utf8');
       const { data, content: body } = matter(fileContent);
 
       const title = stripMarkdown(data.title);
@@ -67,7 +68,7 @@ async function buildIndex(logger : AstroIntegrationLogger) {
   });
   logger.info(`Indexing ${entries.length} entries`);
 
-  const miniSearch = new MiniSearch({ 
+  const miniSearch = new MiniSearch({
     fields: ['title', 'description', 'content'],
     storeFields: ['url', 'title', 'description', 'content'],
   });
@@ -89,7 +90,7 @@ export default function search(): AstroIntegration {
         await writeFile('./.search/search-index.json', index);
       },
 
-      // when doing a production build, save the search index 
+      // when doing a production build, save the search index
       // in a Vercel KV store
       'astro:build:done': async (stuff) => {
 
