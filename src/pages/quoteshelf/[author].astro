@@ -81,16 +81,16 @@ const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntr
 <NavbarLayout title={fullName}>
   <div class="container tw-container tw-mx-auto">
     <h1>{fullName}</h1>
-    <div x-data={JSON.stringify({ book: booksWithCovers[0].slug })}>
+    <div x-data={JSON.stringify({ book: booksWithCovers[0].id })}>
       {/* TODO - only show this if there are multiple titles */}
-      <sl-select value={booksWithCovers[0].slug} x-on:sl-change="book = $event.target.value">
+      <sl-select value={booksWithCovers[0].id} x-on:sl-change="book = $event.target.value">
         { booksWithCovers.map((book) => (
-          <sl-option value={book.slug}>{book.data.title}</sl-option>
+          <sl-option value={book.id}>{book.data.title}</sl-option>
         ))}
       </sl-select>
       <article>
       { booksWithCovers.map((book) => (
-        <template x-if={`book === '${book.slug}'`}>
+        <template x-if={`book === '${book.id}'`}>
           <Book book={book} />
         </template>
       ))}

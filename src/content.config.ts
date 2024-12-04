@@ -1,5 +1,6 @@
 import { z, defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
+import quoteshelfLoader from './loaders/quoteshelf';
 
 const blogSchema = (image : Function) => z.object({
   title: z.string(),
@@ -71,12 +72,7 @@ const hkjapan = defineCollection({
 });
 
 const quoteshelf = defineCollection({
-  loader: glob({ pattern: '*.md', base: './src/data/quoteshelf' }),
-  schema: () => z.object({
-    title: z.string(),
-    author: z.string(),
-    quotes: z.string().array(),
-  })
+  loader: quoteshelfLoader({ base: './src/data/quoteshelf' }),
 });
 
 export const collections = {
