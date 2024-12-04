@@ -1,4 +1,5 @@
 import { z, defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const blogSchema = (image : Function) => z.object({
   title: z.string(),
@@ -15,6 +16,7 @@ const blogSchema = (image : Function) => z.object({
 });
 
 const prose = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/data/prose' }),
   schema: ({ image }) => z.object({
     title: z.string(),
     url: z.string().url(),
@@ -24,10 +26,12 @@ const prose = defineCollection({
 });
 
 const blog = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/data/blog' }),
   schema: ({ image }) => blogSchema(image),
 });
 
 const code = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/data/code' }),
   schema: ({ image }) => z.object({
     title: z.string(),
     url: z.string(),
@@ -35,13 +39,17 @@ const code = defineCollection({
   })
 });
 
-const other = defineCollection({});
+const other = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/data/other' }),
+});
 
 const capsules = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/data/capsules' }),
   schema: ({ image }) => blogSchema(image),
 });
 
 const hkjapan = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/data/hkjapan' }),
   schema: ({ image }) => z.object({
     title: z.string().optional(),
     date: z.date().optional(),
@@ -63,6 +71,7 @@ const hkjapan = defineCollection({
 });
 
 const quoteshelf = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/data/quoteshelf' }),
   schema: () => z.object({
     title: z.string(),
     author: z.string(),
