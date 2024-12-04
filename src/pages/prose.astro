@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import MD from '@src/components/MD.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import About from '@src/components/About.astro';
@@ -17,7 +17,7 @@ const title = intro.data.title;
 const meta = { description: title };
 
 const book = await getEntry('other', 'jacob-rob');
-const { Content: Book } = await book.render();
+const { Content: Book } = await render(book);
 ---
 <NavbarLayout title="Prose" meta={meta}>
   <main class="tw-container container fade-in">
@@ -33,7 +33,7 @@ const { Content: Book } = await book.render();
       </h2>
       <div class="hero-body">
         <div class="image-hover">
-          <Image 
+          <Image
             src={bookImg}
             alt={book.data.title}
             width={320}
@@ -58,7 +58,7 @@ const { Content: Book } = await book.render();
         { prose.map(async (item, index) => {
 
           const link = item.data.url;
-          const { Content } = await item.render();
+          const { Content } = await render(item);
 
           return (
             <article x-on:mouseover={`bgShift = ${index}`} class="story card">
@@ -150,7 +150,7 @@ const { Content: Book } = await book.render();
 
       .hero-body {
         display: grid;
-        grid-template-areas: 
+        grid-template-areas:
           "image"
           "words";
 

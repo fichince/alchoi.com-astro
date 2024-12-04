@@ -17,7 +17,7 @@ const optimizedImages = await Promise.all(project.data.images.map(async (image) 
   return optimized;
 }));
 
-const id = `project-carousel-${project.slug}`;
+const id = `project-carousel-${project.id}`;
 
 ---
 <script>
@@ -39,10 +39,10 @@ const id = `project-carousel-${project.slug}`;
 
     return (
       <sl-carousel-item class="project-carousel-item">
-        <a href={image.src} 
-          data-pswp-width={image.attributes.width} 
+        <a href={image.src}
+          data-pswp-width={image.attributes.width}
           data-pswp-height={image.attributes.height}>
-          
+
           <img src={image.src} alt={project.data.title} loading="lazy" />
         </a>
       </sl-carousel-item>

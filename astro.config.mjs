@@ -3,13 +3,13 @@ import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 import search from './src/integrations/search.ts';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://alchoi.com',
-  output: 'hybrid',
+  output: 'static',
   integrations: [svelte(), tailwind(), mdx(), sitemap(), search()],
   image: {
     domains: ['covers.openlibrary.org'],
@@ -20,9 +20,6 @@ export default defineConfig({
       wrap: true
     }
   },
-  adapter: vercel({ }),
-  experimental: {
-    contentLayer: true,
-  },
-
+  adapter: vercel({
+  }),
 });

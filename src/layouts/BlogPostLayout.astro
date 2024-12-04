@@ -7,6 +7,7 @@ import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import { mediumDate } from '@src/utils';
 import { Image } from 'astro:assets';
+import { render } from 'astro:content';
 
 interface Props extends LayoutProps {
   post : BlogCollectionEntry | CapsuleCollectionEntry;
@@ -24,13 +25,13 @@ const tags = post.data.tags ?? [];
 const description = post.data.description;
 
 const meta = {
-  image, 
+  image,
   description: post.collection === 'blog' ?
-    description : 
+    description :
     `A quick review of ${title}`
 };
 
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 ---
 <NavbarLayout title={title} meta={meta}>
@@ -53,8 +54,8 @@ const { Content } = await post.render();
       }
       <div class="dates">
         <time>{date}</time>
-        {end && 
-          <span> - <time>{end}</time></span> 
+        {end &&
+          <span> - <time>{end}</time></span>
         }
       </div>
 
