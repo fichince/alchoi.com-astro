@@ -1,8 +1,10 @@
 import type { LoaderContext, Loader } from 'astro/loaders';
+import { getImage } from 'astro:assets';
 import { z } from 'astro:content';
 import { readdir, readFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { parse } from 'yaml';
+import qs from 'query-string';
 
 export default function quoteshelfLoader(options: { base: string }): Loader {
 
@@ -19,6 +21,32 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
         logger.info('Parsing data for ' + id);
         const data = parse(fileContent);
 
+        try {
+          const url = qs.stringifyUrl({
+            url: 'https://openlibrary.org/search.json',
+            query: {
+              author: data.author,
+              q: data.title,
+            }
+          });
+
+          const response = await fetch(url);
+          const info = await response.json();
+
+          const coverId = info.docs[0]?.cover_i || null;
+
+          if (coverId) {
+            const coverUrl = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
+            console.log('here', getImage);
+            const image = await getImage({ src: coverUrl, formats: ['webp'], inferSize: true });
+            data.coverUrl = image.src;
+          }
+
+        } catch (e) {
+          console.log('error', e);
+          logger.warn(`Error fetching cover for ${data.title} - ${e}`);
+        }
+
         const parsed = await parseData({ id, data });
 
         store.set({
@@ -33,7 +61,7 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
     title: z.string(),
     author: z.string(),
     quotes: z.string().array(),
-    coverId: z.string().optional(),
+    coverUrl: z.string().optional(),
   });
 
   return {
