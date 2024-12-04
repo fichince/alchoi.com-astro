@@ -10,8 +10,8 @@ const content = await getCollection('hkjapan');
 let id = 1;
 
 // Because these images will eventually be rendered by Svelte,
-// we can't use the Astro Image component. Instead, we have to 
-// procedurally optimize the images here and pass the final 
+// we can't use the Astro Image component. Instead, we have to
+// procedurally optimize the images here and pass the final
 // URL to the Svelte component.
 async function optimizeImage(i : any) : Promise<MapImage> {
 
@@ -43,8 +43,8 @@ const mapPages : MapPage[] = [];
 for (let i = 0; i < content.length; i++) {
   const item = content[i];
 
-  const { 
-    data: { 
+  const {
+    data: {
       component,
       date,
       title,
@@ -62,7 +62,7 @@ for (let i = 0; i < content.length; i++) {
   }
 
   const page = {
-    slug: item.slug,
+    slug: item.id,
     component,
     body: item.body,
     date,

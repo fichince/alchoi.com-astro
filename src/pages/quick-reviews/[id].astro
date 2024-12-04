@@ -10,13 +10,16 @@ export const getStaticPaths = (async () => {
   const quickReviews = entries.filter((entry) => entry.collection === 'capsules');
   return quickReviews.map((review) => {
     return {
-      params: { slug: review.slug }
+      params: { id: review.id }
     }
   });
 }) satisfies GetStaticPaths;
 
-const { slug = '' } = Astro.params;
-const entry = await getEntry('capsules', slug);
+const { id = '' } = Astro.params;
+
+console.log('here', id);
+
+const entry = await getEntry('capsules', id);
 const post = entry ? enrichCapsuleEntry(entry) : ({} as CapsuleCollectionEntry);
 
 ---

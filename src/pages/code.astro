@@ -5,7 +5,7 @@ import CodeBrackets from '@src/components/icons/CodeBrackets.astro';
 import IntroSection from '@src/components/IntroSection.astro';
 import ProjectCarousel from '@src/components/ProjectCarousel.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 
 const code = await getCollection('code');
 
@@ -26,7 +26,7 @@ const meta = { description: title };
       x-on:mouseleave="bgHover = 0">
       { code.map(async (item, index) => {
 
-        const { Content } = await item.render();
+        const { Content } = await render(item);
 
         return (
           <article x-on:mouseover={`bgShift = ${index}`} class="project">
@@ -84,7 +84,7 @@ const meta = { description: title };
       padding: var(--size-fluid-1) 0;
 
       display: grid;
-      grid-template-areas: 
+      grid-template-areas:
         "carousel"
         "words";
       justify-items: center;

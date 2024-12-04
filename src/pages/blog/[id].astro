@@ -8,13 +8,13 @@ export const getStaticPaths = (async () => {
   const posts = collection.filter((post) => !post.data.draft);
   return posts.map((post) => {
     return {
-      params: { slug: post.slug }
+      params: { id: post.id }
     }
   });
 }) satisfies GetStaticPaths;
 
-const { slug = '' } = Astro.params;
-const post = await getEntry('blog', slug) ?? ({} as BlogCollectionEntry);
+const { id = '' } = Astro.params;
+const post = await getEntry('blog', id) ?? ({} as BlogCollectionEntry);
 ---
 
 <BlogPostLayout post={post} />

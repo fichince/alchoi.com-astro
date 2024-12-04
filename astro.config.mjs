@@ -10,7 +10,7 @@ import search from './src/integrations/search.ts';
 export default defineConfig({
   site: 'https://alchoi.com',
   output: 'static',
-  integrations: [svelte(), tailwind(), mdx(), sitemap(), search()],
+  integrations: [svelte(), tailwind(), mdx(), sitemap(), /*search()*/],
   markdown: {
     shikiConfig: {
       theme: 'vitesse-dark',
