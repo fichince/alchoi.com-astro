@@ -17,8 +17,6 @@ export const getStaticPaths = (async () => {
 
 const { id = '' } = Astro.params;
 
-console.log('here', id);
-
 const entry = await getEntry('capsules', id);
 const post = entry ? enrichCapsuleEntry(entry) : ({} as CapsuleCollectionEntry);
 

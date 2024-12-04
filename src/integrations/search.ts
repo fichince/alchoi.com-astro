@@ -22,15 +22,13 @@ function declutter(s : string) : string {
 
 async function readDirectoryContents(dir : string) : Promise<any> {
 
-  // TODO need to rewrite this for the new content collections API
-
-  const srcDir = await readdir(`./src/content/${dir}`);
+  const srcDir = await readdir(`./src/data/${dir}`);
 
   const result = [];
 
   for (let file of srcDir) {
     if (file.endsWith('.md')) {
-      const fileContent = await readFile(`./src/content/${dir}/${file}`, 'utf8');
+      const fileContent = await readFile(`./src/data/${dir}/${file}`, 'utf8');
       const { data, content: body } = matter(fileContent);
 
       const title = stripMarkdown(data.title);
