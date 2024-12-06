@@ -65,10 +65,8 @@ function carousel() {
         loop: false,
       });
 
-      let self = this;
-
-      this.embla.on('select', function (embla) {
-        self.currentSlide = embla.selectedScrollSnap() + 1;
+      this.embla.on('select', (embla) => {
+        this.currentSlide = embla.selectedScrollSnap() + 1;
       });
     },
     destroy() {

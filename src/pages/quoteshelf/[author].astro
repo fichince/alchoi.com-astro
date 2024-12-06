@@ -30,66 +30,21 @@ const books = quoteshelf.filter((book) => {
 
 const fullName = books[0].data.author;
 
-// TODO figure out the proper typescript for adding cover to the entry
-const booksWithCovers = await Promise.all(books.map(async (book : CollectionEntry<'quoteshelf'>) => {
-
-  try {
-    console.time(book.data.title);
-    /*
-    const url = qs.stringifyUrl({
-      url: 'https://openlibrary.org/search.json',
-      query: {
-        author: book.data.author,
-        q: book.data.title,
-      }
-    });
-
-    const response = await fetch(url);
-    const info = await response.json();
-
-    console.timeLog(book.data.title, 'done search');
-
-    const coverId = info.docs[0]?.cover_i || null;
-
-    if (coverId) {
-      const coverUrl = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
-
-      // TODO - use a loader to cache the image
-      //const image = await getImage({ src: coverUrl, formats: ['webp'], inferSize: true });
-      console.timeLog(book.data.title, 'done cover');
-      console.timeEnd(book.data.title);
-
-      return {
-        ...book,
-        coverUrl: null //image.src,
-      };
-    } else {
-      return book;
-    }
-    */
-    return book;
-  } catch (e) {
-    console.log(`Error fetching cover for ${book.data.title}`, e);
-    return book;
-  }
-
-}));
-
 
 ---
 
 <NavbarLayout title={fullName}>
   <div class="container tw-container tw-mx-auto">
     <h1>{fullName}</h1>
-    <div x-data={JSON.stringify({ book: booksWithCovers[0].id })}>
+    <div x-data={JSON.stringify({ book: books[0].id })}>
       {/* TODO - only show this if there are multiple titles */}
-      <sl-select value={booksWithCovers[0].id} x-on:sl-change="book = $event.target.value">
-        { booksWithCovers.map((book) => (
+      <sl-select value={books[0].id} x-on:sl-change="book = $event.target.value">
+        { books.map((book) => (
           <sl-option value={book.id}>{book.data.title}</sl-option>
         ))}
       </sl-select>
       <article>
-      { booksWithCovers.map((book) => (
+      { books.map((book) => (
         <template x-if={`book === '${book.id}'`}>
           <Book book={book} />
         </template>

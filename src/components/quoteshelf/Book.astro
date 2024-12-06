@@ -1,6 +1,7 @@
 ---
 import { renderMarkdown } from '@src/markdown'
 import type { CollectionEntry } from 'astro:content'
+import { Image } from 'astro:assets';
 
 interface Props {
   book: CollectionEntry<"quoteshelf">
@@ -10,8 +11,8 @@ const { book } = Astro.props;
 ---
 
 <section class="book">
-  { book.coverUrl && (
-    <img src={book.coverUrl} alt={book.data.title} />
+  { book.data.coverUrl && (
+    <Image src={book.data.coverUrl} alt={book.data.title} inferSize />
   )}
 
   <div class="embla" x-data="carousel()">
