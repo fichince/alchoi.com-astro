@@ -53,6 +53,10 @@ const { book } = Astro.props;
     gap: var(--size-5);
 
     flex-direction: column;
+
+    @include sm-up {
+      flex-direction: row;
+    }
     align-items: center;
 
     /*
@@ -74,11 +78,13 @@ const { book } = Astro.props;
   }
 
   .embla {
-    max-width: var(--size-content-3);
     flex: 1 1 100%;
+    max-width: 100%;
+    border: green solid 1px;
   }
 
   .embla__controls {
+    border: yellow solid 1px;
     margin: auto;
     width: 100%;
     display: flex;
@@ -90,17 +96,19 @@ const { book } = Astro.props;
   }
 
   .embla__viewport {
+    margin: auto;
+    max-width: var(--size-content-3);
     grid-area: quotes;
     overflow: hidden;
-    //border: orange solid 1px;
+    border: orange solid 1px;
   }
   .embla__container {
-    //border: blue solid 1px;
+    border: blue solid 1px;
     display: flex;
   }
   .embla__slide {
     padding: var(--size-fluid-1);
-    //border: green solid 1px;
+    border: green solid 1px;
     flex: 0 0 100%;
     min-width: 0;
     height: 100%;
