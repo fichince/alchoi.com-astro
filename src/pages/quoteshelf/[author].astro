@@ -1,5 +1,5 @@
 ---
-import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+import QuoteshelfLayout from '@src/layouts/QuoteshelfLayout.astro';
 import Book from '@src/components/quoteshelf/Book.astro';
 
 import type { GetStaticPaths } from 'astro';
@@ -33,7 +33,7 @@ const fullName = books[0].data.author;
 
 ---
 
-<NavbarLayout title={fullName}>
+<QuoteshelfLayout title={`Quotes by ${fullName}`}>
   <div class="container tw-container tw-mx-auto">
     <h1>{fullName}</h1>
     <div x-data={JSON.stringify({ book: books[0].id })}>
@@ -52,7 +52,7 @@ const fullName = books[0].data.author;
       </article>
     </div>
   </div>
-</NavbarLayout>
+</QuoteshelfLayout>
 
 <style lang="scss">
 
