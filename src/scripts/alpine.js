@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs';
+import EmblaCarousel from 'embla-carousel';
 
 function alertMessage() {
   return {
@@ -55,6 +56,26 @@ function spoiler() {
   };
 }
 
+function carousel() {
+  return {
+    embla: null,
+    currentSlide: 1,
+    init() {
+      this.embla = EmblaCarousel(this.$refs.carouselNode, {
+        loop: false,
+      });
+
+      this.embla.on('select', (embla) => {
+        this.currentSlide = embla.selectedScrollSnap() + 1;
+      });
+    },
+    destroy() {
+      this.embla?.destroy();
+    }
+  };
+}
+
 Alpine.data('alertMessage', alertMessage);
 Alpine.data('searchQuery', searchQuery);
 Alpine.data('spoiler', spoiler);
+Alpine.data('carousel', carousel);
