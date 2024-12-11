@@ -1,0 +1,80 @@
+---
+import slugify from '@sindresorhus/slugify';
+import { getCollection } from 'astro:content';
+import { renderMarkdown } from '@src/markdown';
+import random from 'lodash/random';
+import take from 'lodash/take';
+import last from 'lodash/last';
+
+const quoteshelf = await getCollection('quoteshelf');
+
+type Quote = {
+  quote: string,
+  title: string,
+  author: string,
+  coverUrl: string,
+  link: string,
+}
+
+const NUM_QUOTES = 5;
+
+const allQuotes : Quote[] = quoteshelf.reduce((memo, book) => {
+  const quotesForBook : Quote[] = book.data.quotes.map((quote) => {
+    return {
+      quote: quote,
+      title: book.data.title,
+      author: book.data.author,
+      coverUrl: book.data.coverUrl,
+      link: `/quoteshelf/${slugify(book.data.author)}`,
+    };
+  });
+  return [...memo, ...quotesForBook];
+}, []);
+
+const indices = new Set<number>();
+while (indices.size < NUM_QUOTES) {
+  indices.add(random(0, allQuotes.length - 1));
+}
+
+const selectedQuotes = Array.from(indices).map((index) => allQuotes[index]);
+const start = take(selectedQuotes, NUM_QUOTES - 1);
+const end = last(selectedQuotes);
+---
+
+{ start.map((quote) => (
+  <div class="quote">
+    <div class="quote-text">
+      <p set:html={renderMarkdown(quote.quote)}></p>
+    </div>
+    <div class="quote-title">
+      <p>{quote.title} - {quote.author}</p>
+    </div>
+  </div>
+))}
+<div class="quote"
+  hx-trigger="intersect"
+  hx-get="/quoteshelf/random"
+  hx-swap="afterend">
+  <div class="quote-text">
+    <p set:html={renderMarkdown(end.quote)}></p>
+  </div>
+  <div class="quote-title">
+    <p>{end.title} - {end.author}</p>
+  </div>
+</div>
+
+<style lang="scss">
+  .quote {
+    padding: var(--size-3);
+
+    .quote-text {
+      margin-bottom: var(--size-2);
+    }
+
+    .quote-title {
+      font-style: italic;
+    }
+    border-bottom: 1px solid var(--colour-accent);
+  }
+
+</style>
