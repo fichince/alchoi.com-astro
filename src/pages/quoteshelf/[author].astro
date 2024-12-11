@@ -3,10 +3,8 @@ import QuoteshelfLayout from '@src/layouts/QuoteshelfLayout.astro';
 import Book from '@src/components/quoteshelf/Book.astro';
 
 import type { GetStaticPaths } from 'astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import slugify from '@sindresorhus/slugify';
-import { getImage } from 'astro:assets';
-import qs from 'query-string';
 
 export const getStaticPaths = (async () => {
   const quoteshelf = await getCollection('quoteshelf');
