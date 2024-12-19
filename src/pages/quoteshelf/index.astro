@@ -11,7 +11,26 @@ import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
     <p>For an index of authors, click <a href="/quoteshelf/authors">here</a>.</p>
 
     <div class="randomizer">
-      <RandomQuotes />
+      <div class="embla" x-data="carousel()">
+        <div class="embla__controls">
+          <sl-icon-button name="arrow-left"
+            x-on:click="embla.scrollPrev(); bgShift = currentSlide;"
+            x-bind:disabled="currentSlide == 1">
+          </sl-icon-button>
+          <span x-text="currentSlide + '/' + embla.slideNodes().length"></span>
+          <sl-icon-button name="arrow-right"
+            x-on:click="embla.scrollNext(); bgShift = currentSlide;"
+            x-bind:disabled="currentSlide == embla.slideNodes().length">
+          </sl-icon-button>
+        </div>
+
+        <div class="embla__viewport" x-ref="carouselNode">
+          <div class="embla__container">
+            <RandomQuotes />
+          </div>
+        </div>
+
+      </div>
     </div>
 
   </div>
@@ -23,10 +42,10 @@ import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
   .randomizer {
     //border: 1px solid blue;
     flex: 1 1;
-    max-height: 50vh;
+    //max-height: 50vh;
 
-    width: var(--size-content-3);
-    overflow: auto;
+    //width: var(--size-content-3);
+    //overflow: auto;
   }
 
   .container {
@@ -34,6 +53,44 @@ import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
     display: flex;
     flex-direction: column;
 
+  }
+
+  .embla {
+    flex: 1 1 100%;
+    max-width: 100%;
+    //border: green solid 1px;
+  }
+
+  .embla__controls {
+    //border: yellow solid 1px;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    gap: var(--size-3);
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.7rem;
+  }
+
+  .embla__viewport {
+    margin: auto;
+    max-width: var(--size-content-3);
+    grid-area: quotes;
+    overflow: hidden;
+    //border: orange solid 1px;
+  }
+  .embla__container {
+    //border: blue solid 1px;
+    display: flex;
+  }
+  .embla__slide {
+    padding: var(--size-fluid-1);
+    //border: green solid 1px;
+    flex: 0 0 100%;
+    min-width: 0;
+    height: 100%;
+    text-wrap: pretty;
   }
 
 </style>

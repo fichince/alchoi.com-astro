@@ -42,7 +42,7 @@ const end = last(selectedQuotes);
 ---
 
 { start.map((quote) => (
-  <div class="quote">
+  <div class="quote embla__slide tw-prose">
     <div class="quote-text">
       <p set:html={renderMarkdown(quote.quote)}></p>
     </div>
@@ -75,6 +75,15 @@ const end = last(selectedQuotes);
       font-style: italic;
     }
     border-bottom: 1px solid var(--colour-accent);
+  }
+
+  .embla__slide {
+    padding: var(--size-fluid-1);
+    //border: green solid 1px;
+    flex: 0 0 100%;
+    min-width: 0;
+    height: 100%;
+    text-wrap: pretty;
   }
 
 </style>
