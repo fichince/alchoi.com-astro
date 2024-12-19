@@ -11,16 +11,15 @@ import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
     <p>For an index of authors, click <a href="/quoteshelf/authors">here</a>.</p>
 
     <div class="randomizer">
-      <div class="embla" x-data="carousel()">
+      <div class="embla" x-data="infiniteCarousel()">
         <div class="embla__controls">
           <sl-icon-button name="arrow-left"
             x-on:click="embla.scrollPrev(); bgShift = currentSlide;"
-            x-bind:disabled="currentSlide == 1">
+            x-bind:disabled="currentSlide === 1">
           </sl-icon-button>
-          <span x-text="currentSlide + '/' + embla.slideNodes().length"></span>
           <sl-icon-button name="arrow-right"
             x-on:click="embla.scrollNext(); bgShift = currentSlide;"
-            x-bind:disabled="currentSlide == embla.slideNodes().length">
+            x-bind:disabled="currentSlide === embla.slideNodes().length">
           </sl-icon-button>
         </div>
 

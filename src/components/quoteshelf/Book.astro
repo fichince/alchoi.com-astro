@@ -25,12 +25,12 @@ const { book } = Astro.props;
       <div class="embla__controls">
         <sl-icon-button name="arrow-left"
           x-on:click="embla.scrollPrev(); bgShift = currentSlide;"
-          x-bind:disabled="currentSlide == 1">
+          x-bind:disabled="currentSlide === 1">
         </sl-icon-button>
         <span x-text="currentSlide + '/' + embla.slideNodes().length"></span>
         <sl-icon-button name="arrow-right"
           x-on:click="embla.scrollNext(); bgShift = currentSlide;"
-          x-bind:disabled="currentSlide == embla.slideNodes().length">
+          x-bind:disabled="currentSlide === embla.slideNodes().length">
         </sl-icon-button>
       </div>
 
