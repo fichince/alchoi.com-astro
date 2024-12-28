@@ -21,30 +21,14 @@ const { book } = Astro.props;
       <Image src={book.data.coverUrl} alt={book.data.title} inferSize />
     )}
 
-    <div class="embla" x-data="carousel()">
-      <div class="embla__controls">
-        <sl-icon-button name="arrow-left"
-          x-on:click="embla.scrollPrev(); bgShift = currentSlide;"
-          x-bind:disabled="currentSlide === 1">
-        </sl-icon-button>
-        <span x-text="currentSlide + '/' + embla.slideNodes().length"></span>
-        <sl-icon-button name="arrow-right"
-          x-on:click="embla.scrollNext(); bgShift = currentSlide;"
-          x-bind:disabled="currentSlide === embla.slideNodes().length">
-        </sl-icon-button>
+    <div>
+    { book.data.quotes.map((quote : string) => (
+      <div class="quote tw-prose" set:html={renderMarkdown(quote)}>
       </div>
-
-      <div class="embla__viewport" x-ref="carouselNode">
-        <div class="embla__container">
-          { book.data.quotes.map((quote : string) => (
-            <div class="embla__slide tw-prose"
-              set:html={renderMarkdown(quote)}>
-            </div>
-          ))}
-        </div>
-      </div>
-
+      <hr />
+    ))}
     </div>
+
   </section>
   <CoolBackground />
 </div>
@@ -61,65 +45,27 @@ const { book } = Astro.props;
     gap: var(--size-5);
 
     flex-direction: column;
+    align-items: center;
 
     @include sm-up {
       flex-direction: row;
+      align-items: start;
     }
-    align-items: center;
 
-    /*
-    grid-template-areas:
-      "cover"
-      "quotes";
-
-    @include sm-up {
-      grid-template-areas:
-        "cover quotes"
+    hr {
+      width: 30%;
+      margin: auto;
     }
-    */
 
     img {
       max-height: 250px;
       flex: 0 0 250px;
       object-fit: contain;
     }
-  }
 
-  .embla {
-    flex: 1 1 100%;
-    max-width: 100%;
-    //border: green solid 1px;
-  }
-
-  .embla__controls {
-    //border: yellow solid 1px;
-    margin: auto;
-    width: 100%;
-    display: flex;
-    gap: var(--size-3);
-    justify-content: center;
-    align-items: center;
-
-    font-size: 1.7rem;
-  }
-
-  .embla__viewport {
-    margin: auto;
-    max-width: var(--size-content-3);
-    grid-area: quotes;
-    overflow: hidden;
-    //border: orange solid 1px;
-  }
-  .embla__container {
-    //border: blue solid 1px;
-    display: flex;
-  }
-  .embla__slide {
-    padding: var(--size-fluid-1);
-    //border: green solid 1px;
-    flex: 0 0 100%;
-    min-width: 0;
-    height: 100%;
-    text-wrap: pretty;
+    .quote {
+      text-wrap: pretty;
+      padding: var(--size-fluid-2);
+    }
   }
 </style>
