@@ -6,9 +6,8 @@ import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
 <NavbarLayout title="Quoteshelf">
   <div class="container tw-container">
     <h1>Quoteshelf</h1>
-    <h2>A collection of quotes from books that I've read</h2>
 
-    <p>For an index of authors, click <a href="/quoteshelf/authors">here</a>.</p>
+    <p>Swipe below for a random selection of memorable quotes. For an index of authors, click <a href="/quoteshelf/authors">here</a>.</p>
 
     <div class="randomizer">
       <div class="embla" x-data="infiniteCarousel()">
@@ -45,12 +44,16 @@ import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
 
     //width: var(--size-content-3);
     //overflow: auto;
+    margin-top: var(--size-fluid-4);
   }
 
   .container {
     padding: var(--size-fluid-4);
     display: flex;
     flex-direction: column;
+
+    align-items: center;
+    margin: 0 auto;
 
   }
 
@@ -82,14 +85,6 @@ import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
   .embla__container {
     //border: blue solid 1px;
     display: flex;
-  }
-  .embla__slide {
-    padding: var(--size-fluid-1);
-    //border: green solid 1px;
-    flex: 0 0 100%;
-    min-width: 0;
-    height: 100%;
-    text-wrap: pretty;
   }
 
 </style>
