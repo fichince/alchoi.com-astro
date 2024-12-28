@@ -64,6 +64,7 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
   const schema = z.object({
     title: z.string(),
     author: z.string(),
+    sortName: z.string().optional(),
     quotes: z.string().array(),
     coverUrl: z.string().optional(),
   });
