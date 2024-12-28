@@ -11,6 +11,9 @@ export default defineConfig({
   site: 'https://alchoi.com',
   output: 'static',
   integrations: [svelte(), tailwind(), mdx(), sitemap(), search()],
+  image: {
+    domains: ['covers.openlibrary.org'],
+  },
   markdown: {
     shikiConfig: {
       theme: 'vitesse-dark',

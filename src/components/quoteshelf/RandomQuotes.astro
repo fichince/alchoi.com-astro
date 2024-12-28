@@ -1,0 +1,108 @@
+---
+import slugify from '@sindresorhus/slugify';
+import { getCollection } from 'astro:content';
+import { renderMarkdown } from '@src/markdown';
+import random from 'lodash/random';
+import { Image } from 'astro:assets';
+
+const quoteshelf = await getCollection('quoteshelf');
+
+type Quote = {
+  quote: string,
+  title: string,
+  author: string,
+  coverUrl: string,
+  link: string,
+}
+
+const NUM_QUOTES = 5;
+
+const allQuotes : Quote[] = quoteshelf.reduce((memo, book) => {
+  const quotesForBook : Quote[] = book.data.quotes.map((quote) => {
+    return {
+      quote: quote,
+      title: book.data.title,
+      author: book.data.author,
+      coverUrl: book.data.coverUrl,
+      link: `/quoteshelf/${slugify(book.data.author)}`,
+    };
+  });
+  return [...memo, ...quotesForBook];
+}, []);
+
+console.log('total number of quotes', allQuotes.length);
+
+const indices = new Set<number>();
+while (indices.size < NUM_QUOTES) {
+  indices.add(random(0, allQuotes.length - 1));
+}
+
+const selectedQuotes = Array.from(indices).map((index) => allQuotes[index]);
+---
+
+{ selectedQuotes.map((quote) => (
+  <div class="quote embla__slide tw-prose"
+    hx-trigger="load-more"
+    hx-get="/quoteshelf/random"
+    hx-swap="afterend">
+
+    { quote.coverUrl && (
+      <Image src={quote.coverUrl} alt={quote.title} inferSize />
+    )}
+
+    <div>
+      <div class="quote-text">
+        <p set:html={renderMarkdown(quote.quote)}></p>
+      </div>
+      <div class="quote-title">
+        {quote.title}
+      </div>
+      <div class="quote-author">
+        {quote.author}
+      </div>
+    </div>
+  </div>
+))}
+
+<style lang="scss">
+  @import "../../style/mixins.scss";
+
+  .quote {
+    padding: var(--size-3);
+    display: flex;
+    gap: var(--size-5);
+
+    flex-direction: column;
+    align-items: center;
+
+    @include sm-up {
+      flex-direction: row;
+      align-items: start;
+    }
+
+    .quote-text {
+      margin-bottom: var(--size-2);
+    }
+
+    .quote-title {
+      font-style: italic;
+      font-size: larger;
+      font-family: var(--font-display);
+      text-align: right;
+    }
+
+    .quote-author {
+      text-align: right;
+      font-weight: bold;
+    }
+  }
+
+  .embla__slide {
+    //border: green solid 1px;
+    flex: 0 0 100%;
+    min-width: 0;
+    height: 100%;
+    text-wrap: pretty;
+  }
+
+</style>

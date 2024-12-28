@@ -1,0 +1,66 @@
+---
+import QuoteshelfLayout from '@src/layouts/QuoteshelfLayout.astro';
+import Book from '@src/components/quoteshelf/Book.astro';
+
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import slugify from '@sindresorhus/slugify';
+
+export const getStaticPaths = (async () => {
+  const quoteshelf = await getCollection('quoteshelf');
+  const paths = quoteshelf.map((book) => {
+    return {
+      params: {
+        author: slugify(book.data.author),
+      },
+    };
+  });
+
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { author } = Astro.params;
+
+const quoteshelf = await getCollection('quoteshelf');
+const books = quoteshelf.filter((book) => {
+  return author === slugify(book.data.author);
+});
+
+const fullName = books[0].data.author;
+
+
+---
+
+<QuoteshelfLayout title={`Quotes by ${fullName}`}>
+  <div class="container tw-container tw-mx-auto">
+    <h1>{fullName}</h1>
+    <div x-data={JSON.stringify({ book: books[0].id })}>
+      {/* TODO - only show this if there are multiple titles */}
+      <sl-select value={books[0].id} x-on:sl-change="book = $event.target.value">
+        { books.map((book) => (
+          <sl-option value={book.id}>{book.data.title}</sl-option>
+        ))}
+      </sl-select>
+      <article>
+      { books.map((book) => (
+        <template x-if={`book === '${book.id}'`}>
+          <Book book={book} />
+        </template>
+      ))}
+      </article>
+    </div>
+  </div>
+</QuoteshelfLayout>
+
+<style lang="scss">
+
+  .container {
+    padding: var(--size-fluid-4);
+  }
+
+  h1 {
+    font-size: var(--font-size-fluid-3);
+    font-family: var(--font-display);
+  }
+
+</style>

@@ -126,6 +126,20 @@ h1, h2, h3 {
   text-wrap: balance;
 }
 
+h1 {
+  font-size: var(--font-size-fluid-3);
+  font-family: var(--font-display);
+}
+
+h2 {
+  font-size: var(--font-size-fluid-1);
+  font-family: var(--font-display);
+}
+
+a {
+  text-decoration: underline;
+}
+
 /* I don't like the big "Footnotes" header */
 section.footnotes {
   border-top: 1px solid var(--colour-foreground);

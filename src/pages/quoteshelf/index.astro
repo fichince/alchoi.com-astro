@@ -1,0 +1,90 @@
+---
+import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
+
+---
+<NavbarLayout title="Quoteshelf">
+  <div class="container tw-container">
+    <h1>Quoteshelf</h1>
+
+    <p>Swipe below for a random selection of memorable quotes. For an index of authors, click <a href="/quoteshelf/authors">here</a>.</p>
+
+    <div class="randomizer">
+      <div class="embla" x-data="infiniteCarousel()">
+        <div class="embla__controls">
+          <sl-icon-button name="arrow-left"
+            x-on:click="embla.scrollPrev(); bgShift = currentSlide;"
+            x-bind:disabled="currentSlide === 1">
+          </sl-icon-button>
+          <sl-icon-button name="arrow-right"
+            x-on:click="embla.scrollNext(); bgShift = currentSlide;"
+            x-bind:disabled="currentSlide === embla.slideNodes().length">
+          </sl-icon-button>
+        </div>
+
+        <div class="embla__viewport" x-ref="carouselNode">
+          <div class="embla__container">
+            <RandomQuotes />
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</NavbarLayout>
+
+<style lang="scss">
+
+  .randomizer {
+    //border: 1px solid blue;
+    flex: 1 1;
+    //max-height: 50vh;
+
+    //width: var(--size-content-3);
+    //overflow: auto;
+    margin-top: var(--size-fluid-4);
+  }
+
+  .container {
+    padding: var(--size-fluid-4);
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    margin: 0 auto;
+
+  }
+
+  .embla {
+    flex: 1 1 100%;
+    max-width: 100%;
+    //border: green solid 1px;
+  }
+
+  .embla__controls {
+    //border: yellow solid 1px;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    gap: var(--size-3);
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.7rem;
+  }
+
+  .embla__viewport {
+    margin: auto;
+    max-width: var(--size-content-3);
+    grid-area: quotes;
+    overflow: hidden;
+    //border: orange solid 1px;
+  }
+  .embla__container {
+    //border: blue solid 1px;
+    display: flex;
+  }
+
+</style>

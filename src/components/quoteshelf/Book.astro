@@ -1,0 +1,71 @@
+---
+import { renderMarkdown } from '@src/markdown'
+import CoolBackground from '@src/components/CoolBackground.astro';
+import type { CollectionEntry } from 'astro:content'
+import { Image } from 'astro:assets';
+
+interface Props {
+  book: CollectionEntry<"quoteshelf">
+}
+
+const { book } = Astro.props;
+---
+
+<div>
+  <section class="book" x-data="{ bgShift: -1, bgHover: 0 }"
+    x-bind:data-bg-shift="bgShift"
+    x-bind:data-bg-hover="bgHover"
+    x-on:mouseenter="bgHover = 1"
+    x-on:mouseleave="bgHover = 0">
+    { book.data.coverUrl && (
+      <Image src={book.data.coverUrl} alt={book.data.title} inferSize />
+    )}
+
+    <div>
+    { book.data.quotes.map((quote : string) => (
+      <div class="quote tw-prose" set:html={renderMarkdown(quote)}>
+      </div>
+      <hr />
+    ))}
+    </div>
+
+  </section>
+  <CoolBackground />
+</div>
+
+<style lang="scss">
+  @import "../../style/mixins.scss";
+
+  .book {
+    ////border: 1px solid red;
+    margin: var(--size-7) 0;
+    min-height: 45vh;
+
+    display: flex;
+    gap: var(--size-5);
+
+    flex-direction: column;
+    align-items: center;
+
+    @include sm-up {
+      flex-direction: row;
+      align-items: start;
+    }
+
+    hr {
+      width: 30%;
+      margin: auto;
+    }
+
+    img {
+      max-height: 250px;
+      flex: 0 0 250px;
+      object-fit: contain;
+    }
+
+    .quote {
+      text-wrap: pretty;
+      padding: var(--size-fluid-2);
+    }
+  }
+</style>

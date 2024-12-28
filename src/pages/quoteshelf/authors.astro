@@ -1,0 +1,73 @@
+---
+import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+import slugify from '@sindresorhus/slugify';
+import { getCollection } from 'astro:content';
+import uniqBy from 'lodash/uniqBy';
+import last from 'lodash/last';
+
+const quoteshelf = await getCollection('quoteshelf');
+
+type Author = {
+  name: string;
+  slug: string;
+  sortName: string;
+};
+
+const authors : Author[] = uniqBy(quoteshelf.map((book) => {
+  return {
+    name: book.data.author,
+    slug: slugify(book.data.author),
+    sortName: book.data.sortName,
+  };
+}), 'slug');
+
+function getNameForSorting(author: Author) {
+  if (author.sortName) return author.sortName;
+
+  const lastName = last(author.name.split(' '));
+  return lastName;
+}
+
+authors.sort((a, b) => {
+  const aName = getNameForSorting(a);
+  const bName = getNameForSorting(b);
+  return aName.localeCompare(bName);
+});
+
+---
+
+<NavbarLayout title="Quoteshelf">
+  <div class="container">
+
+    <h1>Author Index</h1>
+
+    <div class="authors">
+      { authors.map((author) => (
+      <p>
+        <a href={`/quoteshelf/${author.slug}`}>{author.name}</a>
+      </p>
+      ))}
+    </div>
+
+  </div>
+</NavbarLayout>
+
+<style lang="scss">
+  @import "../../style/mixins.scss";
+
+  .container {
+    padding: var(--size-fluid-4);
+  }
+
+  .authors {
+    column-count: 2;
+    @include sm-up {
+      column-count: 4;
+    }
+
+    p {
+      margin-bottom: var(--size-2);
+    }
+  }
+
+</style>

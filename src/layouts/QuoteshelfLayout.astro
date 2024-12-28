@@ -1,0 +1,55 @@
+---
+import Layout from '@src/layouts/Layout.astro';
+import type { Props as LayoutProps } from '@src/layouts/Layout.astro';
+
+interface Props extends LayoutProps {
+};
+
+const { title, meta } = Astro.props;
+---
+<Layout title={title} meta={meta}>
+  <div class="header">
+    <a href="/quoteshelf/authors">
+      &#x2190; Back to author index
+    </a>
+
+    <a href="/">
+      Home
+    </a>
+  </div>
+
+  <div class="body">
+    <slot />
+  </div>
+</Layout>
+
+<style lang="scss">
+  @import "../style/mixins.scss";
+
+  a {
+    @include hover-link;
+  }
+
+  // this is needed because the CoolBackground absolute position
+  // won't size properly unless it's here
+  .body {
+    position: relative;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    width: 100%;
+
+    padding: var(--size-px-1) var(--size-px-3);
+    background: var(--colour-primary);
+    color: var(--gray-10);
+    font-family: var(--font-display);
+    font-size: var(--font-size-fluid-0);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>
