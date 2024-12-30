@@ -41,7 +41,7 @@ const selectedQuotes = Array.from(indices).map((index) => allQuotes[index]);
 ---
 
 { selectedQuotes.map((quote) => (
-  <div class="quote embla__slide tw-prose"
+  <div class="quote embla__slide"
     hx-trigger="load-more"
     hx-get="/quoteshelf/random"
     hx-swap="afterend">
@@ -51,7 +51,7 @@ const selectedQuotes = Array.from(indices).map((index) => allQuotes[index]);
     )}
 
     <div>
-      <div class="quote-text">
+      <div class="quote-text tw-prose">
         <p set:html={renderMarkdown(quote.quote)}></p>
       </div>
       <div class="quote-title">
