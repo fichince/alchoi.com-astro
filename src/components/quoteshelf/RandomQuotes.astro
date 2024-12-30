@@ -5,7 +5,11 @@ import { renderMarkdown } from '@src/markdown';
 import random from 'lodash/random';
 import { Image } from 'astro:assets';
 
+console.time('randomizer');
+
 const quoteshelf = await getCollection('quoteshelf');
+
+console.timeLog('randomizer', 'loaded collection');
 
 type Quote = {
   quote: string,
@@ -30,6 +34,8 @@ const allQuotes : Quote[] = quoteshelf.reduce((memo, book) => {
   return [...memo, ...quotesForBook];
 }, []);
 
+console.timeLog('randomizer', 'done reading quotes');
+
 console.log('total number of quotes', allQuotes.length);
 
 const indices = new Set<number>();
@@ -37,7 +43,12 @@ while (indices.size < NUM_QUOTES) {
   indices.add(random(0, allQuotes.length - 1));
 }
 
+console.timeLog('randomizer', 'generated random numbers', indices);
+
 const selectedQuotes = Array.from(indices).map((index) => allQuotes[index]);
+
+console.timeLog('randomizer', 'selected quotes');
+console.timeEnd('randomizer');
 ---
 
 { selectedQuotes.map((quote) => (
