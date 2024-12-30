@@ -11,7 +11,7 @@ const { url : { prev, next } } = page;
 
 ---
 <div class="paginator">
-  <a href={prev} class="prev" 
+  <a href={prev} class="prev"
     class:list={{ disabled: currentPage === 1 }}>
     <span>&larr;</span>
   </a>
@@ -37,6 +37,7 @@ const { url : { prev, next } } = page;
     a {
       @include hover-link($subtle: true);
       font-size: var(--font-size-5);
+      text-decoration: none;
 
       &.prev {
         margin-right: var(--size-3);

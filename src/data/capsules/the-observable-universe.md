@@ -1,5 +1,5 @@
 ---
-title: The Observable Universe
+title: _The Observable Universe_
 author: Heather McCalden
 date: 2024-11-11
 end: 2024-11-28
