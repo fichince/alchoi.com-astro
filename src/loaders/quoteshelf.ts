@@ -16,6 +16,7 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
     author: z.string(),
     sortName: z.string().optional(),
     quotes: z.string().array(),
+    googleId: z.string().optional()
   });
 
   const outputSchema = z.object({
@@ -95,23 +96,35 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
         const data = parse(fileContent) as InputData;
 
         inputSchema.parse(data);
-        const { title, author, sortName, quotes } = data;
-
-        const coverUrls = new Map<string, string>();
+        const { title, author, sortName, googleId, quotes } = data;
 
         for (let q of quotes) {
+
           const titleSlug = slugify(title);
           const authorSlug = slugify(author);
+
+          const coverUrl = Boolean(googleId) ? qs.stringifyUrl({
+            url:  'https://books.google.com/books/content',
+            query: {
+              id: googleId,
+              printsec: 'frontcover',
+              img: 1,
+              zoom: 2,
+            }
+          }) : null;
+
           const quote: OutputData = pickBy({
             title,
             titleSlug,
             author,
             authorSlug,
             sortName,
-            quote: q
+            quote: q,
+            coverUrl,
           });
 
           const id = crypto.hash('sha-1', q, 'hex');
+          /*
           const digest = generateDigest(quote);
           const existing = store.get(id);
 
@@ -119,30 +132,13 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
             logger.info('Reusing cached data for ' + id);
             continue;
           }
-
-          const coverKey = `${authorSlug}:${titleSlug}`;
-
-          let coverUrl = null;
-          if (coverUrls.has(coverKey)) {
-            coverUrl = coverUrls.get(coverKey);
-          } else {
-            try {
-              coverUrl = await fetchCover(title, author, logger);
-              coverUrls.set(coverKey, coverUrl);
-
-              if (coverUrl) {
-                quote.coverUrl = coverUrl;
-              }
-            } catch (e) {
-              logger.warn(`Failed to fetch cover for ${title} - ${e}`);
-            }
-          }
+          */
 
           const parsed = await parseData({ id, data: quote });
           store.set({
             id,
             data: parsed,
-            digest
+            //digest
           });
         }
       }
