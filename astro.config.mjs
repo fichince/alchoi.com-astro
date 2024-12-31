@@ -12,7 +12,10 @@ export default defineConfig({
   output: 'static',
   integrations: [svelte(), tailwind(), mdx(), sitemap(), search()],
   image: {
-    domains: ['covers.openlibrary.org'],
+    domains: [
+      'covers.openlibrary.org',
+      'books.google.com',
+    ],
   },
   markdown: {
     shikiConfig: {

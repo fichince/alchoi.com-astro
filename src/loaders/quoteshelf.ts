@@ -7,6 +7,7 @@ import { parse } from 'yaml';
 import qs from 'query-string';
 import slugify from '@sindresorhus/slugify';
 import pickBy from 'lodash/pickBy';
+import type { AstroIntegrationLogger } from 'astro';
 
 export default function quoteshelfLoader(options: { base: string }): Loader {
 
@@ -30,6 +31,7 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
   type InputData = z.infer<typeof inputSchema>;
   type OutputData = z.infer<typeof outputSchema>
 
+  /*
   async function fetchCover(title: string, author: string) : Promise<string> {
     const url = qs.stringifyUrl({
       url: 'https://openlibrary.org/search.json',
@@ -50,6 +52,30 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
       return null;
     }
   }
+  */
+
+  async function fetchCover(title: string, author: string, logger: AstroIntegrationLogger) : Promise<string> {
+    const url = qs.stringifyUrl({
+      url: 'https://www.googleapis.com/books/v1/volumes',
+      query: {
+        key: import.meta.env.GOOGLE_BOOKS_API_KEY,
+        q: `intitle:${title} inauthor:${author}`
+      }
+    });
+
+    const response = await fetch(url);
+    const info = await response.json();
+
+    const coverUrl = info.items?.[0]?.volumeInfo?.imageLinks?.thumbnail;
+
+    if (coverUrl) {
+      logger.info(`Found cover URL for ${title} - ${coverUrl}`);
+    } else {
+      logger.info(`Cover not found for ${title}`);
+    }
+
+    return coverUrl;
+  }
 
   async function load(context: LoaderContext) {
     const { logger, store, parseData, generateDigest } = context;
@@ -68,21 +94,17 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
         inputSchema.parse(data);
         const { title, author, sortName, quotes } = data;
 
-        let coverUrl = null;
-        try {
-          //coverUrl = await fetchCover(title, author);
-        } catch (e) {
-          logger.warn(`Failed to fetch cover for ${title} - ${e}`);
-        }
+        const coverUrls = new Map<string, string>();
 
         for (let q of quotes) {
+          const titleSlug = slugify(title);
+          const authorSlug = slugify(author);
           const quote: OutputData = pickBy({
             title,
-            titleSlug: slugify(title),
+            titleSlug,
             author,
-            authorSlug: slugify(author),
+            authorSlug,
             sortName,
-            coverUrl,
             quote: q
           });
 
@@ -93,6 +115,22 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
           if (digest === existing?.digest) {
             logger.info('Reusing cached data for ' + id);
             continue;
+          }
+
+          const coverKey = `${authorSlug}:${titleSlug}`;
+
+          let coverUrl = null;
+          if (coverUrls.has(coverKey)) {
+            coverUrl = coverUrls.get(coverKey);
+          } else {
+            try {
+              coverUrl = await fetchCover(title, author, logger);
+              coverUrls.set(coverKey, coverUrl);
+
+              quote.coverUrl = coverUrl;
+            } catch (e) {
+              logger.warn(`Failed to fetch cover for ${title} - ${e}`);
+            }
           }
 
           const parsed = await parseData({ id, data: quote });
