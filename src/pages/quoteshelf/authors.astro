@@ -13,11 +13,11 @@ type Author = {
   sortName: string;
 };
 
-const authors : Author[] = uniqBy(quoteshelf.map((book) => {
+const authors : Author[] = uniqBy(quoteshelf.map((quote) => {
   return {
-    name: book.data.author,
-    slug: slugify(book.data.author),
-    sortName: book.data.sortName,
+    name: quote.data.author,
+    slug: quote.data.authorSlug,
+    sortName: quote.data.sortName,
   };
 }), 'slug');
 
