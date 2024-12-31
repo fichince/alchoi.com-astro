@@ -10,13 +10,10 @@ import groupBy from 'lodash/groupBy';
 export const getStaticPaths = (async () => {
   const quoteshelf = await getCollection('quoteshelf');
 
-  //console.log('quoteshelf', JSON.stringify(quoteshelf, null, 2));
   const slugs = quoteshelf.map(q => q.data.authorSlug);
   const paths = uniq(slugs).map((slug) => ({
     params: { author: slug }
   }));
-
-  console.log('getStaticPaths', paths);
 
   return paths;
 }) satisfies GetStaticPaths;
@@ -32,8 +29,6 @@ const fullName = quotes[0].data.author;
 
 const quotesByTitle = groupBy(quotes, 'data.titleSlug');
 const titleSlugs = Object.keys(quotesByTitle);
-
-
 ---
 
 <QuoteshelfLayout title={`Quotes by ${fullName}`}>
