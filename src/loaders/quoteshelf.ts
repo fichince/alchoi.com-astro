@@ -83,6 +83,7 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
 
   async function load(context: LoaderContext) {
     const { logger, store, parseData, generateDigest } = context;
+    store.clear();
     logger.info('Running the quoteshelf loader');
 
     const dir = await readdir(options.base);
