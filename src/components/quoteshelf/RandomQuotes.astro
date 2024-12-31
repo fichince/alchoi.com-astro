@@ -5,6 +5,18 @@ import { renderMarkdown } from '@src/markdown';
 import random from 'lodash/random';
 import { Image } from 'astro:assets';
 
+interface Props {
+  simulateDelay?: boolean;
+}
+
+const { simulateDelay } = Astro.props;
+
+if (simulateDelay) {
+  console.log('simulate delay');
+  await new Promise((resolve) => setTimeout(resolve, 30000));
+  console.log('done!');
+}
+
 console.time('randomizer');
 
 const quoteshelf = await getCollection('quoteshelf');
