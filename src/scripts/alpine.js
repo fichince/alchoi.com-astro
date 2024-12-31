@@ -89,7 +89,7 @@ function infiniteCarousel() {
 
         const isForward = embla.previousScrollSnap() < embla.selectedScrollSnap();
         const numSlides = embla.slideNodes().length;
-        if (isForward && this.currentSlide === numSlides - 1) {
+        if (isForward && this.currentSlide === numSlides - 3) {
           const lastNode = embla.slideNodes()[numSlides - 1];
           window.htmx.trigger(lastNode, 'load-more');
         }
