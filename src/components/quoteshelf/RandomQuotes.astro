@@ -9,6 +9,7 @@ interface Props {
   simulateDelay?: boolean;
 }
 
+const NUM_QUOTES = 5;
 const { simulateDelay } = Astro.props;
 
 if (simulateDelay) {
@@ -23,41 +24,19 @@ const quoteshelf = await getCollection('quoteshelf');
 
 console.timeLog('randomizer', 'loaded collection');
 
-type Quote = {
-  quote: string,
-  title: string,
-  author: string,
-  coverUrl: string,
-  link: string,
-}
 
-const NUM_QUOTES = 5;
+//console.timeLog('randomizer', 'done reading quotes');
 
-const allQuotes : Quote[] = quoteshelf.reduce((memo, book) => {
-  const quotesForBook : Quote[] = book.data.quotes.map((quote) => {
-    return {
-      quote: quote,
-      title: book.data.title,
-      author: book.data.author,
-      coverUrl: book.data.coverUrl,
-      link: `/quoteshelf/${slugify(book.data.author)}`,
-    };
-  });
-  return [...memo, ...quotesForBook];
-}, []);
-
-console.timeLog('randomizer', 'done reading quotes');
-
-console.log('total number of quotes', allQuotes.length);
+console.log('total number of quotes', quoteshelf.length);
 
 const indices = new Set<number>();
 while (indices.size < NUM_QUOTES) {
-  indices.add(random(0, allQuotes.length - 1));
+  indices.add(random(0, quoteshelf.length - 1));
 }
 
 console.timeLog('randomizer', 'generated random numbers', indices);
 
-const selectedQuotes = Array.from(indices).map((index) => allQuotes[index]);
+const selectedQuotes = Array.from(indices).map((index) => quoteshelf[index]);
 
 console.timeLog('randomizer', 'selected quotes');
 console.timeEnd('randomizer');
@@ -69,19 +48,19 @@ console.timeEnd('randomizer');
     hx-get="/quoteshelf/random"
     hx-swap="afterend">
 
-    { quote.coverUrl && (
-      <Image src={quote.coverUrl} alt={quote.title} inferSize />
+    { quote.data.coverUrl && (
+      <Image src={quote.data.coverUrl} alt={quote.data.title} inferSize />
     )}
 
     <div>
       <div class="quote-text tw-prose">
-        <p set:html={renderMarkdown(quote.quote)}></p>
+        <p set:html={renderMarkdown(quote.data.quote)}></p>
       </div>
       <div class="quote-title">
-        {quote.title}
+        {quote.data.title}
       </div>
       <div class="quote-author">
-        {quote.author}
+        {quote.data.author}
       </div>
     </div>
   </div>
