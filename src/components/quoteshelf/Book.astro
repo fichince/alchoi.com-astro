@@ -26,8 +26,11 @@ const title = quotes[0].data.title;
     )}
 
     <div>
-    { quotes.map((quote) => (
-      <div id={quote.id} class="quote tw-prose" set:html={renderMarkdown(quote.data.quote)}>
+    { quotes.map((quote, index) => (
+      <div id={quote.id} class="quote tw-prose"
+        x-on:mouseenter={`bgShift = ${index} % 20`}
+        set:html={renderMarkdown(quote.data.quote)}
+      >
       </div>
       <hr />
     ))}

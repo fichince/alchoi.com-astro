@@ -3,6 +3,7 @@ export const prerender = false;
 
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
+import CoolBackground from '@src/components/CoolBackground.astro';
 ---
 
 <NavbarLayout title="Quoteshelf">
@@ -11,9 +12,12 @@ import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
 
     <p>Swipe below for a random selection of memorable quotes. For an index of authors, click <a href="/quoteshelf/authors">here</a>.</p>
 
-    <div class="randomizer">
+    <div class="randomizer" x-data="{ bgShift: -1, bgHover: 0 }"
+      x-bind:data-bg-shift="bgShift"
+      x-bind:data-bg-hover="bgHover">
       <div class="embla" x-data="infiniteCarousel()">
-        <div class="embla__controls">
+        <div class="embla__controls" x-on:mouseenter="bgHover = 1" x-on:mouseleave="bgHover = 0">
+
           <sl-icon-button name="arrow-left"
             x-on:click="embla.scrollPrev(); bgShift = currentSlide;"
             x-bind:disabled="currentSlide === 1">
@@ -45,6 +49,7 @@ import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
 
       </div>
     </div>
+    <CoolBackground />
 
   </div>
 
