@@ -55,6 +55,7 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
   */
 
   async function fetchCover(title: string, author: string, logger: AstroIntegrationLogger) : Promise<string> {
+    /*
     const url = qs.stringifyUrl({
       url: 'https://www.googleapis.com/books/v1/volumes',
       query: {
@@ -75,6 +76,8 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
     }
 
     return coverUrl;
+    */
+    return null;
   }
 
   async function load(context: LoaderContext) {
@@ -127,7 +130,9 @@ export default function quoteshelfLoader(options: { base: string }): Loader {
               coverUrl = await fetchCover(title, author, logger);
               coverUrls.set(coverKey, coverUrl);
 
-              quote.coverUrl = coverUrl;
+              if (coverUrl) {
+                quote.coverUrl = coverUrl;
+              }
             } catch (e) {
               logger.warn(`Failed to fetch cover for ${title} - ${e}`);
             }
