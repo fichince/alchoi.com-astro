@@ -4,17 +4,16 @@ import Book from '@src/components/quoteshelf/Book.astro';
 
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
-import slugify from '@sindresorhus/slugify';
+import uniq from 'lodash/uniq';
+import groupBy from 'lodash/groupBy';
 
 export const getStaticPaths = (async () => {
   const quoteshelf = await getCollection('quoteshelf');
-  const paths = quoteshelf.map((book) => {
-    return {
-      params: {
-        author: slugify(book.data.author),
-      },
-    };
-  });
+
+  const slugs = quoteshelf.map(q => q.data.authorSlug);
+  const paths = uniq(slugs).map((slug) => ({
+    params: { author: slug }
+  }));
 
   return paths;
 }) satisfies GetStaticPaths;
@@ -22,29 +21,30 @@ export const getStaticPaths = (async () => {
 const { author } = Astro.params;
 
 const quoteshelf = await getCollection('quoteshelf');
-const books = quoteshelf.filter((book) => {
-  return author === slugify(book.data.author);
+const quotes = quoteshelf.filter((quote) => {
+  return author === quote.data.authorSlug;
 });
 
-const fullName = books[0].data.author;
+const fullName = quotes[0].data.author;
 
-
+const quotesByTitle = groupBy(quotes, 'data.titleSlug');
+const titleSlugs = Object.keys(quotesByTitle);
 ---
 
 <QuoteshelfLayout title={`Quotes by ${fullName}`}>
   <div class="container tw-container tw-mx-auto">
     <h1>{fullName}</h1>
-    <div x-data={JSON.stringify({ book: books[0].id })}>
+    <div x-data={JSON.stringify({ book: titleSlugs[0] })}>
       {/* TODO - only show this if there are multiple titles */}
-      <sl-select value={books[0].id} x-on:sl-change="book = $event.target.value">
-        { books.map((book) => (
-          <sl-option value={book.id}>{book.data.title}</sl-option>
+      <sl-select value={titleSlugs[0]} x-on:sl-change="book = $event.target.value">
+        { titleSlugs.map((titleSlug) => (
+          <sl-option value={titleSlug}>{quotesByTitle[titleSlug][0].data.title}</sl-option>
         ))}
       </sl-select>
       <article>
-      { books.map((book) => (
-        <template x-if={`book === '${book.id}'`}>
-          <Book book={book} />
+      { titleSlugs.map((titleSlug) => (
+        <template x-if={`book === '${titleSlug}'`}>
+          <Book quotes={quotesByTitle[titleSlug]} />
         </template>
       ))}
       </article>

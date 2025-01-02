@@ -1,9 +1,9 @@
 ---
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
-import slugify from '@sindresorhus/slugify';
 import { getCollection } from 'astro:content';
 import uniqBy from 'lodash/uniqBy';
 import last from 'lodash/last';
+import CoolBackground from '@src/components/CoolBackground.astro';
 
 const quoteshelf = await getCollection('quoteshelf');
 
@@ -13,11 +13,11 @@ type Author = {
   sortName: string;
 };
 
-const authors : Author[] = uniqBy(quoteshelf.map((book) => {
+const authors : Author[] = uniqBy(quoteshelf.map((quote) => {
   return {
-    name: book.data.author,
-    slug: slugify(book.data.author),
-    sortName: book.data.sortName,
+    name: quote.data.author,
+    slug: quote.data.authorSlug,
+    sortName: quote.data.sortName,
   };
 }), 'slug');
 
@@ -37,19 +37,25 @@ authors.sort((a, b) => {
 ---
 
 <NavbarLayout title="Quoteshelf">
-  <div class="container">
+  <div class="container"
+    x-data="{ bgShift: -1, bgHover: 0 }"
+    x-bind:data-bg-shift="bgShift"
+    x-bind:data-bg-hover="bgHover">
 
     <h1>Author Index</h1>
 
     <div class="authors">
-      { authors.map((author) => (
-      <p>
+      { authors.map((author, index) => (
+      <p
+        x-on:mouseenter={`bgHover = 1; bgShift = ${index} % 20;`}
+        x-on:mouseleave="bgHover = 0">
         <a href={`/quoteshelf/${author.slug}`}>{author.name}</a>
       </p>
       ))}
     </div>
 
   </div>
+  <CoolBackground />
 </NavbarLayout>
 
 <style lang="scss">

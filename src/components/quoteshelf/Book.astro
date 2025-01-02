@@ -4,11 +4,15 @@ import CoolBackground from '@src/components/CoolBackground.astro';
 import type { CollectionEntry } from 'astro:content'
 import { Image } from 'astro:assets';
 
+type Quote = CollectionEntry<'quoteshelf'>;
+
 interface Props {
-  book: CollectionEntry<"quoteshelf">
+  quotes: Array<Quote>;
 }
 
-const { book } = Astro.props;
+const { quotes } = Astro.props;
+const coverUrl = quotes[0].data.coverUrl;
+const title = quotes[0].data.title;
 ---
 
 <div>
@@ -17,13 +21,16 @@ const { book } = Astro.props;
     x-bind:data-bg-hover="bgHover"
     x-on:mouseenter="bgHover = 1"
     x-on:mouseleave="bgHover = 0">
-    { book.data.coverUrl && (
-      <Image src={book.data.coverUrl} alt={book.data.title} inferSize />
+    { coverUrl && (
+      <Image src={coverUrl} alt={title} inferSize />
     )}
 
     <div>
-    { book.data.quotes.map((quote : string) => (
-      <div class="quote tw-prose" set:html={renderMarkdown(quote)}>
+    { quotes.map((quote, index) => (
+      <div id={quote.id} class="quote tw-prose"
+        x-on:mouseenter={`bgShift = ${index} % 20`}
+        set:html={renderMarkdown(quote.data.quote)}
+      >
       </div>
       <hr />
     ))}

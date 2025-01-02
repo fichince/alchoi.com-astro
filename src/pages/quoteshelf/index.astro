@@ -1,17 +1,23 @@
 ---
+export const prerender = false;
+
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
-
+import CoolBackground from '@src/components/CoolBackground.astro';
 ---
+
 <NavbarLayout title="Quoteshelf">
   <div class="container tw-container">
     <h1>Quoteshelf</h1>
 
     <p>Swipe below for a random selection of memorable quotes. For an index of authors, click <a href="/quoteshelf/authors">here</a>.</p>
 
-    <div class="randomizer">
+    <div class="randomizer" x-data="{ bgShift: -1, bgHover: 0 }"
+      x-bind:data-bg-shift="bgShift"
+      x-bind:data-bg-hover="bgHover">
       <div class="embla" x-data="infiniteCarousel()">
-        <div class="embla__controls">
+        <div class="embla__controls" x-on:mouseenter="bgHover = 1" x-on:mouseleave="bgHover = 0">
+
           <sl-icon-button name="arrow-left"
             x-on:click="embla.scrollPrev(); bgShift = currentSlide;"
             x-bind:disabled="currentSlide === 1">
@@ -25,11 +31,25 @@ import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
         <div class="embla__viewport" x-ref="carouselNode">
           <div class="embla__container">
             <RandomQuotes />
+            {/*
+
+            NOTE: attempted to use a server island here, but since there are Alpine scripts attached to
+            the elements in the RandomQuotes component, they don't get initialized when Astro swaps in the island.
+
+            I think the workable option for now is to opt out of prerendering this whole page.
+
+            <RandomQuotes server:defer>
+              <div slot="fallback" class="placeholder">
+                <sl-spinner></sl-spinner>
+              </div>
+            </RandomQuotes>
+            */}
           </div>
         </div>
 
       </div>
     </div>
+    <CoolBackground />
 
   </div>
 
@@ -40,9 +60,8 @@ import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
   .randomizer {
     //border: 1px solid blue;
     flex: 1 1;
-    //max-height: 50vh;
+    width: 100%;
 
-    //width: var(--size-content-3);
     //overflow: auto;
     margin-top: var(--size-fluid-4);
   }
@@ -86,5 +105,24 @@ import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
     //border: blue solid 1px;
     display: flex;
   }
+
+  /*
+  .placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: var(--size-px-13);
+
+    sl-spinner {
+
+      --track-width: 5px;
+      --track-color: var(--colour-foreground);
+      --indicator-color: var(--colour-accent);
+      --speed: 2.5s;
+      font-size: var(--font-size-fluid-5);
+    }
+  }
+  */
 
 </style>
