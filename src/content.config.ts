@@ -72,7 +72,7 @@ const hkjapan = defineCollection({
 });
 
 const quoteshelf = defineCollection({
-  loader: quoteshelfLoader({ base: './src/data/quoteshelf' }),
+  loader: quoteshelfLoader({ base: './src/data/quoteshelf', imageBase: './src/images/quoteshelf' }),
 });
 
 export const collections = {

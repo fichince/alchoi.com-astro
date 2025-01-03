@@ -1,7 +1,8 @@
 ---
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
+//import { Image } from 'astro:assets';
+import BookCover from '@src/components/quoteshelf/BookCover.astro';
 import uniqBy from 'lodash/uniqBy';
 
 
@@ -16,7 +17,7 @@ const quotes = uniqBy(quoteshelf, 'data.titleSlug');
     <sl-card>
       <div>
       { quote.data.coverUrl ? (
-        <Image src={quote.data.coverUrl} alt={quote.data.title} inferSize />
+        <BookCover cover={quote.data.coverUrl} title={quote.data.title} />
       ) : (
         <span>No image</span>
       )}
