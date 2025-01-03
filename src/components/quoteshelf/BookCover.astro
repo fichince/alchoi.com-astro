@@ -1,0 +1,47 @@
+---
+import type { GetImageResult } from 'astro';
+import { getImage } from 'astro:assets';
+
+interface Props {
+  cover: string;
+  title: string;
+}
+
+const { cover, title } = Astro.props;
+
+function isRemote(cover : string) : boolean {
+  return cover.startsWith('https:') || cover.startsWith('http:');
+}
+
+const format = 'webp';
+
+let image : GetImageResult;
+try {
+  // fetches image from remote URL
+  if (isRemote(cover)) {
+    image = await getImage({
+      src: cover,
+      inferSize: true,
+      format
+    });
+  } else {
+    // dynamic import of local image
+    const images = import.meta.glob<{ default: ImageMetadata }>('../../images/quoteshelf/*');
+
+    image = await getImage({
+      src: images[`../../images/quoteshelf/${cover}`](),
+      format
+    });
+  }
+} catch (e) {
+  console.log(`failed to load cover for ${title}`, e);
+}
+
+---
+{ image && <img src={image.src} alt={title} /> }
+
+<style lang="scss">
+  img {
+    max-height: var(--size-px-14);
+  }
+</style>

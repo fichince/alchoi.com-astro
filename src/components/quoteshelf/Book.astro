@@ -1,8 +1,8 @@
 ---
 import { renderMarkdown } from '@src/markdown'
 import CoolBackground from '@src/components/CoolBackground.astro';
+import BookCover from '@src/components/quoteshelf/BookCover.astro';
 import type { CollectionEntry } from 'astro:content'
-import { Image } from 'astro:assets';
 
 type Quote = CollectionEntry<'quoteshelf'>;
 
@@ -22,7 +22,7 @@ const title = quotes[0].data.title;
     x-on:mouseenter="bgHover = 1"
     x-on:mouseleave="bgHover = 0">
     { coverUrl && (
-      <Image src={coverUrl} alt={title} inferSize />
+      <BookCover cover={coverUrl} title={title} />
     )}
 
     <div>

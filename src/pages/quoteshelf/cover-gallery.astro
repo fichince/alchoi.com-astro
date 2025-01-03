@@ -1,0 +1,41 @@
+---
+import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+import { getCollection } from 'astro:content';
+import BookCover from '@src/components/quoteshelf/BookCover.astro';
+import uniqBy from 'lodash/uniqBy';
+
+const quoteshelf = await getCollection('quoteshelf');
+const quotes = uniqBy(quoteshelf, 'data.titleSlug');
+---
+
+<NavbarLayout title="Cover gallery">
+  <div class="container">
+  { quotes.map((quote) => (
+    <sl-card id={`${quote.data.authorSlug}__${quote.data.titleSlug}`}>
+      <div>
+      { quote.data.coverUrl ? (
+        <BookCover cover={quote.data.coverUrl} title={quote.data.title} />
+      ) : (
+        <span>No image</span>
+      )}
+      </div>
+      <div slot="footer">
+        <p><em>{quote.data.title}</em></p>
+        <p>{quote.data.author}</p>
+      </div>
+    </sl-card>
+  ))}
+  </div>
+</NavbarLayout>
+
+<style lang="scss">
+
+.container {
+  gap: var(--size-5);
+  padding: var(--size-fluid-4);
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+</style>
