@@ -14,7 +14,7 @@ const quotes = uniqBy(quoteshelf, 'data.titleSlug');
 <NavbarLayout title="Cover gallery">
   <div class="container">
   { quotes.map((quote) => (
-    <sl-card>
+    <sl-card id={`${quote.data.authorSlug}__${quote.data.titleSlug}`}>
       <div>
       { quote.data.coverUrl ? (
         <BookCover cover={quote.data.coverUrl} title={quote.data.title} />
@@ -22,7 +22,10 @@ const quotes = uniqBy(quoteshelf, 'data.titleSlug');
         <span>No image</span>
       )}
       </div>
-      <div slot="footer"><em>{quote.data.title}</em></div>
+      <div slot="footer">
+        <p><em>{quote.data.title}</em></p>
+        <p>{quote.data.author}</p>
+      </div>
     </sl-card>
   ))}
   </div>

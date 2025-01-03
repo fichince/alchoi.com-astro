@@ -10,8 +10,7 @@ interface Props {
 const { cover, title } = Astro.props;
 
 function isRemote(cover : string) : boolean {
-  const protocol = new URL(cover).protocol;
-  return protocol === 'https:' || protocol === 'http:';
+  return cover.startsWith('https:') || cover.startsWith('http:');
 }
 
 const format = 'webp';

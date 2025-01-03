@@ -85,10 +85,10 @@ export default function quoteshelfLoader(options: {
     imageDir : string[],
   ) : string {
 
-    // first, look for a local file with filename e.g. "neal-stephenson:snow-crash"
+    // first, look for a local file with filename e.g. "neal-stephenson__snow-crash"
     // if we don't have one, then use the Google ID in the YAML to build a URL that fetches from Google books
 
-    const filename = [authorSlug, titleSlug].join(':');
+    const filename = [authorSlug, titleSlug].join('__');
     const index = imageDir.findIndex((file) => file.startsWith(filename));
 
     if (index !== -1) {
