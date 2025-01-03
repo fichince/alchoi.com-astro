@@ -26,3 +26,5 @@ remark42/var/*
 .vercel/
 
 .search/*.json
+
+sonda-report*
