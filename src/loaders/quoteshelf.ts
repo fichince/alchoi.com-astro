@@ -127,6 +127,8 @@ export default function quoteshelfLoader(options: {
         const titleSlug = slugify(title);
         const authorSlug = slugify(author);
 
+        const coverUrl = getCoverUrl(googleId, titleSlug, authorSlug, imageDir);
+
         logger.info('Loading quotes for ' + titleSlug);
 
         for (let i = 0; i < quotes.length; i++) {
@@ -139,10 +141,10 @@ export default function quoteshelfLoader(options: {
             authorSlug,
             sortName,
             quote: q,
-            coverUrl: getCoverUrl(googleId, titleSlug, authorSlug, imageDir)
+            coverUrl,
           });
 
-          const id = `${authorSlug}-${titleSlug}-${i}`;
+          const id = `${authorSlug}__${titleSlug}__${i}`;
           /*
           const digest = generateDigest(quote);
           const existing = store.get(id);

@@ -26,9 +26,10 @@ try {
     });
   } else {
     // dynamic import of local image
-    const resource = await import( /* @vite-ignore */ `../../images/quoteshelf/${cover}`);
+    const images = import.meta.glob<{ default: ImageMetadata }>('../../images/quoteshelf/*');
+
     image = await getImage({
-      src: resource.default,
+      src: images[`../../images/quoteshelf/${cover}`](),
       format
     });
   }

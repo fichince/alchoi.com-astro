@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import { renderMarkdown } from '@src/markdown';
 import random from 'lodash/random';
-import { Image } from 'astro:assets';
+import BookCover from '@src/components/quoteshelf/BookCover.astro';
 
 interface Props {
   simulateDelay?: boolean;
@@ -48,7 +48,7 @@ console.timeEnd('randomizer');
     hx-swap="afterend">
 
     { quote.data.coverUrl && (
-      <Image src={quote.data.coverUrl} alt={quote.data.title} inferSize />
+      <BookCover cover={quote.data.coverUrl} title={quote.data.title} />
     )}
 
     <div>

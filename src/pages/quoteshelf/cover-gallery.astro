@@ -1,14 +1,11 @@
 ---
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import { getCollection } from 'astro:content';
-//import { Image } from 'astro:assets';
 import BookCover from '@src/components/quoteshelf/BookCover.astro';
 import uniqBy from 'lodash/uniqBy';
 
-
 const quoteshelf = await getCollection('quoteshelf');
 const quotes = uniqBy(quoteshelf, 'data.titleSlug');
-
 ---
 
 <NavbarLayout title="Cover gallery">
