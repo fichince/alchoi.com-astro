@@ -1,0 +1,53 @@
+---
+import { renderMarkdown } from '@src/markdown';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  quote: CollectionEntry<'quoteshelf'>;
+}
+
+
+function getFontSize(quote : string) : number {
+  if (quote.length < 100) {
+    return 4;
+  } else if (quote.length < 200) {
+    return 3;
+  } else if (quote.length < 250) {
+    return 2;
+  }
+  return 1;
+}
+
+const { quote } = Astro.props;
+const content = quote.data.quote;
+
+const fontSize = getFontSize(content);
+const style = {
+  '--font-size': `var(--font-size-${fontSize})`,
+  '--font-family': Math.random() > 0.5 ? 'var(--font-body)' : 'var(--font-classy)',
+  '--font-style': Math.random() > 0.5 ? 'italic' : 'normal'
+};
+
+---
+<div
+  style={style}
+  set:html={renderMarkdown(content)}>
+</div>
+
+<style lang="scss">
+
+  div {
+    font-size: var(--font-size);
+    font-style: var(--font-style);
+    container-name: quote;
+
+    // TODO find a good font to pair with the other
+    //font-family: var(--font-family);
+  }
+
+  @container quote (font-style: italic) {
+    em {
+      font-style: normal;
+    }
+  }
+</style>

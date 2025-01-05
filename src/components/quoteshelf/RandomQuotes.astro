@@ -1,8 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
-import { renderMarkdown } from '@src/markdown';
 import random from 'lodash/random';
 import BookCover from '@src/components/quoteshelf/BookCover.astro';
+import QuoteFormatter from './QuoteFormatter.astro';
 
 interface Props {
   simulateDelay?: boolean;
@@ -57,7 +57,7 @@ console.timeEnd('randomizer');
 
     <div>
       <div class="quote-text tw-prose">
-        <p set:html={renderMarkdown(quote.data.quote)}></p>
+        <QuoteFormatter quote={quote} />
       </div>
       <div class="quote-title">
         {quote.data.title}
