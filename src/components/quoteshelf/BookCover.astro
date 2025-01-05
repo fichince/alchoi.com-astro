@@ -5,9 +5,11 @@ import { getImage } from 'astro:assets';
 interface Props {
   cover: string;
   title: string;
+  height?: string;
 }
 
 const { cover, title } = Astro.props;
+const height = Astro.props.height ?? 'var(--size-px-14)';
 
 function isRemote(cover : string) : boolean {
   return cover.startsWith('https:') || cover.startsWith('http:');
@@ -38,10 +40,18 @@ try {
 }
 
 ---
-{ image && <img src={image.src} alt={title} /> }
+{ image &&
+  <img style={{ '--height' : height }} src={image.src} alt={title} />
+}
 
 <style lang="scss">
+  @import "../../style/mixins.scss";
+
   img {
-    max-height: var(--size-px-14);
+    max-height: var(--height);
+
+    @include sm-up {
+      max-height: calc(var(--height) * 1.5);
+    }
   }
 </style>

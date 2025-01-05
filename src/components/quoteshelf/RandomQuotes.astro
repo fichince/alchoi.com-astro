@@ -48,7 +48,11 @@ console.timeEnd('randomizer');
     hx-swap="afterend">
 
     { quote.data.coverUrl && (
-      <BookCover cover={quote.data.coverUrl} title={quote.data.title} />
+      <BookCover
+        cover={quote.data.coverUrl}
+        title={quote.data.title}
+        height="var(--size-px-12)"
+      />
     )}
 
     <div>

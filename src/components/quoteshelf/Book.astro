@@ -22,7 +22,7 @@ const title = quotes[0].data.title;
     x-on:mouseenter="bgHover = 1"
     x-on:mouseleave="bgHover = 0">
     { coverUrl && (
-      <BookCover cover={coverUrl} title={title} />
+      <BookCover cover={coverUrl} title={title} height="var(--size-px-13)" />
     )}
 
     <div>
