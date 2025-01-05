@@ -5,7 +5,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import search from './src/integrations/search.ts';
-import Sonda from 'sonda/astro';
+//import Sonda from 'sonda/astro';
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,10 +17,12 @@ export default defineConfig({
     mdx(),
     sitemap(),
     search(),
+    /*
     Sonda({
       open: false,
       server: true,
     })
+    */
   ],
   image: {
     domains: [
@@ -38,7 +40,7 @@ export default defineConfig({
   }),
   vite: {
     build: {
-      sourcemap: true
+      sourcemap: false
     }
   },
 });
