@@ -1,6 +1,4 @@
 ---
-export const prerender = false;
-
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import RandomQuotes from '@src/components/quoteshelf/RandomQuotes.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
@@ -30,20 +28,13 @@ import CoolBackground from '@src/components/CoolBackground.astro';
 
         <div class="embla__viewport" x-ref="carouselNode">
           <div class="embla__container">
-            <RandomQuotes />
-            {/*
-
-            NOTE: attempted to use a server island here, but since there are Alpine scripts attached to
-            the elements in the RandomQuotes component, they don't get initialized when Astro swaps in the island.
-
-            I think the workable option for now is to opt out of prerendering this whole page.
-
+            {/* use a server island here because there's a
+            slight lag when loading the random content */}
             <RandomQuotes server:defer>
               <div slot="fallback" class="placeholder">
                 <sl-spinner></sl-spinner>
               </div>
             </RandomQuotes>
-            */}
           </div>
         </div>
 
@@ -96,7 +87,7 @@ import CoolBackground from '@src/components/CoolBackground.astro';
 
   .embla__viewport {
     margin: auto;
-    max-width: var(--size-content-3);
+    max-width: 40rem;
     grid-area: quotes;
     overflow: hidden;
     //border: orange solid 1px;
@@ -106,7 +97,6 @@ import CoolBackground from '@src/components/CoolBackground.astro';
     display: flex;
   }
 
-  /*
   .placeholder {
     display: flex;
     justify-content: center;
@@ -123,6 +113,5 @@ import CoolBackground from '@src/components/CoolBackground.astro';
       font-size: var(--font-size-fluid-5);
     }
   }
-  */
 
 </style>

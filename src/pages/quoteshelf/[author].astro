@@ -35,12 +35,16 @@ const titleSlugs = Object.keys(quotesByTitle);
   <div class="container tw-container tw-mx-auto">
     <h1>{fullName}</h1>
     <div x-data={JSON.stringify({ book: titleSlugs[0] })}>
-      {/* TODO - only show this if there are multiple titles */}
-      <sl-select value={titleSlugs[0]} x-on:sl-change="book = $event.target.value">
-        { titleSlugs.map((titleSlug) => (
-          <sl-option value={titleSlug}>{quotesByTitle[titleSlug][0].data.title}</sl-option>
-        ))}
-      </sl-select>
+      { titleSlugs.length > 1 ? (
+          <sl-select value={titleSlugs[0]} x-on:sl-change="book = $event.target.value">
+            { titleSlugs.map((titleSlug) => (
+              <sl-option value={titleSlug}>{quotesByTitle[titleSlug][0].data.title}</sl-option>
+            ))}
+          </sl-select>
+        ) : (
+          <h2>{quotesByTitle[titleSlugs[0]][0].data.title}</h2>
+        )
+      }
       <article>
       { titleSlugs.map((titleSlug) => (
         <template x-if={`book === '${titleSlug}'`}>
@@ -56,11 +60,18 @@ const titleSlugs = Object.keys(quotesByTitle);
 
   .container {
     padding: var(--size-fluid-4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   h1 {
     font-size: var(--font-size-fluid-3);
     font-family: var(--font-display);
+  }
+
+  h2 {
+    text-align: center;
   }
 
 </style>

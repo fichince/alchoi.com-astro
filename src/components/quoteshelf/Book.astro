@@ -1,8 +1,8 @@
 ---
-import { renderMarkdown } from '@src/markdown'
 import CoolBackground from '@src/components/CoolBackground.astro';
 import BookCover from '@src/components/quoteshelf/BookCover.astro';
 import type { CollectionEntry } from 'astro:content'
+import QuoteFormatter from './QuoteFormatter.astro';
 
 type Quote = CollectionEntry<'quoteshelf'>;
 
@@ -22,15 +22,14 @@ const title = quotes[0].data.title;
     x-on:mouseenter="bgHover = 1"
     x-on:mouseleave="bgHover = 0">
     { coverUrl && (
-      <BookCover cover={coverUrl} title={title} />
+      <BookCover cover={coverUrl} title={title} height="var(--size-px-13)" />
     )}
 
     <div>
     { quotes.map((quote, index) => (
       <div id={quote.id} class="quote tw-prose"
-        x-on:mouseenter={`bgShift = ${index} % 20`}
-        set:html={renderMarkdown(quote.data.quote)}
-      >
+        x-on:mouseenter={`bgShift = ${index} % 20`}>
+        <QuoteFormatter quote={quote} />
       </div>
       <hr />
     ))}
@@ -73,6 +72,7 @@ const title = quotes[0].data.title;
     .quote {
       text-wrap: pretty;
       padding: var(--size-fluid-2);
+      max-width: 35rem;
     }
   }
 </style>

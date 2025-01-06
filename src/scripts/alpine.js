@@ -94,6 +94,14 @@ function infiniteCarousel() {
           window.htmx.trigger(lastNode, 'load-more');
         }
       });
+
+      // this is needed because the first time we load the carousel
+      // content, we're using a server island... the DOM nodes that
+      // get loaded need to be initialized with HTMX so that the
+      // load-more event can be triggered later
+      this.embla.on('slidesChanged', () => {
+        window.htmx.process(this.$refs.carouselNode);
+      });
     },
     destroy() {
       this.embla?.destroy();
