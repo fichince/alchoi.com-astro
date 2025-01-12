@@ -41,33 +41,41 @@ console.timeLog('randomizer', 'selected quotes');
 console.timeEnd('randomizer');
 ---
 
-{ selectedQuotes.map((quote) => (
-  <div class="quote embla__slide"
-    hx-trigger="load-more"
-    hx-get="/quoteshelf/random"
-    hx-swap="afterend">
+{ selectedQuotes.map((quote) => {
+    const link = `/quoteshelf/${quote.data.authorSlug}?book=${quote.data.titleSlug}#${quote.id}`;
 
-    { quote.data.coverUrl && (
-      <BookCover
-        cover={quote.data.coverUrl}
-        title={quote.data.title}
-        height="var(--size-px-12)"
-      />
-    )}
+    return (
+    <div class="quote embla__slide"
+      hx-trigger="load-more"
+      hx-get="/quoteshelf/random"
+      hx-swap="afterend">
 
-    <div>
-      <div class="quote-text tw-prose">
-        <QuoteFormatter quote={quote} />
-      </div>
-      <div class="quote-title">
-        {quote.data.title}
-      </div>
-      <div class="quote-author">
-        {quote.data.author}
+      { quote.data.coverUrl && (
+        <a href={link}>
+          <BookCover
+            cover={quote.data.coverUrl}
+            title={quote.data.title}
+            height="var(--size-px-12)"
+          />
+        </a>
+      )}
+
+      <div>
+        <div class="quote-text tw-prose">
+          <QuoteFormatter quote={quote} />
+        </div>
+        <div class="quote-title">
+          <a href={link}>
+            {quote.data.title}
+          </a>
+        </div>
+        <div class="quote-author">
+          {quote.data.author}
+        </div>
       </div>
     </div>
-  </div>
-))}
+    );
+})}
 
 <style lang="scss">
   @import "../../style/mixins.scss";

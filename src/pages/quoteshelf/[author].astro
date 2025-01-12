@@ -34,9 +34,9 @@ const titleSlugs = Object.keys(quotesByTitle);
 <QuoteshelfLayout title={`Quotes by ${fullName}`}>
   <div class="container tw-container tw-mx-auto">
     <h1>{fullName}</h1>
-    <div x-data={JSON.stringify({ book: titleSlugs[0] })}>
+    <div x-data={`bookChooser('${titleSlugs[0]}')`}>
       { titleSlugs.length > 1 ? (
-          <sl-select value={titleSlugs[0]} x-on:sl-change="book = $event.target.value">
+          <sl-select x-bind:value="book" x-on:sl-change="book = $event.target.value">
             { titleSlugs.map((titleSlug) => (
               <sl-option value={titleSlug}>{quotesByTitle[titleSlug][0].data.title}</sl-option>
             ))}

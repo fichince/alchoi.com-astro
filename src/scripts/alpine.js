@@ -1,5 +1,6 @@
 import Alpine from 'alpinejs';
 import EmblaCarousel from 'embla-carousel';
+import qs from 'query-string';
 
 function alertMessage() {
   return {
@@ -109,8 +110,19 @@ function infiniteCarousel() {
   };
 }
 
+function bookChooser(defaultBook) {
+  return {
+    book: null,
+    init() {
+      const { query } = qs.parseUrl(window.location.href);
+      this.book = query.book ?? defaultBook;
+    }
+  };
+}
+
 Alpine.data('alertMessage', alertMessage);
 Alpine.data('searchQuery', searchQuery);
 Alpine.data('spoiler', spoiler);
 Alpine.data('carousel', carousel);
 Alpine.data('infiniteCarousel', infiniteCarousel);
+Alpine.data('bookChooser', bookChooser);
