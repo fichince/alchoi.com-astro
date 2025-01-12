@@ -1,14 +1,13 @@
 import type { AstroIntegration, AstroIntegrationLogger } from 'astro';
 import isString from 'lodash/isString';
-import { writeFile, readdir, readFile } from 'node:fs/promises';
+import { readdir, readFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
-import 'dotenv/config';
-import { createClient } from '@vercel/kv';
+import { Client } from '@opensearch-project/opensearch';
 
-import MiniSearch from 'minisearch';
+import 'dotenv/config';
 
 function stripMarkdown(s? : string) : string {
   if (!s) return '';
@@ -42,6 +41,7 @@ async function readDirectoryContents(dir : string) : Promise<any> {
         title,
         description,
         content,
+        slug,
         url: `${urlPath}/${slug}`,
       });
     }
@@ -51,61 +51,73 @@ async function readDirectoryContents(dir : string) : Promise<any> {
 
 }
 
-async function buildIndex(logger : AstroIntegrationLogger) {
+async function buildIndex(logger: AstroIntegrationLogger, client: Client) {
 
-  const blog = await readDirectoryContents('blog');
-  const capsules = await readDirectoryContents('capsules');
+  try {
+    const blog = await readDirectoryContents('blog');
+    const capsules = await readDirectoryContents('capsules');
 
-  let id = 1;
-  const entries = [...blog, ...capsules].map((entry) => {
-    return {
-      id: id++,
-      url: entry.url,
-      title: entry.title,
-      description: entry.description,
-      content: entry.content,
-    };
-  });
-  logger.info(`Indexing ${entries.length} entries`);
+    const indexName = `alchoi-blog-${import.meta.env.MODE}`;
 
-  const miniSearch = new MiniSearch({
-    fields: ['title', 'description', 'content'],
-    storeFields: ['url', 'title', 'description', 'content'],
-  });
-  miniSearch.addAll(entries);
+    const { body: exists } = await client.indices.exists({ index: indexName });
+    if (exists) {
+      await client.indices.delete({ index: indexName });
+    }
 
-  return JSON.stringify(miniSearch);
+    const entries = [...blog, ...capsules].map((entry) => {
+      return {
+        id: entry.slug,
+        url: entry.url,
+        title: entry.title,
+        description: entry.description,
+        content: entry.content,
+      };
+    });
+    logger.info(`Indexing ${entries.length} entries`);
+
+    const body = entries.reduce((memo, entry) => {
+      const { id, ...rest } = entry;
+      const command = {
+        create: { _id: id }
+      };
+
+      return [...memo, command, rest];
+    }, []);
+
+
+    const result = await client.bulk({
+      index: indexName,
+      body
+    });
+
+    logger.info('Successfully saved OpenSearch index');
+
+  } catch (e) {
+    logger.error('Failed to build search index ' + e);
+  }
 }
 
 
 export default function search(): AstroIntegration {
+
+  const client = new Client({
+    node: process.env.OPENSEARCH_API
+  });
+
   return {
     name: 'search',
     hooks: {
-      // for the development environment, store the search index
-      // on the local file system
+
+      // for the development environment
       'astro:server:start': async ({ logger }) => {
         logger.info('Building search index - dev');
-        const index = await buildIndex(logger);
-        await writeFile('./.search/search-index.json', index);
+        await buildIndex(logger, client);
       },
 
-      // when doing a production build, save the search index
-      // in a Vercel KV store
-      'astro:build:done': async (stuff) => {
-
-        const { logger } = stuff;
+      // when doing a production build
+      'astro:build:done': async ({ logger }) => {
         logger.info('Building search index');
-
-        const index = await buildIndex(logger);
-
-        const kv = createClient({
-          url: process.env.KV_REST_API_URL,
-          token: process.env.KV_REST_API_TOKEN,
-        });
-
-        await kv.set('search-index', JSON.parse(index));
-
+        await buildIndex(logger, client);
       }
     },
   };
