@@ -23,22 +23,18 @@ if (q && q.trim().length > 0) {
   const client = new Client({ node: import.meta.env.OPENSEARCH_API });
   const indexName = `alchoi-blog-${import.meta.env.MODE}`;
 
-  // TODO weight the fields differently?
-  // TODO fuzziness
   const highlightOpts = {
-    fragment_size: 50,
+    fragment_size: 25,
     pre_tags: ['<mark>'],
     post_tags: ['</mark>'],
   };
   const query = {
     query: {
-      bool: {
-        should: [
-          { match: { title: q } },
-          { match: { description: q } },
-          { match: { content: q } },
-        ]
-      }
+      multi_match: {
+        query: q,
+        fields: [ 'title^2', 'description^1.5', 'content' ],
+        fuzziness: 'AUTO',
+      },
     },
     highlight: {
       fields: {
@@ -93,18 +89,14 @@ if (q && q.trim().length > 0) {
           { result.titleMatch ?
             <Fragment set:html={result.titleMatch} />
           :
-            <>
-            { result.title }
-            </>
+            <Fragment>{ result.title }</Fragment>
           }
         </a>
       </div>
       <ul class="body">
         { result.matches.map((match) => (
           <li>
-            &hellip;
-            <Fragment set:html={match} />
-            &hellip;
+            &hellip;<Fragment set:html={match} />&hellip;
           </li>
         ))}
       </ul>
