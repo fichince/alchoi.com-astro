@@ -8,6 +8,7 @@ const NAV = [
   { url: '/blog', label: 'Blog' },
   { url: '/code', label: 'Code' },
   { url: '/prose', label: 'Prose' },
+  { url: '/quoteshelf', label: 'Quoteshelf' },
 ];
 
 ---
@@ -26,7 +27,7 @@ const NAV = [
     <ul>
       {NAV.map(({ url, label }) => {
 
-        const active = pathname.startsWith(url) || 
+        const active = pathname.startsWith(url) ||
           (pathname === '/' && url === '/blog') ||
           (pathname.startsWith('/quick-reviews') && url === '/blog');
 
@@ -93,7 +94,7 @@ const NAV = [
       display: flex;
       align-items: center;
 
-      // hamburger 
+      // hamburger
       & span, & span::before, & span::after {
         display: block;
         background: var(--gray-10);
@@ -118,7 +119,7 @@ const NAV = [
 
     .toggle:checked ~ .toggle-label {
       & span, & span::before, & span::after {
-        // TODO would be best to change the shape of the 
+        // TODO would be best to change the shape of the
         // hamburger, instead of relying on colour only
         background: var(--colour-accent);
       }
@@ -172,7 +173,7 @@ const NAV = [
     }
 
     li.active {
-      
+
       color: var(--colour-foreground);
       .symbol::before {
         content: '\2192'; // show an arrow

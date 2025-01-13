@@ -1,5 +1,5 @@
 ---
-title: _Servant_ - Season 3 and 4
+title: _Servant_ - Seasons 3 and 4
 date: 2025-01-07
 type: tv
 rating: 4
