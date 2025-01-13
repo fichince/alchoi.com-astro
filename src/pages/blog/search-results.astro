@@ -45,10 +45,12 @@ if (q && q.trim().length > 0) {
     }
   };
 
+  console.time('search');
   const response = await client.search({
     index: indexName,
     body: query,
   });
+  console.timeEnd('search');
 
   results = (response?.body?.hits?.hits ?? []).map((hit) => {
 
@@ -60,12 +62,14 @@ if (q && q.trim().length > 0) {
 
     if (hit?.highlight?.title) {
       result.titleMatch = hit.highlight.title[0];
-    } else {
-      if (hit?.highlight?.description) {
-        result.matches = result.matches.concat(hit.highlight.description);
-      } else if (hit?.highlight?.content) {
-        result.matches = result.matches.concat(hit.highlight.content);
-      }
+    }
+
+    if (hit?.highlight?.description) {
+      result.matches = result.matches.concat(hit.highlight.description);
+    }
+
+    if (hit?.highlight?.content) {
+      result.matches = result.matches.concat(hit.highlight.content);
     }
 
     return result;
