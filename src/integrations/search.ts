@@ -57,6 +57,9 @@ async function buildIndex(logger: AstroIntegrationLogger, client: Client) {
     const blog = await readDirectoryContents('blog');
     const capsules = await readDirectoryContents('capsules');
 
+    logger.info('import.meta.env = ' + JSON.stringify(import.meta.env));
+    logger.info('process.env = ' + JSON.stringify(process.env));
+
     const indexName = `alchoi-blog-${import.meta.env.MODE}`;
 
     const { body: exists } = await client.indices.exists({ index: indexName });
@@ -90,7 +93,7 @@ async function buildIndex(logger: AstroIntegrationLogger, client: Client) {
       body
     });
 
-    logger.info('Successfully saved OpenSearch index');
+    logger.info(`Successfully saved OpenSearch index [${indexName}]`);
 
   } catch (e) {
     logger.error('Failed to build search index ' + e);
