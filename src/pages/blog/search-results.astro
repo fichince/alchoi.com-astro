@@ -21,7 +21,7 @@ let results : Result[] = [];
 
 if (q && q.trim().length > 0) {
   const client = new Client({ node: import.meta.env.OPENSEARCH_API });
-  const indexName = `alchoi-blog-${import.meta.env.MODE}`;
+  const indexName = `alchoi-blog-${import.meta.env.DEV ? 'development' : 'production'}`;
 
   const highlightOpts = {
     fragment_size: 25,
