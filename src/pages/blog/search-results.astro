@@ -5,100 +5,13 @@
 export const prerender = false;
 export const partial = true;
 
-import { readFile } from 'node:fs/promises';
-import { createClient } from '@vercel/kv';
-import MiniSearch from 'minisearch';
-import clamp from 'lodash/clamp';
-import take from 'lodash/take';
+import { Client } from '@opensearch-project/opensearch';
 
-type Match = {
-  before: string;
-  highlight: string;
-  after: string;
-};
 type Result = {
   title: string;
-  titleMatch?: Match | null;
+  titleMatch?: string | null;
   url: string;
-  matches: Match[];
-}
-
-function findMatchIndices(src : string, term : string) : number[] {
-  const lowerSrc = src.toLowerCase();
-  const lowerTerm = term.toLowerCase();
-
-  const indices = [];
-  let index = lowerSrc.indexOf(lowerTerm);
-  while (index !== -1) {
-    indices.push(index);
-    index = lowerSrc.indexOf(lowerTerm, index + 1);
-  }
-  return indices;
-}
-
-const HL_CONTEXT = 15;
-function extractMatches(src : string, term : string, includeFull? : boolean) : Match[] {
-
-  const indices = findMatchIndices(src, term);
-
-  const result = indices.map((i) : Match => {
-
-    if (!includeFull) {
-      const start = clamp(i - HL_CONTEXT, 0, src.length);
-      const end = clamp(i + term.length + HL_CONTEXT, 0, src.length);
-
-      const str = src.substring(start, end);
-
-      const shift = i - HL_CONTEXT;
-      const hlStart = shift > 0 ? HL_CONTEXT : HL_CONTEXT + shift;
-
-      const before = str.substring(0, hlStart);
-      const highlight = str.substring(hlStart, hlStart + term.length);
-      const after = str.substring(hlStart + term.length);
-
-      return { before, highlight, after };
-
-    } else {
-
-      const before = src.substring(0, i);
-      const highlight = src.substring(i, i + term.length);
-      const after = src.substring(i + term.length);
-
-      return { before, highlight, after };
-    }
-  });
-
-  return result;
-
-}
-
-const searchOpts = {
-  fields: ['title', 'description', 'content'],
-  searchOptions: {
-    boost: {
-      title: 2,
-      description: 1.5,
-      content: 1,
-    },
-    fuzzy: 0.2,
-  },
-};
-
-
-async function loadSearchIndex() : Promise<string> {
-  if (import.meta.env.PROD) {
-
-    const kv = createClient({
-      url: process.env.KV_REST_API_URL,
-      token: process.env.KV_REST_API_TOKEN,
-    });
-    const index = await kv.get('search-index');
-    return JSON.stringify(index);
-
-  } else {
-    const f = await readFile(`./.search/search-index.json`, 'utf8');
-    return f;
-  }
+  matches: string[];
 }
 
 const formData = await Astro.request.formData();
@@ -107,40 +20,57 @@ const q = formData.get('q') as string ?? '';
 let results : Result[] = [];
 
 if (q && q.trim().length > 0) {
+  const client = new Client({ node: import.meta.env.OPENSEARCH_API });
+  const indexName = `alchoi-blog-${import.meta.env.DEV ? 'development' : 'production'}`;
 
-  const searchIndex = await loadSearchIndex();
-  const miniSearch = MiniSearch.loadJSON(searchIndex, searchOpts);
+  const highlightOpts = {
+    fragment_size: 25,
+    pre_tags: ['<mark>'],
+    post_tags: ['</mark>'],
+  };
+  const query = {
+    query: {
+      multi_match: {
+        query: q,
+        fields: [ 'title^2', 'description^1.5', 'content' ],
+        fuzziness: 'AUTO',
+      },
+    },
+    highlight: {
+      fields: {
+        title: highlightOpts,
+        description: highlightOpts,
+        content: highlightOpts,
+      }
+    }
+  };
 
-  const searchResults = miniSearch.search(q);
-
-  results = take(searchResults, 15).map((result) => {
-    const { match } = result;
-    const title = result.title as string;
-    const url = result.url as string;
-
-    let matches : Match[] = [];
-    let titleMatch : Match | null = null;
-
-    Object.keys(match).forEach((term) => {
-      const fields = match[term];
-
-      fields.forEach((field : string) => {
-        const src = result[field];
-        if (field === 'title') {
-          titleMatch = extractMatches(src, term, true)[0];
-        } else {
-          matches = matches.concat(extractMatches(src, term));
-        }
-      });
-    });
-
-    return { 
-      title, 
-      url, 
-      titleMatch, 
-      matches: take(matches, 3),
-    };
+  const response = await client.search({
+    index: indexName,
+    body: query,
   });
+
+  results = (response?.body?.hits?.hits ?? []).map((hit) => {
+
+    const result : Result = {
+      title: hit?._source.title,
+      url: hit?._source.url,
+      matches: [],
+    };
+
+    if (hit?.highlight?.title) {
+      result.titleMatch = hit.highlight.title[0];
+    } else {
+      if (hit?.highlight?.description) {
+        result.matches = result.matches.concat(hit.highlight.description);
+      } else if (hit?.highlight?.content) {
+        result.matches = result.matches.concat(hit.highlight.content);
+      }
+    }
+
+    return result;
+  });
+
 }
 ---
 
@@ -157,24 +87,16 @@ if (q && q.trim().length > 0) {
       <div class="title">
         <a href={result.url}>
           { result.titleMatch ?
-            <>
-              {result.titleMatch.before}
-              <mark>{result.titleMatch.highlight}</mark>
-              {result.titleMatch.after}
-            </>
+            <Fragment set:html={result.titleMatch} />
           :
-            <>
-            { result.title }
-            </>
+            <Fragment>{ result.title }</Fragment>
           }
         </a>
       </div>
       <ul class="body">
         { result.matches.map((match) => (
           <li>
-            &hellip;{match.before}
-            <mark>{match.highlight}</mark>
-            {match.after}&hellip;
+            &hellip;<Fragment set:html={match} />&hellip;
           </li>
         ))}
       </ul>
