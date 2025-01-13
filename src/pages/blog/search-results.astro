@@ -6,12 +6,30 @@ export const prerender = false;
 export const partial = true;
 
 import { Client } from '@opensearch-project/opensearch';
+import { renderMarkdown } from '@src/markdown';
 
 type Result = {
   title: string;
   titleMatch?: string | null;
   url: string;
   matches: string[];
+  quote?: string;
+  author?: string;
+  type: string;
+}
+
+function highlightOpts(includeAll = false) {
+  const opts = {
+    pre_tags: ['<mark>'],
+    post_tags: ['</mark>'],
+  };
+
+  if (includeAll) {
+    opts['number_of_fragments'] = 0;
+  } else {
+    opts['fragment_size'] = 25;
+  }
+  return opts;
 }
 
 const formData = await Astro.request.formData();
@@ -23,24 +41,53 @@ if (q && q.trim().length > 0) {
   const client = new Client({ node: import.meta.env.OPENSEARCH_API });
   const indexName = `alchoi-blog-${import.meta.env.DEV ? 'development' : 'production'}`;
 
-  const highlightOpts = {
-    fragment_size: 25,
-    pre_tags: ['<mark>'],
-    post_tags: ['</mark>'],
-  };
   const query = {
+    _source: ['title', 'author', 'url', 'type'],
     query: {
-      multi_match: {
-        query: q,
-        fields: [ 'title^2', 'description^1.5', 'content' ],
-        fuzziness: 'AUTO',
-      },
+      bool: {
+        should: [
+          {
+            bool: {
+              must: [
+                {
+                  term: { type: { value: 'blog' } }
+                },
+                {
+                  multi_match: {
+                    query: q,
+                    fields: [ 'title^2', 'description^1.5', 'content' ],
+                    fuzziness: 'AUTO',
+                  },
+                }
+              ]
+            }
+          },
+          {
+            bool: {
+              must: [
+                {
+                  term: { type: { value: 'quote' } }
+                },
+                {
+                  match: {
+                    quote: {
+                      query: q,
+                      fuzziness: 'AUTO',
+                    }
+                  },
+                }
+              ]
+            }
+          }
+        ],
+      }
     },
     highlight: {
       fields: {
-        title: highlightOpts,
-        description: highlightOpts,
-        content: highlightOpts,
+        title: highlightOpts(false),
+        description: highlightOpts(false),
+        content: highlightOpts(false),
+        quote: highlightOpts(true),
       }
     }
   };
@@ -60,6 +107,7 @@ if (q && q.trim().length > 0) {
       title: hit?._source.title,
       url: hit?._source.url,
       matches: [],
+      type: hit?._source.type,
     };
 
     if (hit?.highlight?.title) {
@@ -72,6 +120,11 @@ if (q && q.trim().length > 0) {
 
     if (hit?.highlight?.content) {
       result.matches = result.matches.concat(hit.highlight.content);
+    }
+
+    if (hit?.highlight?.quote) {
+      result.quote = renderMarkdown(hit.highlight.quote[0]);
+      result.author = hit._source.author;
     }
 
     return result;
@@ -87,26 +140,41 @@ if (q && q.trim().length > 0) {
     </div>
   </div>
   :
-  <>
+  <div>
   { results.map((result) => (
     <div class="result">
-      <div class="title">
-        <a href={result.url}>
-          { result.titleMatch ?
-            <Fragment set:html={result.titleMatch} />
-          :
-            <Fragment>{ result.title }</Fragment>
-          }
-        </a>
-      </div>
-      <ul class="body">
-        { result.matches.map((match) => (
-          <li>
-            &hellip;<Fragment set:html={match} />&hellip;
-          </li>
-        ))}
-      </ul>
+      { result.type === 'blog' && (
+        <div class="title">
+          <a href={result.url}>
+            { result.titleMatch ?
+              <Fragment set:html={result.titleMatch} />
+            :
+              <Fragment>{ result.title }</Fragment>
+            }
+          </a>
+        </div>
+
+        <ul class="body">
+          { result.matches.map((match) => (
+            <li>
+              &hellip;<Fragment set:html={match} />&hellip;
+            </li>
+          ))}
+        </ul>
+      )}
+
+      { result.type === 'quote' && (
+        <div>
+          <Fragment set:html={result.quote} />
+        </div>
+        <div>
+          {result.title}
+        </div>
+        <div>
+          {result.author}
+        </div>
+      )}
     </div>
   ))}
-  </>
+  </d>
 }

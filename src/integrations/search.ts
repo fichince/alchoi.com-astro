@@ -68,10 +68,14 @@ async function readQuoteshelfContents(): Promise<any> {
       const data = parse(fileContent);
 
       const { title, author, quotes } = data;
+      const authorSlug = slugify(author);
+      const titleSlug = slugify(title);
 
       quotes.forEach((quote : string, index : number) => {
+        const id = `${authorSlug}__${titleSlug}__${index}`;
         result.push({
-          id: `${slugify(author)}__${slugify(title)}__${index}`,
+          id,
+          url: `/quoteshelf/${authorSlug}?book=${titleSlug}#${id}`,
           title,
           author,
           quote,
