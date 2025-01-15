@@ -1,11 +1,12 @@
 ---
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
+import SearchResults from '@src/components/search/SearchResults.astro';
 ---
 <NavbarLayout title="Search">
   <div class="container tw-container">
     <div class="search">
-      <input id="q" name="q" class="form-input" type="text" placeholder="Search..." 
+      <input id="q" name="q" class="form-input" type="text" placeholder="Search..."
         hx-trigger="keyup changed delay:500ms, init-query"
         hx-target="#results"
         hx-post="/blog/search-results"
@@ -18,11 +19,17 @@ import CoolBackground from '@src/components/CoolBackground.astro';
       </sl-spinner>
 
       <div class="results indicator" id="results">
+        {/* This is a trick to get the scoped styles in the SearchResults component
+        to render into the stylesheet. It doesn't get generated otherwise because it's a partial
+        that's not prerendered.
+        */}
+        <SearchResults results={[]} q="" />
       </div>
     </div>
 
   </div>
   <CoolBackground />
+
 </NavbarLayout>
 
 <style lang="scss">
@@ -41,7 +48,7 @@ import CoolBackground from '@src/components/CoolBackground.astro';
       input {
         width: var(--size-fluid-10);
         margin-bottom: var(--size-fluid-2);
-        font-size: var(--font-size-fluid-2);
+        font-family: var(--font-body);
       }
 
       sl-spinner {
@@ -62,59 +69,16 @@ import CoolBackground from '@src/components/CoolBackground.astro';
       }
 
       .results {
+        width: var(--size-fluid-10);
+
+        @include sm-up {
+          width: var(--size-fluid-12);
+        }
 
         &.htmx-request {
           opacity: 0;
         }
 
-        font-family: var(--font-body);
-        padding: 0 var(--size-fluid-1);
-        width: var(--size-fluid-10);
-
-        // must be global because the results are rendered
-        // on the server at request time, and it doesn't have
-        // the identifiers for scoped styles
-        :global(.result) {
-          margin: var(--size-fluid-2) 0;
-          padding-bottom: var(--size-fluid-2);
-
-          opacity: 0;
-          animation: fade-in 400ms ease-in-out;
-          animation-fill-mode: forwards;
-          @for $i from 1 through 20 {
-            &:nth-child(#{$i}) {
-              animation-delay: calc(75ms * #{$i});
-            }
-          }
-
-          &:not(.not-found) {
-            border-bottom: 1px solid var(--colour-accent);
-          }
-
-          :global(a) {
-            text-decoration: underline;
-            @include hover-link($subtle: true);
-          }
-
-          :global(.title) {
-            font-family: var(--font-display);
-            font-size: var(--font-size-3);
-            margin-bottom: var(--size-fluid-1);
-          }
-
-          :global(.body) {
-            list-style-type: disc;
-            list-style-position: inside;
-            font-size: var(--font-size-2);
-          }
-
-          :global(mark) {
-            background: inherit;
-            font-weight: 700;
-            font-style: italic;
-            color: var(--colour-accent);
-          }
-        }
       }
     }
   }

@@ -6,6 +6,8 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
 import { Client } from '@opensearch-project/opensearch';
+import { parse } from 'yaml';
+import slugify from '@sindresorhus/slugify';
 
 import 'dotenv/config';
 
@@ -19,7 +21,7 @@ function declutter(s : string) : string {
   return s.replace(/letterboxd link/, '').replace(/storygraph link/, '').trim();
 }
 
-async function readDirectoryContents(dir : string) : Promise<any> {
+async function readBlogContents(dir : string) : Promise<any> {
 
   const srcDir = await readdir(`./src/data/${dir}`);
 
@@ -41,8 +43,9 @@ async function readDirectoryContents(dir : string) : Promise<any> {
         title,
         description,
         content,
-        slug,
+        id: slug,
         url: `${urlPath}/${slug}`,
+        type: 'blog',
       });
     }
   }
@@ -51,31 +54,58 @@ async function readDirectoryContents(dir : string) : Promise<any> {
 
 }
 
+async function readQuoteshelfContents(): Promise<any> {
+
+  const srcDir = await readdir('./src/data/quoteshelf');
+  const result = [];
+
+  // I don't like that I have to repeat a lot of the same work as
+  // the quoteshelf loader, but unfortunately, you can't access the content
+  // collection APIs from here.
+  for (let file of srcDir) {
+    if (file.endsWith('.yaml')) {
+      const fileContent = await readFile(`./src/data/quoteshelf/${file}`, 'utf8');
+      const data = parse(fileContent);
+
+      const { title, author, quotes } = data;
+      const authorSlug = slugify(author);
+      const titleSlug = slugify(title);
+
+      quotes.forEach((quote : string, index : number) => {
+        const id = `${authorSlug}__${titleSlug}__${index}`;
+        result.push({
+          id,
+          url: `/quoteshelf/${authorSlug}?book=${titleSlug}#${id}`,
+          title,
+          author,
+          quote,
+          type: 'quote',
+        });
+      });
+    }
+  }
+
+  return result;
+}
+
 async function buildIndex(logger: AstroIntegrationLogger, client: Client) {
 
   try {
-    const blog = await readDirectoryContents('blog');
-    const capsules = await readDirectoryContents('capsules');
 
     const indexName = `alchoi-blog-${import.meta.env.DEV ? 'development' : 'production'}`;
-
     const { body: exists } = await client.indices.exists({ index: indexName });
     if (exists) {
       await client.indices.delete({ index: indexName });
     }
 
-    const entries = [...blog, ...capsules].map((entry) => {
-      return {
-        id: entry.slug,
-        url: entry.url,
-        title: entry.title,
-        description: entry.description,
-        content: entry.content,
-      };
-    });
-    logger.info(`Indexing ${entries.length} entries`);
+    const blog = await readBlogContents('blog');
+    const capsules = await readBlogContents('capsules');
 
-    const body = entries.reduce((memo, entry) => {
+    const quoteshelf = await readQuoteshelfContents();
+
+    logger.info(`Indexing ${blog.length + capsules.length} blog entries and ${quoteshelf.length} quotes`);
+
+    const body = [...blog, ...capsules, ...quoteshelf].reduce((memo, entry) => {
       const { id, ...rest } = entry;
       const command = {
         create: { _id: id }
@@ -84,13 +114,12 @@ async function buildIndex(logger: AstroIntegrationLogger, client: Client) {
       return [...memo, command, rest];
     }, []);
 
-
     const result = await client.bulk({
       index: indexName,
       body
     });
 
-    logger.info(`Successfully saved OpenSearch index [${indexName}]`);
+    logger.info(`Successfully saved OpenSearch index [${indexName}] in ${result.body.took} ms`);
 
   } catch (e) {
     logger.error('Failed to build search index ' + e);
