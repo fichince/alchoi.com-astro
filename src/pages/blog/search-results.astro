@@ -24,10 +24,7 @@ function highlightOpts(includeAll = false) {
 }
 
 const formData = await Astro.request.formData();
-console.log('formData', formData);
 const q = formData.get('q') as string ?? '';
-const includeBlog = formData.get('includeBlog') as string === 'on';
-const includeQuotes = formData.get('includeQuotes') as string === 'on';
 
 let results : Result[] = [];
 
@@ -95,7 +92,7 @@ if (q && q.trim().length > 0) {
 
   results = (response?.body?.hits?.hits ?? []).map((hit) => {
 
-    //console.log('hit', hit);
+    console.log('hit', hit);
 
     const result : Result = {
       title: hit?._source.title,

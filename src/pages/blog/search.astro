@@ -6,35 +6,14 @@ import SearchResults from '@src/components/search/SearchResults.astro';
 <NavbarLayout title="Search">
   <div class="container tw-container">
     <div class="search">
-
-      <form x-data="searchQuery" x-ref="formRef"
-        hx-trigger="init-query, submit"
+      <input id="q" name="q" class="form-input" type="text" placeholder="Search..."
+        hx-trigger="keyup changed delay:500ms, init-query"
         hx-target="#results"
         hx-post="/blog/search-results"
         hx-indicator=".indicator"
-      >
-        <input id="q" name="q" class="form-input" type="text" placeholder="Search..."
-          x-model="q" />
-
-        {/* TODO - rearrange layout */}
-        <fieldset class="toggles">
-          <legend>Include:</legend>
-          <label for="includeBlog">
-            <input name="includeBlog" id="includeBlog" type="checkbox"
-              x-model="includeBlog">
-            </input>
-            Blog posts
-          </label>
-          <label for="includeQuotes">
-            <input name="includeQuotes" id="includeQuotes" type="checkbox"
-              x-model="includeQuotes">
-            </input>
-            Quotes
-          </label>
-        </fieldset>
-
-        <button type="submit" class="button" x-on:click="updateQueryString()">Search</button>
-      </form>
+        x-data="searchQuery"
+        x-on:keyup="updateQueryString"
+      />
 
       <sl-spinner id="spinner" class="indicator">
       </sl-spinner>
@@ -66,25 +45,10 @@ import SearchResults from '@src/components/search/SearchResults.astro';
       flex-direction: column;
       align-items: center;
 
-      form {
-        display: flex;
-        gap: var(--size-3);
-        align-items: center;
+      input {
+        width: var(--size-fluid-10);
         margin-bottom: var(--size-fluid-2);
-
-        input#q {
-          width: var(--size-fluid-10);
-          font-family: var(--font-body);
-        }
-
-        input[type="checkbox"] {
-          margin-right: var(--size-1);
-        }
-
-        .toggles {
-          display: flex;
-          gap: var(--size-3);
-        }
+        font-family: var(--font-body);
       }
 
       sl-spinner {
