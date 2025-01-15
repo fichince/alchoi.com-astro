@@ -1,0 +1,131 @@
+---
+
+export type Result = {
+  title: string;
+  titleMatch?: string | null;
+  url: string;
+  matches: string[];
+  quote?: string;
+  author?: string;
+  type: string;
+}
+interface Props {
+  results: Result[];
+  q: string;
+}
+
+const { results, q } = Astro.props;
+
+---
+
+<Fragment>
+{ results.length === 0 && q.length > 0 ?
+  <div class="not-found result">
+    <div class="title">
+      Nothing found for <mark>{q}</mark>
+    </div>
+  </div>
+  :
+  <Fragment>
+  { results.map((result) => (
+    <div class="result">
+      { result.type === 'blog' && (
+        <div class="title">
+          <a href={result.url}>
+            { result.titleMatch ?
+              <Fragment set:html={result.titleMatch} />
+            :
+              <Fragment>{ result.title }</Fragment>
+            }
+          </a>
+        </div>
+
+        <ul class="body">
+          { result.matches.map((match) => (
+            <li>
+              &hellip;<Fragment set:html={match} />&hellip;
+            </li>
+          ))}
+        </ul>
+      )}
+
+      { result.type === 'quote' && (
+        <div class="tw-prose">
+          <Fragment set:html={result.quote} />
+        </div>
+        <div class="quote-title">
+          <a href={result.url}>
+            {result.title}
+          </a>
+        </div>
+        <div class="quote-author">
+          {result.author}
+        </div>
+      )}
+    </div>
+  ))}
+  </Fragment>
+}
+</Fragment>
+
+<style lang="scss">
+  @import "../../style/mixins.scss";
+
+  .result {
+    font-family: var(--font-body);
+    padding: 0 var(--size-fluid-1);
+
+    margin: var(--size-fluid-2) 0;
+    padding-bottom: var(--size-fluid-2);
+
+    opacity: 0;
+    animation: fade-in 400ms ease-in-out;
+    animation-fill-mode: forwards;
+    @for $i from 1 through 20 {
+      &:nth-child(#{$i}) {
+        animation-delay: calc(75ms * #{$i});
+      }
+    }
+
+    &:not(.not-found) {
+      border-bottom: 1px solid var(--colour-accent);
+    }
+
+    a {
+      text-decoration: underline;
+      @include hover-link($subtle: true);
+    }
+
+    .title {
+      font-family: var(--font-display);
+      font-size: var(--font-size-3);
+      margin-bottom: var(--size-fluid-1);
+    }
+
+    .body {
+      list-style-type: disc;
+      list-style-position: inside;
+    }
+
+    .quote-title {
+      margin-top: var(--size-2);
+      font-style: italic;
+      font-size: larger;
+      font-family: var(--font-display);
+      text-align: right;
+    }
+
+    .quote-author {
+      text-align: right;
+      font-weight: bold;
+    }
+
+    :global(mark) {
+      background: var(--colour-accent);
+      font-weight: 700;
+      font-style: italic;
+      padding: var(--size-1);
+    }
+
+  }
+</style>

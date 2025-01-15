@@ -23,11 +23,6 @@ const quoteshelf = await getCollection('quoteshelf');
 
 console.timeLog('randomizer', 'loaded collection');
 
-
-//console.timeLog('randomizer', 'done reading quotes');
-
-console.log('total number of quotes', quoteshelf.length);
-
 const indices = new Set<number>();
 while (indices.size < NUM_QUOTES) {
   indices.add(random(0, quoteshelf.length - 1));

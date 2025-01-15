@@ -5,18 +5,9 @@
 export const prerender = false;
 export const partial = true;
 
+import SearchResultsComponent, { type Result } from '@src/components/search/SearchResults.astro';
 import { Client } from '@opensearch-project/opensearch';
 import { renderMarkdown } from '@src/markdown';
-
-type Result = {
-  title: string;
-  titleMatch?: string | null;
-  url: string;
-  matches: string[];
-  quote?: string;
-  author?: string;
-  type: string;
-}
 
 function highlightOpts(includeAll = false) {
   const opts = {
@@ -84,8 +75,8 @@ if (q && q.trim().length > 0) {
     },
     highlight: {
       fields: {
-        title: highlightOpts(false),
-        description: highlightOpts(false),
+        title: highlightOpts(true),
+        description: highlightOpts(true),
         content: highlightOpts(false),
         quote: highlightOpts(true),
       }
@@ -133,48 +124,4 @@ if (q && q.trim().length > 0) {
 }
 ---
 
-{ results.length === 0 && q.length > 0 ?
-  <div class="not-found result">
-    <div class="title">
-      Nothing found for <mark>{q}</mark>
-    </div>
-  </div>
-  :
-  <div>
-  { results.map((result) => (
-    <div class="result">
-      { result.type === 'blog' && (
-        <div class="title">
-          <a href={result.url}>
-            { result.titleMatch ?
-              <Fragment set:html={result.titleMatch} />
-            :
-              <Fragment>{ result.title }</Fragment>
-            }
-          </a>
-        </div>
-
-        <ul class="body">
-          { result.matches.map((match) => (
-            <li>
-              &hellip;<Fragment set:html={match} />&hellip;
-            </li>
-          ))}
-        </ul>
-      )}
-
-      { result.type === 'quote' && (
-        <div>
-          <Fragment set:html={result.quote} />
-        </div>
-        <div>
-          {result.title}
-        </div>
-        <div>
-          {result.author}
-        </div>
-      )}
-    </div>
-  ))}
-  </d>
-}
+<SearchResultsComponent results={results} q={q} />

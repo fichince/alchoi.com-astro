@@ -21,8 +21,8 @@ export function renderMarkdown(md : string) : string {
       .use(remarkParse)
       .use(remarkGfm)
       .use(remarkSmartypants)
-      .use(remarkRehype)
-      .use(rehypeStringify)
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeStringify, { allowDangerousHtml: true })
       .processSync(md.trim())
       .toString();
 
