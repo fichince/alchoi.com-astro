@@ -14,25 +14,26 @@ import SearchResults from '@src/components/search/SearchResults.astro';
         hx-indicator=".indicator"
       >
         <input id="q" name="q" class="form-input" type="text" placeholder="Search..."
-          x-model="q"
-          {/*x-on:keyup.debounce.500ms="$refs.formRef.submit()"*/}
-        />
+          x-model="q" />
 
-        {/* TODO don't use shoelace here... it's interfering with how Alpine works
-        what I need is a styling only component library */}
+        {/* TODO - rearrange layout */}
+        <fieldset class="toggles">
+          <legend>Include:</legend>
+          <label for="includeBlog">
+            <input name="includeBlog" id="includeBlog" type="checkbox"
+              x-model="includeBlog">
+            </input>
+            Blog posts
+          </label>
+          <label for="includeQuotes">
+            <input name="includeQuotes" id="includeQuotes" type="checkbox"
+              x-model="includeQuotes">
+            </input>
+            Quotes
+          </label>
+        </fieldset>
 
-        <div class="toggles">
-          <sl-checkbox name="includeBlog"
-            x-model="includeBlog">
-            Include blog posts
-          </sl-checkbox>
-          <sl-checkbox name="includeQuotes"
-            x-model="includeQuotes">
-            Include quoteshelf
-          </sl-checkbox>
-        </div>
-
-        <sl-button type="submit" x-on:click="updateQueryString()">Search</sl-button>
+        <button type="submit" class="button" x-on:click="updateQueryString()">Search</button>
       </form>
 
       <sl-spinner id="spinner" class="indicator">
@@ -71,15 +72,18 @@ import SearchResults from '@src/components/search/SearchResults.astro';
         align-items: center;
         margin-bottom: var(--size-fluid-2);
 
-        input {
+        input#q {
           width: var(--size-fluid-10);
           font-family: var(--font-body);
         }
 
+        input[type="checkbox"] {
+          margin-right: var(--size-1);
+        }
+
         .toggles {
           display: flex;
-          flex-direction: column;
-          gap: var(--size-1);
+          gap: var(--size-3);
         }
       }
 

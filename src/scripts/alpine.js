@@ -27,23 +27,38 @@ function searchQuery() {
     // when loading the page, take the query string from the URL
     // and trigger HTMX to request search results
     init() {
-      const url = new URL(window.location.href);
-      const q = url.searchParams.get('q') ?? '';
-      document.getElementById('q')?.setAttribute('value', q);
-      window.htmx.trigger('#q', 'init-query');
+      const { query } = qs.parseUrl(window.location.href);
+
+      this.q = query.q ?? '';
+      this.includeBlog = Boolean(query.includeBlog);
+      this.includeQuotes = Boolean(query.includeQuotes);
+
+      // TODO need a way to run the search (e.g. when coming back using back button)
+      //this.$refs.formRef.submit();
+      //window.htmx.trigger(this.$refs.formRef, 'init-query');
     },
 
     updateQueryString() {
-      const url = new URL(window.location.href);
+      const { url } = qs.parseUrl(window.location.href);
 
       console.log('updateQueryString', this.q, this.includeBlog, this.includeQuotes);
 
-      url.searchParams.set('q', this.q);
-      if (this.includeBlog) url.searchParams.set('includeBlog', 1);
-      if (this.includeQuotess) url.searchParams.set('includeQuotess', 1);
+      const updated = qs.stringifyUrl(
+        {
+          url,
+          query: {
+            q: this.q,
+            includeBlog: this.includeBlog ? 1 : null,
+            includeQuotes: this.includeQuotes ? 1 : null,
+          },
+        },
+        {
+          skipNull: true,
+          skipEmptyString: true,
+        }
+      );
 
-      window.history.replaceState(null, '', url.toString());
-
+      window.history.replaceState(null, '', updated);
     }
   };
 }
