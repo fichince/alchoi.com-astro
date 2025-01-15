@@ -92,7 +92,7 @@ if (q && q.trim().length > 0) {
 
   results = (response?.body?.hits?.hits ?? []).map((hit) => {
 
-    console.log('hit', hit);
+    //console.log('hit', hit);
 
     const result : Result = {
       title: hit?._source.title,

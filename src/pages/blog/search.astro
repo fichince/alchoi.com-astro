@@ -69,8 +69,11 @@ import SearchResults from '@src/components/search/SearchResults.astro';
       }
 
       .results {
-        // TODO figure this out
-        max-width: 80ch;
+        width: var(--size-fluid-10);
+
+        @include sm-up {
+          width: var(--size-fluid-12);
+        }
 
         &.htmx-request {
           opacity: 0;
