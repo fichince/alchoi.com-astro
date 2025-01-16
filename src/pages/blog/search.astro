@@ -69,10 +69,11 @@ import SearchResults from '@src/components/search/SearchResults.astro';
       }
 
       .results {
-        width: var(--size-fluid-10);
+        width: 85vw;
 
         @include sm-up {
-          width: var(--size-fluid-12);
+          width: var(--size-content-3);
+          max-width: 90vw;
         }
 
         &.htmx-request {
