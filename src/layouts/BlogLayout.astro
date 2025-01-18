@@ -221,10 +221,12 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
       &:nth-child(odd) {
         --text-alignment: left;
         --title-align: flex-start;
+        --title-margin: 0 0 var(--size-fluid-2) 0;
       }
       &:nth-child(even) {
         --text-alignment: right;
         --title-align: flex-end;
+        --title-margin: 0 0 0 var(--size-fluid-2);
       }
 
       @include sm-up {
@@ -288,6 +290,7 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
         h3 {
           font-size: var(--font-size-fluid-2);
           text-decoration: underline;
+          margin: var(--title-margin);
         }
 
         h4.author {

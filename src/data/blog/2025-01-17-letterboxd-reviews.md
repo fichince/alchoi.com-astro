@@ -1,7 +1,20 @@
 ---
-title: Letterboxd Import
-date: 2025-01-16
+title: All of my movie reviews from Letterboxd
+description: Owning my data, part 1
+date: 2025-01-17
+image: ../../images/blog/film.jpg
+tags:
+  - movies
 ---
+
+I guess it’s becoming a bit of a New Year’s mini-resolution for me to liberate myself from tech platforms (see [Quoteshelf](/blog/2025-01-13-quoteshelf)). Not that I have anything against the platforms in question, but [it’s always been important to me](/blog/2022-01-04-revive-again) to avoid getting locked into someone else’s website.
+
+Since 2009, the first time I attended [TIFF](/blog/tag/tiff), I’ve been tracking every movie I watch. I think I used to do it on the venerable [IMDB](https://imdb.com), but once [Letterboxd](https://letterboxd.com) came along, I migrated over and never looked back.
+
+A social site like Letterboxd encourages a certain style of writing: pithy and snarky, i.e. like a tweet. I’ve written my fair share of those, with longer reviews residing on my blog. Having my content in two different places just sticks in my craw, so I’ve finally done the somewhat tedious work to export my posts, and have collected them all here in this post.
+
+<!-- excerpt -->
+----
 
 ### [_Upstream Color_](https://letterboxd.com/film/upstream-color/)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>2013-05-08</small>
 
