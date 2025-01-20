@@ -3,6 +3,7 @@ title: _A History of the World_
 author: Andrew Marr
 date: 2024-10-16
 end: 2025-01-20
+type: book
 rating: 3.5
 image: ../../images/blog/globe.jpg
 ---
