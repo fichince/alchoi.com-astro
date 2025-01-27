@@ -42,11 +42,13 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
 ---
 <NavbarLayout title={title ?? 'Blog'} meta={meta}>
   <div class="container tw-container fade-in">
+  {/*
     <header>
       <h1>Blog</h1>
-      <TagChooser selectedTag={tag} />
+      <!--<TagChooser selectedTag={tag} />-->
       <div class="divider" />
     </header>
+  */}
     <main>
       {posts.map(async (post, index) => {
 
@@ -152,13 +154,17 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
       "main"
       "footer";
     grid-template-columns: auto;
+    max-width: 768px;
+    /*
     @include sm-up {
       grid-template-areas:
         "main main header"
         "footer footer .";
       grid-template-columns: 1fr 1fr 1fr;
     }
+    */
 
+    /*
     header {
       display: flex;
       flex-direction: column;
@@ -187,6 +193,7 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
         }
       }
     }
+    */
 
     main {
       grid-area: main;
