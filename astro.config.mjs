@@ -1,10 +1,10 @@
 import { defineConfig } from 'astro/config';
 import svelte from "@astrojs/svelte";
-import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import search from './src/integrations/search.ts';
+import tailwindcss from "@tailwindcss/vite"
 //import Sonda from 'sonda/astro';
 
 // https://astro.build/config
@@ -13,7 +13,6 @@ export default defineConfig({
   output: 'static',
   integrations: [
     svelte(),
-    tailwind(),
     mdx(),
     sitemap(),
     search(),
@@ -39,6 +38,7 @@ export default defineConfig({
   adapter: vercel({
   }),
   vite: {
+    plugins: [ tailwindcss() ],
     build: {
       sourcemap: false
     }
