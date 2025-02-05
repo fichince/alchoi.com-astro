@@ -18,6 +18,8 @@
 
   --navbar-height: var(--size-fluid-5);
   scroll-behavior: smooth;
+
+  font-family: var(--font-body);
 }
 
 * {
