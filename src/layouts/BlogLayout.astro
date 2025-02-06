@@ -128,7 +128,7 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
   import createObserver from '../scripts/intersection';
 
   const items = document.getElementsByClassName('post');
-  const observer = createObserver();
+  const observer = createObserver({ threshold: 0.05 });
 
   for (let i = 0; i < items.length; i++) {
     const elem = items.item(i);
