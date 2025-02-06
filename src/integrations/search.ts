@@ -32,6 +32,8 @@ async function readBlogContents(dir : string) : Promise<any> {
       const fileContent = await readFile(`./src/data/${dir}/${file}`, 'utf8');
       const { data, content: body } = matter(fileContent);
 
+      if (data.draft) continue;
+
       const title = stripMarkdown(data.title);
       const description = stripMarkdown(data.description);
       const content = declutter(stripMarkdown(body));
