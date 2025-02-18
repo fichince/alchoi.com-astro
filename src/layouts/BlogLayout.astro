@@ -2,6 +2,7 @@
 import MD from '@src/components/MD.astro';
 import Paginator from '@src/components/Paginator.astro';
 import TagChooser from '@src/components/TagChooser.astro';
+import CoolBackground from '@src/components/CoolBackground.astro';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
 import TagList from '@src/components/TagList.astro';
 import About from '@src/components/About.astro';
@@ -49,7 +50,12 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
       <div class="divider" />
     </header>
   */}
-    <main>
+    <main x-data="{ bgShift: -1, bgHover: 0 }"
+      x-bind:data-bg-shift="bgShift"
+      x-bind:data-bg-hover="bgHover"
+      x-on:mouseenter="bgHover = 1"
+      x-on:mouseleave="bgHover = 0">
+
       {posts.map(async (post, index) => {
 
         const date = shortDate(post.data.date);
@@ -63,7 +69,9 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
         const even = index % 2 === 0;
 
         return (
-          <article class="post card">
+          <article class="post card"
+            x-on:mouseover={`bgShift = ${index}`}>
+
             <div class="title">
               <div class="tags">
                 <TagList tags={tags} justify={ even ? 'left' : 'right' } />
@@ -116,6 +124,7 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
         );
       })}
     </main>
+    <CoolBackground />
     <footer>
       <Paginator page={page} />
     </footer>
