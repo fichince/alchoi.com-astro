@@ -1,6 +1,6 @@
 ---
 import Logo from "./Logo.astro";
-//import ThemeToggler from '@src/components/ThemeToggler.svelte';
+import Search from "./icons/Search.astro";
 
 const { pathname } = Astro.url;
 
@@ -43,6 +43,12 @@ const NAV = [
 
       <li>
         <a href="#about">About</a>
+      </li>
+
+      <li>
+        <a href="/blog/search">
+          <Search />
+        </a>
       </li>
 
       {/*
