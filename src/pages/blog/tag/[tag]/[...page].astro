@@ -1,14 +1,11 @@
 ---
 import BlogLayout from '@src/layouts/BlogLayout.astro';
-import { PAGE_SIZE, getAllBlogEntries } from '@src/utils';
+import { PAGE_SIZE, getAllBlogEntries, getAllBlogTags, getAllBlogTagsWithCounts } from '@src/utils';
 import type { GetStaticPaths, Page } from 'astro';
-import union from 'lodash/union';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const collection = await getAllBlogEntries();
-  const allTags = collection.reduce<string[]>((memo, post) => {
-    return union(memo, post.data.tags ?? []);
-  }, []);
+  const allTags = await getAllBlogTags();
 
   const pages = allTags.flatMap((tag) => {
     const posts = collection.filter((post) => {
@@ -24,6 +21,38 @@ export const getStaticPaths = (async ({ paginate }) => {
 }) satisfies GetStaticPaths;
 
 const { tag } = Astro.params;
+
+const allTags = await getAllBlogTagsWithCounts();
+console.log('here', allTags);
 const page : Page<BlogEntry> = Astro.props.page;
 ---
-<BlogLayout tag={tag} page={page} />
+<BlogLayout tag={tag} page={page}>
+  <div class="tag-container card" slot="header">
+    { Object.keys(allTags).map((tag) => (
+      <a href={`/blog/tag/${tag}`} class="tag">
+        <span>{tag}</span>
+        <span>({allTags[tag]})</span>
+      </a>
+    ))}
+
+  </div>
+</BlogLayout>
+
+<style lang="scss">
+@import '@src/style/mixins.scss';
+
+.tag-container {
+  font-family: var(--font-body);
+
+  display: flex;
+  gap: var(--size-2);
+  flex-wrap: wrap;
+  width: 100%;
+  padding: var(--size-fluid-2);
+
+  a {
+    @include hover-link($subtle: false);
+  }
+}
+
+</style>

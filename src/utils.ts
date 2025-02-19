@@ -1,4 +1,6 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
+import union from 'lodash/union';
+import countBy  from 'lodash/countBy';
 import { DateTime } from 'luxon';
 export const PAGE_SIZE = 10;
 
@@ -79,4 +81,21 @@ export function getLinkToPost(post? : BlogCollectionEntry | CapsuleCollectionEnt
   const path = post.collection === 'blog' ? '/blog' : '/quick-reviews';
   const link = `${path}/${post.id}`;
   return link;
+}
+
+export async function getAllBlogTags(): Promise<string[]> {
+  const collection = await getAllBlogEntries();
+  const allTags = collection.reduce<string[]>((memo, post) => {
+    return union(memo, post.data.tags ?? []);
+  }, []);
+  return allTags;
+}
+
+export async function getAllBlogTagsWithCounts(): Promise<Record<string, number>> {
+  const collection = await getAllBlogEntries();
+  const allTags = collection.reduce<string[]>((memo, post) => {
+    return memo.concat(post.data.tags ?? []);
+  }, []);
+
+  return countBy(allTags);
 }

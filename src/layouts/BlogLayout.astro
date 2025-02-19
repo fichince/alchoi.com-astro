@@ -43,6 +43,7 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
 ---
 <NavbarLayout title={title ?? 'Blog'} meta={meta}>
   <div class="container tw-container fade-in">
+  <slot name="header" />
   {/*
     <header>
       <h1>Blog</h1>
