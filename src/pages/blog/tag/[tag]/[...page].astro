@@ -2,6 +2,7 @@
 import BlogLayout from '@src/layouts/BlogLayout.astro';
 import { PAGE_SIZE, getAllBlogEntries, getAllBlogTags, getAllBlogTagsWithCounts } from '@src/utils';
 import type { GetStaticPaths, Page } from 'astro';
+import mapValues from 'lodash/mapValues';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const collection = await getAllBlogEntries();
@@ -20,18 +21,37 @@ export const getStaticPaths = (async ({ paginate }) => {
   return pages;
 }) satisfies GetStaticPaths;
 
-const { tag } = Astro.params;
+const { tag: selectedTag } = Astro.params;
 
 const allTags = await getAllBlogTagsWithCounts();
-console.log('here', allTags);
+const sorted = Object.keys(allTags).sort((a : string, b : string) => {
+  if (a === selectedTag) { return -1; }
+  if (b === selectedTag) { return 1; }
+  return a.localeCompare(b);
+});
+
+const total = Object.values(allTags).reduce((acc, count) => acc + count, 0);
+
+const sizes = mapValues(allTags, (count, tag) => {
+  const proportion = count / total;
+  return proportion * 2 + 1;
+});
+
+console.log('sizes', sizes);
+
 const page : Page<BlogEntry> = Astro.props.page;
 ---
-<BlogLayout tag={tag} page={page}>
+<BlogLayout page={page}>
   <div class="tag-container card" slot="header">
-    { Object.keys(allTags).map((tag) => (
+    { sorted.map((tag) => (
       <a href={`/blog/tag/${tag}`} class="tag">
-        <span>{tag}</span>
-        <span>({allTags[tag]})</span>
+        <span class="tag-name"
+          class:list={{ selected: tag === selectedTag }}
+          style={{ fontSize: `${sizes[tag]}em` }}>
+          {tag}
+        </span>
+
+        <span class="tag-count" >({allTags[tag]})</span>
       </a>
     ))}
 
@@ -45,10 +65,23 @@ const page : Page<BlogEntry> = Astro.props.page;
   font-family: var(--font-body);
 
   display: flex;
+  align-items: center;
   gap: var(--size-2);
   flex-wrap: wrap;
   width: 100%;
   padding: var(--size-fluid-2);
+
+  .tag-name.selected {
+    font-weight: bold;
+    font-style: italic;
+    &::before {
+      content: '\2192\00a0';
+    }
+  }
+
+  .tag-count {
+    font-size: 0.75em;
+  }
 
   a {
     @include hover-link($subtle: false);
