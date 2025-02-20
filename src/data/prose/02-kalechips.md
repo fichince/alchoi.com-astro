@@ -1,6 +1,6 @@
 ---
 title: Kale Chips
-url: http://bit.ly/GwaaiKale
+url: https://www.shanghailiterary.com/tslr-online-collection/2017/6/7/kale-chips
 description: _Shanghai Literary Review_, Issue 1
 image: ../../images/writing/kalechips.jpg
 ---

@@ -3,6 +3,8 @@ import BlogLayout from '@src/layouts/BlogLayout.astro';
 import { PAGE_SIZE, getAllBlogEntries, getAllBlogTags, getAllBlogTagsWithCounts } from '@src/utils';
 import type { GetStaticPaths, Page } from 'astro';
 import mapValues from 'lodash/mapValues';
+import drop from 'lodash/drop';
+import { fade } from 'astro:transitions';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const collection = await getAllBlogEntries();
@@ -32,21 +34,30 @@ const sorted = Object.keys(allTags).sort((a : string, b : string) => {
 
 const total = Object.values(allTags).reduce((acc, count) => acc + count, 0);
 
-const sizes = mapValues(allTags, (count, tag) => {
+const sizes = mapValues(allTags, (count) => {
   const proportion = count / total;
   return proportion * 2 + 1;
 });
 
-console.log('sizes', sizes);
+const remainder = drop(sorted, 1);
 
 const page : Page<BlogEntry> = Astro.props.page;
 ---
 <BlogLayout page={page}>
   <div class="tag-container card" slot="header">
-    { sorted.map((tag) => (
+
+    <a href={`/blog/tag/${selectedTag}`} class="tag"
+      transition:name="selected-tag">
+      <span class="tag-name selected"
+        style={{ fontSize: `${sizes[selectedTag]}em` }}>
+        {selectedTag}
+        <span class="tag-count" >({allTags[selectedTag]})</span>
+      </span>
+    </a>
+
+    { remainder.map((tag) => (
       <a href={`/blog/tag/${tag}`} class="tag">
         <span class="tag-name"
-          class:list={{ selected: tag === selectedTag }}
           style={{ fontSize: `${sizes[tag]}em` }}>
           {tag}
         </span>
