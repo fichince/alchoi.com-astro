@@ -4,7 +4,6 @@ import { PAGE_SIZE, getAllBlogEntries, getAllBlogTags, getAllBlogTagsWithCounts 
 import type { GetStaticPaths, Page } from 'astro';
 import mapValues from 'lodash/mapValues';
 import drop from 'lodash/drop';
-import { fade } from 'astro:transitions';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const collection = await getAllBlogEntries();
