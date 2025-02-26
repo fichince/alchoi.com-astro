@@ -9,6 +9,8 @@ import '@fontsource-variable/noto-serif-display/wght-italic.css';
 
 import { stripMarkdown } from '@src/markdown';
 
+import { ClientRouter } from 'astro:transitions';
+
 export interface Props {
   title?: string;
   meta?: {
@@ -64,6 +66,8 @@ const isProd = import.meta.env.PROD;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
+
+    <ClientRouter />
 
   </head>
 

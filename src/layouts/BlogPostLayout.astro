@@ -63,7 +63,7 @@ const { Content } = await render(post);
         <TagList tags={tags} justify="right" />
       </div>
       { image &&
-        <div class="image image-hover image-round">
+        <div class="image image-hover image-round" transition:name={`blog-image-${post.id}`}>
           <Image
             src={image}
             alt={title}
