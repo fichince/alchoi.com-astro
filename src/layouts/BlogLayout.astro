@@ -105,7 +105,7 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
               }
             </div>
             { post.data.image &&
-              <div class="image image-hover image-round" transition:name="blog-image" transition:animate="slide">
+              <div class="image image-hover image-round" transition:name={`blog-image-${post.id}`}>
                 <a href={link}>
                   <Image
                     src={post.data.image}
