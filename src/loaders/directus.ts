@@ -42,6 +42,8 @@ export default function directusLoader(): Loader {
 
       const { content, excerpt } = renderWithExcerpt(parsed.content);
 
+      // TODO use digest for caching
+
       store.set({
         id,
         data: parsed,
