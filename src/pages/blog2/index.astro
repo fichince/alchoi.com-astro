@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import { render } from 'astro:content';
+
+const posts = await getCollection('blog2');
+---
+<div>
+{ posts.map(async (post) => {
+  const { Content, ...rest } = await render(post);
+  console.log('here', rest);
+  console.log('metadata', post.rendered.metadata);
+  return (
+  <div>
+    <p>{ post.data.title }</p>
+    <div>
+    <Content />
+    </div>
+  </div>
+  <hr/>
+  );
+})}
+</div>

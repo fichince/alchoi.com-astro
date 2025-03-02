@@ -1,6 +1,7 @@
 import { z, defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import quoteshelfLoader from './loaders/quoteshelf';
+import directusLoader from './loaders/directus';
 
 const blogSchema = (image : Function) => z.object({
   title: z.string(),
@@ -75,6 +76,10 @@ const quoteshelf = defineCollection({
   loader: quoteshelfLoader({ base: './src/data/quoteshelf', imageBase: './src/images/quoteshelf' }),
 });
 
+const blog2 = defineCollection({
+  loader: directusLoader(),
+});
+
 export const collections = {
   prose,
   blog,
@@ -83,4 +88,5 @@ export const collections = {
   capsules,
   hkjapan,
   quoteshelf,
+  blog2,
 };
