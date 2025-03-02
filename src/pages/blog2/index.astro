@@ -1,19 +1,41 @@
 ---
-import { getCollection } from 'astro:content';
-import { render } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import { getImage } from 'astro:assets';
 
 const posts = await getCollection('blog2');
+
+async function loadImage(id : string | null) {
+  if (!id) return null;
+
+  const image = await getImage({
+    src: `https://cms.alchoi.dev/assets/${id}`,
+    format: 'webp',
+    inferSize: true,
+  });
+
+  return image.src;
+}
+
 ---
 <div>
 { posts.map(async (post) => {
   const { Content, ...rest } = await render(post);
   console.log('here', rest);
   console.log('metadata', post.rendered.metadata);
+  console.log('image', post.data.image);
+
+  const image = await loadImage(post.data.image);
+
   return (
   <div>
     <p>{ post.data.title }</p>
+    { image &&
     <div>
-    <Content />
+      <img src={image} alt={post.data.title} />
+    </div>
+    }
+    <div>
+      <Content />
     </div>
   </div>
   <hr/>
