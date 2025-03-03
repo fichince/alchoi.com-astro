@@ -1,0 +1,25 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getEntry } from 'astro:content';
+import { getCMSBlogEntries } from '@src/utils';
+import { DateTime } from 'luxon';
+import BlogPostLayout from '@src/layouts/BlogPostLayout.astro';
+import padStart from 'lodash/padStart';
+
+export const getStaticPaths = (async () => {
+  const collection = await getCMSBlogEntries();
+  return collection.map((post) => {
+    const date = DateTime.fromISO(post.data.date);
+    const year = date.year;
+    const month = padStart(`${date.month}`, 2, '0');
+    return {
+      params: { year, month, id: post.id }
+    }
+  });
+}) satisfies GetStaticPaths;
+
+const { id } = Astro.params;
+const post = await getEntry('cmsBlog', id);
+---
+
+<BlogPostLayout post={post} />

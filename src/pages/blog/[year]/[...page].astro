@@ -1,0 +1,34 @@
+---
+import BlogLayout from '@src/layouts/BlogLayout.astro';
+import { getCMSBlogEntries, PAGE_SIZE } from '@src/utils';
+import type { GetStaticPaths } from 'astro';
+import { DateTime } from 'luxon';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const collection = await getCMSBlogEntries();
+  const years = collection.reduce((memo, post) => {
+    const date = DateTime.fromISO(post.data.date);
+    const year = date.year;
+    memo.add(year);
+    return memo;
+  }, new Set());
+
+  const pages = Array.from(years).flatMap((year) => {
+    const posts = collection.filter((post) => {
+      const date = DateTime.fromISO(post.data.date);
+      return date.year === year;
+    });
+    return paginate(posts, {
+      params: { year: `${year}` },
+      pageSize: PAGE_SIZE,
+    });
+  });
+
+  return pages;
+
+}) satisfies GetStaticPaths;
+
+const page = Astro.props.page;
+
+---
+<BlogLayout page={page} />

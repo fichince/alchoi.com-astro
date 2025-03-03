@@ -62,16 +62,25 @@ export async function getAllBlogEntries() : Promise<BlogEntry[]> {
   });
 }
 
-export function shortDate(d : Date) : string {
+export async function getCMSBlogEntries(): Promise<CollectionEntry<'cmsBlog'>[]> {
+  const collection = await getCollection('cmsBlog');
+  const published = collection.filter((post) => {
+    return !post.data.draft;
+  });
+
+  return published;
+}
+
+export function shortDate(d : string) : string {
   return DateTime
-    .fromJSDate(d)
+    .fromISO(d)
     .toUTC()
     .toLocaleString(DateTime.DATE_SHORT);
 }
 
-export function mediumDate(d : Date) : string {
+export function mediumDate(d : string) : string {
   return DateTime
-    .fromJSDate(d)
+    .fromISO(d)
     .toUTC()
     .toLocaleString(DateTime.DATE_MED);
 }
@@ -83,16 +92,8 @@ export function getLinkToPost(post? : BlogCollectionEntry | CapsuleCollectionEnt
   return link;
 }
 
-export async function getAllBlogTags(): Promise<string[]> {
-  const collection = await getAllBlogEntries();
-  const allTags = collection.reduce<string[]>((memo, post) => {
-    return union(memo, post.data.tags ?? []);
-  }, []);
-  return allTags;
-}
-
-export async function getAllBlogTagsWithCounts(): Promise<Record<string, number>> {
-  const collection = await getAllBlogEntries();
+export async function getAllBlogTags(): Promise<Record<string, number>> {
+  const collection = await getCMSBlogEntries();
   const allTags = collection.reduce<string[]>((memo, post) => {
     return memo.concat(post.data.tags ?? []);
   }, []);

@@ -100,6 +100,7 @@ async function buildIndex(logger: AstroIntegrationLogger, client: Client) {
       await client.indices.delete({ index: indexName });
     }
 
+    // TODO use directus API
     const blog = await readBlogContents('blog');
     const capsules = await readBlogContents('capsules');
 

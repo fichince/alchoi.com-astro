@@ -7,10 +7,10 @@ import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import { mediumDate } from '@src/utils';
 import { Image } from 'astro:assets';
-import { render } from 'astro:content';
+import { render, type CollectionEntry } from 'astro:content';
 
 interface Props extends LayoutProps {
-  post : BlogCollectionEntry | CapsuleCollectionEntry;
+  post : CollectionEntry<'cmsBlog'>
 }
 
 const { post } = Astro.props;
@@ -18,17 +18,15 @@ const { post } = Astro.props;
 const title = post.data.title;
 const image = post.data.image;
 const author = post.data.author;
-const date = mediumDate(post.data.date ?? new Date());
-const end = post.data.end ? mediumDate(post.data.end) : null;
+const date = mediumDate(post.data.date);
+const start = post.data.start ? mediumDate(post.data.start) : null;
 const tags = post.data.tags ?? [];
 
 const description = post.data.description;
 
 const meta = {
   image,
-  description: post.collection === 'blog' ?
-    description :
-    `A quick review of ${title}`
+  description: post.data.description ?? post.data.title
 };
 
 const { Content } = await render(post);
@@ -53,10 +51,10 @@ const { Content } = await render(post);
       </h2>
       }
       <div class="dates">
-        <time>{date}</time>
-        {end &&
-          <span> - <time>{end}</time></span>
+        {start &&
+          <span><time>{start}</time> - </span>
         }
+        <time>{date}</time>
       </div>
 
       <div class="tags">
@@ -65,8 +63,9 @@ const { Content } = await render(post);
       { image &&
         <div class="image image-hover image-round" transition:name={`blog-image-${post.id}`}>
           <Image
-            src={image}
+            src={`https://cms.alchoi.dev/assets/${image}`}
             alt={title}
+            inferSize
             sizes="(min-width: 480px) 280px, 140px"
           />
         </div>

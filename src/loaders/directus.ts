@@ -1,7 +1,7 @@
 import type { Loader, LoaderContext } from 'astro/loaders';
 import { z } from 'astro:content';
 import { createDirectus, staticToken, rest, readItems } from '@directus/sdk';
-import { renderWithExcerpt } from '@src/markdown';
+import { renderWithExcerpt, stripMarkdown } from '@src/markdown';
 
 export default function directusLoader(): Loader {
 
@@ -46,7 +46,10 @@ export default function directusLoader(): Loader {
       const { slug: id, ...rest } = post as InputData;
       const parsed = await parseData({ id, data: rest });
 
+      const wordcount = stripMarkdown(parsed.content).split(' ').length;
       const { content, excerpt } = renderWithExcerpt(parsed.content);
+
+      logger.info(`Word count for ${id}: ${wordcount}`);
 
       // TODO use digest for caching
 
@@ -57,9 +60,12 @@ export default function directusLoader(): Loader {
           html: content,
           metadata: {
             excerpt,
+            wordcount,
           },
         }
       });
+
+      // TODO add to search index
     }
   }
 

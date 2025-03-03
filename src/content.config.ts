@@ -76,7 +76,7 @@ const quoteshelf = defineCollection({
   loader: quoteshelfLoader({ base: './src/data/quoteshelf', imageBase: './src/images/quoteshelf' }),
 });
 
-const blog2 = defineCollection({
+const cmsBlog = defineCollection({
   loader: directusLoader(),
 });
 
@@ -88,5 +88,5 @@ export const collections = {
   capsules,
   hkjapan,
   quoteshelf,
-  blog2,
+  cmsBlog,
 };
