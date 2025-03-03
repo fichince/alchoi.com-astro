@@ -158,14 +158,25 @@ for (const file of capsulesFiles) {
 
   slugs.add(slug);
 
+  // rearrange start and end dates
+  let start = null;
+  let date = null;
+
+  if (data.end) {
+    start = data.date;
+    date = data.end;
+  } else {
+    date = data.date;
+  }
+
   result.push({
     draft: false,
     ...data,
     tags,
     slug,
     image: imageId,
-    date: DateTime.fromJSDate(data.date).toISODate(),
-    end: data.end ? DateTime.fromJSDate(data.end).toISODate() : null,
+    date: DateTime.fromJSDate(date).toISODate(),
+    start: start ? DateTime.fromJSDate(start).toISODate() : null,
     content: content.trim(),
   });
 }

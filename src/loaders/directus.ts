@@ -18,7 +18,7 @@ export default function directusLoader(): Loader {
     description: z.string().nullable(),
     tags: z.string().array().nullable(),
     author: z.string().nullable(),
-    end: z.string().date().nullable(),
+    start: z.string().date().nullable(),
     rating: z.number().nullable(),
     draft: z.boolean().nullable(),
   });
@@ -32,7 +32,13 @@ export default function directusLoader(): Loader {
   async function load(context: LoaderContext) {
     const { logger, store, parseData } = context;
 
-    const posts = await client.request(readItems('posts'));
+    // TODO don't clear it
+    store.clear();
+
+    const posts = await client.request(readItems('posts', {
+      limit: -1,
+      sort: '-date',
+    }));
     logger.info(`Loading ${posts.length} posts from Directus`);
 
     for (const post of posts) {
@@ -54,7 +60,6 @@ export default function directusLoader(): Loader {
           },
         }
       });
-
     }
   }
 
