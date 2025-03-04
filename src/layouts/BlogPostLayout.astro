@@ -6,8 +6,9 @@ import TagList from '@src/components/TagList.astro';
 import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import { mediumDate } from '@src/utils';
-import { Image } from 'astro:assets';
-import { render, type CollectionEntry } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import { type CollectionEntry } from 'astro:content';
+import { JSDOM } from 'jsdom';
 
 interface Props extends LayoutProps {
   post : CollectionEntry<'cmsBlog'>
@@ -29,7 +30,32 @@ const meta = {
   description: post.data.description ?? post.data.title
 };
 
-const { Content } = await render(post);
+async function processInlineImages(html : string) : Promise<string> {
+  // the rendered HTML contains <img> tags that point to a CMS URL, but
+  // in order to optimize the image, we run it through the Astro image service
+  // and replace the URLs with the optimized image
+
+  const dom = new JSDOM(html);
+  const images = dom.window.document.querySelectorAll('img');
+
+  for (const element of images) {
+
+    const src = element.getAttribute('src');
+
+    const image = await getImage({
+      src,
+      format: 'webp',
+      inferSize: true,
+    });
+
+    //console.log(`inline image ${src} -> ${image.src}`);
+    element.setAttribute('src', image.src);
+  }
+
+  return dom.window.document.documentElement.outerHTML;
+}
+
+const html = processInlineImages(post.rendered.html);
 
 ---
 <NavbarLayout title={title} meta={meta}>
@@ -66,6 +92,7 @@ const { Content } = await render(post);
             src={`https://cms.alchoi.dev/assets/${image}`}
             alt={title}
             inferSize
+            widths={[280, 140]}
             sizes="(min-width: 480px) 280px, 140px"
           />
         </div>
@@ -74,8 +101,7 @@ const { Content } = await render(post);
         <sl-rating value={post.data.rating} readonly precision="0.5" />
       }
     </section>
-    <main class="tw-prose blog-post">
-      <Content />
+    <main class="tw-prose blog-post" set:html={html}>
     </main>
 
     <CoolBackground />

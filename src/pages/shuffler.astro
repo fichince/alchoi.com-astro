@@ -1,21 +1,22 @@
 ---
 import CoolBackground from '@src/components/CoolBackground.astro';
-import { getAllBlogEntries, getLinkToPost } from '@src/utils';
+import { getCMSBlogEntries, getLinkToPost } from '@src/utils';
 import { stripMarkdown } from '@src/markdown';
 import Shuffle from '@src/components/icons/Shuffle.astro';
 import PostShuffler from '@src/components/PostShuffler.svelte';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
+import { DateTime } from 'luxon';
 
-const posts = await getAllBlogEntries();
+const posts = await getCMSBlogEntries();
 const summaries : BlogEntrySummary[] = posts.map((post) => ({
   title: stripMarkdown(post.data.title),
   url: getLinkToPost(post),
-  date: post.data.date,
+  date: DateTime.fromISO(post.data.date).toJSDate(),
 }));
 
 ---
 <NavbarLayout title="Albert Choi">
-  <div class="container fade-in tw-container" 
+  <div class="container fade-in tw-container"
     x-data="{ bgShift: -1, bgHover: 0 }"
     x-bind:data-bg-shift="bgShift"
     x-bind:data-bg-hover="bgHover">
@@ -35,7 +36,7 @@ const summaries : BlogEntrySummary[] = posts.map((post) => ({
       </h3>
     </div>
 
-    <div class="menu" 
+    <div class="menu"
       x-on:mouseenter="bgHover = 1"
       x-on:mouseleave="bgHover = 0">
       <PostShuffler client:load posts={summaries} />
