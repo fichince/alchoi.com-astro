@@ -2,6 +2,8 @@ import type { Loader, LoaderContext } from 'astro/loaders';
 import { z } from 'astro:content';
 import { createDirectus, staticToken, rest, readItems } from '@directus/sdk';
 import { renderWithExcerpt, stripMarkdown } from '@src/markdown';
+import { getLinkToPostWithDate } from '@src/utils';
+import { addToIndex } from '@src/search-utils';
 
 export default function directusLoader(): Loader {
 
@@ -32,7 +34,6 @@ export default function directusLoader(): Loader {
   async function load(context: LoaderContext) {
     const { logger, store, parseData } = context;
 
-    // TODO don't clear it
     store.clear();
 
     const posts = await client.request(readItems('posts', {
@@ -40,6 +41,8 @@ export default function directusLoader(): Loader {
       sort: '-date',
     }));
     logger.info(`Loading ${posts.length} posts from Directus`);
+
+    const searchIndexEntries : SearchIndexEntry[] = [];
 
     for (const post of posts) {
 
@@ -50,8 +53,6 @@ export default function directusLoader(): Loader {
       const { content, excerpt } = renderWithExcerpt(parsed.content);
 
       logger.info(`Word count for ${id}: ${wordcount}`);
-
-      // TODO use digest for caching
 
       store.set({
         id,
@@ -65,8 +66,20 @@ export default function directusLoader(): Loader {
         }
       });
 
-      // TODO add to search index
+      searchIndexEntries.push({
+        id,
+        title: parsed.title,
+        url: getLinkToPostWithDate(parsed.date, id),
+        type: 'blog',
+        content: parsed.content,
+        description: parsed.description,
+        author: parsed.author,
+      });
+
     }
+
+    addToIndex(searchIndexEntries, logger);
+
   }
 
   return {

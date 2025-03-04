@@ -1,11 +1,15 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
-type SearchIndexEntry = { 
-  url: string,
-  title: string,
-  description?: string,
-  content: string,
+type SearchIndexEntry = {
+  id: string;
+  title: string;
+  url: string;
+  type: 'blog' | 'quote';
+  content?: string;
+  description?: string;
+  author?: string;
+  quote?: string;
 }
 
 type MatchPositions = {
@@ -30,7 +34,7 @@ type CapsuleCollectionEntry = import('astro:content').CollectionEntry<'capsules'
 // combine the two types of blog entries to display in the BlogLayout
 type BlogEntry = BlogCollectionEntry | CapsuleCollectionEntry;
 
-type BlogEntrySummary = { 
+type BlogEntrySummary = {
   title: string,
   url: string,
   date: Date,

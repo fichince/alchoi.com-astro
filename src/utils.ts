@@ -28,11 +28,15 @@ export function mediumDate(d : string) : string {
 }
 
 export function getLinkToPost(post : CollectionEntry<'cmsBlog'>) : string {
-  const date = DateTime.fromISO(post.data.date);
-  const year = date.year
+  return getLinkToPostWithDate(post.data.date, post.id);
+}
+
+export function getLinkToPostWithDate(dateStr : string, id : string) : string {
+  const date = DateTime.fromISO(dateStr);
+  const year = date.year;
   const month = padStart(`${date.month}`, 2, '0');
 
-  const link = `/blog/${year}/${month}/${post.id}`;
+  const link = `/blog/${year}/${month}/${id}`;
   return link;
 }
 

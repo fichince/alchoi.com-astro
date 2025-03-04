@@ -5,6 +5,7 @@ import { parse } from 'yaml';
 import qs from 'query-string';
 import slugify from '@sindresorhus/slugify';
 import pickBy from 'lodash/pickBy';
+import { addToIndex } from '@src/search-utils';
 
 export default function quoteshelfLoader(options: {
   base: string,
@@ -116,54 +117,68 @@ export default function quoteshelfLoader(options: {
     const dir = await readdir(options.base);
     const imageDir = await readdir(options.imageBase);
 
+    const searchIndexEntries : SearchIndexEntry[] = [];
+
     for (let file of dir) {
-      if (file.endsWith('.yaml')) {
-        const fileContent = await readFile(`${options.base}/${file}`, 'utf8');
+      if (!file.endsWith('.yaml')) continue;
 
-        const data = parse(fileContent) as InputData;
+      const fileContent = await readFile(`${options.base}/${file}`, 'utf8');
 
-        inputSchema.parse(data);
-        const { title, author, sortName, googleId, quotes } = data;
-        const titleSlug = slugify(title);
-        const authorSlug = slugify(author);
+      const data = parse(fileContent) as InputData;
 
-        const coverUrl = getCoverUrl(googleId, titleSlug, authorSlug, imageDir);
+      inputSchema.parse(data);
+      const { title, author, sortName, googleId, quotes } = data;
+      const titleSlug = slugify(title);
+      const authorSlug = slugify(author);
 
-        logger.info('Loading quotes for ' + titleSlug);
+      const coverUrl = getCoverUrl(googleId, titleSlug, authorSlug, imageDir);
 
-        for (let i = 0; i < quotes.length; i++) {
-          const q = quotes[i];
+      logger.info('Loading quotes for ' + titleSlug);
 
-          const quote: OutputData = pickBy({
-            title,
-            titleSlug,
-            author,
-            authorSlug,
-            sortName,
-            quote: q,
-            coverUrl,
-          });
+      for (let i = 0; i < quotes.length; i++) {
+        const q = quotes[i];
 
-          const id = `${authorSlug}__${titleSlug}__${i}`;
-          /*
-          const digest = generateDigest(quote);
-          const existing = store.get(id);
+        const quote: OutputData = pickBy({
+          title,
+          titleSlug,
+          author,
+          authorSlug,
+          sortName,
+          quote: q,
+          coverUrl,
+        });
 
-          if (digest === existing?.digest) {
-            logger.info('Reusing cached data for ' + id);
-            continue;
-          }
-          */
+        const id = `${authorSlug}__${titleSlug}__${i}`;
+        /*
+        const digest = generateDigest(quote);
+        const existing = store.get(id);
 
-          const parsed = await parseData({ id, data: quote });
-          store.set({
-            id,
-            data: parsed,
-            //digest
-          });
+        if (digest === existing?.digest) {
+          logger.info('Reusing cached data for ' + id);
+          continue;
         }
+        */
+
+        const parsed = await parseData({ id, data: quote });
+        store.set({
+          id,
+          data: parsed,
+          //digest
+        });
+
+        searchIndexEntries.push({
+          id,
+          title: parsed.title,
+          url: `/quoteshelf/${parsed.authorSlug}?book=${parsed.titleSlug}#${id}`,
+          type: 'quote',
+          author: parsed.author,
+          quote: parsed.quote,
+        });
       }
+
     }
+
+    addToIndex(searchIndexEntries, logger);
   }
 
   return {

@@ -100,29 +100,29 @@ async function buildIndex(logger: AstroIntegrationLogger, client: Client) {
       await client.indices.delete({ index: indexName });
     }
 
-    // TODO use directus API
-    const blog = await readBlogContents('blog');
-    const capsules = await readBlogContents('capsules');
+    // // TODO use directus API
+    // const blog = await readBlogContents('blog');
+    // const capsules = await readBlogContents('capsules');
 
-    const quoteshelf = await readQuoteshelfContents();
+    // const quoteshelf = await readQuoteshelfContents();
 
-    logger.info(`Indexing ${blog.length + capsules.length} blog entries and ${quoteshelf.length} quotes`);
+    // logger.info(`Indexing ${blog.length + capsules.length} blog entries and ${quoteshelf.length} quotes`);
 
-    const body = [...blog, ...capsules, ...quoteshelf].reduce((memo, entry) => {
-      const { id, ...rest } = entry;
-      const command = {
-        create: { _id: id }
-      };
+    // const body = [...blog, ...capsules, ...quoteshelf].reduce((memo, entry) => {
+    //   const { id, ...rest } = entry;
+    //   const command = {
+    //     create: { _id: id }
+    //   };
 
-      return [...memo, command, rest];
-    }, []);
+    //   return [...memo, command, rest];
+    // }, []);
 
-    const result = await client.bulk({
-      index: indexName,
-      body
-    });
+    // const result = await client.bulk({
+    //   index: indexName,
+    //   body
+    // });
 
-    logger.info(`Successfully saved OpenSearch index [${indexName}] in ${result.body.took} ms`);
+    // logger.info(`Successfully saved OpenSearch index [${indexName}] in ${result.body.took} ms`);
 
   } catch (e) {
     logger.error('Failed to build search index ' + e);
@@ -140,17 +140,22 @@ export default function search(): AstroIntegration {
     name: 'search',
     hooks: {
 
-      // for the development environment
-      'astro:server:start': async ({ logger }) => {
-        logger.info('Building search index - dev');
+      'astro:config:setup': async ({ logger }) => {
+        logger.info('Clearing search index');
         await buildIndex(logger, client);
       },
 
-      // when doing a production build
-      'astro:build:done': async ({ logger }) => {
-        logger.info('Building search index');
-        await buildIndex(logger, client);
-      }
+      // for the development environment
+      // 'astro:server:start': async ({ logger }) => {
+      //   logger.info('Building search index - dev');
+      //   await buildIndex(logger, client);
+      // },
+
+      // // when doing a production build
+      // 'astro:build:done': async ({ logger }) => {
+      //   logger.info('Building search index');
+      //   await buildIndex(logger, client);
+      // }
     },
   };
 }
