@@ -26,7 +26,8 @@ const tags = post.data.tags ?? [];
 const description = post.data.description;
 
 const meta = {
-  image,
+  // TODO - should this be the optimized image?
+  image: `https://cms.alchoi.dev/assets/${image}`,
   description: post.data.description ?? post.data.title
 };
 
