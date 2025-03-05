@@ -71,9 +71,9 @@ const isProd = import.meta.env.PROD;
 
   </head>
 
-  <>
+  <Fragment>
   { isProd &&
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TB0SNLRPM"></script>
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-5TB0SNLRPM"></script>
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -82,7 +82,7 @@ const isProd = import.meta.env.PROD;
     gtag('config', 'G-5TB0SNLRPM');
   </script>
   }
-  </>
+  </Fragment>
 
   <script>
     import 'altcha';

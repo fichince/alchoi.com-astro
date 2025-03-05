@@ -9,47 +9,43 @@ import { Image } from 'astro:assets';
 import type { Props as LayoutProps } from '@src/layouts/Layout.astro';
 
 import type { Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 
 import { getLinkToPost, shortDate } from '@src/utils';
-import { renderWithExcerpt } from '@src/markdown';
 
 interface Props extends LayoutProps {
-  page: Page<BlogEntry>,
-  tag?: string;
+  page: Page<CollectionEntry<'cmsBlog'>>,
 }
 
-const { page, tag, meta, title } = Astro.props;
+const { page, meta, title } = Astro.props;
 const posts = page.data;
 
-function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
-  const { content, excerpt } = renderWithExcerpt(post.body);
+function renderPost(post: CollectionEntry<'cmsBlog'>) : { html: string, hasMore: boolean } {
+  const content = post.rendered.html;
+  const excerpt = post.rendered.metadata.excerpt as string;
+  const wordcount = post.rendered.metadata.wordcount as number;
 
   let html = "";
+  let hasMore = true;
 
   if (excerpt) {
     // if there's an excerpt, show it
     html = excerpt;
   } else {
-    // if there's no excerpt, only show the full post for "quick reviews"
-    if (post.collection === 'capsules') {
+    // if there's no excerpt, only show the full post if it's short
+    if (wordcount < 500) {
       html = content;
+      hasMore = false;
     }
   }
 
-  return { html, hasExcerpt: Boolean(excerpt) };
+  return { html, hasMore };
 }
 
 ---
 <NavbarLayout title={title ?? 'Blog'} meta={meta}>
   <div class="container tw-container fade-in">
-  <slot name="header" />
-  {/*
-    <header>
-      <h1>Blog</h1>
-      <!--<TagChooser selectedTag={tag} />-->
-      <div class="divider" />
-    </header>
-  */}
+    <slot name="header" />
     <main x-data="{ bgShift: -1, bgHover: 0 }"
       x-bind:data-bg-shift="bgShift"
       x-bind:data-bg-hover="bgHover"
@@ -59,14 +55,13 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
       {posts.map(async (post, index) => {
 
         const date = shortDate(post.data.date);
-        const end = post.data.end ? shortDate(post.data.end) : null;
+        const start = post.data.start ? shortDate(post.data.start) : null;
 
         const tags = post.data.tags ?? [];
         const link = getLinkToPost(post);
 
-        const { html, hasExcerpt } = renderPost(post);
-
         const even = index % 2 === 0;
+        const { html, hasMore } = renderPost(post);
 
         return (
           <article class="post card"
@@ -87,10 +82,10 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
               </h4>
               }
               <div class="dates">
-                <time>{date}</time>
-                {end &&
-                  <span> - <time>{end}</time></span>
+                {start &&
+                  <span><time>{start}</time> - </span>
                 }
+                <time>{date}</time>
               </div>
               { post.data.rating &&
                 <sl-rating value={post.data.rating} readonly precision="0.5" />
@@ -107,16 +102,17 @@ function renderPost(post: BlogEntry) : { html: string, hasExcerpt: boolean } {
               <div class="image image-hover image-round" transition:name={`blog-image-${post.id}`}>
                 <a href={link}>
                   <Image
-                    src={post.data.image}
+                    src={`https://cms.alchoi.dev/assets/${post.data.image}`}
                     alt={post.data.title}
                     width={280}
+                    height={280}
                   />
                 </a>
               </div>
             }
             <div class="tw-prose quick-review">
               <Fragment set:html={html} />
-              { hasExcerpt &&
+              { hasMore &&
                 <a href={link}>Read more&hellip;</a>
               }
             </div>

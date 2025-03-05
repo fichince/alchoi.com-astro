@@ -36,8 +36,8 @@ export function renderWithExcerpt(md : string) : { content: string, excerpt: str
       .use(remarkParse)
       .use(remarkGfm)
       .use(remarkSmartypants)
-      .use(remarkRehype)
-      .use(rehypeStringify)
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeStringify, { allowDangerousHtml: true })
       .processSync(md.trim())
       .toString();
 
@@ -47,8 +47,8 @@ export function renderWithExcerpt(md : string) : { content: string, excerpt: str
       .use(remarkGfm)
       .use(remarkSmartypants)
       .use(remarkExcerpt)
-      .use(remarkRehype)
-      .use(rehypeStringify)
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeStringify, { allowDangerousHtml: true })
       .processSync(md.trim())
       .toString();
 

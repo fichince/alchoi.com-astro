@@ -1,12 +1,13 @@
 ---
 import type { Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 import take from 'lodash/take';
 
 import BlogLayout from '@src/layouts/BlogLayout.astro';
-import { PAGE_SIZE, getAllBlogEntries } from '@src/utils';
+import { PAGE_SIZE, getCMSBlogEntries } from '@src/utils';
 
 // the site's main landing page is the first page of the blog
-const entries = await getAllBlogEntries();
+const entries = await getCMSBlogEntries();
 
 const data = take(entries, PAGE_SIZE);
 const page = ({
@@ -21,8 +22,10 @@ const page = ({
     current: '/',
     prev: undefined,
     next: '/blog/2',
+    first: undefined,
+    last: undefined,
   }
-}) satisfies Page<BlogEntry>;
+}) satisfies Page<CollectionEntry<'cmsBlog'>>;
 
 ---
 <BlogLayout page={page} title="Albert Choi's Blog"/>

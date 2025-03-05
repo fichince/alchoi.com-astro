@@ -1,15 +1,16 @@
 ---
 import type { GetStaticPaths, Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 
 import BlogLayout from '@src/layouts/BlogLayout.astro';
-import { PAGE_SIZE, getAllBlogEntries } from '@src/utils';
+import { PAGE_SIZE, getCMSBlogEntries } from '@src/utils';
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const entries = await getAllBlogEntries();
+  const entries = await getCMSBlogEntries();
   const pages = paginate(entries, { pageSize: PAGE_SIZE });
   return pages;
 }) satisfies GetStaticPaths;
 
-const page : Page<BlogEntry> = Astro.props.page;
+const page : Page<CollectionEntry<'cmsBlog'>> = Astro.props.page;
 ---
 <BlogLayout page={page} />

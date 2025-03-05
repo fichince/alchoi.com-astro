@@ -1,13 +1,14 @@
 ---
 import BlogLayout from '@src/layouts/BlogLayout.astro';
-import { PAGE_SIZE, getAllBlogEntries, getAllBlogTags, getAllBlogTagsWithCounts } from '@src/utils';
+import { PAGE_SIZE, getAllBlogTags, getCMSBlogEntries } from '@src/utils';
 import type { GetStaticPaths, Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 import mapValues from 'lodash/mapValues';
 import drop from 'lodash/drop';
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const collection = await getAllBlogEntries();
-  const allTags = await getAllBlogTags();
+  const collection = await getCMSBlogEntries();
+  const allTags = Object.keys(await getAllBlogTags());
 
   const pages = allTags.flatMap((tag) => {
     const posts = collection.filter((post) => {
@@ -24,7 +25,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 const { tag: selectedTag } = Astro.params;
 
-const allTags = await getAllBlogTagsWithCounts();
+const allTags = await getAllBlogTags();
 const sorted = Object.keys(allTags).sort((a : string, b : string) => {
   if (a === selectedTag) { return -1; }
   if (b === selectedTag) { return 1; }
@@ -40,7 +41,7 @@ const sizes = mapValues(allTags, (count) => {
 
 const remainder = drop(sorted, 1);
 
-const page : Page<BlogEntry> = Astro.props.page;
+const page : Page<CollectionEntry<'cmsBlog'>> = Astro.props.page;
 ---
 <BlogLayout page={page}>
   <div class="tag-container card" slot="header">

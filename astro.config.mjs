@@ -28,6 +28,7 @@ export default defineConfig({
     domains: [
       'covers.openlibrary.org',
       'books.google.com',
+      'cms.alchoi.dev',
     ],
   },
   markdown: {
