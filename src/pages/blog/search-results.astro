@@ -8,6 +8,7 @@ export const partial = true;
 import SearchResultsComponent, { type Result } from '@src/components/search/SearchResults.astro';
 import { Client } from '@opensearch-project/opensearch';
 import { renderMarkdown } from '@src/markdown';
+import { getIndexName } from '@src/integrations/search';
 
 function highlightOpts(includeAll = false) {
   const opts = {
@@ -30,7 +31,7 @@ let results : Result[] = [];
 
 if (q && q.trim().length > 0) {
   const client = new Client({ node: import.meta.env.OPENSEARCH_API });
-  const indexName = `alchoi-blog-${import.meta.env.DEV ? 'development' : 'production'}`;
+  const indexName = getIndexName();
 
   const query = {
     _source: ['title', 'author', 'url', 'type'],

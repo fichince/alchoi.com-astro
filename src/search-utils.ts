@@ -5,9 +5,9 @@ import { Client } from '@opensearch-project/opensearch';
 import type { AstroIntegrationLogger } from 'astro';
 import { stripMarkdown } from '@src/markdown';
 import mapValues from 'lodash/mapValues';
+import { getIndexName } from '@src/integrations/search';
 
 const openSearchClient = new Client({ node: import.meta.env.OPENSEARCH_API });
-const indexName = `alchoi-blog-${import.meta.env.DEV ? 'development' : 'production'}`;
 
 const FIELDS_TO_CLEAN = ['content', 'description', 'title'];
 function declutter(s : string) : string {
@@ -15,6 +15,7 @@ function declutter(s : string) : string {
 }
 
 export async function addToIndex(entries: SearchIndexEntry[], logger?: AstroIntegrationLogger) {
+  const indexName = getIndexName();
   try {
     const body = entries.reduce((memo, entry) => {
       const { id, ...rest } = entry;
