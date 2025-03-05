@@ -94,6 +94,9 @@ async function buildIndex(logger: AstroIntegrationLogger, client: Client) {
 
   try {
 
+    console.log('ENV when building index', JSON.stringify(import.meta.env, null, 2));
+    console.log('ENV when building index', JSON.stringify(process.env, null, 2));
+
     const indexName = `alchoi-blog-${import.meta.env.DEV ? 'development' : 'production'}`;
     const { body: exists } = await client.indices.exists({ index: indexName });
     if (exists) {
