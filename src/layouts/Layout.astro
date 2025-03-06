@@ -23,7 +23,7 @@ const { meta } = Astro.props;
 const title = stripMarkdown(Astro.props.title ?? 'Albert Choi');
 
 const description = stripMarkdown(meta?.description ?? 'The homepage of Albert Choi');
-const imagePath = meta?.image ?? 'favicon.png';
+const imagePath = meta?.image ?? 'favicon.ico';
 const imageURL = new URL(imagePath, Astro.site ?? 'https://alchoi.com');
 const image = imageURL.toString();
 

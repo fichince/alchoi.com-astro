@@ -9,6 +9,7 @@ import { mediumDate } from '@src/utils';
 import { Image, getImage } from 'astro:assets';
 import { type CollectionEntry } from 'astro:content';
 import { JSDOM } from 'jsdom';
+import type { GetImageResult } from 'astro';
 
 interface Props extends LayoutProps {
   post : CollectionEntry<'cmsBlog'>
@@ -25,9 +26,22 @@ const tags = post.data.tags ?? [];
 
 const description = post.data.description;
 
+let optimizedImage = null;
+if (image) {
+  optimizedImage = await getImage({
+    src: `https://cms.alchoi.dev/assets/${image}`,
+    inferSize: true,
+    widths: [280, 140],
+    sizes: "(min-width: 480px) 280px, 140px"
+  });
+}
+
+function getMetaImage(optimizedImage : GetImageResult) {
+  return optimizedImage.srcSet.values.find(value => value.transform.width === 140).url;
+}
+
 const meta = {
-  // TODO - should this be the optimized image?
-  image: `https://cms.alchoi.dev/assets/${image}`,
+  image: optimizedImage ? getMetaImage(optimizedImage) : null,
   description: post.data.description ?? post.data.title
 };
 
@@ -87,14 +101,15 @@ const html = processInlineImages(post.rendered.html);
       <div class="tags">
         <TagList tags={tags} justify="right" />
       </div>
-      { image &&
+      { optimizedImage &&
         <div class="image image-hover image-round" transition:name={`blog-image-${post.id}`}>
-          <Image
-            src={`https://cms.alchoi.dev/assets/${image}`}
+          <img
+            src={optimizedImage.src}
+            srcset={optimizedImage.srcSet.attribute}
             alt={title}
-            inferSize
-            widths={[280, 140]}
-            sizes="(min-width: 480px) 280px, 140px"
+            sizes={optimizedImage.attributes.sizes}
+            loading={optimizedImage.attributes.loading}
+            decoding={optimizedImage.attributes.decoding}
           />
         </div>
       }
