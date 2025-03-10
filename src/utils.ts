@@ -6,9 +6,14 @@ export const PAGE_SIZE = 10;
 
 export async function getCMSBlogEntries(): Promise<CollectionEntry<'cmsBlog'>[]> {
   const collection = await getCollection('cmsBlog');
-  const published = collection.filter((post) => {
-    return !post.data.draft;
-  });
+
+  const includeDrafts = import.meta.env.DEV;
+
+  const published = !includeDrafts ?
+    collection.filter((post) => {
+      return !post.data.draft;
+    })
+    : collection;
 
   return published;
 }
