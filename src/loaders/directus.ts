@@ -36,49 +36,54 @@ export default function directusLoader(): Loader {
 
     store.clear();
 
-    const posts = await client.request(readItems('posts', {
-      limit: -1,
-      sort: '-date',
-    }));
-    logger.info(`Loading ${posts.length} posts from Directus`);
+    try {
+      const posts = await client.request(readItems('posts', {
+        limit: -1,
+        sort: '-date',
+      }));
+      logger.info(`Loading ${posts.length} posts from Directus`);
 
-    const searchIndexEntries : SearchIndexEntry[] = [];
+      const searchIndexEntries: SearchIndexEntry[] = [];
 
-    for (const post of posts) {
+      for (const post of posts) {
 
-      const { slug: id, ...rest } = post as InputData;
-      const parsed = await parseData({ id, data: rest });
+        const { slug: id, ...rest } = post as InputData;
+        const parsed = await parseData({ id, data: rest });
 
-      const wordcount = stripMarkdown(parsed.content).split(' ').length;
-      const { content, excerpt } = renderWithExcerpt(parsed.content);
+        const wordcount = stripMarkdown(parsed.content).split(' ').length;
+        const { content, excerpt } = renderWithExcerpt(parsed.content);
 
-      logger.info(`Word count for ${id}: ${wordcount}`);
+        logger.info(`Word count for ${id}: ${wordcount}`);
 
-      store.set({
-        id,
-        data: parsed,
-        rendered: {
-          html: content,
-          metadata: {
-            excerpt,
-            wordcount,
-          },
-        }
-      });
+        store.set({
+          id,
+          data: parsed,
+          rendered: {
+            html: content,
+            metadata: {
+              excerpt,
+              wordcount,
+            },
+          }
+        });
 
-      searchIndexEntries.push({
-        id,
-        title: parsed.title,
-        url: getLinkToPostWithDate(parsed.date, id),
-        type: 'blog',
-        content: parsed.content,
-        description: parsed.description,
-        author: parsed.author,
-      });
+        searchIndexEntries.push({
+          id,
+          title: parsed.title,
+          url: getLinkToPostWithDate(parsed.date, id),
+          type: 'blog',
+          content: parsed.content,
+          description: parsed.description,
+          author: parsed.author,
+        });
 
+      }
+
+      addToIndex(searchIndexEntries, logger);
+    } catch (e) {
+      logger.error('Failed to load from directus ' + JSON.stringify(e, null, 2));
+      throw e;
     }
-
-    addToIndex(searchIndexEntries, logger);
 
   }
 

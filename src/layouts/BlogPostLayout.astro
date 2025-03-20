@@ -29,7 +29,7 @@ const description = post.data.description;
 let optimizedImage = null;
 if (image) {
   optimizedImage = await getImage({
-    src: `https://cms.alchoi.dev/assets/${image}`,
+    src: `${import.meta.env.DIRECTUS_URL}/assets/${image}`,
     inferSize: true,
     widths: [280, 140],
     sizes: "(min-width: 480px) 280px, 140px"

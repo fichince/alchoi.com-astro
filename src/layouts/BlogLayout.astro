@@ -102,7 +102,7 @@ function renderPost(post: CollectionEntry<'cmsBlog'>) : { html: string, hasMore:
               <div class="image image-hover image-round" transition:name={`blog-image-${post.id}`}>
                 <a href={link}>
                   <Image
-                    src={`https://cms.alchoi.dev/assets/${post.data.image}`}
+                    src={`${import.meta.env.DIRECTUS_URL}/assets/${post.data.image}`}
                     alt={post.data.title}
                     width={280}
                     height={280}
