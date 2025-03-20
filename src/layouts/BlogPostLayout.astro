@@ -50,15 +50,23 @@ async function processInlineImages(html : string) : Promise<string> {
   // in order to optimize the image, we run it through the Astro image service
   // and replace the URLs with the optimized image
 
+  // The CMS URL is an absolute path containing a hostname. Because it's possible that
+  // the content was authored while the CMS was hosted on a different server (I like to
+  // experiment with cloud providers), replace the hostname with the currently configured
+  // CMS URL.
+
   const dom = new JSDOM(html);
   const images = dom.window.document.querySelectorAll('img');
 
   for (const element of images) {
 
     const src = element.getAttribute('src');
+    const srcURL = new URL(src);
+
+    const configuredURL = `${import.meta.env.DIRECTUS_URL}${srcURL.pathname}`;
 
     const image = await getImage({
-      src,
+      src: configuredURL,
       format: 'webp',
       inferSize: true,
     });
