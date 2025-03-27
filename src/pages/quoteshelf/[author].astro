@@ -8,7 +8,7 @@ import uniq from 'lodash/uniq';
 import groupBy from 'lodash/groupBy';
 
 export const getStaticPaths = (async () => {
-  const quoteshelf = await getCollection('quoteshelf');
+  const quoteshelf = await getCollection('cmsQuoteshelf');
 
   const slugs = quoteshelf.map(q => q.data.authorSlug);
   const paths = uniq(slugs).map((slug) => ({
@@ -20,7 +20,7 @@ export const getStaticPaths = (async () => {
 
 const { author } = Astro.params;
 
-const quoteshelf = await getCollection('quoteshelf');
+const quoteshelf = await getCollection('cmsQuoteshelf');
 const quotes = quoteshelf.filter((quote) => {
   return author === quote.data.authorSlug;
 });

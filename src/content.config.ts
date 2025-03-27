@@ -2,6 +2,7 @@ import { z, defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import quoteshelfLoader from './loaders/quoteshelf';
 import directusLoader from './loaders/directus';
+import directusQuoteshelfLoader from './loaders/directus-quoteshelf';
 
 const blogSchema = (image : Function) => z.object({
   title: z.string(),
@@ -80,6 +81,10 @@ const cmsBlog = defineCollection({
   loader: directusLoader(),
 });
 
+const cmsQuoteshelf = defineCollection({
+  loader: directusQuoteshelfLoader(),
+});
+
 export const collections = {
   prose,
   blog,
@@ -89,4 +94,5 @@ export const collections = {
   hkjapan,
   quoteshelf,
   cmsBlog,
+  cmsQuoteshelf,
 };
