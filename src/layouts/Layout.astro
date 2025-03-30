@@ -97,6 +97,9 @@ const isProd = import.meta.env.PROD;
         Alpine.start();
       }
     });
+    document.addEventListener('astro:page-load', (e : any) => {
+      window.htmx.process(document.body)
+    });
   </script>
 
   <script>
