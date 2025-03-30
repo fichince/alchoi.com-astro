@@ -87,12 +87,12 @@ const cmsQuoteshelf = defineCollection({
 
 export const collections = {
   prose,
-  blog,
+  //blog,
   code,
   other,
   capsules,
   hkjapan,
-  quoteshelf,
+  //quoteshelf,
   cmsBlog,
   cmsQuoteshelf,
 };

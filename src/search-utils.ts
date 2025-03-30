@@ -6,6 +6,7 @@ import type { AstroIntegrationLogger } from 'astro';
 import { stripMarkdown } from '@src/markdown';
 import mapValues from 'lodash/mapValues';
 import { getIndexName } from '@src/integrations/search';
+import take from 'lodash/take';
 
 const openSearchClient = new Client({ node: import.meta.env.OPENSEARCH_API });
 
