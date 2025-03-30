@@ -4,7 +4,7 @@ import BookCover from '@src/components/quoteshelf/BookCover.astro';
 import type { CollectionEntry } from 'astro:content'
 import QuoteFormatter from './QuoteFormatter.astro';
 
-type Quote = CollectionEntry<'quoteshelf'>;
+type Quote = CollectionEntry<'cmsQuoteshelf'>;
 
 interface Props {
   quotes: Array<Quote>;

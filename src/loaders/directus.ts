@@ -36,24 +36,39 @@ export default function directusLoader(): Loader {
 
     store.clear();
 
+    const searchIndexEntries: SearchIndexEntry[] = [];
+
     try {
-      const posts = await client.request(readItems('posts', {
-        limit: -1,
-        sort: '-date',
-      }));
-      logger.info(`Loading ${posts.length} posts from Directus`);
+      let posts = [];
+      let hasMore = true;
+      let pageNum = 1;
+      while (hasMore) {
+        const page = await client.request(readItems('posts', {
+          limit: 20,
+          page: pageNum,
+          sort: '-date',
+        }));
 
-      const searchIndexEntries: SearchIndexEntry[] = [];
+        if (page.length > 0) {
+          posts = posts.concat(page);
+          pageNum++;
+        } else {
+          hasMore = false;
+        }
+      }
 
+      logger.info(`Loading [${posts.length}] posts from Directus`);
+
+      let totalWordCount = 0;
       for (const post of posts) {
 
         const { slug: id, ...rest } = post as InputData;
         const parsed = await parseData({ id, data: rest });
 
         const wordcount = stripMarkdown(parsed.content).split(' ').length;
-        const { content, excerpt } = renderWithExcerpt(parsed.content);
+        totalWordCount += wordcount;
 
-        logger.info(`Word count for ${id}: ${wordcount}`);
+        const { content, excerpt } = renderWithExcerpt(parsed.content);
 
         store.set({
           id,
@@ -80,6 +95,9 @@ export default function directusLoader(): Loader {
       }
 
       addToIndex(searchIndexEntries, logger);
+
+      logger.info(`All-time word count [${totalWordCount}]`);
+
     } catch (e) {
       logger.error('Failed to load from directus ' + JSON.stringify(e, null, 2));
       throw e;

@@ -5,7 +5,7 @@ import uniqBy from 'lodash/uniqBy';
 import last from 'lodash/last';
 import CoolBackground from '@src/components/CoolBackground.astro';
 
-const quoteshelf = await getCollection('quoteshelf');
+const quoteshelf = await getCollection('cmsQuoteshelf');
 
 type Author = {
   name: string;
