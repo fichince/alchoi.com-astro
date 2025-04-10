@@ -23,7 +23,8 @@ try {
   if (isRemote(cover)) {
     image = await getImage({
       src: cover,
-      inferSize: true,
+      height: 320,
+      width: 320,
       format
     });
   } else {
