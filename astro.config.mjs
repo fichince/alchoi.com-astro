@@ -3,7 +3,7 @@ import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel";
+import node from "@astrojs/node";
 import search from './src/integrations/search.ts';
 //import Sonda from 'sonda/astro';
 
@@ -38,7 +38,8 @@ export default defineConfig({
       wrap: true
     }
   },
-  adapter: vercel({
+  adapter: node({
+    mode: 'standalone'
   }),
   vite: {
     build: {
