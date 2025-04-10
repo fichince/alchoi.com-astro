@@ -30,7 +30,8 @@ let optimizedImage = null;
 if (image) {
   optimizedImage = await getImage({
     src: `${import.meta.env.DIRECTUS_URL}/assets/${image}`,
-    inferSize: true,
+    width: 280,
+    height: 280,
     widths: [280, 140],
     sizes: "(min-width: 480px) 280px, 140px"
   });
