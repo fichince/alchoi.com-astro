@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
@@ -46,4 +46,36 @@ export default defineConfig({
       sourcemap: false
     }
   },
+  env: {
+    schema: {
+      // these are environment variables that are required at runtime
+
+      // used for altcha challenge, can be any randomly generated string
+      HMAC_SECRET: envField.string({
+        optional: false,
+        context: 'server',
+        access: 'secret',
+      }),
+
+      // API key for sending emails via sendgrid
+      SENDGRID_API_KEY: envField.string({
+        optional: false,
+        context: 'server',
+        access: 'secret',
+      }),
+
+      // my e-mail address, used in contact form
+      CONTACT_EMAIL: envField.string({
+        optional: false,
+        context: 'server',
+        access: 'secret',
+      }),
+
+      // additionally, the following environment variables are
+      // needed at build-time, and accessed via import.meta.env or process.env
+      // - OPENSEARCH_API
+      // - DIRECTUS_URL
+      // - DIRECTUS_TOKEN
+    }
+  }
 });

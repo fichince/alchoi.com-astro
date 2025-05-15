@@ -2,9 +2,10 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import { verifySolution } from 'altcha-lib';
+import { HMAC_SECRET, SENDGRID_API_KEY, CONTACT_EMAIL } from 'astro:env/server';
 
 import sgMail from '@sendgrid/mail';
-sgMail.setApiKey(import.meta.env.SENDGRID_API_KEY);
+sgMail.setApiKey(SENDGRID_API_KEY);
 
 export const POST : APIRoute = async ({ request, redirect }) => {
   const body = await request.formData();
@@ -13,15 +14,15 @@ export const POST : APIRoute = async ({ request, redirect }) => {
   const name = body.get('name');
   const email = body.get('email');
   const message = body.get('message');
-  const ok = await verifySolution(payload as string, import.meta.env.HMAC_SECRET);
+  const ok = await verifySolution(payload as string, HMAC_SECRET);
 
   if (!ok || !name || !email || !message) {
     return redirect('/contact?success=false');
   }
 
   const msg = {
-    to: import.meta.env.CONTACT_EMAIL,
-    from: import.meta.env.CONTACT_EMAIL,
+    to: CONTACT_EMAIL,
+    from: CONTACT_EMAIL,
     subject: `New message from ${body.get('name')} [${body.get('email')}]`,
     text: `${body.get('message')}`,
   };
