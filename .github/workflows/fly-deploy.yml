@@ -18,6 +18,7 @@ jobs:
           flyctl deploy --remote-only \
             --build-secret "OPENSEARCH_API=${{ secrets.OPENSEARCH_API }}" \
             --build-secret "DIRECTUS_URL=${{ secrets.DIRECTUS_URL }}" \
-            --build-secret "DIRECTUS_TOKEN=${{ secrets.DIRECTUS_TOKEN }}"
+            --build-secret "DIRECTUS_TOKEN=${{ secrets.DIRECTUS_TOKEN }}" \
+            --no-cache
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
