@@ -90,7 +90,7 @@ export const collections = {
   //blog,
   code,
   other,
-  capsules,
+  //capsules,
   hkjapan,
   //quoteshelf,
   cmsBlog,
