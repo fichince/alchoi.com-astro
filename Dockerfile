@@ -46,9 +46,9 @@ FROM base
 COPY --from=build /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
 
-ENV PORT=4321
+ENV PORT=443
 ENV HOST=0.0.0.0
 
 # Start the server by default, this can be overwritten at runtime
-EXPOSE 4321
+EXPOSE 443
 CMD [ "node", "./dist/server/entry.mjs" ]
