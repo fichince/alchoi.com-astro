@@ -5,6 +5,8 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import node from "@astrojs/node";
 import search from './src/integrations/search.ts';
+import react from '@astrojs/react';
+import markdoc from '@astrojs/markdoc';
 //import Sonda from 'sonda/astro';
 
 // https://astro.build/config
@@ -17,6 +19,8 @@ export default defineConfig({
     mdx(),
     sitemap(),
     search(),
+    react(),
+    markdoc(),
     /*
     Sonda({
       open: false,
