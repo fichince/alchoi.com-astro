@@ -7,6 +7,7 @@ import node from "@astrojs/node";
 import search from './src/integrations/search.ts';
 import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
+import keystatic from '@keystatic/astro';
 //import Sonda from 'sonda/astro';
 
 // https://astro.build/config
@@ -21,6 +22,7 @@ export default defineConfig({
     search(),
     react(),
     markdoc(),
+    keystatic(),
     /*
     Sonda({
       open: false,
