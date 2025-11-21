@@ -9,6 +9,8 @@ export default config({
       label: 'Blog',
       slugField: 'title',
       path: 'src/data/ks-blog/*',
+      columns: ['title', 'date', 'start', 'draft'],
+      entryLayout: 'content',
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
