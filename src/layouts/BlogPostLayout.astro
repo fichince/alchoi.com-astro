@@ -10,6 +10,7 @@ import { Image, getImage } from 'astro:assets';
 import { type CollectionEntry } from 'astro:content';
 import { JSDOM } from 'jsdom';
 import type { GetImageResult } from 'astro';
+import { DateTime } from 'luxon';
 
 interface Props extends LayoutProps {
   post : CollectionEntry<'cmsBlog'>
@@ -18,15 +19,16 @@ interface Props extends LayoutProps {
 const { post } = Astro.props;
 
 const title = post.data.title;
-const image = post.data.image;
+const image = post.data.image as ImageMetadata;
 const author = post.data.author;
-const date = mediumDate(post.data.date);
-const start = post.data.start ? mediumDate(post.data.start) : null;
+const date = mediumDate(DateTime.fromJSDate(post.data.date).toISO());
+const start = post.data.start ? mediumDate(DateTime.fromJSDate(post.data.start).toISO()) : null;
 const tags = post.data.tags ?? [];
 
 const description = post.data.description;
 
 let optimizedImage = null;
+/*
 if (image) {
   optimizedImage = await getImage({
     src: `${import.meta.env.DIRECTUS_URL}/assets/${image}`,
@@ -36,13 +38,14 @@ if (image) {
     sizes: "(min-width: 480px) 280px, 140px"
   });
 }
+*/
 
 function getMetaImage(optimizedImage : GetImageResult) {
   return optimizedImage.srcSet.values.find(value => value.transform.width === 140).url;
 }
 
 const meta = {
-  image: optimizedImage ? getMetaImage(optimizedImage) : null,
+  image: image.src, //optimizedImage ? getMetaImage(optimizedImage) : null,
   description: post.data.description ?? post.data.title
 };
 
@@ -79,7 +82,8 @@ async function processInlineImages(html : string) : Promise<string> {
   return dom.window.document.documentElement.outerHTML;
 }
 
-const html = processInlineImages(post.rendered.html);
+//const html = processInlineImages(post.rendered.html);
+const html = post.rendered.html;
 
 ---
 <NavbarLayout title={title} meta={meta}>
@@ -110,16 +114,9 @@ const html = processInlineImages(post.rendered.html);
       <div class="tags">
         <TagList tags={tags} justify="right" />
       </div>
-      { optimizedImage &&
+      { image &&
         <div class="image image-hover image-round" transition:name={`blog-image-${post.id}`}>
-          <img
-            src={optimizedImage.src}
-            srcset={optimizedImage.srcSet.attribute}
-            alt={title}
-            sizes={optimizedImage.attributes.sizes}
-            loading={optimizedImage.attributes.loading}
-            decoding={optimizedImage.attributes.decoding}
-          />
+          <Image src={image} alt={title} />
         </div>
       }
       { post.data.rating &&

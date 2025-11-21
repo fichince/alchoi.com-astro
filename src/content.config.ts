@@ -77,12 +77,28 @@ const quoteshelf = defineCollection({
   loader: quoteshelfLoader({ base: './src/data/quoteshelf', imageBase: './src/images/quoteshelf' }),
 });
 
-const cmsBlog = defineCollection({
-  loader: directusLoader(),
-});
+
+// const cmsBlog = defineCollection({
+//   loader: directusLoader(),
+// });
 
 const cmsQuoteshelf = defineCollection({
   loader: directusQuoteshelfLoader(),
+});
+
+const cmsBlog = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/data/ks-blog' }),
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    date: z.date(),
+    start: z.date().optional(),
+    tags: z.string().array().optional(),
+    draft: z.boolean().optional(),
+    image: image().optional(),
+    author: z.string().optional(),
+    rating: z.number().min(1).max(5).optional(),
+  }),
 });
 
 export const collections = {
@@ -93,6 +109,7 @@ export const collections = {
   //capsules,
   hkjapan,
   //quoteshelf,
+  //cmsBlog,
   cmsBlog,
   cmsQuoteshelf,
 };

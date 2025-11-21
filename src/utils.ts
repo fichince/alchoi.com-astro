@@ -33,7 +33,7 @@ export function mediumDate(d : string) : string {
 }
 
 export function getLinkToPost(post : CollectionEntry<'cmsBlog'>) : string {
-  return getLinkToPostWithDate(post.data.date, post.id);
+  return getLinkToPostWithDate(DateTime.fromJSDate(post.data.date).toISO(), post.id);
 }
 
 export function getLinkToPostWithDate(dateStr : string, id : string) : string {

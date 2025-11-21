@@ -7,7 +7,7 @@ import { DateTime } from 'luxon';
 export const getStaticPaths = (async ({ paginate }) => {
   const collection = await getCMSBlogEntries();
   const years = collection.reduce((memo, post) => {
-    const date = DateTime.fromISO(post.data.date);
+    const date = DateTime.fromJSDate(post.data.date);
     const year = date.year;
     memo.add(year);
     return memo;
@@ -15,7 +15,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 
   const pages = Array.from(years).flatMap((year) => {
     const posts = collection.filter((post) => {
-      const date = DateTime.fromISO(post.data.date);
+      const date = DateTime.fromJSDate(post.data.date);
       return date.year === year;
     });
     return paginate(posts, {

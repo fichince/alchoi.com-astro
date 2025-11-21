@@ -9,10 +9,10 @@ export const GET = (async (context) => {
   const items = blog.map((post) => {
     return {
       title: stripMarkdown(post.data.title),
-      pubDate: DateTime.fromISO(post.data.date).toJSDate(),
+      pubDate: post.data.date,
       description: (post.data.author ?? '') + stripMarkdown(post.data.description ?? ''),
       link: getLinkToPost(post),
-      content: renderMarkdown(post.data.content),
+      content: renderMarkdown(post.body),
     };
   });
 
