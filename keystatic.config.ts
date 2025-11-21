@@ -48,5 +48,33 @@ export default config({
         draft: fields.checkbox({ label: 'Draft' }),
       },
     }),
+    quoteshelf: collection({
+      label: 'Quoteshelf',
+      path: 'src/data/ks-quoteshelf/*',
+      columns: ['title', 'author'],
+      slugField: 'title',
+      format: 'yaml',
+      schema: {
+        title: fields.slug({ name: { label: 'Title' } }),
+        author: fields.text({ label: 'Author', validation: { isRequired: true } }),
+        sortName: fields.text({ label: 'Sort Name' }),
+        quotes: fields.array(
+          fields.text({ 
+            label: 'Quote', 
+            validation: { isRequired: true },
+            multiline: true,
+          }),
+          { 
+            label: 'Quotes',
+            itemLabel: props => props.value
+          }
+        ),
+        cover: fields.image({
+          label: 'Cover',
+          directory: 'src/assets/images/ks-quoteshelf',
+          publicPath: '@assets/images/ks-quoteshelf',
+        })
+      }
+    }),
   },
 });
