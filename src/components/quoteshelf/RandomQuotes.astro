@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import random from 'lodash/random';
 import BookCover from '@src/components/quoteshelf/BookCover.astro';
 import QuoteFormatter from './QuoteFormatter.astro';
+import slugify from '@sindresorhus/slugify';
 
 interface Props {
   simulateDelay?: boolean;
@@ -19,25 +20,37 @@ if (simulateDelay) {
 
 console.time('randomizer');
 
-const quoteshelf = await getCollection('cmsQuoteshelf');
+const books = await getCollection('cmsQuoteshelf');
+const quotes = books.reduce((acc, book) => {
+  const { quotes, ...rest } = book.data;
+  const quotesWithMetadata = quotes.map((quote) => {
+    return {
+      quote,
+      data: rest,
+    };
+  });
+  return acc.concat(quotesWithMetadata);
+}, []);
 
 console.timeLog('randomizer', 'loaded collection');
 
 const indices = new Set<number>();
 while (indices.size < NUM_QUOTES) {
-  indices.add(random(0, quoteshelf.length - 1));
+  indices.add(random(0, quotes.length - 1));
 }
 
 console.timeLog('randomizer', 'generated random numbers', indices);
 
-const selectedQuotes = Array.from(indices).map((index) => quoteshelf[index]);
+const selectedQuotes = Array.from(indices).map((index) => quotes[index]);
 
 console.timeLog('randomizer', 'selected quotes');
 console.timeEnd('randomizer');
 ---
 
 { selectedQuotes.map((quote) => {
-    const link = `/quoteshelf/${quote.data.authorSlug}?book=${quote.data.titleSlug}#${quote.id}`;
+    const authorSlug = slugify(quote.data.author);
+    const titleSlug = slugify(quote.data.title);
+    const link = `/quoteshelf/${authorSlug}?book=${titleSlug}`;
 
     return (
     <div class="quote embla__slide"
@@ -45,11 +58,10 @@ console.timeEnd('randomizer');
       hx-get="/quoteshelf/random"
       hx-swap="afterend">
 
-      { quote.data.coverUrl && (
+      { quote.data.cover && (
         <a href={link}>
           <BookCover
-            cover={quote.data.coverUrl}
-            title={quote.data.title}
+            book={quote}
             height="var(--size-px-12)"
           />
         </a>
@@ -57,7 +69,7 @@ console.timeEnd('randomizer');
 
       <div>
         <div class="quote-text tw-prose">
-          <QuoteFormatter quote={quote} />
+          <QuoteFormatter quote={quote.quote} />
         </div>
         <div class="quote-title">
           <a href={link}>

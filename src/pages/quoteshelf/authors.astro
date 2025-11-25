@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import uniqBy from 'lodash/uniqBy';
 import last from 'lodash/last';
 import CoolBackground from '@src/components/CoolBackground.astro';
+import slugify from '@sindresorhus/slugify';
 
 const quoteshelf = await getCollection('cmsQuoteshelf');
 
@@ -13,11 +14,12 @@ type Author = {
   sortName: string;
 };
 
-const authors : Author[] = uniqBy(quoteshelf.map((quote) => {
+const authors : Author[] = uniqBy(quoteshelf.map((book) => {
+  const { author } = book.data;
   return {
-    name: quote.data.author,
-    slug: quote.data.authorSlug,
-    sortName: quote.data.sortName,
+    name: author,
+    slug: slugify(author),
+    sortName: book.data.sortName,
   };
 }), 'slug');
 

@@ -83,6 +83,14 @@ const quoteshelf = defineCollection({
 // });
 
 const cmsQuoteshelf = defineCollection({
+  loader: glob({ pattern: '*.yaml', base: './src/data/ks-quoteshelf' }),
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    author: z.string(),
+    sortName: z.string().optional(),
+    quotes: z.string().array(),
+    cover: image().optional(),
+  }),
 });
 
 const cmsBlog = defineCollection({
@@ -110,5 +118,5 @@ export const collections = {
   //quoteshelf,
   //cmsBlog,
   cmsBlog,
-  // cmsQuoteshelf,
+  cmsQuoteshelf,
 };

@@ -6,11 +6,13 @@ import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import uniq from 'lodash/uniq';
 import groupBy from 'lodash/groupBy';
+import slugify from '@sindresorhus/slugify';
 
 export const getStaticPaths = (async () => {
   const quoteshelf = await getCollection('cmsQuoteshelf');
 
-  const slugs = quoteshelf.map(q => q.data.authorSlug);
+  const authors = quoteshelf.map(q => q.data.author);
+  const slugs = authors.map(author => slugify(author));
   const paths = uniq(slugs).map((slug) => ({
     params: { author: slug }
   }));
@@ -21,13 +23,14 @@ export const getStaticPaths = (async () => {
 const { author } = Astro.params;
 
 const quoteshelf = await getCollection('cmsQuoteshelf');
-const quotes = quoteshelf.filter((quote) => {
-  return author === quote.data.authorSlug;
+const books = quoteshelf.filter((book) => {
+  return author === slugify(book.data.author);
 });
 
-const fullName = quotes[0].data.author;
+const fullName = books[0].data.author;
 
-const quotesByTitle = groupBy(quotes, 'data.titleSlug');
+const quotesByTitle = groupBy(books, 'id');
+console.log('quotesByTitle', quotesByTitle);
 const titleSlugs = Object.keys(quotesByTitle);
 ---
 
@@ -48,7 +51,7 @@ const titleSlugs = Object.keys(quotesByTitle);
       <article>
       { titleSlugs.map((titleSlug) => (
         <template x-if={`book === '${titleSlug}'`}>
-          <Book quotes={quotesByTitle[titleSlug]} />
+          <Book book={quotesByTitle[titleSlug][0]} />
         </template>
       ))}
       </article>

@@ -1,16 +1,19 @@
 ---
 import type { GetImageResult } from 'astro';
-import { getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-  cover: string;
-  title: string;
+  //cover: string;
+  //title: string;
   height?: string;
+  book: CollectionEntry<'cmsQuoteshelf'>;
 }
 
-const { cover, title } = Astro.props;
+const { book } = Astro.props;
 const height = Astro.props.height ?? 'var(--size-px-14)';
 
+/*
 function isRemote(cover : string) : boolean {
   return cover.startsWith('https:') || cover.startsWith('http:');
 }
@@ -39,11 +42,14 @@ try {
 } catch (e) {
   console.log(`failed to load cover for ${title}`, e);
 }
+*/
 
 ---
-{ image &&
-  <img style={{ '--height' : height }} src={image.src} alt={title} />
-}
+<Image 
+  src={book.data.cover as ImageMetadata} 
+  alt={book.data.title} 
+  style={{ '--height': height }} 
+/>
 
 <style lang="scss">
   @import "../../style/mixins.scss";
