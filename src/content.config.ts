@@ -83,7 +83,6 @@ const quoteshelf = defineCollection({
 // });
 
 const cmsQuoteshelf = defineCollection({
-  loader: directusQuoteshelfLoader(),
 });
 
 const cmsBlog = defineCollection({

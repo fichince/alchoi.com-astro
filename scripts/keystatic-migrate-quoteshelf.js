@@ -18,45 +18,52 @@ const quotesMap = new Map(quotes.map(quote => [quote.id, quote]));
 
 const imagesFile = await readFile(path.resolve(__dirname, 'directus-images-quoteshelf.json'), { encoding: 'utf-8' });
 const images = JSON.parse(imagesFile);
-const imageMap = new Map(images.map(img => [img.id, img.filename_download]));
+const imageMap = new Map(images.map(img => [img.id, img]));
 
 const outputDir = path.resolve(__dirname, '../src/data/ks-quoteshelf');
 
 console.log(`Processing ${quoteshelf.length} books...`);
 
 for (const book of quoteshelf) {
-  const { quotes: quoteIds, cover, title, ...rest } = _.omit(book, 'date_created');
+  const { quotes: quoteIds, cover, title, ...rest } = _.omit(book, ['date_created', 'id']);
 
   const slug = slugify(title);
   console.log(`\nProcessing book: ${title} (${slug})`);
 
-  const quotes = quoteIds.map(id => quotesMap.get(id));
+  const quotes = quoteIds.map(id => quotesMap.get(id).quote);
 
-  const frontmatter = _.pickBy({ ...rest, quotes }, _.identity);
+  const frontmatter = _.pickBy({ title, ...rest, quotes }, _.identity);
   const imagePath = path.resolve(__dirname, `../src/assets/images/ks-quoteshelf/${slug}`);
   await mkdir(imagePath, { recursive: true });
 
   if (cover) {
     const coverImage = imageMap.get(cover);
-    frontmatter.cover = `@assets/images/ks-quoteshelf/${slug}/${coverImage}`;
+    let filename = null;
+    if (coverImage.filename_download == 'content') {
+      const extension = coverImage.type.split('/')[1];
+      filename = `${slug}.${extension}`;
+    } else {
+      filename = coverImage.filename_download;
+    }
+    frontmatter.cover = `@assets/images/ks-quoteshelf/${slug}/${filename}`;
 
-    const imageURL = `https://cms.alchoi.cloud/assets/${cover}`;
+    //const imageURL = `https://cms.alchoi.cloud/assets/${cover}`;
 
-    console.log(`  Downloading featured image: ${coverImage}`);
+    //console.log(`  Downloading featured image: ${filename}`);
     // Download and save the featured image
-    const response = await fetch(imageURL);
-    const buffer = await response.arrayBuffer();
-    const imageFile = path.resolve(imagePath, coverImage);
-    await writeFile(imageFile, Buffer.from(buffer));
+    //const response = await fetch(imageURL);
+    //const buffer = await response.arrayBuffer();
+    //const imageFile = path.resolve(imagePath, filename);
+    //await writeFile(imageFile, Buffer.from(buffer));
   }
 
   const output = stringify(frontmatter);
-  const outputFile = path.resolve(outputDir, `${slug}.md`);
+  const outputFile = path.resolve(outputDir, `${slug}.yaml`);
 
-  console.log(`  Writing: ${slug}.md`);
+  console.log(`  Writing: ${slug}.yaml`);
   await writeFile(outputFile, output, { encoding: 'utf-8' });
 }
 
-console.log(`\nDone! Processed ${posts.length} books.`);
+console.log(`\nDone! Processed ${quoteshelf.length} books.`);
 
 
