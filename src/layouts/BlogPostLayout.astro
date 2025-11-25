@@ -11,6 +11,7 @@ import { type CollectionEntry } from 'astro:content';
 import { JSDOM } from 'jsdom';
 import type { GetImageResult } from 'astro';
 import { DateTime } from 'luxon';
+import { render } from 'astro:content';
 
 interface Props extends LayoutProps {
   post : CollectionEntry<'cmsBlog'>
@@ -45,7 +46,7 @@ function getMetaImage(optimizedImage : GetImageResult) {
 }
 
 const meta = {
-  image: image.src, //optimizedImage ? getMetaImage(optimizedImage) : null,
+  image: image?.src, //optimizedImage ? getMetaImage(optimizedImage) : null,
   description: post.data.description ?? post.data.title
 };
 
@@ -83,7 +84,8 @@ async function processInlineImages(html : string) : Promise<string> {
 }
 
 //const html = processInlineImages(post.rendered.html);
-const html = post.rendered.html;
+const { Content } = await render(post);
+
 
 ---
 <NavbarLayout title={title} meta={meta}>
@@ -123,7 +125,8 @@ const html = post.rendered.html;
         <sl-rating value={post.data.rating} readonly precision="0.5" />
       }
     </section>
-    <main class="tw-prose blog-post" set:html={html}>
+    <main class="tw-prose blog-post">
+      <Content />
     </main>
 
     <CoolBackground />

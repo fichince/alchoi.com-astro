@@ -1,6 +1,8 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import padStart from 'lodash/padStart';
 import countBy  from 'lodash/countBy';
+import sortBy from 'lodash/sortBy';
+import reverse from 'lodash/reverse';
 import { DateTime } from 'luxon';
 export const PAGE_SIZE = 10;
 
@@ -15,7 +17,7 @@ export async function getCMSBlogEntries(): Promise<CollectionEntry<'cmsBlog'>[]>
     })
     : collection;
 
-  return published;
+  return reverse(sortBy(published, post => post.data.date));
 }
 
 export function shortDate(d : string) : string {

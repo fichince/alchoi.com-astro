@@ -111,5 +111,5 @@ export const collections = {
   //quoteshelf,
   //cmsBlog,
   cmsBlog,
-  cmsQuoteshelf,
+  // cmsQuoteshelf,
 };
