@@ -98,7 +98,7 @@ const cmsBlog = defineCollection({
         return {
           id: entry.id,
           title: entry.data.title as string,
-          url: getLinkToPostWithDate(DateTime.fromJSDate(entry.data.date as Date).toISO(), entry.id),
+          url: getLinkToPostWithDate(entry.data.date as Date, entry.id),
           type: 'blog',
           content: entry.data.content as string,
           description: entry.data.description as string,

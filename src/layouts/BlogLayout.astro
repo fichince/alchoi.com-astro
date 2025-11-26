@@ -58,8 +58,8 @@ function renderPost(post: CollectionEntry<'cmsBlog'>) : { html: string, hasMore:
 
       {posts.map(async (post, index) => {
 
-        const date = shortDate(DateTime.fromJSDate(post.data.date).toISO());
-        const start = post.data.start ? shortDate(DateTime.fromJSDate(post.data.start).toISO()) : null;
+        const date = shortDate(post.data.date);
+        const start = post.data.start ? shortDate(post.data.start) : null;
 
         const tags = post.data.tags ?? [];
         const link = getLinkToPost(post);
