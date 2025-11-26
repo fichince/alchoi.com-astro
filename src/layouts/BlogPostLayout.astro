@@ -10,7 +10,6 @@ import { Image, getImage } from 'astro:assets';
 import { type CollectionEntry } from 'astro:content';
 import { JSDOM } from 'jsdom';
 import type { GetImageResult } from 'astro';
-import { DateTime } from 'luxon';
 import { render } from 'astro:content';
 
 interface Props extends LayoutProps {
@@ -28,64 +27,12 @@ const tags = post.data.tags ?? [];
 
 const description = post.data.description;
 
-let optimizedImage = null;
-/*
-if (image) {
-  optimizedImage = await getImage({
-    src: `${import.meta.env.DIRECTUS_URL}/assets/${image}`,
-    width: 280,
-    height: 280,
-    widths: [280, 140],
-    sizes: "(min-width: 480px) 280px, 140px"
-  });
-}
-*/
-
-function getMetaImage(optimizedImage : GetImageResult) {
-  return optimizedImage.srcSet.values.find(value => value.transform.width === 140).url;
-}
-
 const meta = {
-  image: image?.src, //optimizedImage ? getMetaImage(optimizedImage) : null,
+  image: image?.src,
   description: post.data.description ?? post.data.title
 };
 
-async function processInlineImages(html : string) : Promise<string> {
-  // the rendered HTML contains <img> tags that point to a CMS URL, but
-  // in order to optimize the image, we run it through the Astro image service
-  // and replace the URLs with the optimized image
-
-  // The CMS URL is an absolute path containing a hostname. Because it's possible that
-  // the content was authored while the CMS was hosted on a different server (I like to
-  // experiment with cloud providers), replace the hostname with the currently configured
-  // CMS URL.
-
-  const dom = new JSDOM(html);
-  const images = dom.window.document.querySelectorAll('img');
-
-  for (const element of images) {
-
-    const src = element.getAttribute('src');
-    const srcURL = new URL(src);
-
-    const configuredURL = `${import.meta.env.DIRECTUS_URL}${srcURL.pathname}`;
-
-    const image = await getImage({
-      src: configuredURL,
-      format: 'webp',
-      inferSize: true,
-    });
-
-    //console.log(`inline image ${src} -> ${image.src}`);
-    element.setAttribute('src', image.src);
-  }
-
-  return dom.window.document.documentElement.outerHTML;
-}
-
-//const html = processInlineImages(post.rendered.html);
 const { Content } = await render(post);
-
 
 ---
 <NavbarLayout title={title} meta={meta}>
