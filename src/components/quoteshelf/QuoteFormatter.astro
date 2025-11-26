@@ -3,9 +3,8 @@ import { renderMarkdown } from '@src/markdown';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-  quote: CollectionEntry<'cmsQuoteshelf'>;
+  quote: string
 }
-
 
 function getFontSize(quote : string) : number {
   if (quote.length < 100) {
@@ -19,9 +18,8 @@ function getFontSize(quote : string) : number {
 }
 
 const { quote } = Astro.props;
-const content = quote.data.quote;
 
-const fontSize = getFontSize(content);
+const fontSize = getFontSize(quote);
 const style = {
   '--font-size': `var(--font-size-${fontSize})`,
   '--font-family': Math.random() > 0.5 ? 'var(--font-body)' : 'var(--font-classy)',
@@ -33,7 +31,7 @@ const italicize = Math.random() > 0.5;
 <div
   style={style}
   class:list={{ italicize }}
-  set:html={renderMarkdown(content)}>
+  set:html={renderMarkdown(quote)}>
 
 </div>
 

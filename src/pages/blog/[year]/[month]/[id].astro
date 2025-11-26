@@ -9,7 +9,7 @@ import padStart from 'lodash/padStart';
 export const getStaticPaths = (async () => {
   const collection = await getCMSBlogEntries();
   return collection.map((post) => {
-    const date = DateTime.fromISO(post.data.date);
+    const date = DateTime.fromJSDate(post.data.date);
     const year = date.year;
     const month = padStart(`${date.month}`, 2, '0');
     return {

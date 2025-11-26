@@ -7,6 +7,7 @@ import TagList from '@src/components/TagList.astro';
 import About from '@src/components/About.astro';
 import { Image } from 'astro:assets';
 import type { Props as LayoutProps } from '@src/layouts/Layout.astro';
+import { renderWithExcerpt, stripMarkdown } from '@src/markdown';
 
 import type { Page } from 'astro';
 import type { CollectionEntry } from 'astro:content';
@@ -21,9 +22,11 @@ const { page, meta, title } = Astro.props;
 const posts = page.data;
 
 function renderPost(post: CollectionEntry<'cmsBlog'>) : { html: string, hasMore: boolean } {
-  const content = post.rendered.html;
-  const excerpt = post.rendered.metadata.excerpt as string;
-  const wordcount = post.rendered.metadata.wordcount as number;
+
+  const body = post.body;
+  const { content, excerpt } = renderWithExcerpt(body);
+
+  const wordcount = stripMarkdown(body).split(' ').length;
 
   let html = "";
   let hasMore = true;
@@ -101,12 +104,14 @@ function renderPost(post: CollectionEntry<'cmsBlog'>) : { html: string, hasMore:
             { post.data.image &&
               <div class="image image-hover image-round" transition:name={`blog-image-${post.id}`}>
                 <a href={link}>
-                  <Image
+                  <Image src={post.data.image as ImageMetadata} alt={post.data.title} />
+                  {/*
                     src={`${import.meta.env.DIRECTUS_URL}/assets/${post.data.image}`}
                     alt={post.data.title}
                     width={280}
                     height={280}
                   />
+                  */}
                 </a>
               </div>
             }

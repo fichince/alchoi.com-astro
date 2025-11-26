@@ -11,7 +11,7 @@ const posts = await getCMSBlogEntries();
 const summaries : BlogEntrySummary[] = posts.map((post) => ({
   title: stripMarkdown(post.data.title),
   url: getLinkToPost(post),
-  date: DateTime.fromISO(post.data.date).toJSDate(),
+  date: post.data.date,
 }));
 
 ---

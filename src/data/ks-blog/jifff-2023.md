@@ -1,0 +1,49 @@
+---
+title: JIFFF 2023
+date: 2023-08-14
+tags:
+  - movies
+description: The inaugural Japanese In-Flight Film Festival
+image: '@assets/images/ks-blog/jifff-2023/japan-airplane.jpeg'
+---
+I just got back from a trip to Japan. I hope to write more about my experiences over the coming days, but I wanted to start with my thoughts on the Japanese films that I watched during the flights to and from the country.
+
+Before I dive in, just a quick note on how I typically “program” my in-flight entertainment. This might sound odd, but I usually don’t want to watch anything that I think I’ll love. The tiny screen and the bodily discomfort caused by [cramped seating][1] make for a suboptimal viewing experience, and I feel it would ruin a good movie if I can’t give it the best of my attention. But I don’t want to watch anything truly terrible either; even airplane time is not worth wasting on crap. My non-Japanese choices satisfied this Goldilocks requirement: [_Shazam! Fury of the Gods_][2], [_Black Adam_][3], [_65_][4], [_Birds of Prey (and the Fantabulous Emancipation of One Harley Quinn)_][5], [_Legion of Super-Heroes_][6]. (Yes, you can always count on DC for just the right level of mediocrity.)
+
+Because I wanted to enhance my experience of Japanese culture, I made an exception and chose three Japanese films, knowing that I ran the risk of seeing a great film in a not-great environment.
+
+# [_Anime Supremacy!_][7]
+
+![](@assets/images/ks-blog/jifff-2023/anime-supremacy.webp)
+
+Of the three, I liked this one the least. The story follows a rookie anime director making her first TV series. But, uh-oh: her show happens to run in the same timeslot as the new show by the “genius” director that inspired her to become an artist. Competing with her hero is her main motivation, but the conflict felt outdated in the age of streaming. Do timeslots and ratings even matter anymore?
+
+What I enjoyed was the warm fuzzy feeling that comes when a creative team—producers, voice actors, animators, CG artists—pulls together to follow the director’s vision, even if it means pulling an all-nighter in a time crunch. I acknowledge that this is not realistic, as [recent][8] [news][9] stories have shown, but it's nice to fantasize that people can work together without power imbalances and inequality, right?
+
+# [_Yowamushi Pedal: Up the Road_][10]
+
+![](@assets/images/ks-blog/jifff-2023/yowamushi-pedal.jpeg)
+
+This is a live-action adaptation of a manga and anime about a high-school cycling team. There are two major set pieces involving bicycle racing, and they’re both impressive. It appears that the actors are riding for real and going fast. I thought the final race was particularly cool since it shows team strategies, like riding in formation to reduce air resistance, or surrounding another team to limit their movement. I know nothing about bike racing, but I totally understood what they were doing, and that’s a credit to the visual storytelling of the film.
+
+I was less impressed with the character development, which is conveyed mainly through internal voiceover monologues, e.g. _“I’m riding for my friends! They’re counting on me! I never had friends before! Now I finally fit in!”_ I think this is pretty conventional for anime and manga aimed at a teenage audience, but I find it corny.
+
+# [_Yudo: The Way of the Bath_][11]
+
+![](@assets/images/ks-blog/jifff-2023/yudo.jpeg)
+
+A quirky and charming comedy about a bathhouse, and the community that forms around it. My favourite scenes involve a character who attends a “workshop” with a master who teaches the art of bathing. It’s such a silly idea, but presented in such a serious tone (as if it were a martial art), that I was laughing but at the same time questioning whether it was disrespectful to laugh. The Japanese really do perform staid rituals for seemingly mundane things (like drinking tea), and I could believe that a rigid system of bathing would actually exist.
+
+Another memorable character is a hard-to-please bathhouse critic (think Anton Ego, the restaurant critic in _Ratatouille_), who stands by a strict rule that only natural springs are acceptable, and bathhouses with artifically heated water are not “proper” bathhouses at all. I watched this movie on the flight into Japan, and I spent the next few days at hotels with bathhouses, but only one of which was geothermally heated. And I have to say… this critic character, even though he’s a caricacture and a villain, such as it is… he was _right_.
+
+[1]:	https://www.youtube.com/watch?v=TXjU4l5wrkk
+[2]:	https://letterboxd.com/film/shazam-fury-of-the-gods/
+[3]:	https://letterboxd.com/film/black-adam/
+[4]:	https://letterboxd.com/film/65/
+[5]:	https://letterboxd.com/film/birds-of-prey-and-the-fantabulous-emancipation-of-one-harley-quinn/
+[6]:	https://letterboxd.com/film/legion-of-super-heroes/
+[7]:	https://letterboxd.com/film/anime-supremacy/
+[8]:	https://www.theverge.com/2023/6/23/23771199/across-the-spider-verse-working-conditions-phil-lord
+[9]:	https://www.wired.com/story/marvel-vfx-unionization-big-deal/
+[10]:	https://letterboxd.com/film/yowamushi-pedal-up-the-road/
+[11]:	https://letterboxd.com/film/yudo-the-way-of-the-bath/

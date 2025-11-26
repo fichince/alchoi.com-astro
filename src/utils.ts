@@ -1,6 +1,8 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import padStart from 'lodash/padStart';
 import countBy  from 'lodash/countBy';
+import sortBy from 'lodash/sortBy';
+import reverse from 'lodash/reverse';
 import { DateTime } from 'luxon';
 export const PAGE_SIZE = 10;
 
@@ -15,19 +17,19 @@ export async function getCMSBlogEntries(): Promise<CollectionEntry<'cmsBlog'>[]>
     })
     : collection;
 
-  return published;
+  return reverse(sortBy(published, post => post.data.date));
 }
 
-export function shortDate(d : string) : string {
+export function shortDate(d : Date) : string {
   return DateTime
-    .fromISO(d)
+    .fromJSDate(d)
     .toUTC()
     .toLocaleString(DateTime.DATE_SHORT);
 }
 
-export function mediumDate(d : string) : string {
+export function mediumDate(d : Date) : string {
   return DateTime
-    .fromISO(d)
+    .fromJSDate(d)
     .toUTC()
     .toLocaleString(DateTime.DATE_MED);
 }
@@ -36,8 +38,8 @@ export function getLinkToPost(post : CollectionEntry<'cmsBlog'>) : string {
   return getLinkToPostWithDate(post.data.date, post.id);
 }
 
-export function getLinkToPostWithDate(dateStr : string, id : string) : string {
-  const date = DateTime.fromISO(dateStr);
+export function getLinkToPostWithDate(d : Date, id : string) : string {
+  const date = DateTime.fromJSDate(d);
   const year = date.year;
   const month = padStart(`${date.month}`, 2, '0');
 

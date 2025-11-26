@@ -4,15 +4,11 @@ import BookCover from '@src/components/quoteshelf/BookCover.astro';
 import type { CollectionEntry } from 'astro:content'
 import QuoteFormatter from './QuoteFormatter.astro';
 
-type Quote = CollectionEntry<'cmsQuoteshelf'>;
-
 interface Props {
-  quotes: Array<Quote>;
+  book: CollectionEntry<'cmsQuoteshelf'>;
 }
 
-const { quotes } = Astro.props;
-const coverUrl = quotes[0].data.coverUrl;
-const title = quotes[0].data.title;
+const { book } = Astro.props;
 ---
 
 <div>
@@ -21,13 +17,13 @@ const title = quotes[0].data.title;
     x-bind:data-bg-hover="bgHover"
     x-on:mouseenter="bgHover = 1"
     x-on:mouseleave="bgHover = 0">
-    { coverUrl && (
-      <BookCover cover={coverUrl} title={title} height="var(--size-px-13)" />
+    { book.data.cover && (
+      <BookCover book={book} height="var(--size-px-13)" />
     )}
 
     <div>
-    { quotes.map((quote, index) => (
-      <div id={quote.id} class="quote tw-prose"
+    { book.data.quotes.map((quote, index) => (
+      <div id={`${book.id}__${index}`} class="quote tw-prose"
         x-on:mouseenter={`bgShift = ${index} % 20`}>
         <QuoteFormatter quote={quote} />
       </div>

@@ -6,10 +6,9 @@ import TagList from '@src/components/TagList.astro';
 import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import { mediumDate } from '@src/utils';
-import { Image, getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
 import { type CollectionEntry } from 'astro:content';
-import { JSDOM } from 'jsdom';
-import type { GetImageResult } from 'astro';
+import { render } from 'astro:content';
 
 interface Props extends LayoutProps {
   post : CollectionEntry<'cmsBlog'>
@@ -18,7 +17,7 @@ interface Props extends LayoutProps {
 const { post } = Astro.props;
 
 const title = post.data.title;
-const image = post.data.image;
+const image = post.data.image as ImageMetadata;
 const author = post.data.author;
 const date = mediumDate(post.data.date);
 const start = post.data.start ? mediumDate(post.data.start) : null;
@@ -26,60 +25,12 @@ const tags = post.data.tags ?? [];
 
 const description = post.data.description;
 
-let optimizedImage = null;
-if (image) {
-  optimizedImage = await getImage({
-    src: `${import.meta.env.DIRECTUS_URL}/assets/${image}`,
-    width: 280,
-    height: 280,
-    widths: [280, 140],
-    sizes: "(min-width: 480px) 280px, 140px"
-  });
-}
-
-function getMetaImage(optimizedImage : GetImageResult) {
-  return optimizedImage.srcSet.values.find(value => value.transform.width === 140).url;
-}
-
 const meta = {
-  image: optimizedImage ? getMetaImage(optimizedImage) : null,
+  image: image?.src,
   description: post.data.description ?? post.data.title
 };
 
-async function processInlineImages(html : string) : Promise<string> {
-  // the rendered HTML contains <img> tags that point to a CMS URL, but
-  // in order to optimize the image, we run it through the Astro image service
-  // and replace the URLs with the optimized image
-
-  // The CMS URL is an absolute path containing a hostname. Because it's possible that
-  // the content was authored while the CMS was hosted on a different server (I like to
-  // experiment with cloud providers), replace the hostname with the currently configured
-  // CMS URL.
-
-  const dom = new JSDOM(html);
-  const images = dom.window.document.querySelectorAll('img');
-
-  for (const element of images) {
-
-    const src = element.getAttribute('src');
-    const srcURL = new URL(src);
-
-    const configuredURL = `${import.meta.env.DIRECTUS_URL}${srcURL.pathname}`;
-
-    const image = await getImage({
-      src: configuredURL,
-      format: 'webp',
-      inferSize: true,
-    });
-
-    //console.log(`inline image ${src} -> ${image.src}`);
-    element.setAttribute('src', image.src);
-  }
-
-  return dom.window.document.documentElement.outerHTML;
-}
-
-const html = processInlineImages(post.rendered.html);
+const { Content } = await render(post);
 
 ---
 <NavbarLayout title={title} meta={meta}>
@@ -110,23 +61,17 @@ const html = processInlineImages(post.rendered.html);
       <div class="tags">
         <TagList tags={tags} justify="right" />
       </div>
-      { optimizedImage &&
+      { image &&
         <div class="image image-hover image-round" transition:name={`blog-image-${post.id}`}>
-          <img
-            src={optimizedImage.src}
-            srcset={optimizedImage.srcSet.attribute}
-            alt={title}
-            sizes={optimizedImage.attributes.sizes}
-            loading={optimizedImage.attributes.loading}
-            decoding={optimizedImage.attributes.decoding}
-          />
+          <Image src={image} alt={title} />
         </div>
       }
       { post.data.rating &&
         <sl-rating value={post.data.rating} readonly precision="0.5" />
       }
     </section>
-    <main class="tw-prose blog-post" set:html={html}>
+    <main class="tw-prose blog-post">
+      <Content />
     </main>
 
     <CoolBackground />
