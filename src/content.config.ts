@@ -1,8 +1,11 @@
 import { z, defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import quoteshelfLoader from './loaders/quoteshelf';
-import directusLoader from './loaders/directus';
-import directusQuoteshelfLoader from './loaders/directus-quoteshelf';
+import { customGlob } from './loaders/customGlob';
+import { getLinkToPostWithDate } from '@src/utils';
+import { DateTime } from 'luxon';
+import { addToIndex } from './search-utils';
+import slugify from '@sindresorhus/slugify';
 
 const blogSchema = (image : Function) => z.object({
   title: z.string(),
@@ -83,7 +86,32 @@ const quoteshelf = defineCollection({
 // });
 
 const cmsQuoteshelf = defineCollection({
-  loader: glob({ pattern: '*.yaml', base: './src/data/ks-quoteshelf' }),
+  loader: customGlob({
+    pattern: '*.yaml',
+    base: './src/data/ks-quoteshelf',
+    onLoad: async ({ store, logger }) => {
+      logger.info(`Loaded ${store.values().length} quoteshelf entries`);
+      const entries = Array.from(store.values());
+      const searchIndexEntries : SearchIndexEntry[] = entries.reduce((memo, entry) => {
+        const authorSlug = slugify(entry.data.author as string);
+        const titleSlug = slugify(entry.data.title as string);
+        const quotes : string[] = entry.data.quotes as string[];
+
+        const entriesForBook : SearchIndexEntry[] = quotes.map((quote) => {
+          return {
+            id: entry.id,
+            title: entry.data.title as string,
+            url: `/quoteshelf/${authorSlug}?book=${titleSlug}`,
+            type: 'quote',
+            quote,
+            author: entry.data.author as string,
+          };
+        });
+        return memo.concat(entriesForBook);
+      }, []);
+      addToIndex(searchIndexEntries, logger);
+    },
+  }),
   schema: ({ image }) => z.object({
     title: z.string(),
     author: z.string(),
@@ -94,7 +122,25 @@ const cmsQuoteshelf = defineCollection({
 });
 
 const cmsBlog = defineCollection({
-  loader: glob({ pattern: '*.md', base: './src/data/ks-blog' }),
+  loader: customGlob({
+    pattern: '*.md',
+    base: './src/data/ks-blog',
+    onLoad: async ({ store, logger }) => {
+      logger.info(`Loaded ${store.values().length} blog entries`);
+      const entries = Array.from(store.values());
+      const searchIndexEntries : SearchIndexEntry[] = entries.map((entry) => {
+        return {
+          id: entry.id,
+          title: entry.data.title as string,
+          url: getLinkToPostWithDate(DateTime.fromJSDate(entry.data.date as Date).toISO(), entry.id),
+          type: 'blog',
+          content: entry.data.content as string,
+          description: entry.data.description as string,
+        };
+      });
+      addToIndex(searchIndexEntries, logger);
+    },
+  }),
   schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string().optional(),

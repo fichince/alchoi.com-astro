@@ -84,6 +84,7 @@ if (q && q.trim().length > 0) {
     }
   };
 
+  console.log(`searching index [${indexName}] for [${q}]`);
   console.time('search');
   const response = await client.search({
     index: indexName,
