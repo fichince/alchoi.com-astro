@@ -5,7 +5,6 @@ import { stripMarkdown } from '@src/markdown';
 import Shuffle from '@src/components/icons/Shuffle.astro';
 import PostShuffler from '@src/components/PostShuffler.svelte';
 import NavbarLayout from '@src/layouts/NavbarLayout.astro';
-import { DateTime } from 'luxon';
 
 const posts = await getCMSBlogEntries();
 const summaries : BlogEntrySummary[] = posts.map((post) => ({

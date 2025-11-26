@@ -6,10 +6,8 @@ import TagList from '@src/components/TagList.astro';
 import About from '@src/components/About.astro';
 import CoolBackground from '@src/components/CoolBackground.astro';
 import { mediumDate } from '@src/utils';
-import { Image, getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
 import { type CollectionEntry } from 'astro:content';
-import { JSDOM } from 'jsdom';
-import type { GetImageResult } from 'astro';
 import { render } from 'astro:content';
 
 interface Props extends LayoutProps {

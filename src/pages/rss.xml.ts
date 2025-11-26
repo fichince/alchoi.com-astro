@@ -2,7 +2,6 @@ import rss from '@astrojs/rss';
 import { getCMSBlogEntries, getLinkToPost } from '@src/utils';
 import { stripMarkdown, renderMarkdown } from '@src/markdown';
 import type { APIRoute } from 'astro';
-import { DateTime } from 'luxon';
 
 export const GET = (async (context) => {
   const blog = await getCMSBlogEntries();
