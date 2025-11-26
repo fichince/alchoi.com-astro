@@ -1,25 +1,10 @@
 import { z, defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
-import quoteshelfLoader from './loaders/quoteshelf';
 import { customGlob } from './loaders/customGlob';
 import { getLinkToPostWithDate } from '@src/utils';
 import { DateTime } from 'luxon';
 import { addToIndex } from './search-utils';
 import slugify from '@sindresorhus/slugify';
-
-const blogSchema = (image : Function) => z.object({
-  title: z.string(),
-  description: z.string().optional(),
-  date: z.date(),
-  tags: z.string().array().optional(),
-  draft: z.boolean().optional(),
-  image: image().optional(),
-
-  author: z.string().optional(),
-  end: z.date().optional(),
-  type: z.enum(['book', 'movie', 'tv', 'game', 'music', 'other']).optional(),
-  rating: z.number().min(1).max(5).optional(),
-});
 
 const prose = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/data/prose' }),
@@ -29,11 +14,6 @@ const prose = defineCollection({
     description: z.string(),
     image: image(),
   })
-});
-
-const blog = defineCollection({
-  loader: glob({ pattern: '*.md', base: './src/data/blog' }),
-  schema: ({ image }) => blogSchema(image),
 });
 
 const code = defineCollection({
@@ -47,11 +27,6 @@ const code = defineCollection({
 
 const other = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/data/other' }),
-});
-
-const capsules = defineCollection({
-  loader: glob({ pattern: '*.md', base: './src/data/capsules' }),
-  schema: ({ image }) => blogSchema(image),
 });
 
 const hkjapan = defineCollection({
@@ -75,15 +50,6 @@ const hkjapan = defineCollection({
     }).array().optional(),
   })
 });
-
-const quoteshelf = defineCollection({
-  loader: quoteshelfLoader({ base: './src/data/quoteshelf', imageBase: './src/images/quoteshelf' }),
-});
-
-
-// const cmsBlog = defineCollection({
-//   loader: directusLoader(),
-// });
 
 const cmsQuoteshelf = defineCollection({
   loader: customGlob({
@@ -156,13 +122,9 @@ const cmsBlog = defineCollection({
 
 export const collections = {
   prose,
-  //blog,
   code,
   other,
-  //capsules,
   hkjapan,
-  //quoteshelf,
-  //cmsBlog,
   cmsBlog,
   cmsQuoteshelf,
 };
