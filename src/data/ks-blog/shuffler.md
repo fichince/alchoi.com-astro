@@ -12,7 +12,7 @@ I was building the [404 page][1] for this site and a random idea occurred to me.
 
 I came up with a component that scrolls through a random selection of items with an animation like a slot machine. Svelte has some pretty cool features for supporting [transitions and animations][2], so I wanted to learn more about that.
 
-![](https://cms.alchoi.dev/assets/87ae61b4-44e5-420f-ab54-a503e30cda22)
+![](@assets/images/ks-blog/shuffler/shuffler.gif)
 
 You can play with the final result [here][3].
 

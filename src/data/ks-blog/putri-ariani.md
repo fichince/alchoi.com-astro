@@ -28,7 +28,7 @@ Coincidentally, I caught a cold around this time, and let myself rest for a coup
 
 The algorithm seemed to know what I was going through, and pivoted to recommendating videos in the “Reacts” genre. In a typical “Reacts” video, we see a webcam shot of a YouTube personality (the “reactor” for lack of a better term), as they watch another video, and share their thoughts along the way.[^1] [^2]
 
-![](https://cms.alchoi.dev/assets/d6e2806c-e147-4fcd-bb3c-47017cb8a70c)
+![](@assets/images/ks-blog/putri-ariani/putri-reactors.png)
 
 Putri’s audition went viral, and dozens (hundreds?) of “Reacts” videos sprung up. Some of the reactors don’t say much, letting their facial expressions do the talking. Others are vocal coaches or music professionals, and they offer insight into the vocal techniques that Putri demonstrates.[^3] I probably spent hours watching these videos in a groggy, medicated state.
 
@@ -36,7 +36,7 @@ Of course, if I hadn’t been sick, and was actually busy with stuff, I might no
 
 Some definitions of addiction are explained in terms of the chemical [dopamine][7]. I hear it often in the context of games and gamification: whether an app is designed to be fun, or to turn an unpleasant chore into a game, it doles out mini-rewards in the form of bells, points, or visual animations. These rewards give the user a “dopamine hit,” a feeling of pleasure that keeps them coming back for more.
 
-![](https://cms.alchoi.dev/assets/adfb528b-9692-46ca-a080-b9b123ede51f)
+![](@assets/images/ks-blog/putri-ariani/trainspotting.webp)
 
 I’ve been hooked on enough video games to know what this means. When you win a match, or complete a mission, or solve a puzzle, you get this feeling of “just one more.” And when you lose, you want to try again, to redeem yourself. Either way, you’re chasing that next injection of pleasure into your brain. I’ve watched the classic film [_Trainspotting_][8] many times (probably too often and at too young an age), and while I don’t want to make light of the real and brutal consequences of heroin addiction, I can identify with how the drive to “score,” whether it comes in the form of a literal injection of drugs, or from a virtual interaction on a screen, can black out nearly everything else.
 
@@ -45,7 +45,7 @@ Putri’s audition moved me, and I found myself wanting to experience that feeli
 As I became more and more familiar with Putri’s performance, I came to know which sections would evoke the reactors’ reactions. When she hits a big note, or a particularly expressive phrase—my favourite being the way she sings “[sad, sad situation][9]” in her cover of Elton John’s “Sorry Seems to Be the Hardest Word”—I anticipate the response from the reactor. They might put a hand to their mouth or heart, or shake their head in disbelief, or go “Oh!” They might even get teary-eyed. And when they do, I get that little emotional release, that little dopamine hit. It’s like I’m vicariously having the experience of watching the audition for the first time.
 
 
-![](https://cms.alchoi.dev/assets/1eab1ff1-c1c1-416d-80db-429f60d6b41e)
+![](@assets/images/ks-blog/putri-ariani/reactor-crying.png)
 <small>From [First Time Hearing Putri Ariani | "GOLDEN BUZZER Simon Cowell" | AGT 2023 REACTION](https://youtu.be/8dxYdi4sH7w)</small>
 
 In total, I must have watched dozens of reaction videos. On the day that I embarked on my trip, I found myself jumping onto the airport wi-fi to see if any new ones had appeared in the YouTube feed. Travelling is a great way to detox from being overly online, but after my long days of sightseeing, I still spent a few minutes in the hotel room to get my Putri fix. The two songs that she performed in the audition must have set a record for the length of time that a piece of music has been stuck in my head. It’s been more than a month.

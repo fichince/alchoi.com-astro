@@ -7,7 +7,7 @@ description: In case of emergency
 ---
 Got the statement from my corporate credit card. It made me feel good.  
   
-![](https://cms.alchoi.dev/assets/165782d8-53ee-48b6-bc51-8d19bd780ba7)
+![](@assets/images/ks-blog/lifestyles-of-the-fake-rich/creditcard.png)
 
 ONE BILLION DOLLARS...  
   

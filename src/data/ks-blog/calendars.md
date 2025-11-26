@@ -19,18 +19,18 @@ A calendar requires both text and numbers, and it has a structure that must make
 
 Here are some of the results:
 
-![](https://cms.alchoi.dev/assets/eb8528fb-2fd0-4b61-a74c-f87e6697aab2)
+![](@assets/images/ks-blog/calendars/calendar1.png)
 
 Everyone learns in kindergarten that the five days of the week are Dans, Menday, Santer, Finglers and Trouy.
 
-![](https://cms.alchoi.dev/assets/b53508bc-533e-4c17-ad30-880432c9114f)
+![](@assets/images/ks-blog/calendars/calendar2.png)
 
 A more photorealistic attempt. It got the number of days in the week correct this time, but again, the bottom of the month has the same dates repeating for some reason. And it circled 29, instead of one of the many 28s.
 
-![](https://cms.alchoi.dev/assets/666de359-4293-4659-ac8b-ec694259f811)
+![](@assets/images/ks-blog/calendars/calendar3.png)
 
 There’s _wayyy_ too many days in this one, and the layout kind of reminds me of [Keno](https://www.google.com/search?q=keno+board&tbm=isch). And it forgot to draw a circle around any date.
 
-![](https://cms.alchoi.dev/assets/9450d270-caef-4df2-bfc2-ea6cd063da04)
+![](@assets/images/ks-blog/calendars/calendar4.png)
 
 There’s kind of an infinitely recursive structure to this one, like a fractal calendar, where each square in the month contains another month, and each of the dates in that month contains a month, _ad infinitum_.

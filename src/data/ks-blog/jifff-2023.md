@@ -14,7 +14,7 @@ Because I wanted to enhance my experience of Japanese culture, I made an excepti
 
 # [_Anime Supremacy!_][7]
 
-![](https://cms.alchoi.dev/assets/6dd83540-d830-4610-b159-1c93dcd927a0)
+![](@assets/images/ks-blog/jifff-2023/anime-supremacy.webp)
 
 Of the three, I liked this one the least. The story follows a rookie anime director making her first TV series. But, uh-oh: her show happens to run in the same timeslot as the new show by the “genius” director that inspired her to become an artist. Competing with her hero is her main motivation, but the conflict felt outdated in the age of streaming. Do timeslots and ratings even matter anymore?
 
@@ -22,7 +22,7 @@ What I enjoyed was the warm fuzzy feeling that comes when a creative team—prod
 
 # [_Yowamushi Pedal: Up the Road_][10]
 
-![](https://cms.alchoi.dev/assets/0ee26ef3-7cbe-45bf-aed5-b76cc6ab0307)
+![](@assets/images/ks-blog/jifff-2023/yowamushi-pedal.jpeg)
 
 This is a live-action adaptation of a manga and anime about a high-school cycling team. There are two major set pieces involving bicycle racing, and they’re both impressive. It appears that the actors are riding for real and going fast. I thought the final race was particularly cool since it shows team strategies, like riding in formation to reduce air resistance, or surrounding another team to limit their movement. I know nothing about bike racing, but I totally understood what they were doing, and that’s a credit to the visual storytelling of the film.
 
@@ -30,7 +30,7 @@ I was less impressed with the character development, which is conveyed mainly th
 
 # [_Yudo: The Way of the Bath_][11]
 
-![](https://cms.alchoi.dev/assets/308ad3fe-1a5f-4cc7-8607-d8af87cb57a5)
+![](@assets/images/ks-blog/jifff-2023/yudo.jpeg)
 
 A quirky and charming comedy about a bathhouse, and the community that forms around it. My favourite scenes involve a character who attends a “workshop” with a master who teaches the art of bathing. It’s such a silly idea, but presented in such a serious tone (as if it were a martial art), that I was laughing but at the same time questioning whether it was disrespectful to laugh. The Japanese really do perform staid rituals for seemingly mundane things (like drinking tea), and I could believe that a rigid system of bathing would actually exist.
 

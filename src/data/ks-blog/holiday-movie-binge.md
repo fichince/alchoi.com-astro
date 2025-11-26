@@ -25,7 +25,7 @@ For some reason, I keep going back to the [“Monsterverse”](https://en.wikipe
 
 I recalled kind of liking the one that started it all, 2014’s _Godzilla_. Unfortunately, I don’t think it holds up. The imagery is cool when Godzilla is on screen, and evokes a _Jurassic Park_ kind of awe. But there’s too much uninteresting family drama with cardboard characters, which really drags.
 
-![](https://cms.alchoi.dev/assets/4558720b-398c-42b8-a4a7-29f070175786)
+![](@assets/images/ks-blog/holiday-movie-binge/godzilla.jpg)
 
 ## [_Alien: Romulus_](https://letterboxd.com/film/alien-romulus/)
 
@@ -41,7 +41,7 @@ P.S. the variation of the alien design that we see in _Romulus_, which comes fro
 
 <span><sl-rating value="4" readonly></sl-rating></span>
 
-![](https://cms.alchoi.dev/assets/3153e12a-1045-4dd7-8880-b2a5196cc1c8)
+![](@assets/images/ks-blog/holiday-movie-binge/american-fiction.jpg)
 
 I laughed a lot at this satire of the publishing industry, and how it treats writers of colour. (See also: [_How to Read Now_](/blog/2024/05/how-to-overanalyze) by Elaine Castillo and [_Yellowface_](/blog/2023/10/yellowface) by R. F. Kuang.) Jeffrey Wright plays an unsuccessful author who decides to pull a prank by writing an exaggerated version of the type of “Black novel” that the market seems to want. To his embarrassment, it becomes a bestseller, and he has to put on a thuggish persona for the benefit of the publishers and their marketing departments.
 
@@ -55,7 +55,7 @@ I wasn’t a huge fan of the ending, which (spoiler) <span class="spoiler" x-dat
 
 A small independent horror film, featuring a blind and apparently psychic woman who tries to avenge her twin sister’s death. She has a creepy-looking wooden life-size statue that often occupies the background of shots, menacingly out of focus. There are quite a few well-executed scares, but I kind of predicted where the plot was going pretty early on, which deflated the tension for me somewhat. Also, the villain is a bit on the cartoonish side. Still, I would recommend the movie overall.
 
-![](https://cms.alchoi.dev/assets/4af37275-e42b-4766-9572-9bf5377ad826)
+![](@assets/images/ks-blog/holiday-movie-binge/oddity.png)
 
 
 ## [_Furiosa: A Mad Max Saga_](https://letterboxd.com/film/furiosa-a-mad-max-saga/)
@@ -82,4 +82,4 @@ I grew impatient during the first half of the movie, which is filled with fun-ti
 
 I was just watching this in the background while doing other stuff. It’s one of those movies that I know in my bones, so I don’t really have to pay attention to enjoy it. I laughed out loud when Princess Leia says, of Chewbacca, “Will somebody get this big walking carpet out of my way?”
 
-![](https://cms.alchoi.dev/assets/c0c5bcbe-2de3-45bf-9eb8-4e0584d0bcf2)
+![](@assets/images/ks-blog/holiday-movie-binge/leia.jpg)

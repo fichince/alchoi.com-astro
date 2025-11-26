@@ -24,7 +24,7 @@ Here’s what I found out:
 
 Kaypro was one of the top personal computer manufacturers in the 80’s, but eventually went away once IBM and its clones took over. The Kaypro 4 of 1984 is not to be confused with the Kaypro IV, which came out a year earlier. [According to Wikipedia][3], “Kaypro's nomenclature was odd, with the numerical designations for their machines having more to do with the capacity of the drives than the order they were produced.”
 
-![](https://cms.alchoi.dev/assets/489ac2ab-5912-4a02-840e-daeaa2a4c3e6)
+![](@assets/images/ks-blog/loose-cannons-acknowledgements/kaypro4.jpg)
 
 ### Perfect Writer
 
@@ -38,21 +38,21 @@ Apparently, this is a thing that you hook up between a computer and printer, whi
 
 > One article I wrote recently was 4178 words long. A double-spaced printed version ran 17 pages and took 11 minutes and 40 seconds to print (about 40 seconds per page) on an Epson MX-80 printer… On the three printouts of this article, the MicroFazer saved 35 minutes of computer time, a significant saving indeed.
 
-![](https://cms.alchoi.dev/assets/dc062d93-d480-45e6-9c34-e1aea7ef6262)
+![](@assets/images/ks-blog/loose-cannons-acknowledgements/microfazer.jpg)
 
 ### Silver-Reed EXP 550
 
 Can’t you just hear the noise that this printer would make?
 
-![](https://cms.alchoi.dev/assets/2a975f4b-c578-4d4b-9e49-d17eae315429)
+![](@assets/images/ks-blog/loose-cannons-acknowledgements/silver-reed-printer.jpeg)
 
 When I Googled “Silver-Reed,” a bunch of typewriters came out, along with… knitting machines. I believe the typewriters were made by the same company as the printer, which is a sensible pivot to make. Indeed, if you look at the logos, the typography matches.
 
-![](https://cms.alchoi.dev/assets/88ce4290-672b-4ed1-8116-3be67e48463a)
+![](@assets/images/ks-blog/loose-cannons-acknowledgements/silver-reed-typewriter.jpeg)
 
 I thought the knitting machines might also be made by the same manufacturer, because the punch-card knitting patterns make it seem computer-y, but it doesn’t look like the typography matches here.
 
-![](https://cms.alchoi.dev/assets/1d863362-118f-49c7-a640-2e4f5cd112a3)
+![](@assets/images/ks-blog/loose-cannons-acknowledgements/silver-reed-knitting.jpeg)
 
 In any case, enjoy this [cool video][7] of the knitting machine in action!
 

@@ -9,7 +9,7 @@ After [my experience][1] with _Beijing Confidential_, I felt compelled to expose
 
 Each of the ten essays in this collection is a meditation on a Chinese phrase, which are all shown on the cover, in case you're too lazy to open to the table of contents.
 
-![](https://cms.alchoi.dev/assets/c51554a3-18da-4bde-8415-b9789d748100)
+![](@assets/images/ks-blog/china-in-10-words/china-in-10-words.jpg)
 
 I was a bit impatient through the first half of the book, which deals with the author's childhood during the Cultural Revolution in the 1960’s. It covers ground that doesn't feel new to me because of my time with [other][3] [books][4]. I wanted him to get to the present day, which he does indeed do towards the second half. I would say that the earlier parts of the book do lay an important foundation for the rest of it, because as a whole, the book can be seen as a compare-and-contrast exercise between the time of Mao's rule and today.
 

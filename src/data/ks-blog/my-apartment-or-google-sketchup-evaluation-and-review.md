@@ -13,20 +13,20 @@ I had heard good things about [Google SketchUp](http://google.com/sketchup), so 
   
 Voila:
 
-![](https://cms.alchoi.dev/assets/1d266aab-fb6c-4699-97e0-91a71368a830)
-![](https://cms.alchoi.dev/assets/d70e7437-09ba-4b7f-ae89-f6381a487d8e)
+![](@assets/images/ks-blog/my-apartment-or-google-sketchup-evaluation-and-review/sketchup1.jpg)
+![](@assets/images/ks-blog/my-apartment-or-google-sketchup-evaluation-and-review/sketchup2.jpg)
 
 This is the living room.  
 
-![](https://cms.alchoi.dev/assets/27710030-b632-400b-a59e-7307156ea82f)
-![](https://cms.alchoi.dev/assets/cca9a991-542a-466f-b286-2bfa1c916b9d)
+![](@assets/images/ks-blog/my-apartment-or-google-sketchup-evaluation-and-review/sketchup3.jpg)
+![](@assets/images/ks-blog/my-apartment-or-google-sketchup-evaluation-and-review/sketchup4.jpg)
 
 I'm considering maybe putting another shelf next to the TV for additional storage of books, DVDs, or whatever. On the other hand, it's good to have some empty space so that it's not too cluttered. There's also a pretty large storage closet in the apartment, so anything that doesn't need to always be conveniently available, I can just put in the closet.  
   
 Here's the bedroom.  
 
-![](https://cms.alchoi.dev/assets/d2ad64eb-82ae-48c8-bb88-85d26e827c27)
-![](https://cms.alchoi.dev/assets/48cadac5-d9b0-4a66-85b8-9fb60bdebce1)
+![](@assets/images/ks-blog/my-apartment-or-google-sketchup-evaluation-and-review/sketchup5.jpg)
+![](@assets/images/ks-blog/my-apartment-or-google-sketchup-evaluation-and-review/sketchup6.jpg)
 
 The bedroom seemed small to me when I first looked at the floorplan and at the empty apartment, but now I've seen it in 3D with the furniture models, it's not so bad.  
   

@@ -30,7 +30,7 @@ _**If your inbox is already too full, I apologize for the intrusion. I won't be 
 
 This newsletter is still an experiment, so I'm not sure what I'll be writing about. I’ll keep this first one short, and just share some pictures from our holiday season.
 
-![](https://cms.alchoi.dev/assets/953f41e9-ae6b-4507-8ba9-697e2c5d55db)
+![](@assets/images/ks-blog/happy-new-year/holidays-2023.jpg)
 
 ### What next?
 

@@ -22,15 +22,15 @@ The final project involved creating a [ray tracer](https://en.wikipedia.org/wiki
 
 New cylinder and cone primitives were created.
 
-![](https://cms.alchoi.dev/assets/cdd5c8ce-84c5-4eaf-a5ed-f382a62e31fd)
+![](@assets/images/ks-blog/graphics-project/newprimitives.png)
 
 The radius and height of the primitives can be adjusted to create a variety of shapes.
 
 <div class="responsive-gallery tw-not-prose">
 
-![](https://cms.alchoi.dev/assets/253f9b97-847e-47dc-954e-ce105911f75c)
+![](@assets/images/ks-blog/graphics-project/cylinderprimitives.png)
 
-![](https://cms.alchoi.dev/assets/e08ad6d8-8e44-4a01-8d45-b1f105058677)
+![](@assets/images/ks-blog/graphics-project/coneprimitives.png)
 
 </div>
 
@@ -38,48 +38,48 @@ The radius and height of the primitives can be adjusted to create a variety of s
 
 This image shows reflections. The good ol' "hallway of mirrors"...
 
-![](https://cms.alchoi.dev/assets/e84bd8df-681e-48d4-b7b5-f42be89b2e0f)
+![](@assets/images/ks-blog/graphics-project/reflection-redball.png)
 
 This time, the ball itself is reflective, too.
 
-![](https://cms.alchoi.dev/assets/0f04aeb8-919f-4e60-ab51-78b6e9e4144c)
+![](@assets/images/ks-blog/graphics-project/reflection-mirrorball.png)
 
 ## Refraction
 
 The following sequence shows a refractive pane of glass with progressively larger indices of refraction.
 
-![](https://cms.alchoi.dev/assets/f06d306b-1aa5-4d47-acce-a810fd3b8d23)
+![](@assets/images/ks-blog/graphics-project/refraction1.0.png)
 <small>Refraction index 1.0 - Light rays do not get bent at all.</small>
 
 <div class="responsive-gallery tw-not-prose">
 
 <div>
 
-![](https://cms.alchoi.dev/assets/5830c17c-ad67-4c55-815e-9d6e9bca3d5a)
+![](@assets/images/ks-blog/graphics-project/refraction1.3.png)
 <small>Refraction index 1.3</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/62133511-2fe7-47a3-89f5-98151f3fdb62)
+![](@assets/images/ks-blog/graphics-project/refraction1.5.png)
 <small>Refraction index 1.5</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/24b20ce6-f9ce-4383-9376-dad8133c137c)
+![](@assets/images/ks-blog/graphics-project/refraction1.8.png)
 <small>Refraction index 1.8</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/c0a020cd-6700-4ebe-87b6-af9e34218e9b)
+![](@assets/images/ks-blog/graphics-project/refraction2.0.png)
 <small>Refraction index 2.0</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/cb68577d-ad81-44ca-adea-e3f50faf7e78)
+![](@assets/images/ks-blog/graphics-project/refraction2.5.png)
 <small>Refraction index 2.5</small>
 </div>
 
@@ -91,9 +91,9 @@ Texture maps can be applied to all primitives except polygonal meshes.
 
 <div class="responsive-gallery tw-not-prose">
 
-![](https://cms.alchoi.dev/assets/38377402-e68e-4835-b03e-d9ee46f09d2d)
+![](@assets/images/ks-blog/graphics-project/brick.jpg)
 
-![](https://cms.alchoi.dev/assets/b4408e1f-8233-41d6-8ed3-9ee98a88d04c)
+![](@assets/images/ks-blog/graphics-project/texture_brick.png)
 
 </div>
 
@@ -101,9 +101,9 @@ Texture maps can be applied to all primitives except polygonal meshes.
 
 <div class="responsive-gallery tw-not-prose">
 
-![](https://cms.alchoi.dev/assets/73a2b12b-bc6c-47eb-95ca-ad081bd85de3)
+![](@assets/images/ks-blog/graphics-project/earth_tn.jpg)
 
-![](https://cms.alchoi.dev/assets/b5810e8b-a140-4694-8c9e-880a35ddfd68)
+![](@assets/images/ks-blog/graphics-project/texture_earth.png)
 
 </div>
 
@@ -119,19 +119,19 @@ Perlin noise functions create pseudorandom textures. The noise functions can be 
 
 <div>
 
-![](https://cms.alchoi.dev/assets/4490f01c-9ae3-4f9b-b48e-252637dd973b)
+![](@assets/images/ks-blog/graphics-project/noise_pure0.2.png)
 <small>Persistence 0.2</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/97e515c4-faf9-41bc-bbdb-ce5c53994c0b)
+![](@assets/images/ks-blog/graphics-project/noise_pure0.5.png)
 <small>Persistence 0.5</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/55ed9213-6446-44b6-b991-d1324cba77c4)
+![](@assets/images/ks-blog/graphics-project/noise_pure0.8.png)
 <small>Persistence 0.8</small>
 </div>
 
@@ -139,7 +139,7 @@ Perlin noise functions create pseudorandom textures. The noise functions can be 
 
 I have implemented Perlin noise to allow flexibility in the colours that the texture is made of. Here is an example of using different colours:
 
-![](https://cms.alchoi.dev/assets/12ac62df-c541-4844-a18f-2351a6cba36c)
+![](@assets/images/ks-blog/graphics-project/noise_pure_colour.png)
 
 ### Wood grain
 
@@ -149,32 +149,32 @@ Perlin noise can be used to generate wood grain textures. Wood textures work bes
 
 <div>
 
-![](https://cms.alchoi.dev/assets/50597b98-15f5-4c14-a723-398d03f4fecc)
+![](@assets/images/ks-blog/graphics-project/noise_wood0.1.png)
 <small>Persistence 0.1</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/2e1fd60e-679f-43d0-987f-7c247f55b3d1)
+![](@assets/images/ks-blog/graphics-project/noise_wood0.2.png)
 <small>Persistence 0.2</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/c9d60614-b997-4c6c-9857-430baac54458)
+![](@assets/images/ks-blog/graphics-project/noise_wood0.5.png)
 <small>Persistence 0.5 - It's starting to get ugly</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/337bd4cb-e048-4ffc-94f7-84c254f25740)
+![](@assets/images/ks-blog/graphics-project/noise_wood0.8.png)
 <small>Persistence 0.8 - Does not look like wood anymore</small>
 </div>
 
 </div>
 
 We can still specify colours for wood grain textures. So, it is possible to create this "psychedelic" wood:
-![](https://cms.alchoi.dev/assets/8d0a058f-a9b7-4861-aa73-43f98ad302f9)
+![](@assets/images/ks-blog/graphics-project/noise_wood_colour.png)
 
 ### Marble
 
@@ -184,25 +184,25 @@ Marble textures can be created with Perlin noise. Marble looks best with high va
 
 <div>
 
-![](https://cms.alchoi.dev/assets/c06c3d6e-5f17-457f-87e2-1ab90692bf51)
+![](@assets/images/ks-blog/graphics-project/noise_marble0.3.png)
 <small>Persistence 0.3 - This doesn't look like marble yet</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/bf650447-99bc-4f9d-ba00-c0f42c591848)
+![](@assets/images/ks-blog/graphics-project/noise_marble1.0.png)
 <small>Persistence 1.0 - Better</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/447c4dec-7400-4037-a6e5-5f9292e6e0a5)
+![](@assets/images/ks-blog/graphics-project/noise_marble1.3.png)
 <small>Persistence 1.3 - (Arguably) better still</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/9c803971-9c2f-4102-97f5-de4cf6ec6a7b)
+![](@assets/images/ks-blog/graphics-project/noise_marble1.8.png)
 <small>Persistence 1.8 - Too chaotic</small>
 </div>
 
@@ -210,15 +210,15 @@ Marble textures can be created with Perlin noise. Marble looks best with high va
 
 Perlin noise can be applied to all primitives, as demonstrated here.
 
-![](https://cms.alchoi.dev/assets/595815d3-0f63-4df8-b1f0-794f90868f4f)
+![](@assets/images/ks-blog/graphics-project/noise_allprimitives.png)
 
 It is very difficult to texture map an arbitrary 2-dimensional image to an arbitrary 3-dimensional shape.  However, since Perlin noise is defined in 3 dimensions, it is possible to texture map complex polygonal meshes with noise.  Here, we see a mesh model textured mapped with wood grain and marble textures.
 
 <div class="responsive-gallery tw-not-prose">
 
-![](https://cms.alchoi.dev/assets/abd6352d-6124-4db4-8c3e-23a0cbcc5b15)
+![](@assets/images/ks-blog/graphics-project/noise_wood_cow.png)
 
-![](https://cms.alchoi.dev/assets/474682c6-ae69-4dd6-8983-832c86a2b41c)
+![](@assets/images/ks-blog/graphics-project/noise_marble_cow.png)
 
 </div>
 
@@ -227,7 +227,7 @@ It is very difficult to texture map an arbitrary 2-dimensional image to an arbit
 Soft shadows can be created using area lights.  Area lights can be partially blocked by objects, which gives the shadow a penumbra and umbra.
 
 
-![](https://cms.alchoi.dev/assets/b384101f-0dd4-4147-a9ce-28daca5fa143)
+![](@assets/images/ks-blog/graphics-project/softshadowpointlight.png)
 <small>
 For comparison, this is what a "hard" shadow looks like, as created by a single point light source.
 </small>
@@ -238,19 +238,19 @@ Area lights are specified as an n x n array of lights.  The larger the value of 
 
 <div>
 
-![](https://cms.alchoi.dev/assets/df7814d4-257b-401f-adfb-f99da84a5ba6)
+![](@assets/images/ks-blog/graphics-project/softshadow2lights.png)
 <small>2 &times; 2 area light</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/06f00264-00fd-4576-865b-b3fd6758587e)
+![](@assets/images/ks-blog/graphics-project/softshadow5lights.png)
 <small>5 &times; 5 area light</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/3a9cc221-939e-47be-a90d-171f284260e6)
+![](@assets/images/ks-blog/graphics-project/softshadow10lights.png)
 <small>10 &times; 10 area light</small>
 </div>
 
@@ -261,13 +261,13 @@ The size of the light can also be changed.  Larger lights cast softer shadows, a
 <div class="responsive-gallery tw-not-prose">
 <div>
 
-![](https://cms.alchoi.dev/assets/b18618e0-d6a6-48ed-84e6-30c403ddb2c5)
+![](@assets/images/ks-blog/graphics-project/softshadow1size.png)
 <small>A small area light looks almost like a point light source.</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/f96e252d-c4c2-48be-8836-e5b439db12db)
+![](@assets/images/ks-blog/graphics-project/softshadow2size.png)
 <small>A large area light casts an extremely blurry shadow.</small>
 </div>
 </div>
@@ -276,9 +276,9 @@ The size of the light can vary in either direction.  Compare these two images: o
 
 <div class="responsive-gallery tw-not-prose">
 
-![](https://cms.alchoi.dev/assets/227dbecc-7e8c-4a1f-9b10-1f88b155a3c4)
+![](@assets/images/ks-blog/graphics-project/softshadow3size.png)
 
-![](https://cms.alchoi.dev/assets/1b5766d6-6558-4a86-bb93-7edb1d6069e8)
+![](@assets/images/ks-blog/graphics-project/softshadow4size.png)
 
 </div>
 
@@ -286,7 +286,7 @@ The size of the light can vary in either direction.  Compare these two images: o
 
 Glossy reflections are accomplished by distributing a reflection among many reflection rays.  The more reflection rays there are, the better the reflection will look.
 
-![](https://cms.alchoi.dev/assets/db324dec-312e-445e-a26a-6cc46bab91cb)
+![](@assets/images/ks-blog/graphics-project/glossiness1rays.png)
 <small>For comparison, this is a pure, non-glossy reflection.</small>
 
 The following sequence shows the effect of increasing the number of rays.
@@ -295,19 +295,19 @@ The following sequence shows the effect of increasing the number of rays.
 
 <div>
 
-![](https://cms.alchoi.dev/assets/94388280-2e70-4a70-91ba-34ef15c68bd3)
+![](@assets/images/ks-blog/graphics-project/glossiness2rays.png)
 <small>2 reflection rays</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/1bdd1319-3427-4f6e-abc1-105b3bb49dca)
+![](@assets/images/ks-blog/graphics-project/glossiness10rays.png)
 <small>10 reflection rays</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/3d89de11-0e32-4a9a-aca9-f3b2f9f8a387)
+![](@assets/images/ks-blog/graphics-project/glossiness50rays.png)
 <small>50 reflection rays</small>
 </div>
 </div>
@@ -318,25 +318,25 @@ We can control how scattered the reflection rays are.  This is determined by the
 
 <div>
 
-![](https://cms.alchoi.dev/assets/e200612c-837a-4980-9db8-54e2ea8bf966)
+![](@assets/images/ks-blog/graphics-project/glossiness10specular.png)
 <small>Specular coefficient 10</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/b01a2a71-e9b6-4c08-a61a-684e52814316)
+![](@assets/images/ks-blog/graphics-project/glossiness40specular.png)
 <small>Specular coefficient 40</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/3f38edab-ede4-49a1-964a-3e0c9c5435dd)
+![](@assets/images/ks-blog/graphics-project/glossiness70specular.png)
 <small>Specular coefficient 70</small>
 </div>
 
 <div>
 
-![](https://cms.alchoi.dev/assets/fef5a696-f5e4-4853-b4fa-755142de7b52)
+![](@assets/images/ks-blog/graphics-project/glossiness100specular.png)
 <small>Specular coefficient 100</small>
 </div>
 </div>
@@ -345,11 +345,11 @@ We can control how scattered the reflection rays are.  This is determined by the
 
 My final scene depicts a pool room.  Texture mapping is used for most of the objects, most obviously on the walls, and in the painting.  The frame of the table is texture-mapped with wood grain generated from Perlin noise.  Notice also that the surface of the table is not completely uniform in colour; this was also accomplished with Perlin noise.
 
-![](https://cms.alchoi.dev/assets/412d8240-1484-4ca2-bdc2-ece794c736dd)
+![](@assets/images/ks-blog/graphics-project/scene.png)
 
-![](https://cms.alchoi.dev/assets/74daecee-8cb0-48e7-9863-374318564da7)
+![](@assets/images/ks-blog/graphics-project/ball2.jpg)
 <small>Homemade texture for the balls</small>
 
 This is a close-up rendering of the table which more clearly displays the reflectiveness of the balls.  Also, area lights were used to render this scene.
 
-![](https://cms.alchoi.dev/assets/d7bfeef8-cba7-4ec4-9296-c10a9f66d04e)
+![](@assets/images/ks-blog/graphics-project/table.png)

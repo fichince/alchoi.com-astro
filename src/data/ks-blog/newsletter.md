@@ -18,11 +18,11 @@ At the end of April, we went to Niagara Falls for a few days with my parents, my
 
 It’s been a long time since I’ve been there. As a kid, I remember being drawn mostly to the flashy spectacles of Clifton Hill, but nowadays, I think I’d be happy to just stand and watch the falls for hours.
 
-![](https://cms.alchoi.dev/assets/3e65886b-789c-4bf3-8693-63a642cac158)
+![](@assets/images/ks-blog/newsletter/niagara-falls.jpg)
 
 One of the highlights was visiting the [Bird Kingdom](https://www.birdkingdom.ca/) zoo with my nephews. They had a great time observing up close the many varieties of birds on display.
 
-![](https://cms.alchoi.dev/assets/a543b9fe-573b-412e-b4ab-7ba7b559f9f3)
+![](@assets/images/ks-blog/newsletter/bird-kingdom.jpg)
 
 ## Freelance Life
 
@@ -36,7 +36,7 @@ Earlier this month, I had the chance to fulfill a dream of mine: I went on a wri
 
 The event was run by an organization called [Firefly Creative Writing](https://fireflycreativewriting.com/). Eight writers joined the retreat, along with two facilitators from Firefly, and we gathered in a [house in the woods](https://www.sumaccentre.ca/) near Kingston. Over the course of the weekend, the facilitators led us in group exercises designed to get us into a creative mindset.
 
-![](https://cms.alchoi.dev/assets/3d64f7e9-30c4-4589-ab02-93554ccddcb0)
+![](@assets/images/ks-blog/newsletter/sumac.jpg)
 
 There were a couple of extended periods dedicated to silent writing, but I did not sequester myself behind a closed door as I had imagined. Instead, I sat in the dining area, at a large wooden table, where a couple of others were also working. Even though I had just met them, and they were essentially strangers, we all had something in common, and I found motivation in that common goal.
 

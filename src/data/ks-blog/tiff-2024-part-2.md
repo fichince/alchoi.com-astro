@@ -23,7 +23,7 @@ This documentary was directed by a couple, Lina Vdovii and Radu Ciorniciuc, and 
 
 In _Tata_ (Romanian for “father”), Lina’s estranged father seeks her help because he’s being abused by his boss. The irony of the situation is that he was abusive at home towards her and her mother and sister. And yet, she can’t allow him to continue suffering, even as she attempts to confront him about the suffering that he has caused her.
 
-![](https://cms.alchoi.dev/assets/071a000b-204c-492f-9035-672dac5e25ff)
+![](@assets/images/ks-blog/tiff-2024-part-2/tata.jpg)
 
 Underlying the personal story is a look at the broader culture of traditionally patriarchal societies where men are taught to express only strength and dominance. One scene that really blew my mind shows the father, in a moment of regret, visiting his church to make confession. The priest tells him that he did nothing wrong, and that his daughter should be grateful for his strong parenting. Even as Tata tries to make amends, and to process his own remorse, he gets pulled right back into the cultural traditions that defined him.
 
@@ -33,7 +33,7 @@ Underlying the personal story is a look at the broader culture of traditionally 
 
 I had seen the real-life footage of [Michael Larson’s “hack” of the game show _Press Your Luck_](https://youtu.be/bfOm7K8A0Pw), and so when I discovered this film dramatizing those events, I was immediately intrigued.
 
-![](https://cms.alchoi.dev/assets/844e7441-9264-4e89-8382-394fb47ee62a)
+![](@assets/images/ks-blog/tiff-2024-part-2/luckiest-man.png)
 
 Unfortunately, I don’t think I quite got what I wanted from the movie. I could imagine a version of this story that really dives into the procedural behind-the-scenes logistics of making a TV game show, and what happens when someone like Michael Larson throws a wrench into a smoothly running machine.
 
@@ -51,7 +51,7 @@ In Act 3, which again, is the beginning of the movie, we see the world falling a
 
 However, as we transition into Act 2, we find out that this dying world actually exists within the mind of Chuck, who is terminally ill; as he goes, so does his imagination. From there, we get to relive moments of Chuck’s life, including his childhood in Act 1. It’s mostly heartwarming and uplifting, especially a brilliant extended dance sequence featuring Tom Hiddleston.
 
-![](https://cms.alchoi.dev/assets/69b06eb6-62c4-4ea5-995d-9e97868d53ae)
+![](@assets/images/ks-blog/tiff-2024-part-2/life-of-chuck.png)
 
 But I couldn’t help but feel that the latter acts undercut the opening of the film. Evoking the tragedy of the climate crisis, and then erasing it by telling us it wasn’t real, made the story feel disconnected to me.
 
@@ -61,7 +61,7 @@ What I _think_ the movie was trying to say: humanity is cosmically significant, 
 
 <span><sl-rating value="4" readonly></sl-rating></span>
 
-![](https://cms.alchoi.dev/assets/8bf0951e-83fa-4643-95e2-446ad39f6b17)
+![](@assets/images/ks-blog/tiff-2024-part-2/mistress-dispeller.jpg)
 
 Based on my limited experience with therapy, it appears to be a profession that prefers a hands-off approach. They say that they’re not there to give advice, but rather, to guide you through self-reflection.
 

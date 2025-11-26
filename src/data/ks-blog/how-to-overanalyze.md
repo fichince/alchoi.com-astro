@@ -33,7 +33,7 @@ To attempt to summarize the point that resonated most with me: we are often told
 
 <span><sl-rating value="3.5" readonly /></span>
 
-![](https://cms.alchoi.dev/assets/420542c3-6bd2-45ff-9258-ba2499f0e03c)
+![](@assets/images/ks-blog/how-to-overanalyze/how-to-pronounce-knife.jpg)
 
 This short story collection won the [Giller Prize](https://scotiabankgillerprize.ca/2020-finalists/) recently. The first story, after which the book is titled, had me doubting whether it was deserving. Like most of the pieces in the collection, it’s a vignette of the lives of Laotian immigrants and refugees in Canada. The title story highlights the language barrier between a child, her parents, and her teachers in school. The “punchline,” as it were, is that the parents incorrectly tell the child to pronounce the silent _K_ in “knife.”
 

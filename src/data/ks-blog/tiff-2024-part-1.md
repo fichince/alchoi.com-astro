@@ -29,7 +29,7 @@ I’ll start with this one because I didn’t actually see the whole thing. I ma
 
 In this genre mash-up, a Mexican crime boss transitions to live as a woman, and tries to atone for her past by creating a non-profit that helps the families of missing people. Why are they missing? Because they’re dead… killed by the criminal gangs that our protagonist used to lead. It’s this moral ambiguity that made the film ultimately off-putting to me. The film wishes to celebrate the redemption of this character (including throwing her a rousing parade), but I didn’t believe that justice had been done.
 
-![](https://cms.alchoi.dev/assets/09bc95e6-a87b-48d5-bb9b-724398b3ae23)
+![](@assets/images/ks-blog/tiff-2024-part-1/emilia-perez.png)
 
 Even more egregious is the way she treats her family. When Emilia transitions, she abandons her wife and kids, leaving them to believe that their husband and father is dead. Later, she poses as a distant cousin of her previous identity as a way to shower love on the children, and to jealously keep tabs on her ex-wife’s new relationships. The clear deception and manipulation leads to a predictably tragic end, but the film wants us to feel all warm and fuzzy when the kids think that she “smells like papa.”
 
@@ -42,7 +42,7 @@ I haven’t even mentioned that it’s a semi-musical! Every few scenes, they si
 
 The cast of this tiny low-budget movie features a couple of my favourites from [_Reservation Dogs_](/blog/2023/10/reservation-dogs): Kaniehtiio Horn (who also wrote and directed this) and Dallas Goldtooth. They play cousins who have to defend themselves and their home from a burglar, and they have a casual, jovial chemistry that’s immediately likeable.
 
-![](https://cms.alchoi.dev/assets/fcdd5a91-b3e0-4bed-ab46-b82ac12d6e5b)
+![](@assets/images/ks-blog/tiff-2024-part-1/seeds.png)
 
 The aforementioned burglar is after a stash of ancestral heirloom seeds, for planting the [Three Sisters](https://en.wikipedia.org/wiki/Three_Sisters_%28agriculture%29) crops. He symbolizes the real-world issue of large corporations’—such as the infamous Monsanto—ownership of seed patents, leading to the exploitation of farmers. I like that the film turns this somewhat prosaic theme, and turns it into an action thriller/revenge fantasy. The final act becomes very sadistic (spoiler: <span class="spoiler" x-data="spoiler" x-bind="attrs">the burglar is caught and tortured graphically</span>), which makes for a jarring tone shift.
 
@@ -58,7 +58,7 @@ What starts off as an examination of same-sex marriage rights becomes an intense
 
 But at the end of the day, the lead actors, Jeff Satur and Engfa Waraha, are extremely photogenic and charismatic (read: _hot_), and I enjoyed their performances.
 
-![](https://cms.alchoi.dev/assets/4c7d209d-b91a-4ef1-bb79-b1a3679009a6)
+![](@assets/images/ks-blog/tiff-2024-part-1/paradise-of-thorns.png)
 
 ----
 

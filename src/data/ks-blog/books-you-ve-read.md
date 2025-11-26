@@ -11,7 +11,7 @@ I recently read a few books which feature the relatively rare technique of secon
 # [_Interior Chinatown_](https://app.thestorygraph.com/books/9ff7b20b-07f7-4d3d-a4f7-7ca29900e7d3)
 ### by Charles Yu
 
-![](https://cms.alchoi.dev/assets/4e673499-cd60-485c-8f64-951bff43ccf0)
+![](@assets/images/ks-blog/books-you-ve-read/interior-chinatown.jpeg)
 
 I really wanted to like this book. The protagonist is Willis, the son of immigrants living in a U.S. Chinatown, a setting which is conducive to exactly the kind of cultural-identity soul-searching that I find myself doing more and more often these days. There are passages in this book that hit me right in the heart, e.g.
 
@@ -28,7 +28,7 @@ By the second half of the book, I guess I could accept that we’re watching cha
 # [_In the Dream House_](https://app.thestorygraph.com/books/2048effe-bd2c-4766-9abe-23e80576667b)
 ### by Carmen Maria Machado
 
-![](https://cms.alchoi.dev/assets/b40785d2-b799-43e5-9549-f999fe3fa986)
+![](@assets/images/ks-blog/books-you-ve-read/in-the-dream-house.jpeg)
 
 This memoir covers Machado’s relationship with an abusive girlfriend. The second-person _you_ technique in this case works much better than the above. She splits her recollections into two perspectives: the pronoun _I_ signifies recovery, and moving on after the end of the abusive relationship, while the pronoun _you_ stands for the lived memories of the abuse.
 
@@ -45,7 +45,7 @@ Thematically, the book opened my eyes to the realities of abuse in LGBTQ relatio
 # [_The Only Good Indians_](https://app.thestorygraph.com/books/79437676-42a1-4936-86ac-b885a7f33ac9)
 ### by Stephen Graham Jones
 
-![](https://cms.alchoi.dev/assets/4bf0f8fc-3210-44fb-a227-235062ed07aa)
+![](@assets/images/ks-blog/books-you-ve-read/the-only-good-indians.jpeg)
 
 This is a horror novel, so I don’t think I’m spoiling too much to say that there’s a monster haunting the main characters. The cool thing is that the monster gets the _you_ pronoun. I didn’t pull any quotes, so let me try to demonstrate by paraphrasing[^2]. I’m very sorry, Mr. Jones.
 

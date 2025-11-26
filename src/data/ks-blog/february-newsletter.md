@@ -14,7 +14,7 @@ When we went to Tokyo last year, we surprised ourselves by spending a disproport
 
 As tourists, you’d think we would visit sites that have significance to Japanese culture. But as it turns out, quality stationery _is_ a [significant part](https://youtu.be/Cq6mP-WfikI) of Japanese culture. Most malls and department stores have stationery sections, with a much more wide-ranging selection than we’re used to here in Canada. If you’ve only been to Staples or Indigo, nothing will prepare you for the 12-story [Itoya](https://whenin.tokyo/Itoya-Stationary-Ginza) in the Ginza district.
 
-![](https://cms.alchoi.dev/assets/5f43c7b0-ff92-4727-af3a-7aade62a6d79)
+![](@assets/images/ks-blog/february-newsletter/itoya.jpeg)
 
 As mentioned, I have an affinity for notebooks, and planners in particular. What can I say, I like to stay organized the old-fashioned way. In 2023, I was using a [Leuchtturm1917 weekly planner](https://www.leuchtturm1917.ca/weekly-planner-and-notebook-english.html), and it was serviceable, but didn’t quite suit my needs. Because we visited Japan in the summer, I didn’t see many planners in stores (they’re sold towards the end of the year, for use starting in January). So when November came around, I found myself mentally travelling back to Tokyo, wishing I could see what they had to offer.
 
@@ -22,7 +22,7 @@ Thanks to online shopping, I discovered the [Hobonichi Techo]( https://www.1101.
 
 I’ve been into journalling for some time, but I never did it as often as I wanted to. With the Hobonichi’s daily format, it encourages me to write something down everyday, because there’s nothing sadder than a wasted empty page.
 
-![](https://cms.alchoi.dev/assets/3be3f472-8923-4ca7-9bd5-0b443eb6dd96)
+![](@assets/images/ks-blog/february-newsletter/hobonichi.jpeg)
 
 Let me know: Do you use anything for day-to-day planning or journalling? Do you have any favourite pieces of stationery? (I haven’t even mentioned my favourite pen. Maybe another time.)
 

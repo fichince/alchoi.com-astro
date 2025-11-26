@@ -42,7 +42,7 @@ for (const post of posts) {
 
   // Process inline images in content
   let processedContent = content;
-  const imageRegex = /https:\/\/cms\.alchoi\.cloud\/assets\/([a-f0-9-]+)/g;
+  const imageRegex = /https:\/\/cms\.alchoi\.(?:cloud|dev)\/assets\/([a-f0-9-]+)/g;
   const matches = [...content.matchAll(imageRegex)];
 
   if (matches.length > 0) {
@@ -55,9 +55,10 @@ for (const post of posts) {
 
     if (filename) {
       console.log(`    Downloading inline image: ${filename}`);
-      // Download the inline image
+      // Download the inline image (always use cms.alchoi.cloud)
       const inlineImageURL = match[0];
-      const response = await fetch(inlineImageURL);
+      const downloadURL = `https://cms.alchoi.cloud/assets/${imageId}`;
+      const response = await fetch(downloadURL);
       const buffer = await response.arrayBuffer();
       const imageFile = path.resolve(imagePath, filename);
       await writeFile(imageFile, Buffer.from(buffer));

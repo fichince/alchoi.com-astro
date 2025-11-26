@@ -11,7 +11,7 @@ I like to take a lot of pictures when I travel, and I often feel that the trip i
 
 <!-- excerpt -->
 
-![](https://cms.alchoi.dev/assets/52a60f95-53da-47e4-992f-16c83b46dbd7)
+![](@assets/images/ks-blog/virtual-tour-of-hk-japan/photomap2.png)
 
 Please, [have a look!](/2023-hk-japan) (You’ll have to use a laptop or larger monitor… mobile screens are too small to contain all the awesomeness!)
 

@@ -20,13 +20,13 @@ I’ll be giving some brief thoughts on the films that I saw, in no particular o
 
 A documentary about the rock climber Ashima Shiraishi, and her goal to become, at age 13, the youngest person to complete a [V14](https://en.wikipedia.org/wiki/Grade_%28climbing%29#V-grade) boulder. (The film was shot almost 10 years ago, and I don’t really know why it’s only coming out now.) The bulk of the film shows her and her father as they travel to South Africa to attempt the climb. The boulder itself resides in the wilderness, which is captured by some beautiful scenic cinematography. A lot of drama is mined from the way her father pushes her—arguably to the point of bullying—to keep trying even as she repeatedly falls and injures her hands. You can debate whether the Japanese style of high-pressure parenting is “right” or “wrong”; I will refrain from judgement, but it makes for compelling and sometimes uncomfortable viewing.
 
-![](https://cms.alchoi.dev/assets/5d030a1a-c49e-4237-bf65-6d0b959c3e42)
+![](@assets/images/ks-blog/reel-asian/ashima.jpg)
 
 ## [_Nikah_](https://letterboxd.com/film/nikah/)
 
 <span><sl-rating value="3" readonly></sl-rating></span>
 
-![](https://cms.alchoi.dev/assets/978e01f6-cd52-493f-8e4d-90910ce16e9f)
+![](@assets/images/ks-blog/reel-asian/nikah.jpg)
 
 Shows life in the [Uyghur region of China](https://en.wikipedia.org/wiki/Xinjiang) through the perspective of a young woman. There’s pressure from the community for her to settle down and find a husband, but she hasn’t met any prospects that she likes. The story is quite simple, but I appreciated a look into a culture that I haven’t seen before. In the background of it all is the fear of persecution from the Chinese government. There are signs all over town prohibiting certain types of dress and religious rituals. The dread is most effectively conveyed by a couple of shots from the POV of a surveillance camera, where every face in the crowd is [tracked and identified](https://en.wikipedia.org/wiki/Facial_recognition_system).
 
@@ -40,7 +40,7 @@ A family drama about a father who gets into financial trouble after a [CRA phone
 
 <span><sl-rating value="4" readonly></sl-rating></span>
 
-![](https://cms.alchoi.dev/assets/418af426-3e2a-44e5-9676-cb9e48ec9877)
+![](@assets/images/ks-blog/reel-asian/ben-and-suzanne.jpg)
 
 I hesitate to make this comparison because I’m not that familiar with Richard Linklater’s films, but I don’t think it’s a big stretch to say that _Ben and Suzanne_ follows the template of the [_Before_ trilogy](https://en.wikipedia.org/wiki/Before_trilogy). We follow a couple who have been living apart, as they reunite in Sri Lanka for a vacation. Both actors are charismatic and naturalistic, and the dialogue is witty. As with any couple, their worldviews aren’t always fully in sync, and the suspense of watching their conversations throughout film comes from the question: is _this_ the philosophical disagreement that becomes the dealbreaker for them? At the same time, they do genuinely care for each other and make each other happy, so you root for them, despite their conflicts. My favourite of the festival.
 
@@ -50,7 +50,7 @@ I hesitate to make this comparison because I’m not that familiar with Richard 
 
 Another sports-themed documentary, this one following high-school basketball star Ashley Chea, as she tries to lead her team to some kind of regional or state championship. Unfortunately, the structure and stakes of the various tournaments were not super clear to me, and the film gets a bit repetitive in the final third, as it becomes a series of highlight reels for game after game. The most compelling moments come from watching Ashley’s personality mature as she learns how to be a role model as the team captain. The film also attempts to create an emotional arc from the strained relationship between Ashley and her mother, but I don’t think it really worked. Unlike _Ashima_, you never really see the tension between them, and so the final reconciliation feels forced.
 
-![](https://cms.alchoi.dev/assets/f207bb0e-95db-4460-98a7-beb1b921c377)
+![](@assets/images/ks-blog/reel-asian/home-court.jpg)
 
 ## [_The Land of Morning Calm_](https://letterboxd.com/film/the-land-of-morning-calm/)
 
