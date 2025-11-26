@@ -30,7 +30,6 @@ const books = quoteshelf.filter((book) => {
 const fullName = books[0].data.author;
 
 const quotesByTitle = groupBy(books, 'id');
-console.log('quotesByTitle', quotesByTitle);
 const titleSlugs = Object.keys(quotesByTitle);
 ---
 
