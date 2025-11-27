@@ -100,7 +100,7 @@ const cmsBlog = defineCollection({
           title: entry.data.title as string,
           url: getLinkToPostWithDate(entry.data.date as Date, entry.id),
           type: 'blog',
-          content: entry.data.content as string,
+          content: entry.body as string,
           description: entry.data.description as string,
         };
       });
