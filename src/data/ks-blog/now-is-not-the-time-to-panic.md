@@ -2,6 +2,7 @@
 title: _Now is Not the Time to Panic_
 date: 2025-11-20
 start: 2025-11-06
+image: '@assets/images/ks-blog/now-is-not-the-time-to-panic/image.jpg'
 tags:
   - books
   - fiction
