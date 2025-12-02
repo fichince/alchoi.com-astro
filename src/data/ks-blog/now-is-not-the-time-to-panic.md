@@ -22,4 +22,8 @@ The posters cause a panic across the country, reminiscent of the real-life [Sata
 
 While I enjoyed reading the novel, I felt that it ultimately lacked depth. It wants the reader to take for granted that creating the poster was the most significant event that ever happened to Frankie, and also, that revealing her secret would ruin her life. The latter, especially, didn’t land for me. I never really bought into her guilt because I didn’t believe that she had done anything wrong. I think there is a certain type of person who would shoulder the responsibility, and I guess I needed a bit more exploration into why and how Frankie is this type of person. Without a strong sense of her inner life, my objective view of the situation led me to believe that the world around her overreacted to her innocent act, and that she didn’t need to beat herself up about it.
 
+[storygraph link](https://app.thestorygraph.com/books/c8a193ef-78aa-49c5-9bcc-5e55d9526b0d)
+
+[hardcover link](https://hardcover.app/books/now-is-not-the-time-to-panic)
+
 [^panic-1]: This line would fit right in with the [spoken word section](https://genius.com/Godspeed-you-black-emperor-the-dead-flag-blues-lyrics) at the beginning of [*F♯ A♯ ∞*](https://en.wikipedia.org/wiki/F%E2%99%AF_A%E2%99%AF_%E2%88%9E), the first full-length album by my favourite band, [Godspeed You! Black Emperor](/blog/2024/11/gybe-concert).
