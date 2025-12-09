@@ -14,6 +14,8 @@ A short story collection that I picked up on my recent trip to Italy. The cool t
 
 It made me think about the process of translation as a whole. For this book, they seemed to have tried to maintain a strict alignment, i.e., the paragraphs start and end at the same vertical position on both sides of the page. I wonder if they were particularly rigorous because of the format of this book. If they didn’t need to present both texts side-by-side, would they take more liberties with sentence length and structure?
 
+<!-- excerpt ->
+
 I’ll mention a couple of highlights from the stories, which all seem to lean on nostalgia, evoking a romantic vision of the past. Many of them take place in small villages and pastoral settings.
 
 ### “Invitation to Dinner” by [Alba de Céspedes](https://en.wikipedia.org/wiki/Alba_de_C%C3%A9spedes)
