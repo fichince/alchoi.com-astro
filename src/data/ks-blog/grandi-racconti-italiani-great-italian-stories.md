@@ -2,6 +2,8 @@
 title: _Grandi Racconti Italiani_ / _Great Italian Stories_
 date: 2025-12-06
 start: 2025-11-22
+image: >-
+  @assets/images/ks-blog/grandi-racconti-italiani-great-italian-stories/image.jpg
 tags:
   - books
   - fiction
